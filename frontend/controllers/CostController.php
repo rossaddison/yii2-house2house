@@ -154,11 +154,11 @@ class CostController extends Controller
                     $q = new Query();
                     if  ($q->select('*')->from('works_costdetail')->where(['cost_header_id' => $dailycost_id])->andWhere(['cost_id'=>$value])->exists()) 
                           {
-                            //ignore if the house already exists as a salesorderdetail on the sales order
+                            //ignore if the house already exists as a costdetail on the daily cost
                           }
                           else {
                     $model2 = new Costdetail();
-                    //the sales order id for the specific daily clean that we are copying to
+                    //the cost header id for the specific daily cost that we are copying to
                     $model2->cost_header_id = $dailycost_id;
                     if ($model->frequency == "Daily")
                     {
