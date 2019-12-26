@@ -52,13 +52,19 @@ return [
             'schemaCache' => 'cache',
         ],
         //db etc....
+        //eg. your site is hosted on shared hosting provider one.com
+        //all email will go out from yoursite.co.uk using port 465
+        //If you do not want eg one.com to do the mailing each Company using yoursite.co.uk will have to setup their own email
+        //settings under Company section on main menu.
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'enableSwiftMailerLogging' =>false,
             'useFileTransport' => false,
             'transport' => ['class' => 'Swift_SmtpTransport',
+                             //shared host eg.
                              'host' => 'send.one.com',
-                             'username' => 'myname@mysite.co.uk',
+                             //your website with multiple databases all accessing frontend using advanced yii2 template
+                             'username' => 'myname@yoursite.co.uk',
                              'password' => 'mypassword',
                              'port' => '465',
                              'encryption' => 'tls',                            
