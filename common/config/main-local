@@ -1,0 +1,58 @@
+<?php
+return [
+    'components' => [
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=db',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
+        ],
+        'db1' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=db1',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
+        ],
+        'db2' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=db2',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
+        ],
+        'db3' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=db3',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',
+        ],
+        //db etc....
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'enableSwiftMailerLogging' =>false,
+            'useFileTransport' => false,
+            'transport' => ['class' => 'Swift_SmtpTransport',
+                             'host' => 'send.one.com',
+                             'username' => 'myname@mysite.co.uk',
+                             'password' => 'mypassword',
+                             'port' => '465',
+                             'encryption' => 'tls',                            
+                            ], 
+        ],
+     ], 
+];
