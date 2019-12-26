@@ -208,18 +208,13 @@ class CostheaderController extends Controller
        $model->sub_total = 0;
        $model->tax_amt=0;
        $model->total_due=0;
-       //save the record to generate a new sales order id
+       //save the record to generate a new cost header id
        $model->save();
-       //find the last record's sales_order_id just saved
-       //Yii::$app->session['salesoid'] = $model->sales_order_id; 
+       //find the last record's cost_header_id just saved
        foreach ($costdetails as $key => $value)
        {
            $model3= new Costdetail();
            $model3->cost_header_id = $model->cost_header_id;
-           //$model3->cleaned = "Not Cleaned";
-           //$date = date('Y-m-d');
-           //$date = strtotime(date('Y-m-d', strtotime($date)) . " +1 month");
-           //$date = date('Y-m-d',$date);
            $cost_id = $costdetails[$key]['cost_id'];
            $found = Cost::find()->where(['id'=>$cost_id])->one();
            if ($found->frequency == "Daily")
@@ -304,15 +299,9 @@ class CostheaderController extends Controller
                    ->all();
                    $totalamount = 0.00;
                    $totalpaid = 0.00;
-                   //////$totaltips = 0.00;
-                   //////$totaladvpyts = 0.00;
-                   //////$totalprepyts = 0.00;
                    $totalall = 0.00;
                    $totalamount = number_format($totalamount,2);
                    $totalpaid = number_format($totalpaid,2);
-                   //////$totaltips = number_format($totaltips,2);
-                   //////$totaladvpyts = number_format($totaladvpyts,2);
-                   //////$totalprepyts = number_format($totalprepyts,2);
                    $totalall = number_format($totalall,2);
                    foreach ($monthlycosts as $key)
                   {
@@ -322,43 +311,25 @@ class CostheaderController extends Controller
                                 {
                                    $totalpaid = $totalpaid + $result[$key]['paid'];
                                    $totalamount = $totalamount + $result[$key]['unit_price'];
-                                   //////$totaltips = $totaltips + $result[$key]['tip'];
-                                   //////$totaladvpyts = $totaladvpyts + $result[$key]['advance_payment'];
-                                   //////$totalprepyts = $totalprepyts + $result[$key]['pre_payment'];
                                 }
-                                //////$totalall = $totalpaid  + $totaltips + $totaladvpyts + $totalprepyts;
                                 $totalall = $totalpaid  ;
                   }
                     //total due row
                     $months[$i][1] = number_format($totalamount,2);
                     //total paid row
                     $months[$i][2] = number_format($totalpaid,2);
-                    //total tips row
-                    //////$months[$i][3] = number_format($totaltips,2);
-                    //total advance payments row
-                    //////$months[$i][4] = number_format($totaladvpyts,2);
-                    //total pre payment row
-                    //////$months[$i][5] = number_format($totalprepyts,2);
-                    
                     //fill last row 6 at bottom of table with monthly totals
                     $months[$i][6] = number_format($totalall,2);
                     $i++;
                     $j=$i+1;
                     $grandduetotal = $grandduetotal + $totalamount;
                     $grandpaidtotal = $grandpaidtotal + $totalpaid;
-                    //////$grandtipstotal = $grandtipstotal + $totaltips;
-                    //////$grandadvtotal = $grandadvtotal + $totaladvpyts;
-                    //////$grandpretotal = $grandpretotal + $totalprepyts;
-                    //////$grandtotal = $grandpaidtotal+$grandtipstotal+$grandadvtotal+$grandpretotal;
                     $grandtotal = $grandpaidtotal;
         }
         //total column at far right of table
         $months[12][1] = number_format($grandduetotal,2);
         $months[12][2] = number_format($grandpaidtotal,2);
-        //////$months[12][3] = number_format($grandtipstotal,2);
-        //////$months[12][4] = number_format($grandadvtotal,2);
-        //////$months[12][5] = number_format($grandpretotal,2);
-        $months[12][6] = number_format($grandtotal,2);
+         $months[12][6] = number_format($grandtotal,2);
         return $this->render('totalannualcost',['months'=>$months,'year'=>$costyear]);
     }
    
