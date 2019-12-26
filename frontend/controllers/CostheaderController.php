@@ -109,22 +109,15 @@ class CostheaderController extends Controller
         if (isset($posted['cost_date'])) {
           $output = Yii::$app->formatter->asDate($model->cost_date,'php:Y-m-d');
         }
-        
-        //if (isset($posted['paid'])) {
-        //  $output = Yii::$app->formatter->asDecimal($model->paid, 2);
-        //}
-        
-        // similarly you can check if the name attribute was posted as well
-        // if (isset($posted['name'])) {
-        // $output = ''; // process as you need
-        // }
+		
         $out = Json::encode(['output'=>$output, 'message'=>'']);
      
         // return ajax json encoded response and exit
         echo $out;
         return;
        } //if (Yii::$app->request->post('hasEditable'))
-        return $this->render('index', [
+       
+	    return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,           
         ]);
