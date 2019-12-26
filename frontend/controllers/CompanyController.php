@@ -66,14 +66,8 @@ class CompanyController extends Controller
            { //ifmodelbegin
              if (empty($model->email) || (empty(Company::findOne()->email))){throw new NotFoundHttpException('Either your Company email address has not been filled in or your Customer Email address does not exist for House ID: '.$model->id);}
              $client = new \GoCardlessPro\Client([
-            //'access_token' => getenv('GC_ACCESS_TOKEN'),
-            //https://pay-sandbox.gocardless.com/AL00003Y2KPGT1
-            'access_token' => $comp->gc_accesstoken,
-            //'sandbox_b__7gf_Vxn6dYEKFTy3C-GMRamuFz_siKhQsMiZ-',
-            // Change me to LIVE when you're ready to go live
-            // live_f1sfCuu2xHTUN-IHJP5KualtAZNzo2ubIV6lPzHS
-             
-            'environment' => $comp->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
+             'access_token' => $comp->gc_accesstoken,
+             'environment' => $comp->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
             ]);
             $redirectFlow = $client->redirectFlows()->create([
             'params' => [
@@ -101,14 +95,13 @@ class CompanyController extends Controller
                 ->setTo($model->email)
                 ->setSubject('Cleaning Direct Debit mandate needs to be approved by you.')
                 ->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
-                ->setHtmlBody('<b>Hello. We have created a variable direct debit mandate through Gocardless. That you will approve each time payment is required from you<i></i></b>')
+                ->setHtmlBody('<b>Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you<i></i></b>')
                 ->send();
                 if($send){
                     echo "An email has been sent.";
                 }
         
-       //send an email to customer with this link
-       //Yii::$app->session->setFlash('kv-detail-success', 'Go cardless customer has been created');
+       
        Yii::$app->session->setFlash('kv-detail-success', "ID: " . $redirectFlow->id ." Create Customer on Gocardless: ".Html::a($redirectFlow->redirect_url,$redirectFlow->redirect_url));
        return $this->redirect(['view', 'id' => $model->id]);
        }
@@ -140,7 +133,6 @@ class CompanyController extends Controller
       }
       }
       else {throw new NotFoundHttpException('No ticks selected.');}
-      
     }   
 
     /**
