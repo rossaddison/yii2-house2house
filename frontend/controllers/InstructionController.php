@@ -13,13 +13,6 @@ use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\base\ErrorException;
 
-
-
-
-
-
-
-
 /**
  * InstructionController implements the CRUD actions for Instruction model.
  */
