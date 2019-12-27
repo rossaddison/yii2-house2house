@@ -120,18 +120,6 @@ class SalesorderheaderController extends Controller
         $output = '';
 
 
-        //if (isset($posted['clean_date'])) {
-        //  $output = Yii::$app->formatter->asDate($model->clean_date,'php:Y-m-d');
-        //}
-        
-        //if (isset($posted['paid'])) {
-        //  $output = Yii::$app->formatter->asDecimal($model->paid, 2);
-        //}
-        
-        // similarly you can check if the name attribute was posted as well
-        // if (isset($posted['name'])) {
-        // $output = ''; // process as you need
-        // }
         $out = Json::encode(['output'=>$output, 'message'=>'']);
      
         // return ajax json encoded response and exit
@@ -280,9 +268,6 @@ class SalesorderheaderController extends Controller
            $model3= new Salesorderdetail();
            $model3->sales_order_id = $model->sales_order_id;
            $model3->cleaned = "Not Cleaned";
-           //$date = date('Y-m-d');
-           //$date = strtotime(date('Y-m-d', strtotime($date)) . " +1 month");
-           //$date = date('Y-m-d',$date);
            $product_id = $salesorderdetails[$key]['product_id'];
            $found = Product::find()->where(['id'=>$product_id])->one();
            if ($found->frequency == "Weekly")
