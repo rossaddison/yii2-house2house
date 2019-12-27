@@ -448,7 +448,7 @@ class SalesorderdetailController extends Controller
                               $val = $rows[$key]['sales_order_id'];
                               $cleandate = Salesorderheader::findOne($val);
                               $date = "Clean date: " . $cleandate->clean_date;
-                              $owed = " Owing:£" . $rows[$key]['unit_price']; 
+                              $owed = " Owing:Â£" . $rows[$key]['unit_price']; 
                               $pay = $pay ." ".$date. $owed;                                
                             }
                             $pay = $pay. ".$subtotal payment appreciated. Reference: ".$model->product->name." Please reply -- paid -- to this text once payment has been made.";
@@ -457,7 +457,8 @@ class SalesorderdetailController extends Controller
                             $date = date('d/m/Y h:i:s a', time());
                             $completemessage = $date. " Hi ".$model->product->name .", ". $message_text. " " .$pay;
                             $message = $twilioService->account->messages->create(
-                            "+44" .substr($model->product->contactmobile,1), // To a number that you want to send sms
+                           //affects frontend/config/main.php
+                            Yii::$app->params['DialingCodeRestriction'] .substr($model->product->contactmobile,1), // To a number that you want to send sms
                             array(
                                 "from" =>  Company::findOne(1)->twilio_telephone,   // eg. "+441315103755" From a number that you are sending
                                 "body" => $completemessage, 
@@ -504,7 +505,8 @@ class SalesorderdetailController extends Controller
     {
         if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
             throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
-        }    
+        }
+	$comp = Company::findOne(1);    
         $keylist = Yii::$app->request->get('keylist');
         $message = "";
         $source = Url::to('@web/images/gocardless.png');
@@ -529,10 +531,9 @@ class SalesorderdetailController extends Controller
                     //add the current clean to the subtotal of previous cleans to give the complete total
                     $totalcleanamount = $subtotal + $model->unit_price;
                     $client = new \GoCardlessPro\Client([
-                    'access_token' => 'sandbox_b__7gf_Vxn6dYEKFTy3C-GMRamuFz_siKhQsMiZ-',
-                    // Change me to LIVE when you're ready to go live
-                    'environment' => \GoCardlessPro\Environment::SANDBOX
-                    ]);
+                   'access_token' => $comp->gc_accesstoken,
+                   'environment' => $comp->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
+                   ]);
                     $payment = $client->payments()->create([
                     "params" => [
                         "amount" => $totalcleanamount*100, // 10 GBP in pence
