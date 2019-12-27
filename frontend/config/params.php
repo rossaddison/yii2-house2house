@@ -6,5 +6,7 @@ return [
     'icon-framework' => 'fa',
     'bsDependencyEnabled' => true, 
     'bsVersion' => '4.x',
-    'portalMode'=>'non-maintenance',
+    //when the site is undergoing routine maintenance set to 
+    'portalMode'=>'non-maintenance',    
+    'DialingCodeRestriction'=>'+44'
 ];
