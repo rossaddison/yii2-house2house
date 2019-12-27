@@ -341,7 +341,6 @@ class ProductController extends Controller
              if ((empty($model->email)||(empty(Company::findOne(1)->email)))){throw new NotFoundHttpException('Either From: Company Email address does not exit or To: Customer Email address does not exist for House ID: '.$model->id. ' Please make sure both are filled in. Company email address can be entered here. '.Url::toRoute('company/index'));}
              $client = new \GoCardlessPro\Client([
              'access_token' => Company::findOne(1)->gc_accesstoken,
-            //'environment' => $comp->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
              'environment' => Company::findOne(1)->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
             ]);
             $redirectFlow = $client->redirectFlows()->create([
