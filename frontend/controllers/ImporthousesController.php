@@ -204,7 +204,7 @@ class ImporthousesController extends Controller
                 
                 Yii::$app->session->setFlash('success','Import completed successfully');
                 return $this->redirect(['product/index?ProductSearch%5Bspecialrequest%5D=&ProductSearch%5Bfrequency%5D=&ProductSearch%5Bproductcategory_id%5D='.$productcategory_id.'&ProductSearch%5Bproductsubcategory_id%5D='.$productsubcategory_id.'&ProductSearch%5Bsellstartdate%5D=&ProductSearch%5Bname%5D=&ProductSearch%5Bsurname%5D=&ProductSearch%5Blistprice%5D=&ProductSearch%5Bgc_number%5D=']);
-                //http://multi2.myhost/product/index?ProductSearch%5Bspecialrequest%5D=&ProductSearch%5Bfrequency%5D=&ProductSearch%5Bproductcategory_id%5D=5&ProductSearch%5Bproductsubcategory_id%5D=31&ProductSearch%5Bsellstartdate%5D=&ProductSearch%5Bname%5D=&ProductSearch%5Bsurname%5D=&ProductSearch%5Blistprice%5D=&ProductSearch%5Bgc_number%5D=
+                
             } //if (!empty($keylist) && !empty($productcategory_id) && !empty($productsubcategory_id)
             elseif (empty($productcategory_id) || empty($productsubcategory_id)){
                 Yii::$app->session->setFlash('warning','Select your postcode and street!');
