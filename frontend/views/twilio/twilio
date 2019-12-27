@@ -1,0 +1,18 @@
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+// Get the PHP helper library from twilio.com/docs/php/install
+use Twilio\Rest\Client;
+
+$sid = 'AC9eef5a939c4c8eac9a57eab293957259';
+$token = '0b33be8401f1d5b765075c185ea474f7';
+$client = new Client($sid, $token);
+
+$client->messages->create(
+  '+447726232648',
+  array(
+    'from' => '+441244470673',
+    'body' => 'Thanks for your order! On a scale of 1-10 would you recommend to a friend? Reply with the number 1 to 10 to this message.',
+  )
+);
+
+?>
