@@ -269,30 +269,7 @@ class SiteController extends Controller
         ];
     }
     
-    
-    public function actionSeostats()
-    {    
-    try {
-    $url = 'http://www.google.com/';
-
-    // Create a new SEOstats instance.
-    $seostats = new \SEOstats\SEOstats;
-
-    // Bind the URL to the current SEOstats instance.
-        if ($seostats->setUrl($url)) {
-            echo SEOstats\Alexa::getGlobalRank();
-            echo SEOstats\Google::getPageRank();
-        }
-    }
-    catch (SEOstatsException $e) {
-    die($e->getMessage());
-    }
-   }
    
-   public function actionGoogleanalytics()
-   {
-       return $this->render('googleanalytics');       
-   }
    
    public function actionSitemessage()
    {
@@ -318,36 +295,9 @@ class SiteController extends Controller
        }
    }
    
-   public function actionPayments()
-    {
+  public function actionPayments()
+  {
         return $this->render('payments');
-    }
-   
-   public function actionMakepayfffents() 
-   { 
-    $card = new \PayPal\Api\CreditCard;
-    $card->setType('visa')
-      ->setNumber('4111111111111111')
-      ->setExpireMonth('06')
-      ->setExpireYear('2018')
-      ->setCvv2('782')
-      ->setFirstName('Richie')
-      ->setLastName('Richardson');
-
-    try {
-      $card->create(Yii::$app->Yii2Paypal->getContext());
-      // ...and for debugging purposes
-      echo '<pre>';
-      var_dump($card);
-      //echo $card;
-    } catch (PaypalConnectionException $e) {
-      echo '<pre>';
-      var_dump($e);
-      //echo $e;
-    }
-
-  
-//return $this->render('makepayments');
   }
   
   public function actionReceived()
@@ -360,30 +310,6 @@ class SiteController extends Controller
       return $this->render('cancelled');
   }
 
-  public function actionMigrateDemoUp()
-  {
-    ob_start();
-    defined('STDIN') or define('STDIN', fopen('php://input', 'r'));
-    defined('STDOUT') or define('STDOUT', fopen('php://output', 'w'));
-    defined('STDERR') or define('STDERR', fopen('php://stderr', 'w'));
-    $oldApp = \Yii::$app;
-    // Load Console Application config
-    $config = yii\helpers\ArrayHelper::merge(
-    //migration namespaces
-    require \Yii::getAlias('@console'). '/config/main.php',    
-    //vendor path components ...rbac
-    require \Yii::getAlias('@common').'/config/main.php',
-    //database
-    require (dirname(dirname(__DIR__)) .dirname(Yii::$app->urlManager->baseUrl). '/config/main-local.php'));    
-    $runner = new \yii\console\Application($config);
-    $runner->runAction('migrate/up',['db'=>'demo','interactive' => 0,'migrationPath'=>'@frontend/migrations/demo']);
-    fclose(\STDOUT);
-    fclose(\STDIN);
-    fclose(\STDERR);
-    \Yii::$app = $oldApp;
-    return ob_get_clean();
-  }
-  
   public function actionPrivacypolicy()
   {
       return $this->render('privacypolicy');
