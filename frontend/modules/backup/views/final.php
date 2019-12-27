@@ -1,0 +1,68 @@
+<?php
+
+use \kartik\icons\Icon;
+use yii\helpers\Url;
+use \kartik\form\ActiveForm;
+use yii\helpers\Html;
+
+$this->title = Yii::t('app', 'Backup - Final step');
+
+?>
+<h1>
+    <?= $this->title ?>
+</h1>
+
+<?= \frontend\modules\backup\widgets\Alert::widget() ?>
+<?php
+$form = ActiveForm::begin([
+    'type' => ActiveForm::TYPE_HORIZONTAL,
+]);
+?>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>
+            <?= Yii::t('app', 'Site settings:') ?>
+        </h2>
+
+        <?= $form->field($model, 'serverName')->hint(Yii::t('app', 'This is the hostname that your site will be using.')) ?>
+        <?= $form->field($model, 'serverPort')->hint(Yii::t('app', 'This is port that your site will be using.')) ?>
+        <h2>
+            <?= Yii::t('app', 'Cache settings:') ?>
+        </h2>
+        <?=
+        \kartik\widgets\TypeaheadBasic::widget([
+            'model' => $model,
+            'attribute' => "cacheClass",
+            'data' => $cacheClasses,
+            'pluginOptions' => ['highlight'=>true, 'limit'=>50],
+        ])
+        ?>
+        <?= $form->field($model, 'useMemcached')->checkbox() ?>
+        <?= $form->field($model, 'keyPrefix') ?> 
+    </div>
+</div>
+
+
+<div class="backuper-controls">
+    <a href="<?= Url::to(['backup']) ?>" class="btn btn-info btn-lg pull-left ladda-button" data-style="expand-left">
+        <?= Icon::show('arrow-left') ?>
+        <?= Yii::t('app', 'Back') ?>
+    </a>
+
+    <?=
+    Html::submitButton(
+        Yii::t('app', 'Next') .' ' . Icon::show('arrow-right'),
+        [
+            'class' => 'btn btn-primary btn-lg pull-right',
+        ]
+    )
+    ?>
+
+</div>
+<?php
+ActiveForm::end();
+$js = <<<JS
+
+JS;
+$this->registerJs($js);
+?>
