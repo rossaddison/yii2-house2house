@@ -458,7 +458,6 @@ class SalesorderdetailController extends Controller
                             $date = date('d/m/Y h:i:s a', time());
                             $completemessage = $date. " Hi ".$model->product->name .", ". $message_text. " " .$pay;
                             $message = $twilioService->account->messages->create(
-                           //affects frontend/config/main.php
                             Yii::$app->params['DialingCodeRestriction'] .substr($model->product->contactmobile,1), // To a number that you want to send sms
                             array(
                                 "from" =>  Company::findOne(1)->twilio_telephone,   // eg. "+441315103755" From a number that you are sending
