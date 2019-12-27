@@ -68,11 +68,6 @@ class ProductcategoryController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-       //}
-       //else {
-       //     throw new NotFoundHttpException('You do not have permission to view.');
-      // }
-        
     }
 
     /**
@@ -118,10 +113,7 @@ class ProductcategoryController extends Controller
                 'model' => $model,
             ]);
         }
-        //}
-       //else {
-       //     throw new NotFoundHttpException('You do not have permission to make adjustments.');
-       // }
+        
     }
 
     /**
@@ -132,16 +124,11 @@ class ProductcategoryController extends Controller
      */
     public function actionDelete($id)
     {
-       // if(!Yii::$app->user->isGuest) 
-       //{ 
-        
+       
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-        //}
-       //else {
-       //     throw new NotFoundHttpException('You do not have permission.');
-       // }
+       
     }
 
     /**
