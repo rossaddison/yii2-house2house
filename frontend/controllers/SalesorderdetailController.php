@@ -6,6 +6,7 @@ use Yii;
 use frontend\models\Salesorderheader;
 use frontend\models\Salesorderdetail;
 use frontend\models\Product;
+use frontend\models\Company;
 use frontend\models\Messaging;
 use frontend\components\Utilities;
 use frontend\models\Messagelog;
