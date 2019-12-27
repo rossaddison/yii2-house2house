@@ -68,8 +68,6 @@ class ProductController extends Controller
     
     public function actionIndex()
     {    
-        //Yii::$app->session->setFlash('kv-detail-success', 'Saved record successfully to latest daily clean '. Salesorderheader::findOne($latest_salesorder_id)->clean_date . 'with jobcode '.Salesorderheader::findOne($latest_salesorder_id)->status . '. Daily Job Sheet: <a href="' . Url::to(['salesorderdetail/index/'.$latest_salesorder_id]) . '" class="btn btn-sm btn-info">
-        //                                                              .<i class="glyphicon glyphicon-hand-right"></i>  Click here</a> to proceed.');
        
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -373,8 +371,6 @@ class ProductController extends Controller
          $model_sessiondetail->user_id = Yii::$app->user->id;
          $model_sessiondetail->save();
          
-         ///////////////////////////////////////////////////////
-         
        if (!empty(Company::findOne(1)->smtp_transport_host) && !empty(Company::findOne(1)->smtp_transport_username) && !empty(Company::findOne(1)->password) && !empty(Company::findOne(1)->port) && !empty(Company::findOne(1)->encryption))  
        {
            $locator = new ServiceLocator;
@@ -396,7 +392,6 @@ class ProductController extends Controller
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
                 ->setSubject(Company::findOne(1)->name. ': Cleaning Direct Debit mandate needs to be approved by you within 30 minutes from this time: '. date('Y-m-d H:i:s'))
-                //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
                 ->setHtmlBody('Dear Customer,'
                     .'<br>'
                     . 'We have created a variable direct debit mandate link to Gocardless for you.'
@@ -430,7 +425,6 @@ class ProductController extends Controller
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
                 ->setSubject(Company::findOne(1)->name. ': Cleaning Direct Debit mandate needs to be approved by you within 30 minutes from this time: '. date('Y-m-d H:i:s'))
-                //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
                 ->setHtmlBody('Dear Customer,'
                     .'<br>'
                     . 'We have created a variable direct debit mandate link to Gocardless for you.'
@@ -562,7 +556,6 @@ class ProductController extends Controller
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
                 ->setSubject(Company::findOne(1)->name. ': Payment request: '. date('Y-m-d'))
-                //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
                 ->setHtmlBody('Dear Customer,'
                     . '<br>'
                     . '<br>'
@@ -595,7 +588,6 @@ class ProductController extends Controller
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
                 ->setSubject(Company::findOne(1)->name. ': Payment request: '. date('Y-m-d'))
-                //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
                 ->setHtmlBody('Dear Customer,'
                     .'<br>'
                     .'<br>'
@@ -673,7 +665,6 @@ class ProductController extends Controller
                         $accept_mandate = Sessiondetail::find()->where(['=','redirect_flow_id',$value['redirect_flow_id']])->one();
                         $accept_mandate->administrator_acknowledged = 1;
                         $accept_mandate->save();
-                        //$message = "The following customer's mandates have been acknowledged. sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::toRoute(['product/view','id'=>$model->id])). ' The customer will be redirected to this site once they have approved the Mandate and will be encouraged to reply to your original email stating that they have approved the Mandate. Access the Gocardless site to update the fields below.';
                         $message = "Acknowledged Customer Mandate: ID " . $foundit->id;
                         $message_all = $message_all ."  ".$message. "<br><br>";
                 } catch (InvalidStateException $e){
@@ -688,8 +679,6 @@ class ProductController extends Controller
                         $cancel_mandate->redirect_flow_id = $cancel_mandate->redirect_flow_id . "XX";
                         $cancel_mandate->save();
                         $message = 'System message: Customers must approve Mandates within 30 minutes. Send another mandate for approval to Customer ID: '. $foundit->id . ' Name: '. $foundit->name . ' '. $foundit->surname;
-                        //$message = "The following customer's mandates have been acknowledged. sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::toRoute(['product/view','id'=>$model->id])). ' The customer will be redirected to this site once they have approved the Mandate and will be encouraged to reply to your original email stating that they have approved the Mandate. Access the Gocardless site to update the fields below.';
-                        //$message = "Acknowledged Customer Mandate: ID " . $foundit->id;
                         $message_all = $message_all ."  ".$message. "<br><br>";
                         throw new \yii\web\HttpException(424,$message );
                 }
