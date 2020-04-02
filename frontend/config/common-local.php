@@ -1,10 +1,10 @@
 <?php
 return [
-    'language' => 'en-UK',
+    'language' => 'en-GB',
     'components' => [
         'cache' => [
             'class' => 'yii\\caching\\FileCache',
-            'keyPrefix' => 'dp2',
+            'keyPrefix' => 'h2h',
         ],
     ],
     'modules' => [
