@@ -1,17 +1,11 @@
 # yii2-house2house
-House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing
+# House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing
 
 Installation: 
-Step 1: Clone the folders into your web directory making sure that your composer.json and vendor folder are on the same level.
-Step 2: Install Composer from composer.org 
-Step 3: Using CLI (Command Line Interface), change your directory to C:\wamp64\www\yours\web which is where your composer.json
+1. Step 1: Clone the folders into your web directory making sure that your composer.json and vendor folder are on the same level.
+1. Step 2: Install Composer from composer.org 
+1. Step 3: Using CLI (Command Line Interface), change your directory to C:\wamp64\www\yours\web which is where your composer.json
         and the vendor folder is located.
-Step 4: Run the following command: composer update. This will install the dependencies under composer.json into the vendor folder.
+1. Step 4: Run the following command: composer update. This will install the dependencies under composer.json into the vendor folder.
 
-**rwewdfasdfa**
-**sdfgsdfgsdfg**
-
-**Step 1
-Step 2
-Step 3**
 
