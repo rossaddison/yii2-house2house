@@ -20,13 +20,10 @@ public static function paypalconfig(){
          // sandbox AT3...ED4.. null A21
          $apiContext = new ApiContext(
             new OAuthTokenCredential(
-            /////  'AUHAEbcdhHQfHge3jtZpS3BA43LUDzEgS1x6Rt3AmD2lFZE07lbddtMPyLZi3bA1EsS7ozAIDiC5UWc7',
-            'AT3cmHNTemkzWSJ5w-3d8cA01npuQs7aMbcFlHy0GgTH9sN3GD5WurFrld2rkvfOoGyuTZtd-61W6CY8',
-           /////   'EPvOGx_IiwduFMDznUSfDrQLBIIopSBuqThb-94_cPt2wfGV4fBktzYLQ189cdLf4n_mupKjbCVEGgIm',
-            'ED46yGKoobsynUQFyuvkRKWzLxREYoHPRJpuTmv2ffxBX_xz8BI32d9oZYxE9nQTIy6OYexVGbCZUR8S',
+            'AT3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            'ED4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             null,
-            'A21AAHZq24-oNbYxn5Xq2XubQQJkHsc5M5LANXAGZX5Ou1mDHDSZKbsdCdO4juyCwFfVlTIVdGaujA1mgcm__zqr_F6OqUoLw'
-            /////   null 
+            'A21xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             )
           ); 
           $apiContext->setConfig(
