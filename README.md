@@ -1,4 +1,5 @@
 **yii2-house2house**
+
 **House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing**
 
 **Installation Steps for Files:** 
@@ -11,6 +12,6 @@
 
 **Installation Steps for Databases:** 
 1. Linux via Putty for your main database:  php yii migrate/fresh --db=db --interactive=0 
-1. Linux via Putty for your subsequent databases: php yii migrate/fresh --db=db1 --interactive=0
-1. Linux via Putty for your subsequent databases: php yii migrate/fresh --db=db2 --interactive=0
+1. Linux via Putty for your subsequent databases: php yii migrate/fresh --db=**db1** --interactive=0
+1. Linux via Putty for your subsequent databases: php yii migrate/fresh --db=**db2** --interactive=0
 
