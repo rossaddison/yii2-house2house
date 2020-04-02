@@ -16,11 +16,9 @@
         "php": ">=7.4.0",
         "yiisoft/yii2": "~2.0.33",
         "yiisoft/yii2-bootstrap": "~2.0.9",
-        
-        "yiisoft/yii2-bootstrap4": "~2.0.8",
         "bower-asset/bootstrap": "~3.4.1",
         "npm-asset/jquery": "^2.2",
-        
+        "yiisoft/yii2-bootstrap4": "~2.0.8",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "sjaakp/yii2-pluto": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
