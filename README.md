@@ -8,7 +8,7 @@
 1. Using CLI (Command Line Interface) or windows command prompt, change your directory to C:\wamp64\www\yours\web which is where your composer.json
         and the vendor folder is located.
 1. Run the following command: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update
-1. This will install the dependencies that are under 'require' under composer.json into the vendor folder.
+   This will install the dependencies that are under 'require' under composer.json into the vendor folder.
 
 **Installation Steps for Databases:** 
 1. Linux via Putty for your **main** database:  php yii migrate/fresh --db=**db** --interactive=0 
