@@ -143,19 +143,16 @@ return [
         'passwordHint' => 'At least eight characters, one uppercase, one digit',
         'passwordRegexp' => '^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$',
         'identityClass' => 'sjaakp\pluto\models\User',
-        //prevent the signing up of users until site is stable by setting fenceMode to true
+        //prevent the external guest signing up of users until site is stable by setting fenceMode to true
+	//if fenceMode is set to true you can still signup users internally as the user with 'admin' rights.
         'fenceMode' => true,
         'viewOptions' => [
            'row' => [ 'class' => 'row justify-content-center' ],
            'col' => [ 'class' => 'col-md-6 col-lg-5' ],
            'button' => [ 'class' => 'btn btn-success' ],
            'link' => [ 'class' => 'btn btn-sm btn-secondary' ],
-        ],
-        
+        ],        
        ],
-      'installer' => [
-            'class' => 'frontend\modules\installer\Module',
-      ],
       'backuper'=> [
              'class' => 'frontend\modules\backup\Module',
       ],
