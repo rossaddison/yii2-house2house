@@ -115,6 +115,7 @@ return [
                         'your-settings/<action:\w+>/<id:\d+>'=>'company/<action>',
                         'work-area/<action:\w+>/<id:\d+>' => 'productcategory/<action>',
                         'street/<action:\w+>/<id:\d+>' => 'productsubcategory/<action>',
+		        'daily-clean/<action:\w+>/<id:\d+>' => 'salesorderheader/<action>',
                         'your-staff/<action:\w+>/<id:\d+>' => 'employee/<action>',
                         'house/<action:\w+>/<id:\d+>' => 'product/<action>',
                         'specific-cost-main-category-code/<action:\w+>/<id:\d+>' => 'costcategory/<action>',
