@@ -1,5 +1,5 @@
-# yii2-house2house
-# House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing
+**yii2-house2house**
+**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing**
 
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
