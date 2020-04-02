@@ -4,7 +4,7 @@ $params = array_merge(
     require(__DIR__ . '/params.php')
  );
 
-Use frontend\modules\installer\components\SessionHelper;
+Use frontend\modules\subscription\components\SessionHelper;
 
 return [
     'id' => 'app-frontend',
@@ -62,7 +62,7 @@ return [
             'application/json' => 'yii\web\JsonParser'],
             'enableCsrfValidation' => true,
         ],
-        //sjaak/pluto uses the reCaptcha. Get these settings from https://www.google.com/recaptcha/admin/create
+        //sjaak/pluto User model uses the reCaptcha. Get these settings from https://www.google.com/recaptcha/admin/create
         'reCaptcha' => [
                 'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
                 'siteKeyV2' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -87,6 +87,21 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+	'user' => [
+		//create an image upload directory for the carousal for timestamped demo user
+               'on afterLogin' => function ($e) {
+                    if (Yii::$app->user->identity->attributes['name'] === 'demo') {
+                              \frontend\components\Utilities::create_demotimestamp_directory();
+                    }    
+               },
+	       //delete the image upload directory for the carousal for timestamped demo user on exit
+               'on beforeLogout' => function ($e) {
+                    if (Yii::$app->user->identity->attributes['name'] === 'demo') {
+                              \frontend\components\Utilities::delete_demotimestamp_directory();
+                              \frontend\components\Utilities::delete_records();
+                    }    
+               }   
+        ],    
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
@@ -107,8 +122,6 @@ return [
                         '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			'gii'=>'gii','gii/<controller:\w+>'=>'gii/<controller>',
                         'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>', 
-                        '<module:\w+>/installer/<controller:\w+><action:\w+>,' => '<module>/installer/<controller>/<action>',
-                        '<module:\w+>/backuper/<controller:\w+><action:\w+>,' => '<module>/backuper/<controller>/<action>',
                         '<module:\w+>/backup/<controller:\w+><action:\w+>,' => '<module>/backup/<controller>/<action>',
                         '<module:\w+>/subscription/<controller:\w+><action:\w+>/<redirecturl:\d+>,' => '<module>/subscription/<controller>/<action>',
               ],
