@@ -13,7 +13,8 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        //use sjaak/pluto facility for rbac connecting to first database namely 'db'. Alias pluto.
+         // The sjaak/pluto user module facility setup in frontend/config/main.php and originating in composer.json uses this pseudonym. Set it here:
+	 // This will appear next to your domain name eg. yoursite.co.uk/libra 
         'libra'
     ],
     'aliases'=>[
@@ -22,9 +23,11 @@ return [
     ],
     //adjust the portalMode param when the site is under maintenance
     'on beforeRequest' => function ($event) {
+	//change frontend/config/params.php file 'portalMode' setting.    
         if (Yii::$app->params['portalMode'] == 'maintenance') {
             $letMeIn = Yii::$app->session['letMeIn'] || isset($_GET['letMeIn']);
             if (!$letMeIn) {
+		//modify the maintenance.php file under frontend/views/site/maintenance    
                 Yii::$app->catchAll = [
                     'site/maintenance',
                 ];
@@ -153,9 +156,16 @@ return [
            'link' => [ 'class' => 'btn btn-sm btn-secondary' ],
         ],        
        ],
+       //This module has not been fully developed. Do not use. Follow the installation guidance for this software and database which uses
+       //composer eg. composer update, to install the vendor files, and github clone/zip to install all other relevant files and folders.
+       //Use an ssh package like Putty to perform your database migrations.
+       //'installer' => [
+       //     'class' => 'frontend\modules\installer\Module',
+       //],
       'backuper'=> [
              'class' => 'frontend\modules\backup\Module',
       ],
+      //use this module for timed backups 	    
       'backup' => [
         'class' => 'ellera\backup\Module',
         'automated_cleanup' => [
