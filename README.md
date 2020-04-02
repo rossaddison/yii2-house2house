@@ -10,7 +10,7 @@
 1. Run the following command: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
    This will install the dependencies that are under 'require' under composer.json into the vendor folder.
 1. Upload these folders using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
-1. Ensure that your databases on your host correspond to the number of databases in the two files mentioned below.
+1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below.
 
 **Installation Steps for Databases using Yii2's migration tool and the folder frontend\migrations** 
 1. Linux via eg. Putty for your **main** database called 'db':  php yii migrate/fresh --db=**db** --interactive=0 
@@ -20,7 +20,9 @@
 
 1. frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2 
 1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
-1. common/config/main-local.php
+1. common/config/main-local.php - Follow the naming convention eg. db1, db2
+
+
 
 
 
