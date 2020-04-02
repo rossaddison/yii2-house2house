@@ -75,9 +75,6 @@ return [
                 ],
                 'path' => '@frontend/_backup'
             ],
-            'installer' => [
-                                'class' => 'frontend\modules\installer\Module',
-                          ],
             'backuper'=> [
                                  'class' => 'frontend\modules\backup\Module',
                           ],
