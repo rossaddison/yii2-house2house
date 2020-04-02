@@ -74,6 +74,11 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+    public function actionMaintenance()
+    {
+      return $this->render('maintenance');
+    }
 
     public function actionContact()
     {
@@ -186,11 +191,10 @@ class SiteController extends Controller
         if ($parents != null) {
             $cat_id = $parents[0];
             $out = self::getSubCatList($cat_id); 
-            echo Json::encode(['output'=>$out, 'selected'=>'']);
-            return;
+            return Json::encode(['output'=>$out, 'selected'=>'']);
         }
     }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
+    return Json::encode(['output'=>$out, 'selected'=>'']);
     }
     
     public function actionSubcatcost() 
@@ -200,12 +204,11 @@ class SiteController extends Controller
         $parents = $_POST['depdrop_parents'];
         if ($parents != null) {
             $cat_id = $parents[0];
-            $out = self::getSubCatCostList($cat_id); 
-            echo Json::encode(['output'=>$out, 'selected'=>'']);
-            return;
+            $out = self::getSubCatcostList($cat_id); 
+            return Json::encode(['output'=>$out, 'selected'=>'']);
         }
     }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
+    return Json::encode(['output'=>$out, 'selected'=>'']);
     }
     
     public function actionCos() {
@@ -216,29 +219,12 @@ class SiteController extends Controller
         $subcat_id = empty($ids[1]) ? null : $ids[1];
         if ($cat_id != null) {
             $out = self::getCostListb($cat_id,$subcat_id); 
-            echo Json::encode(['output'=>$out, 'selected'=>'']);
-            return;
-           
+            return Json::encode(['output'=>$out, 'selected'=>'']);
         }
     }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
+    return Json::encode(['output'=>'', 'selected'=>'']);
     }
     
-    public function actionProduc() {
-    $out = [];
-    if (isset($_POST['depdrop_parents'])) {
-        $ids = $_POST['depdrop_parents'];
-        $cat_id = empty($ids[0]) ? null : $ids[0];
-        $subcat_id = empty($ids[1]) ? null : $ids[1];
-        if ($cat_id != null) {
-            $out = self::getProdListb($cat_id,$subcat_id); 
-            echo Json::encode(['output'=>$out, 'selected'=>'']);
-            return;
-           
-        }
-    }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
-    }
     //normally under D:\wamp29\www\advanced\web\vendor\yiisoft\yii2\views\errorHandler 
     //if errorHandler is set under config\main.php to site\error then 
     //You should now create a view file located at views/site/error.php. In this view file,
