@@ -27,7 +27,7 @@ return [
         if (Yii::$app->params['portalMode'] == 'maintenance') {
             $letMeIn = Yii::$app->session['letMeIn'] || isset($_GET['letMeIn']);
             if (!$letMeIn) {
-		//modify the maintenance.php file under frontend/views/site/maintenance    
+		//modify the maintenance.php file under frontend/views/site/maintenance for a different graphical interface    
                 Yii::$app->catchAll = [
                     'site/maintenance',
                 ];
