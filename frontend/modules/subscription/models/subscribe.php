@@ -25,8 +25,8 @@ class subscribe extends \yii\base\Model
     public $charge_model_amount_value = 0;
     public $charge_model_amount_currency = 'GBP';
     
-    public $merchant_preference_returnurl =  'https://yoursite.co.uk/subscription/subscription/success';
-    public $merchant_preference_cancelurl = 'https://yoursite.co.uk/subscription/subscription/cancel';
+    public $merchant_preference_returnurl =  \Yii::$app->getUrlManager()->getBaseUrl().'/subscription/subscription/success';
+    public $merchant_preference_cancelurl = \Yii::$app->getUrlManager()->getBaseUrl().'/subscription/subscription/cancel';
     
     public $autobillamount = 'yes';
     public $initial_fail_amount_action = 'CONTINUE';
