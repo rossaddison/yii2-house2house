@@ -5,6 +5,6 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'icon-framework' => 'fa',
     'bsDependencyEnabled' => true, 
-    'bsVersion' => '3.x',
+    'bsVersion' => '4.x',
     //further reading: https://github.com/kartik-v/yii2-krajee-base/releases
 ];
