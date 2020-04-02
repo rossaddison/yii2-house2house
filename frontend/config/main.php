@@ -156,9 +156,6 @@ return [
       'backuper'=> [
              'class' => 'frontend\modules\backup\Module',
       ],
-      'composerer'=> [
-             'class' => 'frontend\modules\composer\Module',
-      ],
       'backup' => [
         'class' => 'ellera\backup\Module',
         'automated_cleanup' => [
