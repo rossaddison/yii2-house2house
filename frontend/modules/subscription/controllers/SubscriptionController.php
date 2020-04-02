@@ -16,7 +16,7 @@ use PayPal\Api\AgreementStateDescriptor;
 use PayPal\Common\PayPalModel;
 use PayPal\Common\PayPalResourceModel;
 use frontend\modules\subscription\models\subscribe;
-use frontned\modules\subscription\components\SessionHelper;
+use frontend\modules\subscription\components\SessionHelper;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\AgreementDetails;
