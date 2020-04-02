@@ -16,6 +16,8 @@
 1. Repeat this process up until the 10th database.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following two files:
 
-1. frontend/config/main.php - Adjust the backup module to include more than one database. keep to the naming convention eg. db1, db2. 
-1. frontend/components/Utilities::userLogin_set_database()
+1. frontend/config/main.php - Adjust the backup module to include more than one database. keep to the naming convention eg. db1, db2 
+1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
+
+
 
