@@ -80,7 +80,6 @@ class m191110_221831_Mass extends Migration
 
         $this->createIndex('fk_cost_costsubcategory_idx','{{%works_cost}}',['costsubcategory_id'],false);
         $this->createIndex('costsubcategory_id','{{%works_cost}}',['costsubcategory_id'],false);
-        $this->createIndex('costsubcategory_id_2','{{%works_cost}}',['costsubcategory_id'],false);
         $this->createIndex('costcategory_id','{{%works_cost}}',['costcategory_id'],false);
 
         $this->createTable('{{%works_costcategory}}',[
@@ -113,11 +112,7 @@ class m191110_221831_Mass extends Migration
         $this->createIndex('fk_costdetail_cost_idx','{{%works_costdetail}}',['cost_id'],false);
         $this->createIndex('nextcost_date','{{%works_costdetail}}',['nextcost_date'],false);
         $this->createIndex('cost_header_id','{{%works_costdetail}}',['cost_header_id'],false);
-        $this->createIndex('cost_header_id_2','{{%works_costdetail}}',['cost_header_id'],false);
-        $this->createIndex('cost_header_id_3','{{%works_costdetail}}',['cost_header_id'],false);
-        $this->createIndex('cost_header_id_4','{{%works_costdetail}}',['cost_header_id'],false);
-        $this->createIndex('cost_header_detail_id_2','{{%works_costdetail}}',['cost_detail_id'],false);
-        $this->createIndex('cost_header_detail_id_3','{{%works_costdetail}}',['cost_detail_id'],false);
+        $this->createIndex('cost_header_detail_id_1','{{%works_costdetail}}',['cost_detail_id'],false);
 
         $this->createTable('{{%works_costheader}}',[
             'cost_header_id'=> $this->primaryKey(11),
