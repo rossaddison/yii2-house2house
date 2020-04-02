@@ -85,21 +85,21 @@ class CarousalController extends Controller
      */
     public function actionCreate()
         {
-           if (!\Yii::$app->user->can('Create Carousal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a carousal.');
-           }
-        
           $model = new Carousal();
           if ($model->load(Yii::$app->request->post())) {
               $uploadedFile = UploadedFile::getInstance($model, 'image');
               if (!is_null($uploadedFile)) {
                     $model->image_source_filename = $uploadedFile->name;
                     $model->image_web_filename = Yii::$app->security->generateRandomString().".".$uploadedFile->extension;
-                    if ($model->validate()) {                
-                        Yii::$app->params['uploadPath'] = dirname(Yii::$app->basePath) .'\images';
-                        ///dont forget to change actionUpdate as well
-                        ///Yii::$app->params['uploadPath'] = Yii::$app->basePath .'\web\images';
-                        $path = Yii::$app->params['uploadPath'] .'/'. $model->image_web_filename;   
+                    if ($model->validate()) { 
+                        $basepath = \Yii::getAlias('@webroot');
+                        if (Yii::$app->user->identity->attributes['name']  === 'demo') {
+                           $path = $basepath . "/images/demo/".Yii::$app->session['demo_image_timestamp_directory']."/". $model->image_web_filename;
+                        }
+                        else
+                        {
+                           $path = $basepath . "/images/" . $model->image_web_filename;
+                        }
                         $uploadedFile->saveAs($path); 
                     }                   
                   }
@@ -115,20 +115,21 @@ class CarousalController extends Controller
     
    public function actionUpdate($id)
         {
-          if (!\Yii::$app->user->can('Update Carousal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update the carousal.');
-          }
-                 
           $model = $this->findModel($id);
           if ($model->load(Yii::$app->request->post())) {
               $uploadedFile = UploadedFile::getInstance($model, 'image');
               if (!is_null($uploadedFile)) {
                     $model->image_source_filename = $uploadedFile->name;
                     $model->image_web_filename = Yii::$app->security->generateRandomString().".".$uploadedFile->extension;
-                    if ($model->validate()) {
-                        Yii::$app->params['uploadPath'] = dirname(Yii::$app->basePath) .'\images';
-                        //Yii::$app->params['uploadPath'] = Yii::$app->basePath .'\web\images';
-                        $path = Yii::$app->params['uploadPath'] .'/'. $model->image_web_filename;   
+                    if ($model->validate()) {                
+                    Yii::$app->params['uploadPath'] = Yii::$app->basePath;
+                        $basepath = \Yii::getAlias('@webroot');
+                        if (Yii::$app->user->identity->attributes['name']  === 'demo') {
+                           $path = $basepath . "/images/demo/".Yii::$app->session['demo_image_timestamp_directory']."/". $model->image_web_filename;
+                        }
+                        else {
+                        $path = $basepath . "/images/" . $model->image_web_filename;   
+                        }
                         $uploadedFile->saveAs($path); 
                     }                   
                   }
@@ -140,8 +141,8 @@ class CarousalController extends Controller
       }
       return $this->render('create', ['model' => $model,
         ]);
-    }   
-      
+    }
+    
     protected function findModel($id)
     {
         if (($model = Carousal::findOne($id)) !== null) {
