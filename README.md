@@ -8,3 +8,10 @@ Step 3: Using CLI (Command Line Interface), change your directory to C:\wamp64\w
         and the vendor folder is located.
 Step 4: Run the following command: composer update. This will install the dependencies under composer.json into the vendor folder.
 
+**rwewdfasdfa**
+**sdfgsdfgsdfg**
+
+**Step 1
+Step 2
+Step 3**
+
