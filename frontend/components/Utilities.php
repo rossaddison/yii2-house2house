@@ -27,7 +27,43 @@ use frontend\modules\subscription\components\Configpaypal;
     
 class Utilities extends Component
 {
+
+public static function delete_records()
+{
+    Carousal::deleteAll();
+    Salesorderdetail::deleteAll(); 
+    Salesorderheader::deleteAll();
+    Product::deleteAll();
+    Productsubcategory::deleteAll(); 
+    Productcategory::deleteAll(); 
     
+    Costdetail::deleteAll(); 
+    Costheader::deleteAll(); 
+    Cost::deleteAll();
+    Costsubcategory::deleteAll(); 
+    Costcategory::deleteAll();
+    Quicknote::deleteAll(); 
+    Messaging::deleteAll(); 
+}
+
+public static function create_demotimestamp_directory()
+{
+    $basepath = \Yii::getAlias('@webroot');
+    $date=date_create();
+    Yii::$app->session['demo_image_timestamp_directory'] = date_timestamp_get($date);
+    $dir = $basepath . "/images/demo/".Yii::$app->session['demo_image_timestamp_directory'];
+    if (!is_dir($dir)){FileHelper::createDirectory($dir,0775,true);}
+}
+
+public static function delete_demotimestamp_directory()
+{
+    $basepath = \Yii::getAlias('@webroot');
+    $dir = $basepath . "/images/demo/".Yii::$app->session['demo_image_timestamp_directory'];
+    $options = [];
+    Carousal::deleteAll();
+    if (is_dir($dir)){FileHelper::removeDirectory($dir,$options);}
+}	
+	
 public static function SubCatListb($postalcode_id) {
        //find all the streets in the postal area 
         $data=Productsubcategory::find()
@@ -36,6 +72,7 @@ public static function SubCatListb($postalcode_id) {
        return $data;
        
 }
+	
 public static function Street_map($map,$array,$key,$value)
 {
         
@@ -169,7 +206,11 @@ public static function userLogin_set_database()
                 if ( \Yii::$app->user->can('Access demo')){
                     return \Yii::$app->demo;
                     exit;
-                } 
+                }
+	        else if (\Yii::$app->user->can('Access db')) {
+                    return \Yii::$app->db; 
+                    exit;
+                }
                 else if (\Yii::$app->user->can('Access db1')) {
                     return \Yii::$app->db1; 
                     exit;
@@ -214,15 +255,14 @@ public static function userLogin_set_database()
 
 //use by every model
 public static function userdb(){
-    
       return Yii::$app->session['currentdatabase'];
-                
 }
 
 public static function userdb_database_code(){
     
  $dbase = '';
  if ( \Yii::$app->user->can('Access demo')){ $dbase = 'demo';}
+ if ( \Yii::$app->user->can('Access db')){ $dbase = 'db';}	
  if ( \Yii::$app->user->can('Access db1')){ $dbase = 'db1';}
  if ( \Yii::$app->user->can('Access db2')){ $dbase = 'db2';}
  if ( \Yii::$app->user->can('Access db3')){ $dbase = 'db3';}
