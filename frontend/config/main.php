@@ -66,6 +66,7 @@ return [
             'enableCsrfValidation' => true,
         ],
         //sjaak/pluto User model uses the reCaptcha. Get these settings from https://www.google.com/recaptcha/admin/create
+	//demo https://www.google.com/recaptcha/api2/demo
         'reCaptcha' => [
                 'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
                 'siteKeyV2' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
