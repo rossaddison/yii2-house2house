@@ -10,7 +10,7 @@ class FinalStep extends \yii\base\Model
     public $serverPort = 80;
     public $cacheClass = 'yii\caching\FileCache';
     public $useMemcached = false;
-    public $keyPrefix = 'hth';
+    public $keyPrefix = 'h2h';
 
     /**
      * @inheritdoc
