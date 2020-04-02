@@ -8,8 +8,8 @@ use Yii\helpers\Url;
 class subscribe extends \yii\base\Model
 {
     
-    public $plan_name = 'Roundrunner Subscription Monthly';
-    public $plan_description = 'Roundrunner Monthly Subscription Plan';
+    public $plan_name = 'Subscription Monthly';
+    public $plan_description = 'Monthly Subscription Plan';
     public $plan_type = 'FIXED'; 
     public $plan_state = 'ACTIVE'; 
     
@@ -25,8 +25,8 @@ class subscribe extends \yii\base\Model
     public $charge_model_amount_value = 0;
     public $charge_model_amount_currency = 'GBP';
     
-    public $merchant_preference_returnurl =  'https://roundrunner.co.uk/subscription/subscription/success';
-    public $merchant_preference_cancelurl = 'https://roundrunner.co.uk/subscription/subscription/cancel';
+    public $merchant_preference_returnurl =  'https://yoursite.co.uk/subscription/subscription/success';
+    public $merchant_preference_cancelurl = 'https://yoursite.co.uk/subscription/subscription/cancel';
     
     public $autobillamount = 'yes';
     public $initial_fail_amount_action = 'CONTINUE';
@@ -37,13 +37,13 @@ class subscribe extends \yii\base\Model
     public $patch_options = 'replace';
     public $status = '{"state":"ACTIVE"}';
     
-    public $agreement_name = 'Roundrunner Subscription Monthly';
+    public $agreement_name = 'Subscription Monthly';
     public $agreement_description = 'Monthly Subscription Plan';
     
-    public $shipping_address_line1 = '178 Abbeyhill Street';
-    public $shipping_address_city = 'Glasgow';
-    public $shipping_address_state = 'Lanarkshire';
-    public $shipping_address_postcode = 'G32 6LN';
+    public $shipping_address_line1 = '111 Able Street';
+    public $shipping_address_city = 'City';
+    public $shipping_address_state = 'Region';
+    public $shipping_address_postcode = 'P01 1CD';
     public $shipping_address_countrycode = 'GB';
         
     public function rules()
