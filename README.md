@@ -5,7 +5,7 @@
 **Frequently Asked Questions ?**
 
 **How do I create a Daily Clean?**
-Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the the selected Daily Clean as illustrated in Figure 1.
+Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean as illustrated in Figure 1.
 
 **Figure 1.** Houses being copied to the Daily Clean which appears in the drop down list.
 
