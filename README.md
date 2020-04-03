@@ -89,8 +89,11 @@ The database has been normalized ensuring efficiency and appropriate integrity c
 The package adopts a very cautious approach of NO DELETE NO UPDATE where relations between tables exist ensuring a last-in-first-out (LIFO) methodology and also ensuring the safety of the data provided.  
 
 **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
-**Cryptography:** Yii2 is using an advanced cypher. 
-**Views security:** Cross Site Request Forgery (CSRF) built into frontend/config/main.php
+
+**Cryptography:** Yii2 is using an advanced cypher.
+
+**Views security:** Cross Site Request Forgery (CSRF) built into frontend/config/main.php.
+
 **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
