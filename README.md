@@ -3,17 +3,20 @@
 **House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing**
 
 **Frequently Asked Questions ?**
-**How do I ?**
-**Create a Daily Clean?**
-Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the the selected Daily Clean as illustrated in Figure 1. 
-Figure 1. Houses being copied to the Daily Clean which appears in the drop down list.
+
+**How do I create a Daily Clean?**
+Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the the selected Daily Clean as illustrated in Figure 1.
+
+**Figure 1.** Houses being copied to the Daily Clean which appears in the drop down list.
 
 **What should I put under 'job code' in the Daily Clean?**
- eg. Bridgestone and Whitley run.  
+ eg. Bridgestone and Whitley run.
+ 
 You should prefereably not include a number since this run is going to occur at least once a month. 
 Once the houses have been copied from House how do I replicate the Daily Clean for a future clean? 
 Tick the relevant Daily Clean and then tick on the following button to get your choices as seen in Figure 2. 
-Figure 2. 
+
+**Figure 2.** 
 
 **How do I get a balance of the amount that my customer owes me?** 
 If you go to houses and look at the far right side of the grid you will see the column Debt represented by a set of scales. Click on this icon and you will get a break down of the overall debt. You will have the ability to go to the individual debt. SOD stands for Sales Order Detail and represents a single house or clean on the Daily Clean (Sales Order).
