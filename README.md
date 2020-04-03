@@ -42,6 +42,15 @@ Your turnover can be determined under Daily Clean.  Your expenditure can be dete
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
 **I am a sole trader with one employee. How do I setup the software?**
+The first user to signup is automatically assigned the administrator or 'admin' role. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. 
+
+The Mdb# role is used for the manager of a specific ompany/division and the Udb# role is used for employees.
+
+All Mdb roles are linked to the 'support' role so change the support role 'makeup' if you want this to be applicable to all
+managers using the software.
+
+All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
+employees using this software.
 
 
 **Installation Steps for Files:** 
