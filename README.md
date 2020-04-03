@@ -70,7 +70,8 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 
 **I do not want any subscription feature on my site?** 
 1. Remove the subscription module under frontend/config/main.php. 
-1. Replace the web/index.php file with web/no_subscription_index.php 
+1. Replace the web/index.php file with web/no_subscription_index.php
+1. Replace the frontend/views/layouts/main.php with no_subscription_layout.php
     
 **I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
 
