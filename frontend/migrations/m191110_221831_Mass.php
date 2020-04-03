@@ -283,13 +283,7 @@ class m191110_221831_Mass extends Migration
         ], $tableOptions);
 
 
-        $this->createTable('{{%works_review}}',[
-            'id'=> $this->primaryKey(4),
-            'email'=> $this->string(100)->notNull(),
-            'reliability'=> $this->double()->notNull(),
-            'quality'=> $this->double()->notNull(),
-            'date_modifed'=> $this->timestamp()->notNull()->defaultExpression("CURRENT_TIMESTAMP"),
-        ], $tableOptions);
+      
 
 
         $this->createTable('{{%works_salesorderdetail}}',[
@@ -484,7 +478,6 @@ class m191110_221831_Mass extends Migration
             $this->dropTable('{{%works_productcategory}}');
             $this->dropTable('{{%works_productsubcategory}}');
             $this->dropTable('{{%works_quotation}}');
-            $this->dropTable('{{%works_review}}');
             $this->dropTable('{{%works_salesorderdetail}}');
             $this->dropTable('{{%works_salesorderheader}}');
             $this->dropTable('{{%works_tax}}');
