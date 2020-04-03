@@ -41,6 +41,9 @@ Your turnover can be determined under Daily Clean.  Your expenditure can be dete
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
+**I am a sole trader with one employee. How do I setup the software?**
+
+
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
 1. Install Composer from composer.org 
