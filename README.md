@@ -13,7 +13,7 @@ It has been mainly structured for window cleaing in the UK but can be modified f
 Use username: demo password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php.
 
 **How do I create a Daily Clean?**
-Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration. 
+Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration containing all the UK's postcodes and streets. 
 
 **What should I put under 'job code' in the Daily Clean?**
 eg. Bridgestone and Whitley run.
