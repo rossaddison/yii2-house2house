@@ -54,6 +54,8 @@ managers using the software.
 All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
 employees using this software.
 
+**An employee of company/division/unit 5 must have additional rights?** Contact the administrator having admin rights for this website. The manager of company 5 will NOT be able to set these rights. 
+
 **How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
 You will need to configure the frontend/modules/subscription/components/Configpaypal.php file.
 
