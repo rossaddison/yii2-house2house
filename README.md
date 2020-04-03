@@ -55,7 +55,7 @@ Give the street an order number. Each order number should be unique.  The Daily 
 **I am a sole trader with one employee. How do I setup the software?**
 The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. Make sure you have assigned the 'Access db' permission to this user. 
 
-The Mdb# role is used for the manager of a specific ompany/division and the Udb# role is used for employees.
+The Mdb# role is used for the manager of a specific company/division and the Udb# role is used for employees.
 
 All Mdb roles are linked to the 'support' role so change the support role 'makeup' if you want this to be applicable to all
 managers using the software.
@@ -66,7 +66,7 @@ employees using this software.
 **An employee of company/division/unit 5 must have additional rights?** Contact the administrator having admin rights for this website. The manager of company 5 will NOT be able to set these rights. 
 
 **How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
-You will need to configure the frontend/modules/subscription/components/Configpaypal.php file.
+You will need to configure the frontend/modules/subscription/components/Configpaypal.php file to 'live' details. If you are not choosing to offer a subscription you will need to get 'sandbox' (experimental) details from Paypal.
 
 **I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
 
