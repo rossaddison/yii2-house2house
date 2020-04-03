@@ -58,7 +58,7 @@ $this->registerJs($js);
 <div class="wrap">
     
     <?php
-    $brandlabel = "Roundrunner ". '<i class="fas fa-chevron-right fa-1x"></i>'.'<i class="fas fa-chevron-right fa-1x"></i>'.'<i class="fas fa-chevron-right fa-1x"></i>';
+    $brandlabel = "House-2-House ". '<i class="fas fa-chevron-right fa-1x"></i>'.'<i class="fas fa-chevron-right fa-1x"></i>'.'<i class="fas fa-chevron-right fa-1x"></i>';
     NavBar::begin([
         'brandLabel' => $brandlabel,
         'brandUrl' => Yii::$app->homeUrl,
@@ -77,9 +77,8 @@ $this->registerJs($js);
                 ['label' => Html::button('Secure',['class'=>'btn btn-success btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
                          ['label' => Html::button('Company',['class'=>'btn btn-info btn-lg']), 'url' => ['/company/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                         //['label' => Html::button('Home Page - Picture Slider',['class'=>'btn btn-info btn-lg']), 'url' => ['/carousal/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                        //['label' => Html::button('Texting - Messages',['class'=>'btn btn-info']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                         //['label' => Html::button('Message Log', ['class'=>'btn btn-info']),'url' => ['/messagelog/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         //['label' => Html::button('Twilio Texting - Messages',['class'=>'btn btn-info']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         //['label' => Html::button('Twilio Message Log', ['class'=>'btn btn-info']),'url' => ['/messagelog/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button('Employee',['class'=>'btn btn-info btn-lg']), 'url' => ['/employee/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button('Tax Codes',['class'=>'btn btn-info btn-lg','title'=>'Used to categorize revenue and expenses. These codes are NOT used in any VAT calculations. In fact there are no vat calculations therefore figures that you enter eg. under Daily Cleans or House must be inclusive of vat.','data-toggle'=>'tooltip']), 'url' => ['/tax/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button('Images/Files Upload',['class'=>'btn btn-info btn-lg','datatoggle'=>'tooltip', 'title'=> $tooltipcarousal]), 'url' => ['/carousal/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
@@ -100,9 +99,7 @@ $this->registerJs($js);
                 ],
                 ['label' => Html::button('Admin',['class'=>'btn btn-success btn-lg']),'url'=> '', 'visible'=>Yii::$app->user->can('manageRoles'),
                  'items' => [
-                           // ['label' => Html::button('Migrations',['class'=>'btn btn-danger']), 'url' => ['/installer/installer/index/'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => Html::button('Backup',['class'=>'btn btn-danger btn-lg']), 'url' => ['/backuper/backuper/index/'],'visible'=>Yii::$app->user->can('manageRoles')],
-                          //  ['label' => Html::button('Composer',['class'=>'btn btn-danger']), 'url' => ['/composerer/composerer/index/'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Role Management (Admin)',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/role'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;'.'&nbsp;'.Html::button('Update Admin',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/role/update/admin'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Permission Management (Admin)',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/permission'],'visible'=>Yii::$app->user->can('manageRoles')],
@@ -112,9 +109,7 @@ $this->registerJs($js);
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Download User Data',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/download'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Change User Name or Email Address', ['class'=>'btn btn-info btn-lg']),'url' => ['/libra/settings'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('User forgot their password',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/forgot'],'visible'=>Yii::$app->user->can('manageRoles')],
-                            ['label' => '&nbsp;' .'&nbsp;'.Html::button('Signup a User',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/signup'],'visible'=>Yii::$app->user->can('manageRoles')],
-                            ['label' => Html::button('Migrate Test',['class'=>'btn btn-success btn-lg']), 'url' => ['/site/MigrateDemoUp'],'visible'=>Yii::$app->user->can('manageRoles')],
-                            ['label' => Html::button('Get Webhook Event Types',['class'=>'btn btn-success btn-lg']), 'url' => ['/subscription/subscription/eventtypes'],'visible'=>Yii::$app->user->can('manageRoles')],
+                            ['label' => '&nbsp;' .'&nbsp;'.Html::button('Signup a User',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/signup'],'visible'=>Yii::$app->user->can('manageRoles')],                           
                  ],
                 ],
                 ['label' => Html::button('Quicknote',['class'=>'btn btn-danger btn-lg']),'url'=> '/quicknote/create', 'visible'=>Yii::$app->user->can('Manage Basic'),
@@ -147,9 +142,7 @@ $this->registerJs($js);
     
     
     echo Nav::widget([
-        //'options' => ['class' => 'navbar-nav navbar-right'],
         'encodeLabels'=> false,
-        //'options' => ['class' => 'navpills'],
         'items' => $menuItems,
     ]);
     NavBar::end();
