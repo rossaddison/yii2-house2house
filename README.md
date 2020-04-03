@@ -23,7 +23,7 @@ Use the Quick Build facility situated between Street and Houses. Under the speci
 **What are some other special features of House 2 House?**
 The Instructions section allows you to specify particular things that are important for the clean. These are available in a dropdown box for the specific house listed under the Daily Clean accessed by clicking on 'cleans'.
 
-**Gocardless payment solution**
+**Gocardless payment solution**\s\s
 Each  Company/Division/Unit setup can set their **Gocardless access token.** This will enable them to send a Direct Debit Mandate by email to their customers requesting them initially to give their approval to take payment(s) from their account. When a payment is due you send them a recurring or one-off variable payment direct debit  amount which they must authorise within a period prior to the amount coming off their account. Each company will have to setup their SMTP settings for their Mailserver in order for this to function correctly. These settings are available under Company. These mailserver settings will be specific to the company. If a company has not set their mailserver settings then the default mailserver settings under frontend/config/main.php - mailer will apply. 
 
 Once setup you will be able to use the two Gocardless related buttons under House. Tick the relevant house and click on either one of the following buttons:
