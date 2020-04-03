@@ -72,7 +72,7 @@ employees using this software.
 You will need to configure the frontend/modules/subscription/components/Configpaypal.php file to 'live' details. If you are not choosing to offer a subscription you will need to get 'sandbox' (experimental) details from Paypal.
 
 **I do not want any subscription feature on my site?** 
-1. Replace the subscription module under frontend/config/main.php with no_subscription_main.php 
+1. Replace the frontend/config/main.php with no_subscription_main.php 
 1. Replace the web/index.php file with web/no_subscription_index.php
 1. Replace the frontend/views/layouts/main.php with no_subscription_main.php
     
