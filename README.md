@@ -87,11 +87,11 @@ You will need to configure the frontend/modules/subscription/components/Configpa
         and the vendor folder is located.
 1. Run the following command: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
    This will install the dependencies that are under 'require' under composer.json into the vendor folder.
-1. Upload these folders using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
+1. Upload these folders to the web/public-html folder using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
 1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below i,ii,iii.
 
 **Installation Steps for Databases using Yii2's migration tool and the folder frontend\migrations** 
-1. Linux via eg. Putty for your **main** database called 'db':  php yii migrate/fresh --db=**db** --interactive=0 
+1. Linux via eg. Putty (one.com) for your **main** database called 'db':  php yii migrate/fresh --db=**db** --interactive=0 
 1. Linux via eg. Putty for your **subsequent** databases: php yii migrate/fresh --db=**db1** --interactive=0
 1. Repeat this process up until the 10th database.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following three files:
