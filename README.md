@@ -1,13 +1,21 @@
 **yii2-house2house**
 
-**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing**
+**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Day Care**
 
 **Frequently Asked Questions ?**
 
-**What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above.
+**What has this software been used for mostly in the past?**
+It has been mainly structured for window cleaing in the UK but can be modified for other services. Modify the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides.  
+
+**What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. 
+
+**Is there any demo version available?** You will be able to login with manager rights at https://roundrunner.co.uk/libra/login. You will not have access to the Role Based Access Control Graphical User Interface available only to the first signed in user ie. admin
 
 **How do I create a Daily Clean?**
-Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean.
+Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration. 
+
+**What is migration?**
+
 
 **What should I put under 'job code' in the Daily Clean?**
 eg. Bridgestone and Whitley run.
@@ -38,7 +46,7 @@ Multiple text message reminders can be sent by Twilio. You can set this under Co
 Under the Daily Clean, if you click on the + sign, the screen will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you, and if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street.
 
 **How do I find my turnover or costs?** 
-Your turnover can be determined under Daily Clean.  Your expenditure can be determined under Costs.
+Your turnover can be determined under Daily Clean.  Your expenditure can be determined under Costs. Since this is a cash collection software package the amount is merely incremental and has no connection to an accounting package.  The paid amount could be modified in the frontend/models to facilitate quantity delivery if keeping stock of what has been delivered to a household particularly in the case of the **coronavirus pandemic** which is occuring as I write this.
 
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
