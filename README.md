@@ -5,30 +5,28 @@
 **Frequently Asked Questions ?**
 
 **How do I create a Daily Clean?**
-Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean as illustrated in Figure 1.
-
-**Figure 1.** Houses being copied to the Daily Clean which appears in the drop down list.
+Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean.
 
 **What should I put under 'job code' in the Daily Clean?**
- eg. Bridgestone and Whitley run.
+eg. Bridgestone and Whitley run.
  
-You should prefereably not include a number since this run is going to occur at least once a month. 
-Once the houses have been copied from House how do I replicate the Daily Clean for a future clean? 
-Tick the relevant Daily Clean and then tick on the following button to get your choices as seen in Figure 2. 
-
-**Figure 2.** 
+You should preferably not include a number since this run is going to occur at least once a month. 
+Once the houses have been copied from 'House' how do I replicate the Daily Clean for a future clean? 
+Tick the relevant Daily Clean and then tick on the Ticked (copy) button to get your choices.  
 
 **How do I get a balance of the amount that my customer owes me?** 
 If you go to houses and look at the far right side of the grid you will see the column Debt represented by a set of scales. Click on this icon and you will get a break down of the overall debt. You will have the ability to go to the individual debt. SOD stands for Sales Order Detail and represents a single house or clean on the Daily Clean (Sales Order).
-I have several cleans in one area but do not want to enter them individually as this is time consuming. How can I speed the process up?
+
+**I have several cleans in one area but do not want to enter them individually as this is time consuming. How can I speed the process up?**
 Use the Quick Build facility situated between Street and Houses. Under the specific street, set the sequence or sort order to 500, and simply move the house numbers on the left to the right. Set the sequence number back to the default of 99 once you have completed your build.
 
-**What are some of the special features of House 2 House?**
+**What are some other special features of House 2 House?**
 The Instructions section allows you to specify particular things that are important for the clean. These are available in a dropdown box for the specific house listed under the Daily Clean accessed by clicking on 'cleans'.
-Under Company you can set your Gocardless access token. This will enable you to send a Direct Debit Mandate by email to your customer requesting them initially to give their approval to take payment(s) from their account. When a payment is due you send them a recurring or one-off variable payment direct debit  amount which they must authorise within a period prior to the amount coming off their account. You will have to setup your SMTP settings for your Mailserver in order for this to function correctly. These settings are available under Company.
-Once setup you will be able to use the two buttons under House shown in Figure 3.  Tick the relevant house and click on either one of the following buttons. 
 
-**Figure 3.**
+Each  Company you can set their **Gocardless access token.** This will enable them to send a Direct Debit Mandate by email to their customers requesting them initially to give their approval to take payment(s) from their account. When a payment is due you send them a recurring or one-off variable payment direct debit  amount which they must authorise within a period prior to the amount coming off their account. You will have to setup your SMTP settings for your Mailserver in order for this to function correctly. These settings are available under Company. These mailserver settings will be specific to the company. If a company has not set their mailserver settings then the default mailserver settings under frontend/config/main.php - mailer will apply. 
+
+Once setup you will be able to use the two buttons under House. Tick the relevant house and click on either one of the following buttons 1. 'Email Direct Debit Link to Customer for their Approval (tick)'  
+1. 'Email Payment Request to Customer (tick)'
 
 Multiple text message reminders can be sent by Twilio. You can set this under Company. You will have to purchase a Twilio telephone number for this purpose. The Twilio telephone number is personal to your company  and is the channel that is used to send text messages.
 Under the Daily Clean, if you click on the + sign, the screen will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you, and if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street.
