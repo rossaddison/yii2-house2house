@@ -52,6 +52,11 @@ managers using the software.
 All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
 employees using this software.
 
+**How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
+You will need to configure the frontend/modules/subscription/components/Configpaypal.php file.
+
+**I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
+
 
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
