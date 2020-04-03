@@ -1,6 +1,6 @@
 **yii2-house2house**
 
-**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Day Care**
+**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Day Care - stock delivery, Plant delivery**
 
 **Frequently Asked Questions ?**
 
@@ -13,9 +13,6 @@ It has been mainly structured for window cleaing in the UK but can be modified f
 
 **How do I create a Daily Clean?**
 Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration. 
-
-**What is migration?**
-
 
 **What should I put under 'job code' in the Daily Clean?**
 eg. Bridgestone and Whitley run.
@@ -76,11 +73,8 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
 **Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
 **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
-**Cryptography:** Yii2 is using the advanced cypher 
+**Cryptography:** Yii2 is using an advanced cypher. 
 **Views security:** Cross site request forgery (CSRF) built into frontend/config/main.php
-**Auth Clients:**
-
-
 
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
