@@ -10,7 +10,7 @@ It has been mainly structured for window cleaing in the UK but can be modified f
 **How do I find my turnover or costs?** 
 Your turnover can be determined under Daily Clean.  Your expenditure can be determined under Costs. Since this is a cash collection software package the amount is merely incremental and has no connection to an accounting package.  The paid amount could be modified in the frontend/models to facilitate quantity delivery if keeping stock of what has been delivered to a household particularly in the case of the **coronavirus pandemic** which is occuring as I write this.
 
-**What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. 
+**What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. The composer.json that has been created has been fine tuned to a stable release. 
 
 **Is there any demo version available?** You will be able to login with manager rights at https://roundrunner.co.uk/libra/login. You will not have access to the Role Based Access Control Graphical User Interface available only to the first signed in user ie. admin.
 Use username: demo password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php.
