@@ -86,7 +86,7 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 **Views security:** Cross site request forgery (CSRF) built into frontend/config/main.php
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
-The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. You will be able to install this facility in a subfolder. 
+The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
 
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
