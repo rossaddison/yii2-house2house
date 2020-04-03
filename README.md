@@ -5,7 +5,10 @@
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
-It has been mainly structured for window cleaing in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . Modify the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business.
+It has been mainly structured for window cleaing in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . 
+
+**How can the package be adapted?**"
+The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business.
 
 **How do I find my turnover or costs?** 
 Your turnover can be determined under Daily Clean.  Your expenditure can be determined under Costs. Since this is a cash collection software package the amount is merely incremental and has no connection to an accounting package.  The paid amount could be modified in the frontend/models to facilitate quantity delivery if keeping stock of what has been delivered to a household particularly in the case of the **coronavirus pandemic** which is occuring as I write this.
@@ -80,7 +83,11 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 **How does House2house incorporate the security features of Yii2 according to https://www.yiiframework.com/doc/guide/2.0/en/security-overview ?**
 
 **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
+
 **Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
+The database has been normalized ensuring efficiency and appropriate integrity constraint provisions filter through to the Controllers.
+The package adopts a very cautious approach of NO DELETE NO UPDATE where relations between tables exist ensuring a last-in-first-out (LIFO) methodology and also ensuring the safety of the data provided.  
+
 **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
 **Cryptography:** Yii2 is using an advanced cypher. 
 **Views security:** Cross site request forgery (CSRF) built into frontend/config/main.php
