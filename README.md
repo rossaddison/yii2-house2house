@@ -23,11 +23,15 @@ Use the Quick Build facility situated between Street and Houses. Under the speci
 **What are some other special features of House 2 House?**
 The Instructions section allows you to specify particular things that are important for the clean. These are available in a dropdown box for the specific house listed under the Daily Clean accessed by clicking on 'cleans'.
 
-Each  Company you can set their **Gocardless access token.** This will enable them to send a Direct Debit Mandate by email to their customers requesting them initially to give their approval to take payment(s) from their account. When a payment is due you send them a recurring or one-off variable payment direct debit  amount which they must authorise within a period prior to the amount coming off their account. You will have to setup your SMTP settings for your Mailserver in order for this to function correctly. These settings are available under Company. These mailserver settings will be specific to the company. If a company has not set their mailserver settings then the default mailserver settings under frontend/config/main.php - mailer will apply. 
+**Gocardless payment solution**
+Each  Company can set their **Gocardless access token.** This will enable them to send a Direct Debit Mandate by email to their customers requesting them initially to give their approval to take payment(s) from their account. When a payment is due you send them a recurring or one-off variable payment direct debit  amount which they must authorise within a period prior to the amount coming off their account. Each company will have to setup their SMTP settings for their Mailserver in order for this to function correctly. These settings are available under Company. These mailserver settings will be specific to the company. If a company has not set their mailserver settings then the default mailserver settings under frontend/config/main.php - mailer will apply. 
 
-Once setup you will be able to use the two buttons under House. Tick the relevant house and click on either one of the following buttons 1. 'Email Direct Debit Link to Customer for their Approval (tick)'  
+Once setup you will be able to use the two Gocardless related buttons under House. Tick the relevant house and click on either one of the following buttons:
+
+1. 'Email Direct Debit Link to Customer for their Approval (tick)'  
 1. 'Email Payment Request to Customer (tick)'
 
+**Twilio Text Messaging**
 Multiple text message reminders can be sent by Twilio. You can set this under Company. You will have to purchase a Twilio telephone number for this purpose. The Twilio telephone number is personal to your company  and is the channel that is used to send text messages.
 Under the Daily Clean, if you click on the + sign, the screen will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you, and if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street.
 
