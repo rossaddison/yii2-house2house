@@ -9,7 +9,8 @@ It has been mainly structured for window cleaing in the UK but can be modified f
 
 **What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. 
 
-**Is there any demo version available?** You will be able to login with manager rights at https://roundrunner.co.uk/libra/login. You will not have access to the Role Based Access Control Graphical User Interface available only to the first signed in user ie. admin
+**Is there any demo version available?** You will be able to login with manager rights at https://roundrunner.co.uk/libra/login. You will not have access to the Role Based Access Control Graphical User Interface available only to the first signed in user ie. admin.
+Use username: demo password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php.
 
 **How do I create a Daily Clean?**
 Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration. 
