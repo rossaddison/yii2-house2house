@@ -120,15 +120,8 @@ class ProductController extends Controller
           $output = Yii::$app->formatter->asDecimal($model->listprice, 2);
         }
         
-        // similarly you can check if the name attribute was posted as well
-        // if (isset($posted['name'])) {
-        // $output = ''; // process as you need
-        // }
-        $out = Json::encode(['output'=>$output, 'message'=>'']);
-     
         // return ajax json encoded response and exit
-        echo $out;
-        return;
+        return Json::encode(['output'=> $output, 'message'=>'']);
        }
         
         return $this->render('index', [
