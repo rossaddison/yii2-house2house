@@ -68,6 +68,10 @@ employees using this software.
 **How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
 You will need to configure the frontend/modules/subscription/components/Configpaypal.php file to 'live' details. If you are not choosing to offer a subscription you will need to get 'sandbox' (experimental) details from Paypal.
 
+**I do not want any subscription feature?** 
+1. Remove the subscription module under frontend/config/main.php. 
+1. Replace the web/index.php file with web/no_subscription_index.php
+    
 **I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
 
 **Can I import houses into the system?** Yes there is an import facility although you will probably find it quicker to use the Quick Build tool depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the Secure menu using Admin rights.
@@ -79,6 +83,9 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
 **Cryptography:** Yii2 is using an advanced cypher. 
 **Views security:** Cross site request forgery (CSRF) built into frontend/config/main.php
+
+**I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
+The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. You will be able to install this facility in a subfolder. 
 
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
