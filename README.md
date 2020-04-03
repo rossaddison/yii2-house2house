@@ -5,7 +5,7 @@
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
-It has been mainly structured for window cleaing in the UK but can be modified for other services. Modify the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business.
+It has been mainly structured for window cleaing in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . Modify the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business.
 
 **How do I find my turnover or costs?** 
 Your turnover can be determined under Daily Clean.  Your expenditure can be determined under Costs. Since this is a cash collection software package the amount is merely incremental and has no connection to an accounting package.  The paid amount could be modified in the frontend/models to facilitate quantity delivery if keeping stock of what has been delivered to a household particularly in the case of the **coronavirus pandemic** which is occuring as I write this.
@@ -46,7 +46,8 @@ Once setup you will be able to use the two Gocardless related buttons under Hous
 Multiple text message reminders can be sent by Twilio. You can set this under Company. You will have to purchase a Twilio telephone number for this purpose. The Twilio telephone number is personal to your company  and is the channel that is used to send text messages.
 Under the Daily Clean, if you click on the + sign, the screen will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you, and if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street.
 
-
+**Alternative text messaging**
+If your householder has consented to using their mobile number you can list this under Houses and you will have access to this under the Daily Cleans. Simply press their mobile number while online and Android will presents its options. 
 
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
