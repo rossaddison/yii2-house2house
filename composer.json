@@ -1,7 +1,7 @@
 {
     "name": "rossaddison/yii2-house2house",
     "description": "House to House Management Software eg. Cleaning Services",
-    "keywords": ["yii2", "shared-hosting","house","paypal","gocardless"],
+    "keywords": ["yii2", "shared-hosting","house","paypal","gocardless","twilio","sms"],
     "homepage": "https://www.roundrunner.co.uk/",
     "type": "project",
     "license": "BSD-3-Clause",
