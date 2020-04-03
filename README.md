@@ -76,7 +76,7 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 1. Replace the web/index.php file with web/no_subscription_index.php
 1. Replace the frontend/views/layouts/main.php with no_subscription_main.php
     
-**I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
+**I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription although I still want to retain the subscription feature. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
 
 **Can I import houses into the system?** Yes there is an import facility although you will probably find it quicker to use the Quick Build tool depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the Secure menu using Admin rights.
 
@@ -90,7 +90,8 @@ The package adopts a very cautious approach of NO DELETE NO UPDATE where relatio
 
 **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
 **Cryptography:** Yii2 is using an advanced cypher. 
-**Views security:** Cross site request forgery (CSRF) built into frontend/config/main.php
+**Views security:** Cross Site Request Forgery (CSRF) built into frontend/config/main.php
+**Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
