@@ -44,7 +44,7 @@ Your turnover can be determined under Daily Clean.  Your expenditure can be dete
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
 **I am a sole trader with one employee. How do I setup the software?**
-The first user to signup is automatically assigned the administrator or 'admin' role. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. 
+The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. Make sure you have assigned the 'Access db' permission to this user. 
 
 The Mdb# role is used for the manager of a specific ompany/division and the Udb# role is used for employees.
 
@@ -60,6 +60,18 @@ employees using this software.
 You will need to configure the frontend/modules/subscription/components/Configpaypal.php file.
 
 **I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
+
+**Can I import houses into the system?** Yes there is an import facility although you will probably find it quicker to use the Quick Build tool depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the Secure menu using Admin rights.
+
+**How does House2house incorporate the security features of Yii2 according to https://www.yiiframework.com/doc/guide/2.0/en/security-overview ?**
+
+**Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
+**Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
+**Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
+**Cryptography:** Yii2 is using the advanced cypher 
+**Views security:** Cross site request forgery (CSRF) built into frontend/config/main.php
+**Auth Clients:**
+
 
 
 **Installation Steps for Files:** 
