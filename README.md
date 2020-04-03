@@ -4,7 +4,7 @@
 
 **Frequently Asked Questions ?**
 
-**What php version should my hosting provider be able to offer?** php 7.4.0 and above.
+**What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above.
 
 **How do I create a Daily Clean?**
 Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copy them to the selected Daily Clean.
