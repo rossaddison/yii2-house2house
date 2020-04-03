@@ -96,6 +96,8 @@ The package adopts a very cautious approach of NO ACTION where relations between
 
 **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
 
+**Security best practices:** All queries use prepared statements to avoid SQL injections.  
+
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
 
