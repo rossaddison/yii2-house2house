@@ -7,7 +7,7 @@
 **What has this software been used for mostly in the past?**
 It has been mainly structured for window cleaing in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . 
 
-**How can the package be adapted?**"
+**How can the package be adapted?**
 The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business.
 
 **How do I find my turnover or costs?** 
