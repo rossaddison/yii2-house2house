@@ -5,7 +5,7 @@
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
-It has been mainly structured for window cleaing in the UK but can be modified for other services. Modify the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides.  
+It has been mainly structured for window cleaing in the UK but can be modified for other services. Modify the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business.
 
 **What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. 
 
@@ -85,7 +85,7 @@ You will need to configure the frontend/modules/subscription/components/Configpa
 1. Run the following command: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
    This will install the dependencies that are under 'require' under composer.json into the vendor folder.
 1. Upload these folders using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
-1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below.
+1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below i,ii,iii.
 
 **Installation Steps for Databases using Yii2's migration tool and the folder frontend\migrations** 
 1. Linux via eg. Putty for your **main** database called 'db':  php yii migrate/fresh --db=**db** --interactive=0 
