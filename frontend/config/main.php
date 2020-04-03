@@ -136,7 +136,19 @@ return [
         ],
         'sessionHelper' => [
             'class' => SessionHelper::class
-        ]
+        ],
+	'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'enableSwiftMailerLogging' =>false,
+            'useFileTransport' => false,
+            'transport' => ['class' => 'Swift_SmtpTransport',
+                            'host' => 'mailout.one.com',
+                            'username' => 'myname@domain.co.uk',
+                            'password' => '7436hkdkdkdksaaaal@',
+                            'port' => '25',
+                            // 'encryption' => 'none',                            
+                           ], 
+        ],
     ],
     'params' => $params,
    
