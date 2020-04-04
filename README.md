@@ -61,7 +61,7 @@ If your householder has consented to using their mobile number you can list this
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
 **I am a sole trader with one employee. How do I setup the software?**
-The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. Make sure you have assigned the 'Access db' permission to this user. Access the RBAC GUI and you will see all the Mdb and Udb roles.
+The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb0 role to them. Make sure you have assigned the 'Access db' permission to this user. Access the RBAC GUI and you will see all the Mdb and Udb roles for this purpose.
 
 The Mdb# role is used for the manager of a specific company/division and the Udb# role is used for employees.
 
