@@ -71,6 +71,8 @@ managers using the software.
 All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
 employees using this software.
 
+**I have adapted the roles and permissions using the RBAC GUI that admin has access to on one site and want to include these in my next migration. How do I transfer these roles and permissions from one site to another?**
+The quickest method will be to simply create a SQL export data file for the auth_item, and auth_item_child tables from your phpMyadmin. After you have imported them using phpMyadmin you can then assign these roles to the users that signup or that you as admin internally signup **using the RBAC GUI.** The auth_assignment table will then be populated with the roles and respective user_id. You will not need to include these values in any migration file since these values only pertain to the db database and not to the subsequent databases.    
 **An employee of company/division/unit 5 must have additional rights?** Contact the administrator having admin rights for this website. The manager of company 5 will NOT be able to set these rights. 
 
 **How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
