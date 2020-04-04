@@ -72,6 +72,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('admin', 'View Instruction'),
 ('admin', 'View Mandate'),
 ('admin', 'View Revenue Reports'),
+
 ('demo', 'Create Carousal'),
 ('demo', 'Create Daily Clean'),
 ('demo', 'Create Daily Job Sheet'),
@@ -120,57 +121,54 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('demo', 'View House'),
 ('demo', 'View Instruction'),
 ('demo', 'View Revenue Reports'),
+
 ('employee', 'Manage Basic'),
+
 ('Mdb0', 'Access db'),
-('Mdb0', 'Manage Admin'),
 ('Mdb0', 'manageUsers'),
+('Mdb0', 'Subscription Free Privilege'),
 ('Mdb0', 'support'),
+
 ('Mdb1', 'Access db1'),
-('Mdb1', 'Manage Admin'),
-('Mdb1', 'Manage Basic'),
 ('Mdb1', 'Subscription Free Privilege'),
 ('Mdb1', 'support'),
+
 ('Mdb2', 'Access db2'),
-('Mdb2', 'Manage Admin'),
-('Mdb2', 'Manage Basic'),
 ('Mdb2', 'Subscription Free Privilege'),
 ('Mdb2', 'support'),
+
 ('Mdb3', 'Access db3'),
-('Mdb3', 'Manage Admin'),
-('Mdb3', 'Manage Basic'),
 ('Mdb3', 'Subscription Free Privilege'),
 ('Mdb3', 'support'),
+
 ('Mdb4', 'Access db4'),
-('Mdb4', 'Manage Admin'),
-('Mdb4', 'Manage Basic'),
 ('Mdb4', 'Subscription Free Privilege'),
 ('Mdb4', 'support'),
+
 ('Mdb5', 'Access db5'),
-('Mdb5', 'Manage Admin'),
-('Mdb5', 'Manage Basic'),
 ('Mdb5', 'Subscription Free Privilege'),
 ('Mdb5', 'support'),
+
 ('Mdb6', 'Access db6'),
-('Mdb6', 'Manage Admin'),
-('Mdb6', 'Manage Basic'),
 ('Mdb6', 'Subscription Free Privilege'),
 ('Mdb6', 'support'),
+
 ('Mdb7', 'Access db7'),
-('Mdb7', 'Manage Admin'),
-('Mdb7', 'Manage Basic'),
 ('Mdb7', 'Subscription Free Privilege'),
+('Mdb7', 'support'),
+
 ('Mdb8', 'Access db8'),
-('Mdb8', 'Manage Admin'),
-('Mdb8', 'Manage Basic'),
 ('Mdb8', 'Subscription Free Privilege'),
+('Mdb8', 'support'),
+
 ('Mdb9', 'Access db9'),
-('Mdb9', 'Manage Admin'),
-('Mdb9', 'Manage Basic'),
 ('Mdb9', 'Subscription Free Privilege'),
+('Mdb9', 'support'),
+
 ('Mdb10', 'Access db10'),
-('Mdb10', 'Manage Admin'),
-('Mdb10', 'Manage Basic'),
 ('Mdb10', 'Subscription Free Privilege'),
+('Mdb10', 'support'),
+
 ('support', 'Create Carousal'),
 ('support', 'Create Daily Clean'),
 ('support', 'Create Daily Job Sheet'),
@@ -198,6 +196,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('support', 'Delete Tax'),
 ('support', 'Import Houses'),
 ('support', 'Manage Basic'),
+('support', 'Manage Admin'),
 ('support', 'Manage Money'),
 ('support', 'manageUsers'),
 ('support', 'See Prices'),
@@ -223,41 +222,65 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('support', 'View Instruction'),
 ('support', 'View Mandate'),
 ('support', 'View Revenue Reports'),
+
 ('Udb0', 'Access db'),
-('Udb0', 'Manage Basic'),
 ('Udb0', 'Subscription Free Privilege'),
 ('Udb0', 'View Daily Clean'),
+('Udb0', 'employee'),
+
 ('Udb1', 'Access db1'),
-('Udb1', 'Manage Basic'),
 ('Udb1', 'Subscription Free Privilege'),
 ('Udb1', 'View Daily Clean'),
-('Udb2', 'Access db1'),
-('Udb2', 'Manage Basic'),
+('Udb1', 'employee'),
+
+('Udb2', 'Access db2'),
 ('Udb2', 'Subscription Free Privilege'),
 ('Udb2', 'View Daily Clean'),
+('Udb2', 'employee'),
+
 ('Udb3', 'Access db3'),
-('Udb3', 'Manage Basic'),
 ('Udb3', 'Subscription Free Privilege'),
 ('Udb3', 'View Daily Clean'),
+('Udb3', 'employee'),
+
 ('Udb4', 'Access db4'),
-('Udb4', 'Manage Basic'),
 ('Udb4', 'Subscription Free Privilege'),
 ('Udb4', 'View Daily Clean'),
+('Udb4', 'employee'),
+
 ('Udb5', 'Access db5'),
-('Udb5', 'demo'),
-('Udb5', 'Manage Admin'),
-('Udb5', 'Manage Basic'),
 ('Udb5', 'Subscription Free Privilege'),
+('Udb5', 'View Daily Clean'),
+('Udb5', 'employee'),
+
+('Udb6', 'Access db6'),
+('Udb6', 'Subscription Free Privilege'),
+('Udb6', 'View Daily Clean'),
+('Udb6', 'employee'),
+
+('Udb7', 'Access db7'),
+('Udb7', 'Subscription Free Privilege'),
+('Udb7', 'View Daily Clean'),
+('Udb7', 'employee'),
+
+('Udb8', 'Access db8'),
+('Udb8', 'Subscription Free Privilege'),
+('Udb8', 'View Daily Clean'),
+('Udb8', 'employee'),
+
+('Udb9', 'Access db9'),
+('Udb9', 'Subscription Free Privilege'),
+('Udb9', 'View Daily Clean'),
+('Udb9', 'employee'),
+
+('Udb10', 'Access db10'),
+('Udb10', 'Subscription Free Privilege'),
+('Udb10', 'View Daily Clean'),
+('Udb10', 'employee'),
+
 ('updateCommonUser', 'updateUser'),
 ('updateCreatedItem', 'updateItem');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `auth_item_child`
---
 ALTER TABLE `auth_item_child`
   ADD PRIMARY KEY (`parent`,`child`),
   ADD KEY `child` (`child`);
