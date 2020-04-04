@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use frontend\models\Legal;
 $this->title = 'Privacy Policy';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
