@@ -5,7 +5,7 @@
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
-It has been mainly structured for window cleaning in the UK but can be modified for other services. Data protection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under the Wiki. 
+It has been mainly structured for window cleaning in the UK but can be modified for other services. Data protection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under the /site/privacypolicy url when the site is hosted or under frontend/views/site/privacypolicy.php. 
 
 **How can the package be adapted?**
 The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. 
@@ -38,9 +38,6 @@ If you go to houses and look at the far right side of the grid you will see the 
 
 **I have several cleans in one area but do not want to enter them individually as this is time consuming. How can I speed the process up?**
 Use the Quick Build facility situated between Street and Houses. Under the specific street, set the sequence or sort order to 500, and simply move the house numbers on the left to the right. Set the sequence number back to the default of 99 once you have completed your build.
-
-**What are some other special features of House 2 House?**
-The Instructions section allows you to specify particular things that are important for the clean. These are available in a dropdown box for the specific house listed under the Daily Clean accessed by clicking on 'cleans'.
 
 **Gocardless payment solution**
 Each  Company/Division/Unit setup can set their **Gocardless access token.** This will enable them to send a Direct Debit Mandate by email to their customers requesting them initially to give their approval to take payment(s) from their account. When a payment is due you send them a recurring or one-off variable payment direct debit  amount which they must authorise within a period prior to the amount coming off their account. Each company will have to setup their SMTP settings for their Mailserver in order for this to function correctly. These settings are available under Company. These mailserver settings will be specific to the company. If a company has not set their mailserver settings then the default mailserver settings under frontend/config/main.php - mailer will apply. 
