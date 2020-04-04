@@ -55,6 +55,8 @@ Under the Daily Clean, if you click on the + sign, the screen will expand and yo
 **Alternative text messaging**
 If your householder has consented to using their mobile number you can list this under Houses and you will have access to this under the Daily Cleans. Simply press their mobile number while online and Android will present its options. 
 
+Email templates have been built into the controllers and as a future endeavour will be created separately.
+
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
