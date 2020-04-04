@@ -8,7 +8,10 @@
 It has been mainly structured for window cleaing in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . 
 
 **How can the package be adapted?**
-The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. By default the package is structured for shared hosting with a subscription through paypal. So multiple companies/divisions/units/wards can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. However all users inherit the Free Subscription Privilege permission from either the support role as a manager or from the employee role as an employee. The RBAC user interface accessible only to the first user signed up (who inherits the admin role) is ideal for adjusting these rights across the various companies or divisions. One user is responsible for assigning rights to all users across all the companies/divisions that have signed up.  
+The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. 
+
+*By default the package is structured for shared hosting with a subscription through paypal*. 
+So multiple companies/divisions/units/wards can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. However all users inherit the Free Subscription Privilege permission from either the support role as a manager or from the employee role as an employee. The RBAC user interface accessible only to the first user signed up (who inherits the admin role) is ideal for adjusting these rights across the various companies or divisions. One user is responsible for assigning rights to all users across all the companies/divisions that have signed up.  
 
 **How do I find my turnover or costs?** 
 Your turnover can be determined under Daily Clean.  Your expenditure can be determined under Costs. Since this is a cash collection software package the amount is merely incremental and has no connection to an accounting package.  The paid amount could be modified in the frontend/models to facilitate quantity delivery if keeping stock of what has been delivered to a household particularly in the case of the **coronavirus pandemic** which is occuring as I write this.
@@ -16,7 +19,7 @@ Your turnover can be determined under Daily Clean.  Your expenditure can be dete
 **What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. The composer.json that has been created has been fine tuned to a stable release. The composer.json can be replaced with composer_dev_version.json for development purposes.
 
 **Is there any demo version available?** You will be able to login with manager rights at https://roundrunner.co.uk/libra/login. You will not have access to the Role Based Access Control Graphical User Interface available only to the first signed in user ie. admin.
-Use username: demo password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php.
+Use username: demo password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php. Bootstrap 4 - buttons, mobile layout, font adjuster - is used. 
 
 **How do I create a Daily Clean?**
 Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration containing all the UK's postcodes and streets. 
@@ -69,14 +72,14 @@ employees using this software.
 **An employee of company/division/unit 5 must have additional rights?** Contact the administrator having admin rights for this website. The manager of company 5 will NOT be able to set these rights. 
 
 **How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
-You will need to configure the frontend/modules/subscription/components/Configpaypal.php file to 'live' details. If you are not choosing to offer a subscription you will need to get 'sandbox' (experimental) details from Paypal.
+You will need to configure the frontend/modules/subscription/components/Configpaypal.php file to 'live' details. If you are not choosing to offer a subscription but you still want to keep this option open, you will need to get 'sandbox' (experimental) details from Paypal.
 
 **I do not want any subscription feature on my site?** 
 1. Replace the frontend/config/main.php with no_subscription_main.php 
 1. Replace the web/index.php file with web/no_subscription_index.php
 1. Replace the frontend/views/layouts/main.php with no_subscription_main.php
     
-**I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription although I still want to retain the subscription feature. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
+**I do not want individuals who signup on behalf of their company/division/unit to be charged a paypal subscription although I still want to retain the subscription feature. How do I make sure they do not have to subscribe to our website?** Ensure that the permission 'Subscription Free Privilege' is assigned on a higher level. So for Mdb roles a.k.a manager roles that inherit the stronger 'support' role make sure that the 'support' role has the 'Subscription Free Privilege' permission. This will ensure that all managers who have been assigned the relevant mdb role eg. Mdb1 for database 1, will get a Subscription Free Privilege since their role eg. Mdb1 is linked to the higher 'support' role.
 
 **Can I import houses into the system?** Yes there is an import facility although you will probably find it quicker to use the Quick Build tool depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the Secure menu using Admin rights.
 
@@ -96,7 +99,7 @@ The package adopts a very cautious approach of NO ACTION where relations between
 
 **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
 
-**Security best practices:** All queries use prepared statements to avoid SQL injections.  
+**Security best practices:** All queries outside Active Record use prepared statements to avoid SQL injections.  
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
@@ -104,9 +107,8 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
 1. Install Composer from composer.org 
-1. On your local desktop using CLI (Command Line Interface) or windows command prompt, change your directory to C:\wamp64\www\yours\web which is where your composer.json
-        and the vendor folder is located.
-1. Run the following command: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
+1. On your local desktop using CLI (Command Line Interface) or windows command prompt, change your directory to C:\wamp64\www\yours\web which is where your composer.json and the vendor folder is located.
+1. Run the following command from the command prompt: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
    This will install the dependencies that are under 'require' under composer.json into the vendor folder.
 1. Upload these folders to the web/public-html folder using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
 1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below i,ii,iii.
