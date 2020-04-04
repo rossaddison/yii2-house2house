@@ -119,12 +119,15 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 1. Create your databases manually through PhpMyadmin on your WAMP or LAMP matching the details in common/config/main-local.php
 1. Linux via eg. Putty (one.com) for your **main** database called 'db':  php yii migrate/fresh --db=**db** --interactive=0 
 1. Linux via eg. Putty for your **subsequent** databases: php yii migrate/fresh --db=**db1** --interactive=0
-1. Repeat this process up until the 10th database.
+1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following three files:
 
     1. frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2 
     1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
     1. common/config/main-local.php - Follow the naming convention eg. db1, db2
+    
+ **Troubleshooting**
+Refer to the issues section for this repository.
 
 
 
