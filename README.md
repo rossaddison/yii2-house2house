@@ -61,7 +61,7 @@ If your householder has consented to using their mobile number you can list this
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
 **I am a sole trader with one employee. How do I setup the software?**
-The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. Make sure you have assigned the 'Access db' permission to this user. 
+The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb role to them. Make sure you have assigned the 'Access db' permission to this user. Access the RBAC GUI and you will see all the Mdb and Udb roles.
 
 The Mdb# role is used for the manager of a specific company/division and the Udb# role is used for employees.
 
@@ -71,8 +71,11 @@ managers using the software.
 All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
 employees using this software.
 
+There are two permissions called Manage Basic and Manage Admin. Mdb roles have both the Manage Basic and the Manage Admin permission. Udb roles have only the Manage Basic permission. These two permissions are used in frontend/views/layouts/main.php which is the main menu interface.
+
 **I have adapted the roles and permissions using the RBAC GUI that admin has access to on one site and want to include these in my next migration. How do I transfer these roles and permissions from one site to another?**
-The quickest method will be to simply create a SQL export data file for the auth_item, and auth_item_child tables from your phpMyadmin. After you have imported them using phpMyadmin you can then assign these roles to the users that signup or that you as admin internally signup **using the RBAC GUI.** The auth_assignment table will then be populated with the roles and respective user_id. You will not need to include these values in any migration file since these values only pertain to the db database and not to the subsequent databases.    
+The quickest method will be to simply create a SQL export data file for the auth_item, and auth_item_child tables from your phpMyadmin. After you have imported them using phpMyadmin you can then assign these roles to the users that signup or that you as admin internally signup **using the RBAC GUI User Management** The auth_assignment table will then be populated with the roles and respective user_id. You will not need to include these values in any migration file since these values only pertain to the db database and not to the subsequent databases for other companies sharing the site ie. db1, db2.
+
 **An employee of company/division/unit 5 must have additional rights?** Contact the administrator having admin rights for this website. The manager of company 5 will NOT be able to set these rights. 
 
 **How do we setup our site so that individuals who sign up will be charged a paypal subscription?**
