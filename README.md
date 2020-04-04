@@ -5,7 +5,7 @@
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
-It has been mainly structured for window cleaing in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . 
+It has been mainly structured for window cleaning in the UK but can be modified for other services. Dataprotection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under frontend/views/site/privacypolicy.php . 
 
 **How can the package be adapted?**
 The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. 
@@ -19,7 +19,7 @@ Your turnover can be determined under Daily Clean.  Your expenditure can be dete
 **What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.0 and above as at 3rd April 2020. The composer.json that has been created has been fine tuned to a stable release. The composer.json can be replaced with composer_dev_version.json for development purposes.
 
 **Is there any demo version available?** You will be able to login with manager rights at https://roundrunner.co.uk/libra/login. You will not have access to the Role Based Access Control Graphical User Interface available only to the first signed in user ie. admin.
-Use username: demo password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php. Bootstrap 4 - buttons, mobile layout, font adjuster - is used. 
+Use username: demo, password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php. Bootstrap 4 - buttons, mobile layout, font adjuster - is used for the graphical interface.
 
 **How do I create a Daily Clean?**
 Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Setup your Postcodes, Streets, and Houses. Under Houses, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration containing all the UK's postcodes and streets. 
@@ -99,7 +99,7 @@ The package adopts a very cautious approach of NO ACTION where relations between
 
 **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
 
-**Security best practices:** All queries outside Active Record use prepared statements to avoid SQL injections.  
+**Security best practices:** Active Record uses prepared statements to avoid SQL injections.  
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
