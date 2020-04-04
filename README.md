@@ -123,6 +123,7 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 **Installation Steps for Databases using Yii2's migration tool and the folder frontend\migrations** 
 1. Create your databases manually through PhpMyadmin on your WAMP or LAMP matching the details in common/config/main-local.php
 1. Linux via eg. Putty (one.com) for your **main** database called 'db':  php yii migrate/fresh --db=**db** --interactive=0 
+This command will use the migration path contained in console\config\main.php which is frontend/migrations. So this is where all the migrations are currently sitting. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace.  
 1. Linux via eg. Putty for your **subsequent** databases: php yii migrate/fresh --db=**db1** --interactive=0
 1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following three files:
