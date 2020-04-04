@@ -37,8 +37,10 @@ use frontend\modules\subscription\components\Configpaypal;
 class Utilities extends Component
 {
 
+//delete records that the demo user inputs. This is linked to the beforeLogout event under frontend/config/main.php	
 public static function delete_records()
 {
+    //records are deleted in reverse to the order that they were entered
     Carousal::deleteAll();
     Salesorderdetail::deleteAll(); 
     Salesorderheader::deleteAll();
@@ -54,7 +56,7 @@ public static function delete_records()
     Quicknote::deleteAll(); 
     Messaging::deleteAll(); 
 }
-
+//delete records that the demo user inputs. This is linked to the beforeLogout event under frontend/config/main.php
 public static function create_demotimestamp_directory()
 {
     $basepath = \Yii::getAlias('@webroot');
@@ -123,7 +125,7 @@ public static function ProdListc($cat_id, $subcat_id) {
 
 public static function productsubcategoryarray()
 {
-  $productcategory_id = ArrayHelper::map(Productcategory::find()->all(), 'id','id'); 
+        $productcategory_id = ArrayHelper::map(Productcategory::find()->all(), 'id','id'); 
 	$productcategory_name = ArrayHelper::map(Productcategory::find()->all(), 'id','name'); 
 	//$productcategory_fkid = ArrayHelper::map(Productcategory::find()->all(), 'id','productsubcategory_id'); 
 	$productsubcategory_id = ArrayHelper::map(Productsubcategory::find()->all(), 'id','id'); 
@@ -142,7 +144,6 @@ public static function productsubcategoryarray()
 		            foreach ($productsubcategory_id as $id_productsubcategory)
 		            {
 		                //the foreign key psg points to pg
-                                //
                                 if ($productsubcategory_fkid[$id_productsubcategory] == $id_productcategory) {
 		                    //echo  $id_productsubcategory . "\n";
 		                    //echo  $productsubcategory_name[$id_productsubcategory] . "\n";
@@ -183,7 +184,6 @@ public static function soi2soi($prodid,$transid,$amounttotransfer)
            $model2->save();
        };
    }
-   
 }
 
 public static function check_for_mandates_approved()
