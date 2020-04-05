@@ -3,13 +3,13 @@
 //'Subscription Free Privilege' from their individual 'Mdb#' role or 'Udb#' where # corresponds to the database number here.
 //The Mdb# role is used for the manager of that specific company/division and the Udb# role is used for employees.
 //All Mdb roles are linked to the 'support' role so change the support role 'makeup' if you want this to be applicable to all
-//managers using the software.
+//managers using the software. Use with caution since this role change will effect all databases.
 //All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
-//employees using this software.
+//employees using this software. Use with caution since this role change will effect all databases.
 //Shared Hosting Database Setup. Reserve the first database namely 'db' for the installer database where you will
 //input users that will be allocated use of the other databases. Signup all users with their email and role and temporary password
 //and assign either the Mdb role or Udb role to their username using the built in Role Based Access Control GUI (Graphical User Interface) user interface.
-//This file works in conjunction with frontend/components/Utilities and any databases created here must be matched by adjusting the 
+//This file works in conjunction with frontend/components/Utilities and any databases over and above the 10 created here must be matched by adjusting the 
 //code in  frontend/components/Utilities so that the individual models used  throughout the software via the getDb function use the 
 //correct database. 
 //
@@ -24,7 +24,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db',
             //user name is normally 'yoursitename_co_uk_db'
             'username' => 'root',
             //password is the password that has been assigned under the above username 
@@ -36,7 +36,7 @@ return [
         ],
         'db1' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db1',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db1',
             //user name is normally 'yoursitename_co_uk_db1'
             'username' => 'root',
             //password is the password that has been assigned under the above username 
@@ -48,7 +48,7 @@ return [
         ],
         'db2' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db2',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db2',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -58,7 +58,7 @@ return [
         ],
         'db3' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db3',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db3',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -68,7 +68,7 @@ return [
         ],
         'db4' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db4',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db4',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -78,7 +78,7 @@ return [
         ],
         'db5' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db5',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db5',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -88,7 +88,7 @@ return [
         ],
         'db6' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db6',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db6',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -98,7 +98,7 @@ return [
         ],
         'db7' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db7',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db7',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -108,7 +108,7 @@ return [
         ],
         'db8' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db8',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db8',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -118,7 +118,7 @@ return [
         ],
         'db9' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db9',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db9',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -128,7 +128,7 @@ return [
         ],
         'db10' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=db9',
+            'dsn' => 'mysql:host=localhost;dbname=h2h_db10',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -136,25 +136,5 @@ return [
             'schemaCacheDuration' => 3600,
             'schemaCache' => 'cache',
         ],
-        //db etc....
-        //eg. your site is hosted on shared hosting provider one.com
-        //all email will go out from yoursite.co.uk using port 465
-        //If you do not want the host company eg one.com to do the mailing, each Company using yoursite.co.uk will have to setup their own email
-        //settings under the Company section on main menu within each database that you have allocated to them. All settings pertaining 
-        //to the company are found under 'Company'.
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'enableSwiftMailerLogging' =>false,
-            'useFileTransport' => false,
-            'transport' => ['class' => 'Swift_SmtpTransport',
-                             //shared host eg.
-                             'host' => 'send.one.com',
-                             //your website with multiple databases all accessing frontend using advanced yii2 template
-                             'username' => 'myname@yoursite.co.uk',
-                             'password' => 'mypassword',
-                             'port' => '465',
-                             'encryption' => 'tls',                            
-                            ], 
-        ],
-     ], 
+    ],    
 ];
