@@ -64,6 +64,8 @@ Give the street an order number. Each order number should be unique.  The Daily 
 **I am a sole trader with one employee. How do I setup my users after installation?**
 The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission.  The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb0 role to them. Make sure you have assigned the 'Access db' permission to this user. You will not need to setup the Mdb0 role and assign this to your user once signed in because this role by default carries all the functions besides being able to setup roles and permissions. You will be limiting this user to only being able to see what has to be cleaned for the day. Access the RBAC GUI and you will see all the Mdb and Udb roles for this purpose.
 
+Any one of the 10 databases that you have setup through your phpMyadmin could be used for your specific company. So you could simply use db for the administration of the RBAC and select any one of the databases from db1 to db10 for your company itself.
+
 The Mdb# role is used for the manager of a specific company/division and the Udb# role is used for employees.
 
 All Mdb roles are linked to the 'support' role so change the support role 'makeup' if you want this to be applicable to all
