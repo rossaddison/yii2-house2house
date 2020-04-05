@@ -115,7 +115,7 @@ The package adopts a very cautious approach of NO ACTION where relations between
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. Those users on mobile will have to have access to broadband though.
 
 **Installation Steps for Files:** 
-1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
+1. Clone or unzip the folders into your C:\wamp64\www\<my_folder_name>\web>  directory making sure that your composer.json and empty vendor folder are on the same level.
 1. Install Composer from composer.org 
 1. On your local desktop using CLI (Command Line Interface) or windows command prompt, change your directory to C:\wamp64\www\yours\web which is where your composer.json and the vendor folder is located.
 1. Run the following command from the command prompt: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
