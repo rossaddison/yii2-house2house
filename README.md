@@ -61,16 +61,16 @@ If your householder has consented to using their mobile number you can list this
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
 
-**I am a sole trader with one employee. How do I setup the software?**
-The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission. The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb0 role to them. Make sure you have assigned the 'Access db' permission to this user. Access the RBAC GUI and you will see all the Mdb and Udb roles for this purpose.
+**I am a sole trader with one employee. How do I setup my users after installation?**
+The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing sjaakp/pluto security login. The admin role by default accesses the default db database because it is assigned the 'Access db' permission.  The subscription module works via the db database so the first user to signup should use the db database. Setup a Udb role similar to Udb1 for your employee with appropriate permissions. Signup your employee and assign the Udb0 role to them. Make sure you have assigned the 'Access db' permission to this user. You will not need to setup the Mdb0 role and assign this to your user once signed in because this role by default carries all the functions besides being able to setup roles and permissions. You will be limiting this user to only being able to see what has to be cleaned for the day. Access the RBAC GUI and you will see all the Mdb and Udb roles for this purpose.
 
 The Mdb# role is used for the manager of a specific company/division and the Udb# role is used for employees.
 
 All Mdb roles are linked to the 'support' role so change the support role 'makeup' if you want this to be applicable to all
-managers using the software.
+managers (Mdb0 to 10) under each separate company under each separate database using the software. ie. all users that are managers. Caution should be exercised here since a change here applies universally to all the companies/divisions that are using the software. 
 
 All Udb roles are linked to the 'employee' role so change the employee role 'makeup' if you want this to be applicable to all
-employees using this software.
+employees (Udb0 to 10) under each separate company under each separate database using this software. ie. all users that are employees. Caution should be exercised here since a change here applies universally to all the companies/divisions that are using the software.
 
 There are two permissions called Manage Basic and Manage Admin. Mdb roles have both the Manage Basic and the Manage Admin permission. Udb roles have only the Manage Basic permission. These two permissions are used in frontend/views/layouts/main.php which is the main menu interface.
 
