@@ -120,6 +120,8 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 1. On your local desktop using CLI (Command Line Interface) or windows command prompt, change your directory to C:\wamp64\www\yours\web which is where your composer.json and the vendor folder is located.
 1. Run the following command from the command prompt: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
    This will install the dependencies that are under 'require' under composer.json into the vendor folder.
+1. Make sure that your frontend/config/main.php is properly configured.
+1. Make sure that your frontend/modules/subscriptions/components/configpaypal.php is properly configured.
 1. Upload these folders to the web/public-html folder using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
 1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below i,ii,iii.
 
