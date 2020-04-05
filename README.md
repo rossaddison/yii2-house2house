@@ -13,6 +13,8 @@ The package can be adapted by modifying the Instruction facility which will appe
 *By default the package is structured for shared hosting with a subscription through paypal*. 
 So multiple companies/divisions/units/wards can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. However all users inherit the Free Subscription Privilege permission from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the employee role. All Mdb roles fall under the support role. 
 
+Each database works independently of all the others sharing the frontend. How is this accomplished? Each model has the userDb() function which uses the database assigned at login by accessing the frontend/components/Utiilites::userLogin_set_database. How does the frontend know which database to use for the particular user? When the user registers, the amininstrator is responsible for assigning a role to the user. Each database has 2 roles. eg. Mdb1 and Udb1 which both have a permission eg. Access db1 assigned to it. So when the user is assigned a role eg. Udb1, the user will be able to access Udb1. The administrator is responsible for assigning the role to the user and to making the connection 'active'. This is accomplished through the RBAC GUI. This procedure could be automated without a RBAC GUI as a future development. 
+
 The RBAC GUI user interface accessible only to the first user signed up (who inherits the admin role) is ideal for adjusting these rights across the various companies or divisions. One user is responsible for assigning rights to all users across all the companies/divisions that have signed up.  
 
 **How do I find my turnover or costs?** 
@@ -108,7 +110,7 @@ The package adopts a very cautious approach of NO ACTION where relations between
 **Security best practices:** Active Record uses prepared statements to avoid SQL injections.  
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
-The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
+The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. Those users on mobile will have to have access to broadband though.
 
 **Installation Steps for Files:** 
 1. Clone or unzip the folders into your web directory making sure that your composer.json and empty vendor folder are on the same level.
