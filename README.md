@@ -56,7 +56,7 @@ Multiple text message reminders can be sent by Twilio. You can set this under Co
 Under the Daily Clean, if you click on the + sign, the screen will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you, and if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street.
 
 **Alternative text messaging**
-If your householder has consented to using their mobile number you can list this under Houses and you will have access to this under the Daily Cleans. Simply press their mobile number while online and Android will present its options. 
+If your householder has consented to using their mobile number you can list this under Houses and you will have access to this under the Daily Cleans. Simply press their mobile number while online and Android will present its options. Your company will not be able to use the multiple text messaging that is available through Twilio.
 
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
