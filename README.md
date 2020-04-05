@@ -131,9 +131,9 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 
 This command will use the migration paths contained in **console**\config\main.php. There are currently two paths sjaakp/pluto frontend/migrations. So this is where most of the migrations are currently sitting. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace. 
 
-The backup module ellera does not contain a namespace therefore we have to run this separately. So in addition to the above command, run the following commmand as well php yii migrate/up --migrationPath=@vendor/ellera/yii2-backup/src/migrations asd mentioned in the extension.
+The backup module ellera does not contain a namespace therefore we have to run this separately. So in addition to the above command, run the following commmand as well php yii migrate/up --migrationPath=@vendor/ellera/yii2-backup/src/migrations as mentioned in the extension.
 
-1. Linux via eg. Putty for your **subsequent** databases: php yii migrate/fresh --db=**db1** --interactive=0
+1. Linux via eg. Putty for your **subsequent** databases: php yii migrate/fresh --@frontend/migrations --db=**db1**     You on
 1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following three files:
 
