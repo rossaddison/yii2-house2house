@@ -1,6 +1,6 @@
 **yii2-house2house**
 
-**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Day Care - stock delivery, Plant delivery**
+**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Home Care - stock delivery, Plant delivery**
 
 **Frequently Asked Questions ?**
 
