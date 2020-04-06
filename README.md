@@ -135,23 +135,30 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 
 **Database component connection 'db' for database hth_db**
 1. On your host's (eg. One.com) Linux via eg. Putty - for your **main** database component called 'db' : 
+   
+      
    Install the sjaakp/pluto migration and frontend/migrations with the following command: 
    
-   php yii migrate/fresh --db=**db**. 
+       php yii migrate-db-namespaced
+       
+   Install the ellera backup component with the following command:    
    
-The migrate command will look at the db component contained in **common**/config/main-local.php and install the migrations to the named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host.
+       php yii migrate-db-non-namespaced
+   
+The migrate command will look at the db component contained in **common**/config/main-local.php and install the migrations to the named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host using the commands which have been constructed in the ControllerMap in **console**/config/main.php
 
-This command will use the migration paths contained in **console**\config\main.php. There are currently two paths sjaakp/pluto frontend/migrations. So this is where most of the migrations are currently sitting. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace. 
+This command will use the migration paths contained in **console**\config\main.php. There are currently two paths sjaakp/pluto and  frontend/migrations. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace. 
 
-The backup module ellera does not contain a namespace therefore we have to run this separately. So in addition to the above command, run the following commmand as well php yii migrate/up --migrationPath=@vendor/ellera/yii2-backup/src/migrations as mentioned in the extension.
+The backup module ellera does not contain a namespace therefore we have to run this separately under the *migrate-db-non-namespaced* command.
 
-1. Linux via eg. Putty for your **subsequent** databases: php yii migrate/fresh --@frontend/migrations --db=**db1**     You on
-1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies.
-1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following three files:
+1. Linux via eg. Putty for your **subsequent** databases: *php yii migrate-db1*
+1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**\config\main.php under the controllerMap.
+1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
 
     1. frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2 
     1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
     1. common/config/main-local.php - Follow the naming convention eg. db1, db2
+    1. console/config/main.php
     
  **Troubleshooting**
 Refer to the issues section for this repository.
