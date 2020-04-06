@@ -192,7 +192,7 @@ On completion ensure the following:
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
-Occasionally you will need to create migrations in order to simplify a process. For instance create migrations for: 
+Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file. For instance create migrations for: 
 
     auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
 
