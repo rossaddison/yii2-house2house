@@ -154,7 +154,7 @@ The backup module ellera does not contain a namespace therefore we have to run t
 
 1. Linux via eg. Putty for your **subsequent** databases: 
 
-    *php yii migrate-db1*
+       php yii migrate-db1
 
 1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**\config\main.php under the controllerMap.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
