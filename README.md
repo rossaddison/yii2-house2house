@@ -165,7 +165,10 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
     1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
     1. common/config/main-local.php - Follow the naming convention eg. db1, db2
     1. console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
-    
+ 
+ 1. **Installing roles and permissions**
+ The final step is to install roles, and permissions that are built into the software. Copy the sql commands in sql_ and run them in your phpMyadmin SQL section. 
+ 
  **Troubleshooting**
 Refer to the issues section for this repository.
 
