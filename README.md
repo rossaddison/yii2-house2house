@@ -189,7 +189,7 @@ Occasionally you will need to create migrations in order to simplify a process. 
     auth_item_child - roles with permissions
     auth_rule - conditions
     
- Under common/config/main-local.php the following default code is present:
+ Under frontend/config/main-local.php the following default code is present:
  
     if (YII_DEBUG) {
     // configuration adjustments for 'dev' environment
