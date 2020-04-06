@@ -170,7 +170,44 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
  The final step is to install roles, and permissions that are built into the software. Whilst in the h2h_db database, Copy the sql  commands in auth_item and auth_item_child and run them in your phpMyadmin SQL section. 
  
  **Troubleshooting**
-Refer to the issues section for this repository.
+Besides the issues section for this repository in order to debug your code, defaults have been set in the following files:
+    web/index.php
+    
+    defined('YII_DEBUG') or define('YII_DEBUG', true);
+    defined('YII_ENV') or define('YII_ENV', 'dev');
+    
+On completion ensure the following:
+
+    defined('YII_DEBUG') or define('YII_DEBUG', false);
+    defined('YII_ENV') or define('YII_ENV', 'prod');
+
+Occasionally you will need to create migrations in order to simplify a process. For instance create migrations for: 
+
+    auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
+
+    auth_item - permissions
+    auth_item_child - roles with permissions
+    auth_rule - conditions
+    
+ Under common/config/main-local.php the following default code is present:
+ 
+    if (YII_DEBUG) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+        'allowedIPs' =>['127.0.0.1'],
+    ];
+
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'allowedIPs' =>['127.0.0.1'],
+    ];
+    }
+
+Change the ip address to your local address if you are wanting to generate migrations from your host. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. 
+
 
 
 
