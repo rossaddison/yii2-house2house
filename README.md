@@ -167,7 +167,18 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
     1. console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
  
  1. **Installing roles and permissions**
-Install roles, and permissions that are built into the software. Whilst in the h2h_db database, copy the sql  commands in auth and run them in your phpMyadmin SQL section. 
+Install roles, and permissions that are built into the software. Whilst in the h2h_db database, copy the sql  commands in SQL_roles_permissions/auth and run them in your phpMyadmin SQL section. 
+
+1. In order to sign up your first user, you will have to make sure that 'fencemode' is switched off:
+
+frontend/config/main.php
+
+    'modules' => [
+      'libra' => [
+        'class' => 'sjaakp\pluto\Module',
+        'fenceMode' => true,
+        
+ and that your mailer component under frontend\config\main.php is correctly set so that your user can respond to your email. Testing on your localhost, the port will normally be port 25 since you will be going through your service provider, such as BT. 
  
  **Troubleshooting**
 Besides the issues section for this repository in order to debug your code, defaults have been set in the following files:
