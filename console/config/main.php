@@ -22,14 +22,124 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
           ],
-         'migrate' => [
+         'migrate-db-namespaced' => [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationNamespaces' => [
-                        'frontend\migrations',
-                        'vendor\sjaak\yii2-pluto\migrations',
-                        'vendor\ellera\yii2-backup\src\migrations',
+                        '\\sjaakp\pluto\migrations',
+                        'frontend\migrations',                        
                 ],
-                'migrationPath' => null, // allows to disable not namespaced migration completely
+               'color'=>true,
+               'comment'=> 'You are migrating the namespaced user table and main frontend tables to database connection component db which is your administration database.',
+               'db' => 'db',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db-non-namespaced' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationPath' => '@vendor/ellera/yii2-backup/src/migrations',
+                'comment' => 'You are migrating the non-namespaced ellera backup module tables to database connection component db which is your administration database.',
+                'db' => 'db',
+                'interactive'=>1,
+          ],
+          'migrate-db1' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db1',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db2' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db2',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db3' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db3',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db4' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db4',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db5' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db5',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+           'migrate-db6' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db6',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db7' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db7',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+           'migrate-db8' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db8',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db9' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db9',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db10' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations',                        
+                ],
+               'color'=>true,
+               'db' => 'db10',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
           ],
     ],
     'components' => [
