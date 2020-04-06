@@ -8,15 +8,14 @@
 It has been mainly structured for window cleaning in the UK but can be modified for other services. Data protection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under the /site/privacypolicy url when the site is hosted or under frontend/views/site/privacypolicy.php. 
 
 **How can the package be adapted?**
-The package can be adapted by modifying the Instruction facility which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. 
+The package can be adapted by modifying the Instruction list which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code from the Instruction list. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. 
 
 *By default the package is structured for shared hosting with a subscription through paypal*. 
 So multiple companies/divisions/units/wards can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. However all users inherit the Free Subscription Privilege permission from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the employee role. All Mdb roles fall under the support role. 
 
 Each database works independently of all the others sharing the frontend. How is this accomplished? Each model has the userDb() function which uses the database assigned at login by accessing the frontend/components/ Utiilites::userLogin_set_database. How does the frontend know which database to use for the particular user? When the user registers, the admininstrator is responsible for assigning a role to the user through the RBAC GUI. Each database has 2 roles. eg. Mdb1 and Udb1 which both have a permission eg. Access db1 assigned to it. So when the user is assigned a role eg. Udb1, the user will be able to access db1. The administrator is also responsible for making the connection 'active'. This is accomplished through the RBAC GUI. This procedure could be automated without a RBAC GUI as a future development. 
 
-The RBAC GUI user interface accessible only to the first user signed up (who inherits the admin role) is ideal for adjusting these rights across the various companies or divisions. One user is responsible for assigning rights to all users across all the companies/divisions that have signed up.  
-
+The RBAC GUI user interface, accessible only to the first user signed up (who inherits the admin role), is ideal for adjusting these rights across the various companies or divisions. One user is responsible for assigning rights to all users across all the companies/divisions that have signed up.  
 
 **What php version should my shared hosting provider eg. one.com be able to offer?** php 7.4.1 and above as at 3rd April 2020. The composer.json that has been created has been fine tuned to a stable release. The composer.json can be replaced with composer_dev_version.json for development purposes.
 
