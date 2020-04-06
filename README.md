@@ -164,7 +164,7 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
     1. frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2 
     1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
     1. common/config/main-local.php - Follow the naming convention eg. db1, db2
-    1. console/config/main.php
+    1. console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
     
  **Troubleshooting**
 Refer to the issues section for this repository.
