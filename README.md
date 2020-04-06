@@ -167,7 +167,7 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
     1. console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
  
  1. **Installing roles and permissions**
- The final step is to install roles, and permissions that are built into the software. Copy the sql commands in sql_ and run them in your phpMyadmin SQL section. 
+ The final step is to install roles, and permissions that are built into the software. Whilst in the h2h_db database, Copy the sql  commands in auth_item and auth_item_child and run them in your phpMyadmin SQL section. 
  
  **Troubleshooting**
 Refer to the issues section for this repository.
