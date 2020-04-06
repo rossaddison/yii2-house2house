@@ -7,6 +7,8 @@
 **What has this software been used for mostly in the past?**
 It has been mainly structured for window cleaning in the UK but can be modified for other services. Data protection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under the /site/privacypolicy url when the site is hosted or under frontend/views/site/privacypolicy.php. 
 
+**What is the structure of the database?** InnoDB using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been structured similar to Microsoft's Adventure Works making extensive use of foreign keys. Hence Yii2 is strong in this regard and therefore Yii2's relations in models are used extensively to faciitate easy loading and lazy loading which promotes an extremely quick retrieval of records.
+
 **How can the package be adapted?**
 The package can be adapted by modifying the Instruction list which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code from the Instruction list. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. 
 
