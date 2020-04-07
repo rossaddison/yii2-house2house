@@ -192,7 +192,7 @@ On completion ensure the following:
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
-Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file. For instance create migrations for: 
+Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. sql_roles_permissions/auth.php. For instance create migrations for: 
 
     auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
 
@@ -217,7 +217,19 @@ Occasionally you will need to create migrations in order to simplify a process i
     ];
     }
 
-Change the ip address to your local address if you are wanting to generate migrations from your host. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. 
+Change the localhost ip address [127.0.0.1] to your local ip address if you are wanting to generate migrations from your host to your local ip connection whilst logged in online to your site. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. Gii is run eg. <your_domain>/gii/. Alter the controllerMap with a new command. 
+
+To install the above auth files through a migration run the following command: 
+
+    php yii migrate-db-auth
+    
+ To install the subscription files run the following command:
+ 
+    php yii migrate-db-paypal
+    
+ 
+    
+
 
 
 
