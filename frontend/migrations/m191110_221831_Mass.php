@@ -266,6 +266,16 @@ class m191110_221831_Mass extends Migration
 
         $this->createIndex('fk_productsubcategory_productcategory_idx','{{%works_productsubcategory}}',['productcategory_id'],false);
 
+        $this->createTable('{{%works_quicknote}}',
+            [
+                'id'=> $this->primaryKey(11),
+                'note'=> $this->string(5000)->notNull(),
+                'created_at'=> $this->timestamp()->null()->defaultValue(null),
+                'updated_at'=> $this->timestamp()->null()->defaultValue(null),
+                'modified_at'=> $this->timestamp()->notNull()->defaultExpression("CURRENT_TIMESTAMP"),
+            ],$tableOptions
+        );
+        
         $this->createTable('{{%works_quotation}}',[
             'id'=> $this->primaryKey(11),
             'email'=> $this->string(100)->notNull(),
@@ -477,7 +487,8 @@ class m191110_221831_Mass extends Migration
             $this->dropTable('{{%works_product}}');
             $this->dropTable('{{%works_productcategory}}');
             $this->dropTable('{{%works_productsubcategory}}');
-            $this->dropTable('{{%works_quotation}}');
+            $this->dropTable('{{%works_quicknote}}');
+            $this->dropTable('{{%works_quotation}}');        
             $this->dropTable('{{%works_salesorderdetail}}');
             $this->dropTable('{{%works_salesorderheader}}');
             $this->dropTable('{{%works_tax}}');
