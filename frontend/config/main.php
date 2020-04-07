@@ -142,8 +142,8 @@ return [
             'enableSwiftMailerLogging' =>false,
             'useFileTransport' => false,
             'transport' => ['class' => 'Swift_SmtpTransport',
-                            'host' => 'mailout.one.com',
-                            'username' => 'myname@domain.co.uk',
+                            'host' => 'mail.btinternet.com',
+                            'username' => 'myname@btinternet.com',
                             'password' => '7436hkdkdkdksaaaal@',
                             'port' => '25',
                             // 'encryption' => 'none',                            
@@ -158,7 +158,7 @@ return [
         //'passwordFlags' => ['all' => 'captcha'],
         'passwordFlags' => ['all' => 'reveal'],
         'passwordHint' => 'At least eight characters, one uppercase, one digit',
-        'passwordRegexp' => '^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$',
+        'passwordRegexp' => '/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
         'identityClass' => 'sjaakp\pluto\models\User',
         //prevent the external guest signing up of users until site is stable by setting fenceMode to true
 	//if fenceMode is set to true you can still signup users internally as the user with 'admin' rights.
