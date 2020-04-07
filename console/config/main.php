@@ -41,6 +41,28 @@ return [
                 'db' => 'db',
                 'interactive'=>1,
           ],
+          'migrate-db-auth' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\migrations\auth',                        
+                ],
+               'color'=>true,
+               'comment'=> 'You are migrating the namespaced authorisation tables to database connection component db which is your administration database.',
+               'db' => 'db',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
+          'migrate-db-paypal' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'frontend\modules\subscription\migrations',                        
+                ],
+               'color'=>true,
+               'comment'=> 'You are migrating the namespaced user table and main frontend tables to database connection component db which is your administration database.',
+               'db' => 'db',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
+          ],
           'migrate-db1' => [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationNamespaces' => [
