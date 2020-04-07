@@ -143,6 +143,8 @@ return [
             'useFileTransport' => false,
             'transport' => ['class' => 'Swift_SmtpTransport',
                             'host' => 'mail.btinternet.com',
+			    //get an email address through your service provider to test on localhost
+			    //get an email address through your host to test on your host
                             'username' => 'myname@btinternet.com',
                             'password' => '7436hkdkdkdksaaaal@',
                             'port' => '25',
