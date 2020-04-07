@@ -81,8 +81,7 @@ $this->registerJs($js);
                 ['label' => Html::button('Secure',['class'=>'btn btn-success btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
                          ['label' => Html::button('Company',['class'=>'btn btn-info btn-lg']), 'url' => ['/company/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                         //['label' => Html::button('Home Page - Picture Slider',['class'=>'btn btn-info btn-lg']), 'url' => ['/carousal/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                        //['label' => Html::button('Texting - Messages',['class'=>'btn btn-info']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         //['label' => Html::button('Texting - Messages',['class'=>'btn btn-info']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          //['label' => Html::button('Message Log', ['class'=>'btn btn-info']),'url' => ['/messagelog/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button('Employee',['class'=>'btn btn-info btn-lg']), 'url' => ['/employee/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button('Tax Codes',['class'=>'btn btn-info btn-lg','title'=>'Used to categorize revenue and expenses. These codes are NOT used in any VAT calculations. In fact there are no vat calculations therefore figures that you enter eg. under Daily Cleans or House must be inclusive of vat.','data-toggle'=>'tooltip']), 'url' => ['/tax/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
@@ -181,11 +180,6 @@ $this->registerJs($js);
             . Html::endForm()
             . '</li>';
     }
-    
-   
-    
-    
-    
     echo Nav::widget([
         //'options' => ['class' => 'navbar-nav navbar-right'],
         'encodeLabels'=> false,
