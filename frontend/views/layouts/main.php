@@ -118,9 +118,7 @@ $this->registerJs($js);
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Change User Name or Email Address', ['class'=>'btn btn-info btn-lg']),'url' => ['/libra/settings'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('User forgot their password',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/forgot'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Signup a User',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/signup'],'visible'=>Yii::$app->user->can('manageRoles')],
-                            ['label' => Html::button('Migrate Test',['class'=>'btn btn-success btn-lg']), 'url' => ['/site/MigrateDemoUp'],'visible'=>Yii::$app->user->can('manageRoles')],
-                            ['label' => Html::button('Get Webhook Event Types',['class'=>'btn btn-success btn-lg']), 'url' => ['/subscription/subscription/eventtypes'],'visible'=>Yii::$app->user->can('manageRoles')],
-                 ],
+                  ],
                 ],
                 ['label' => Html::button('Quicknote',['class'=>'btn btn-danger btn-lg']),'url'=> '/quicknote/create', 'visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
