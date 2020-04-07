@@ -71,7 +71,7 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nationalinsnumber' => 'National Insurance Number',
+            'nationalinsnumber' => 'Unique identification Number',
             'contact_telno' => 'Contact Telephone Number',
             'title' => 'Title',
             'birthdate' => 'Birth Date',
