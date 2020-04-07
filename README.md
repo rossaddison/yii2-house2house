@@ -127,7 +127,7 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 1. Run the following command from the command prompt: composer update. eg. C:\wamp64\www\<my_folder_name>\web>composer update   . 
    This will install the dependencies that are under 'require' under composer.json into the vendor folder.
 1. Make sure that your frontend/config/main.php is properly configured.
-1. Make sure that your frontend/modules/subscriptions/components/configpaypal.php is properly configured.
+1. Make sure that your frontend/modules/subscriptions/components/configpaypal.php is properly configured when you opt to use subscriptions although by default this will be ignored and no error codes will be generated as long as you keep the Subscription Free Privilege permission assigned to the respective Udb role or Mdb role relevant to the database or, if you elect not to have it linked to these roles, the higher 'more universal' roles of 'employee' and 'support' respectively.
 1. Upload these folders to the web/public-html folder using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
 1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below i,ii,iii.
 
@@ -219,7 +219,7 @@ Occasionally you will need to create migrations in order to simplify a process i
 
 Change the localhost ip address [127.0.0.1] to your local ip address if you are wanting to generate migrations from your host to your local ip connection whilst logged in online to your site. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. Gii is run eg. <your_domain>/gii/. Alter the controllerMap with a new command. 
 
-To install the above auth files through a migration run the following command: 
+To install the above auth tables through a migration run instead of through the auth.sql file, usethe following command: 
 
     php yii migrate-db-auth
     
