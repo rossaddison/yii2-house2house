@@ -3,7 +3,7 @@
 namespace frontend\models;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use frontend\models\Carousal;
+use frontend\models\Employee;
 use Yii;
 
 /**
@@ -46,15 +46,13 @@ class Salesorderheader extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status','employee_id', 'clean_date'], 'required'],
+            [['status','employee_id'], 'required'],
             [['status'], 'string','max'=>20],
             [['employee_id','carousal_id'], 'integer'],
-            [['clean_date','modified_date'], 'safe'],
-            [['hoursworked'],'number'],
-            [['hoursworked'],'default','value'=>8.00],
-            [['sub_total', 'tax_amt', 'total_due'], 'number'],
+            [['modified_date','clean_date'], 'safe'],
+            [['hoursworked','sub_total', 'tax_amt', 'total_due'],'number'],
+            [['clean_date'],'default','value'=> date("Y-m-d H:i:s")],
             [['sub_total', 'tax_amt', 'total_due'],'default','value'=>0],
-            [['carousal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Carousal::className(), 'targetAttribute' => ['carousal_id' => 'id']],
             [['employee_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_id' => 'id']],
             
         ];

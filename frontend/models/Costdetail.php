@@ -3,9 +3,9 @@
 namespace frontend\models;
 
 use frontend\models\Costheader;
-use frontend\models\Productcategory;
-use frontend\models\Productsubcategory;
-use frontend\models\Product;
+use frontend\models\Costcategory;
+use frontend\models\Costsubcategory;
+use frontend\models\Cost;
 use frontend\models\Tax;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
@@ -39,17 +39,15 @@ class Costdetail extends \yii\db\ActiveRecord
     {
         return [
             [['nextcost_date','cost_header_id', 'costcategory_id','costsubcategory_id', 'cost_id', 'unit_price'], 'required'],
-            [['cost_header_id','costcategory_id','costsubcategory_id', 'cost_id'], 'integer'],
+            [['cost_header_id','costcategory_id','costsubcategory_id', 'cost_id','carousal_id'], 'integer'],
             [['nextcost_date'], 'safe'],
-            //[['cleaned'],'default','value'=>'Cleaned'],
-            //[['nextclean_date'], 'default','value'=>null],
-            //[['nextclean_date'],'date','format' => 'php:F d Y'],
             [['order_qty'],'default','value'=>1],
             [['line_total'],'default','value'=>1],
-            //[['paid'],'default','value'=>0.00],
             [['order_qty'], 'number'],
-            [['unit_price','paid'], 'number','min'=>0.00,'max'=>1000.00],
+            [['unit_price','paid'], 'number','min'=>0.00,'max'=>10000.00],
             [['unit_price','paid','order_qty'], 'default','value' => 0.00],
+            [['carousal_id'], 'default','value' => 0],
+            [['carousal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Carousal::className(), 'targetAttribute' => ['carousal_id' => 'id']],
             [['cost_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cost::className(), 'targetAttribute' => ['cost_id' => 'id']],
             [['cost_header_id'], 'exist', 'skipOnError' => true, 'targetClass' => Costheader::className(), 'targetAttribute' => ['cost_header_id' => 'cost_header_id']],
         ];
@@ -66,6 +64,7 @@ class Costdetail extends \yii\db\ActiveRecord
             'cost_id'=>'Cost',
             'cost_id.costdescription' => 'Cost Description',
             'cost_id.costnumber'=>'Cost Number',
+            'carousal_id' => 'Carousal File eg. jpg, png, pdf, xls, xlsx',
             'order_qty'=>'Order Qty',
             'unit_price' => 'Unit Price',
             'line_total'=> 'Line Total',
@@ -92,13 +91,15 @@ class Costdetail extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Costsubcategory::className(), ['id' => 'costsubcategory_id']);
     }
-       
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getCostHeader()
     {
         return $this->hasOne(Costheader::className(), ['cost_header_id' => 'cost_header_id']);
+    }
+    
+    public function getCarousal()
+    {
+        return $this->hasOne(Carousal::className(), ['id' => 'carousal_id']);
     }
     
    

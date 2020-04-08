@@ -57,14 +57,14 @@ class ProductsubcategorySearch extends Productsubcategory
             // $query->where('0=1');
             return $dataProvider;
         }
-        $dataProvider->sort->attributes['name'] = [
-           'asc' => ['name' => SORT_ASC],
-           'desc' => ['name' => SORT_DESC],
-        ];
-        //$dataProvider->sort->attributes['sort_order'] = [
-        //   'asc' => ['sort_order' => SORT_ASC],
-        //   'desc' => ['sort_order' => SORT_DESC],
-        //];
+       // $dataProvider->sort->attributes['name'] = [
+       //    'asc' => ['name' => SORT_ASC],
+      //     'desc' => ['name' => SORT_DESC],
+     //   ];
+      $dataProvider->sort->attributes['sort_order'] = [
+         'asc' => ['sort_order' => SORT_ASC],
+         'desc' => ['sort_order' => SORT_DESC],
+      ];
         // grid filtering conditions
         $query->andFilterWhere(['productcategory_id' => $this->productcategory_id,])
               ->andFilterWhere(['like', 'name', $this->name])

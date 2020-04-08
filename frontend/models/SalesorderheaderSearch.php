@@ -55,9 +55,10 @@ class SalesorderheaderSearch extends Salesorderheader
         }
         else
         {
-            $query = Salesorderheader::find()->indexBy('sales_order_id');
+            $query = Salesorderheader::find()
+            //->indexBy('sales_order_id');
             //->andFilterWhere(['>=','clean_date',"2018"."-"."09"."-"."01"])
-           //->orderBy('clean_date')
+           ->orderBy('clean_date');
             //->all();
         }
         // add conditions that should always apply here
@@ -66,6 +67,8 @@ class SalesorderheaderSearch extends Salesorderheader
             'query' => $query,
             'db' => \frontend\components\Utilities::userdb(),
         ]);
+        
+        
 
         $this->load($params);
 
@@ -80,6 +83,11 @@ class SalesorderheaderSearch extends Salesorderheader
         $dataProvider->sort->attributes['status'] = [
         'asc' => ['status' => SORT_ASC],
         'desc' => ['status' => SORT_DESC],
+        ];
+        
+        $dataProvider->sort->attributes['clean_date'] = [
+           'asc' => ['clean_date' => SORT_DESC],
+           'desc' => ['clean_date' => SORT_ASC],
         ];
         
         // grid filtering conditions

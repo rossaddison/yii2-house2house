@@ -17,6 +17,11 @@ class Quicknote extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+     public static function getDb()
+   {
+       return \frontend\components\Utilities::userdb();
+   }      
+    
     public static function tableName()
     {
         return 'works_quicknote';
@@ -25,10 +30,7 @@ class Quicknote extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\Connection the database connection used by this AR class.
      */
-    public static function getDb()
-   {
-       return \frontend\components\Utilities::userdb();
-   }  
+   
 
     /**
      * {@inheritdoc}

@@ -2,6 +2,11 @@
 
 namespace frontend\models;
 
+use frontend\models\Productcategory;
+use frontend\models\Productsubcategory;
+use frontend\models\Salesorderdetails;
+use frontend\models\Salesorderheader;
+
 use Yii;
 
 class Product extends \yii\db\ActiveRecord
@@ -30,8 +35,7 @@ class Product extends \yii\db\ActiveRecord
             [['sellstartdate', 'discontinueddate'], 'default','value'=>null],
             [['sellenddate'], 'default','value'=>date('2099/12/31')],
             [['sellstartdate', 'sellenddate', 'discontinueddate'], 'safe'],
-            [['productnumber'], 'default','value'=>1],
-            [['productnumber'], 'integer', 'max' => 10000],
+            [['productnumber'], 'default','value'=>'001'],
             [['postcodefirsthalf'], 'string', 'max' => 4],
             [['postcodesecondhalf'], 'string', 'max' =>3], 
             [['name'],'default','value'=>'Firstname'],
@@ -60,17 +64,17 @@ class Product extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Firstname (Not required)',
             'surname' => 'Surname (Not required)',
-            'contactmobile' => 'Contact Mobile (Not required: default to 07777777777',
+            'contactmobile' => 'Contact Mobile',
             'specialrequest' => 'Special Request',
             'listprice' => 'Price (required)',
             'frequency'=> 'Frequency (required)',
-            'productnumber'=>'House Number (Not required)',
+            'productnumber'=>'House Number',
             'productcategory_id' => 'Postcode Area (eg. G32 - Carntyne)',
             'postcodefirsthalf' =>'Postcode Firsthalf eg. G32 (Max 4 characters)',
             'postcodesecondhalf' =>'Postcode Secondhalf eg. 6LF (Max 3 characters)',
             'productcategory_id.description'=>'Description',
             'productsubcategory_id' => 'Street (required)',
-            'sellstartdate' => 'First clean date',
+            'sellstartdate' => 'First captured date',
             'sellenddate' => 'Termination date (default: 2099/12/31) . Set to remove from round.',
             'discontinueddate' => 'Modified Date (ignore)',
             'isactive'=>'Is this active?',

@@ -1,7 +1,8 @@
 <?php
 
 namespace frontend\models;
-
+use frontend\models\Product;
+use frontend\models\Productcategory;
 use Yii;
 
 /**
@@ -42,9 +43,9 @@ class Productsubcategory extends \yii\db\ActiveRecord
             [['lat_start','lng_start','lat_finish','lng_finish'],'integer','integerOnly'=>false],
             [['lat_start','lng_start','lat_finish','lng_finish'],'default','value'=>0.00],
             [['name'], 'string', 'max' => 50],
-            [['sort_order'],'default','value'=>99],
             [['sort_order'],'integer','min'=>0,'max'=>500],
-            [['productcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Productcategory::className(), 'targetAttribute' => ['productcategory_id' => 'id']],
+            [['sort_order'],'default','value'=>99],
+            [['productcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Productcategory::className(), 'targetAttribute' =>['productcategory_id' => 'id']],
             [['directions_to_next_productsubcategory'], 'string', 'max' => 5000],
             [['isactive'],'default','value'=>1]
         ];
@@ -59,7 +60,7 @@ class Productsubcategory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'productcategory_id' => 'Area',
             'name' => 'Name',
-            'sort_order'=>'Sequence eg. set to 500 temporarily if using Quick Build. 99 suggested if not using Quick Build.',
+            'sort_order'=>'Sequence',
             'lat_start' => 'Latitude Start eg. 55.8888888',
             'lng_start' => 'Longitude Start eg. -4.1111111',
             'lat_finish' => 'Latitude Finish eg. 55.9999999',

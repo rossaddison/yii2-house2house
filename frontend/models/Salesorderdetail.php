@@ -7,7 +7,6 @@ use frontend\models\Productcategory;
 use frontend\models\Productsubcategory;
 use frontend\models\Product;
 use frontend\models\Tax;
-use frontend\models\Instruction;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -34,15 +33,15 @@ class Salesorderdetail extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-   public static function getDb()
-   {
-       return \frontend\components\Utilities::userdb();
-   }
-    
     public static function tableName()
     {
         return 'works_salesorderdetail';
     }
+    
+   public static function getDb()
+   {
+       return \frontend\components\Utilities::userdb();
+   }     
 
     /**
      * @inheritdoc
@@ -50,15 +49,17 @@ class Salesorderdetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nextclean_date','sales_order_id', 'productcategory_id','productsubcategory_id', 'product_id', 'unit_price','instruction_id'], 'required'],
-            [['sales_order_id','productcategory_id','productsubcategory_id', 'product_id','instruction_id'], 'integer'],
+            [['nextclean_date','sales_order_id', 'productcategory_id','productsubcategory_id', 'product_id', 'unit_price'], 'required'],
+            [['sales_order_id','productcategory_id','productsubcategory_id', 'product_id'], 'integer'],
             [['nextclean_date'], 'safe'],
             [['cleaned'],'default','value'=>'Cleaned'],
-            [['unit_price','paid','advance_payment','pre_payment','tip'], 'number','min'=>0.00,'max'=>1000.00],
-            [['unit_price','paid','advance_payment','pre_payment','tip'], 'default','value' => 0.00],
+            [['order_qty'],'default','value'=>1],
+            [['line_total'],'default','value'=>1],
+            [['order_qty'], 'number'],
+            [['unit_price','paid'], 'number','min'=>0.00,'max'=>1000.00],
+            [['unit_price','paid','order_qty'], 'default','value' => 0.00],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
             [['sales_order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Salesorderheader::className(), 'targetAttribute' => ['sales_order_id' => 'sales_order_id']],
-          
         ];
     }
 
@@ -67,20 +68,16 @@ class Salesorderdetail extends \yii\db\ActiveRecord
         return [
             'sales_order_id' => 'Daily Clean ID',
             'sales_order_detail_id' => 'House(s) to Clean ID',
-            'result_id'=>'Result',
-            'instruction_id'=>'What',
             'nextclean_date' => 'Next Clean Date',
-            'productcategory_id' => 'Postcode',
+            'productcategory_id' => 'Postal Code',
             'productsubcategory_id'=>'Street',
             'product_id'=>'House',
             'product_id.homeowner' => 'Homeowner',
             'product_id.productnumber'=>'House Number',
+            'order_qty'=>'Order Qty',
             'unit_price' => 'Unit Price',
+            'line_total'=> 'Line Total',
             'paid' => 'Paid',
-            'advance_payment'=>'AdvPyt',
-            'tip'=>'Tip',
-            'pre_payment'=>'PrePyt',
-            'payment_request_id' => 'Payment Request ID',
             'modified_date' => 'Modified Date',
         ];
     }
@@ -126,4 +123,7 @@ class Salesorderdetail extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Paymentrequest::className(), ['id' => 'paymentrequest_id']);
     }
+    
+    
+    
 }
