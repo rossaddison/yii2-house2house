@@ -286,4 +286,4 @@ Install roles, and permissions that are built into the software. Whilst in the h
 
 **Running your backups from the console/command prompt/linux using putty**
 
-Please consult the ellera documentation on https://www.yiiframework.com/extension/ellera/yii2-backup
+Please consult the ellera documentation on https://www.yiiframework.com/extension/ellera/yii2-backup/
