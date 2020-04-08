@@ -199,7 +199,8 @@ On completion ensure the following:
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
-Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. sql_roles_permissions/auth.php. For instance create migrations for: 
+**Creating migrations on your local machine for the 'migrate' command from pre-exiting auth files. If you want to install the auth files using 'migrate' skip this section.**
+Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. sql_roles_permissions/auth.php or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
 
     auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
 
@@ -224,15 +225,19 @@ Occasionally you will need to create migrations in order to simplify a process i
     ];
     }
 
-Change the localhost ip address [127.0.0.1] above to your local ip address if you are wanting to generate migrations from your host to your local ip connection determined by your service provider. eg. BT whilst logged in online to your site. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. Gii is run eg. <your_domain>/gii/. Alter the controllerMap with a new command. 
+Keep the localhost ip address [127.0.0.1]. Run the following command from your browser assuming you have setup your wampserver:
+
+    mylocalhostname.myhost/gii/
+
+Assuming that you have already run the auth.sql under your phpAdmin, you should already have the auth files so select them and generate your migration. Make sure that you put the Namesapce command at the top of each migration php file once the migration is completed.  Alter the controllerMap with these new commands. 
+
+**Installation of roles and permissions by migrations**
 
 To install the above auth tables through a migration run instead of through the auth.sql file, use the following command. Note the migrate-db-auth command is included in the console/config/controllerMap as a key-value pair. 
 
 Why are the auth tables important? They are the soul of RBAC (Role Based Access Control). After the admininstrator has done 'his thing', the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
 
-So create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' by implementing the following.
-
-**Installation of roles and permissions by migrations**
+So this command will create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' permissions.
 
     php yii migrate-db-auth (linux)
     yii migrate-db-auth (windows with php path in environment settings)
