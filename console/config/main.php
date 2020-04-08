@@ -44,7 +44,7 @@ return [
           'migrate-db-auth' => [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationNamespaces' => [
-                        'frontend\migrations\auth',                        
+                        'console\migrations\auth',                        
                 ],
                'color'=>true,
                'comment'=> 'You are migrating the namespaced authorisation tables to database connection component db which is your administration database.',
