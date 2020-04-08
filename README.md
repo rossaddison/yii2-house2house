@@ -130,7 +130,7 @@ Yes there is an import facility although you will probably find it quicker to us
 
    1. **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
 
-   1.**Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
+   1. **Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
 The database has been normalized ensuring efficiency and appropriate integrity constraint provisions filter through to the Controllers.
 The package adopts a very cautious approach of NO ACTION where relations between tables exist ensuring a last-in-first-out (LIFO) methodology and also ensuring the safety of the data provided when attempts are made by unauthorized users to perform delete actions.  
 
