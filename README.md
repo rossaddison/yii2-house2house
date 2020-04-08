@@ -128,23 +128,23 @@ Yes there is an import facility although you will probably find it quicker to us
 
 **How does House2house incorporate the security features of Yii2 according to https://www.yiiframework.com/doc/guide/2.0/en/security-overview ?**
 
-    1. **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
+   1. **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
 
-    1.**Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
+   1.**Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
 The database has been normalized ensuring efficiency and appropriate integrity constraint provisions filter through to the Controllers.
 The package adopts a very cautious approach of NO ACTION where relations between tables exist ensuring a last-in-first-out (LIFO) methodology and also ensuring the safety of the data provided when attempts are made by unauthorized users to perform delete actions.  
 
-    1. **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
+   1. **Working with passwords:** All login passwords must contain an uppercase, lowercase, and one digit mix.
 
-    1. **Cryptography:** Yii2 is using an advanced cypher.
+   1. **Cryptography:** Yii2 is using an advanced cypher.
 
-    1. **Views security:** Cross Site Request Forgery (CSRF) built into frontend/config/main.php.
+   1. **Views security:** Cross Site Request Forgery (CSRF) built into frontend/config/main.php.
 
-    1. **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
+   1. **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
 
-    1. **Security best practices:** Active Record uses prepared statements to avoid SQL injections.  
+   1. **Security best practices:** Active Record uses prepared statements to avoid SQL injections.  
 
-    1. **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
+   1. **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. Those users on mobile will have to have access to broadband though.
 
