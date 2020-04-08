@@ -172,15 +172,6 @@ return [
            'link' => [ 'class' => 'btn btn-sm btn-secondary' ],
         ],        
        ],
-       //This module has not been fully developed. Do not use. Follow the installation guidance for this software and database which uses
-       //composer eg. composer update, to install the vendor files, and github clone/zip to install all other relevant files and folders.
-       //Use an ssh package like Putty to perform your database migrations.
-       //'installer' => [
-       //     'class' => 'frontend\modules\installer\Module',
-       //],
-      'backuper'=> [
-             'class' => 'frontend\modules\backup\Module',
-      ],
       //use this module for timed backups 	    
       'backup' => [
         'class' => 'ellera\backup\Module',
