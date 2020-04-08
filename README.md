@@ -169,7 +169,7 @@ This will install the dependencies that are under 'require' under composer.json 
 
 1. **Database component connection 'db' for database h2h_db:**
 
-On your host's (eg. One.com) Linux via eg. Putty - for your **main** database component called 'db' :
+   On your host's (eg. One.com) Linux via eg. Putty - for your **main** database component called 'db' :
    
 1. **Check your 'path' environment settings, under Windows 10:**
 
