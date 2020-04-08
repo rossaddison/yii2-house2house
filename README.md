@@ -195,7 +195,7 @@ The backup module ellera does not contain a namespace and is included in the com
 
        yii migrate-db1
 
-1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**\config\main.php under the controllerMap.
+1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**/config/main.php under the controllerMap.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
 
     1. *frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2* 
@@ -262,7 +262,9 @@ Assuming that you have already run the auth.sql under your phpAdmin, you should 
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration run instead of through the auth.sql file, use the following command. Note the migrate-db-auth command is included in the console/config/controllerMap as a key-value pair. 
+To install the above auth tables through a migration instead of through the auth.sql file, use the following command. Note the migrate-db-auth command is included in the console/config/controllerMap as a key-value pair. The auth migration is in:
+
+    console/migrations/auth.php
 
 Why are the auth tables important? They are the soul of RBAC (Role Based Access Control). After the admininstrator has done 'his thing', the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
 
@@ -271,7 +273,7 @@ So this command will create a bare-bones auth_assignment table, desperately hung
     php yii migrate-db-auth (linux)
     yii migrate-db-auth (windows with php path in environment settings)
     
- To install the subscription tables, if you intend to remove the Subscription Free Privilege to a particular user(s), run the following command:
+To install the subscription tables, if you intend to remove the Subscription Free Privilege to a particular user(s), run the following command:
  
     php yii migrate-db-paypal (linux)
     yii migrate-db-paypal (windows with php path in environment settings)  
