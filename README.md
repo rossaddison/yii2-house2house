@@ -1,11 +1,11 @@
 **yii2-house2house**
 
-**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Home Care - stock delivery, Plant delivery, disaster relief**
+**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Home Care - stock delivery, Plant delivery, Disaster relief**
 
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
-It has been mainly structured for window cleaning in the UK but can be modified for other services. Data protection has been incorporated in the package so most fields under House are not required. Refer to the suggested Privacy and Data Protection Policy under the /site/privacypolicy url when the site is hosted or under frontend/views/site/privacypolicy.php. 
+It has been mainly structured for window cleaning in the UK but can be modified for other services. Data protection has been incorporated in the package so most fields under House do not require data input and these fields are therefore not listed under the 'required' fields. Refer to the suggested Privacy and Data Protection Policy under the /site/privacypolicy url when the site is hosted or under frontend/views/site/privacypolicy.php. 
 
 **What is the structure of the database?** InnoDB using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been structured similar to Microsoft's Adventure Works making extensive use of foreign keys. Hence Yii2 is strong in this regard and therefore Yii2's relations in models are used extensively to facilitate Eager loading and Lazy loading which promotes an extremely quick retrieval of records.
 
@@ -13,9 +13,9 @@ It has been mainly structured for window cleaning in the UK but can be modified 
 The package can be adapted by modifying the Instruction list which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code from the Instruction list. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. The House is the customer so there is no Customer database. House is actually a Product according to the Adventure Works hierarchy of Productcategory (Postcode), Productsubcategory (Street), and Product (House). This facilitates quick searching. Similarly SalesorderHeader (Daily Clean), SalesorderDetail (Individual cleans for that particular day).
 
 *By default the package is structured for shared hosting with a subscription through paypal's rest-api-sdk*. 
-So multiple companies/divisions/units/wards can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. However all users inherit the Free Subscription Privilege permission from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the employee role. All Mdb roles fall under the support role. 
+So multiple companies/divisions/units can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. So all users inherit the Free Subscription Privilege permission from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the employee role. All Mdb roles fall under the support role. 
 
-Each database works independently of all the others sharing the frontend. How is this accomplished? Each model has the userDb() function which uses the database assigned at login by accessing the **frontend/components/ Utiilites::userLogin_set_database**. How does the frontend know which database to use for the particular user? When the user registers, the administrator is responsible for assigning a role to the user through the RBAC GUI. Each database has 2 roles. eg. Mdb1 and Udb1 which both have a permission eg. Access db1 assigned to it. So when the user is assigned a role eg. Udb1, the user will be able to access db1. The administrator is also responsible for making the connection 'active'. This is accomplished through the RBAC GUI. This procedure could be automated without a RBAC GUI as a future development. 
+Each database works independently of all the others. Each database shares the frontend code. How is this accomplished? Each model has the userDb() function which uses the database assigned at login by accessing the **frontend/components/ Utiilites::userLogin_set_database**. How does the frontend know which database to use for the particular user? When the user registers, the administrator is responsible for assigning a role to the user through the RBAC GUI. Each database has 2 roles. **eg. Mdb1 and Udb1 for db1** which both have a permission eg. Access db1 assigned to it. So when the user is assigned a role eg. Udb1, the user will be able to access db1. The administrator is also responsible for making the connection 'active'. This is accomplished through the RBAC GUI. This procedure could be automated without a RBAC GUI as a future development. 
 
 The RBAC GUI user interface, accessible only to the first user signed up (who inherits the admin role), is ideal for adjusting these rights across the various companies or divisions. One user is responsible for assigning rights to all users across all the companies/divisions that have signed up.  
 
@@ -25,12 +25,12 @@ The RBAC GUI user interface, accessible only to the first user signed up (who in
 Use username: demo, password: Demo1234. All data will be deleted upon exiting the software. This is built into frontend/config/main.php. Bootstrap 4 - buttons, mobile layout, font adjuster - is used for the graphical interface.
 
 **How do I create a Daily Clean?**
-Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Having setup your Postcodes, Streets, and Houses, under Houses, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update in the future is proposed as opposed to a migration containing all the UK's postcodes and streets. 
+Go to Daily Clean and click the create button. A Daily Clean will appear on the Grid. Having setup your Postcodes, Streets, and Houses, under Houses, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update/migration in the future is proposed to update the UK's postcodes and streets. 
 
 **How do I see the individual cleans for the day?**
 Under the Daily Clean, if you click on the + sign, the grid will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you. Click on 'cleans' and you will see a more detailed list of the overall cleans. 
 
-A useful feature is if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street.
+A useful feature is if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not that descriptive you can define a street by using Googles latitude and longitude coordinates for the beginning and end of the street. These streets will appear delineated on the map if you choose suitable 'begin' and 'end' coordinates for each street. 
 
 **How do I change the sequence or order of my streets to clean?**
 Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
@@ -132,7 +132,7 @@ This will install the dependencies that are under 'require' under composer.json 
 1. Make sure that your frontend/config/main.php is properly configured.
 1. Make sure that your frontend/modules/subscriptions/components/configpaypal.php is properly configured when you opt to use subscriptions although by default this will be ignored and no error codes will be generated as long as you keep the Subscription Free Privilege permission assigned to the respective Udb role or Mdb role relevant to the database or, if you elect not to have it linked to these roles, the higher 'more universal' roles of 'employee' and 'support' respectively.
 1. Upload these folders to the web/public-html folder using ftp (File Transfer Protocol) upload software eg. filezilla to your host eg. one.com, godaddy.com
-1. Ensure that your databases on your host correspond to the number of databases in the three files mentioned below i,ii,iii.
+1. Ensure that your databases on your host correspond to the number of databases in the four files mentioned below i,ii,iii,iv.
 
 **Installation Steps for Databases using Yii2's migration tool and the folder frontend\migrations** 
 1. Create your databases manually through phpMyadmin on your WAMP or LAMP matching the details in common/config/main-local.php. You will rename your databases in this main-local.php file according to the autogenerated schema given to you by your host most likely and so will have to change it from the default h2h_db as mentioned in the **common**/config/main-local.php to eg. your_domain_co_uk_db.
@@ -140,7 +140,8 @@ This will install the dependencies that are under 'require' under composer.json 
 
 1. **Database component connection 'db' for database h2h_db:** On your host's (eg. One.com) Linux via eg. Putty - for your **main** database component called 'db' :
    
-   Check your 'path' environment settings, under Windows 10: ie. Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
+1. **Check your 'path' environment settings, under Windows 10:** ie. Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
+   
    Install the sjaakp/pluto migration and frontend/migrations with the following command: 
    
        php yii migrate-db-namespaced  (linux eg. putty) 
@@ -152,15 +153,19 @@ This will install the dependencies that are under 'require' under composer.json 
        yii migrate-db-non-namespaced    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
 
    
-   The migrate command will look at the db component contained in **common**/config/main-local.php and install the migrations to the  named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host using the commands which have been constructed in the ControllerMap in **console**/config/main.php eg. the command  'migrate-db-namespaced'.
+Regarding the above Yii migrate command, it will look at the db component contained in **common**/config/main-local.php and install the migrations to the  named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host using the commands which have been constructed in the ControllerMap in **console**/config/main.php eg. the command  'migrate-db-namespaced'.
 
-   This command will use the migration paths contained in **console**\config\main.php. There are currently two paths sjaakp/pluto and  frontend/migrations. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace after Gii generated the migration file from the developer's table. 
+This command will use the migration paths contained in **console**/config/main.php. There are currently two paths sjaakp/pluto and  frontend/migrations. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace after Gii generated the migration file from the developer's table. 
 
-   The backup module ellera does not contain a namespace and is included in the composer.json therefore we have to run this separately under the *migrate-db-non-namespaced* command.
+The backup module ellera does not contain a namespace and is included in the composer.json therefore we have to run this separately under the *migrate-db-non-namespaced* command.
 
 1. Linux via eg. Putty for your **subsequent** databases: 
 
        php yii migrate-db1
+       
+1. If on your localhost on windows: 
+
+       yii migrate-db1
 
 1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**\config\main.php under the controllerMap.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
@@ -170,7 +175,7 @@ This will install the dependencies that are under 'require' under composer.json 
     1. common/config/main-local.php - Follow the naming convention eg. db1, db2
     1. console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
  
- 1. **Installing roles and permissions**
+ 1. **Installing roles and permissions using SQL**
 Install roles, and permissions that are built into the software. Whilst in the h2h_db database, copy the sql  commands in SQL_roles_permissions/auth and run them in your phpMyadmin SQL section. 
 
 1. In order to sign up your first user, you will have to make sure that 'fencemode' is switched off:
@@ -221,13 +226,15 @@ Occasionally you will need to create migrations in order to simplify a process i
     ];
     }
 
-Change the localhost ip address [127.0.0.1] above to your local ip address if you are wanting to generate migrations from your host to your local ip connection whilst logged in online to your site. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. Gii is run eg. <your_domain>/gii/. Alter the controllerMap with a new command. 
+Change the localhost ip address [127.0.0.1] above to your local ip address if you are wanting to generate migrations from your host to your local ip connection determined by your service provider. eg. BT whilst logged in online to your site. Make sure that you put the Namesapce command at the top of each migration once the migration is completed. Gii is run eg. <your_domain>/gii/. Alter the controllerMap with a new command. 
 
-To install the above auth tables through a migration run instead of through the auth.sql file, use the following command. Note the migrate-db-auth command is included in the controllerMap as a key-value pair. 
+To install the above auth tables through a migration run instead of through the auth.sql file, use the following command. Note the migrate-db-auth command is included in the console/config/controllerMap as a key-value pair. 
 
 Why are the auth tables important? They are the soul of RBAC (Role Based Access Control). After the admininstrator has done 'his thing', the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
 
-So create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, police partners, ready to flex their roles and administer 'allowed to' and 'denied':     
+So create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' by implementing the following.
+
+Installation of roles and permissions by migrations.
 
     php yii migrate-db-auth (linux)
     yii migrate-db-auth (windows with php path in environment settings)
@@ -235,19 +242,4 @@ So create a bare-bones auth_assignment table, desperately hungry to track admin 
  To install the subscription tables, if you intend to remove the Subscription Free Privilege to a particular user(s), run the following command:
  
     php yii migrate-db-paypal (linux)
-    yii migrate-db-paypal (windows with php path in environment settings)
-    
-
-  
-     
-
- 
-    
-
-
-
-
-
-
-
-
+    yii migrate-db-paypal (windows with php path in environment settings)    
