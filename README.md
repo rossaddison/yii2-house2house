@@ -167,12 +167,12 @@ The backup module ellera does not contain a namespace and is included in the com
 
 1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**\config\main.php under the controllerMap.
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
-*
-    1. frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2 
-    1. frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
-    1. common/config/main-local.php - Follow the naming convention eg. db1, db2
-    1. console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
-*
+
+    1. *frontend/config/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2 
+    1. *frontend/components/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2
+    1. *common/config/main-local.php - Follow the naming convention eg. db1, db2
+    1. *console/config/main.php - edit and replicate the commands in the controllerMap for migrations over and above the 10 databases.
+
 1. In order to sign up your first user, you will have to make sure that 'fencemode' is switched off:
 
 frontend/config/main.php
