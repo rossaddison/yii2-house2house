@@ -227,7 +227,7 @@ On completion ensure the following:
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
-**Creating migrations on your local machine for the 'migrate' command from pre-exiting auth files. If you want to install the auth tables using 'migrate' skip this section.**
+**Creating migrations on your local machine for the 'migrate' command from pre-existing auth tables. If you want to install the auth tables using 'migrate' skip this section.**
 
 Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. console/migrations/auth/auth.sql or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
 
