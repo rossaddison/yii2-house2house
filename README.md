@@ -185,7 +185,8 @@ frontend/config/main.php
  and that your mailer component under frontend\config\main.php is correctly set so that your user can respond to your email. Testing on your localhost, the port will normally be port 25 since you will be going through your service provider, such as BT. 
  
  **Troubleshooting**
-Besides the issues section for this repository in order to debug your code, defaults have been set in the following files:
+ 
+ Besides the issues section for this repository in order to debug your code, defaults have been set in the following files:
     web/index.php
     
     defined('YII_DEBUG') or define('YII_DEBUG', true);
@@ -197,6 +198,7 @@ On completion ensure the following:
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
 **Creating migrations on your local machine for the 'migrate' command from pre-exiting auth files. If you want to install the auth files using 'migrate' skip this section.**
+
 Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. sql_roles_permissions/auth.php or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
 
     auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
