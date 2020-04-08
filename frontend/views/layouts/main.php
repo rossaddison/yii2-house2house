@@ -103,9 +103,6 @@ $this->registerJs($js);
                 ],
                 ['label' => Html::button('Admin',['class'=>'btn btn-success btn-lg']),'url'=> '', 'visible'=>Yii::$app->user->can('manageRoles'),
                  'items' => [
-                           // ['label' => Html::button('Migrations',['class'=>'btn btn-danger']), 'url' => ['/installer/installer/index/'],'visible'=>Yii::$app->user->can('manageRoles')],
-                            ['label' => Html::button('Backup',['class'=>'btn btn-danger btn-lg']), 'url' => ['/backuper/backuper/index/'],'visible'=>Yii::$app->user->can('manageRoles')],
-                          //  ['label' => Html::button('Composer',['class'=>'btn btn-danger']), 'url' => ['/composerer/composerer/index/'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Role Management (Admin)',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/role'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;'.'&nbsp;'.Html::button('Update Admin',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/role/update/admin'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button('Permission Management (Admin)',['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/permission'],'visible'=>Yii::$app->user->can('manageRoles')],
