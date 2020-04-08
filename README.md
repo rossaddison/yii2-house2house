@@ -171,7 +171,7 @@ This will install the dependencies that are under 'require' under composer.json 
 
        Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
    
-1. **Install the sjaakp/pluto migration and frontend/migrations with the following command:** 
+1. **Install the sjaakp/pluto migration and frontend/migrations with the following command at your command prompt:** 
    
        php yii migrate-db-namespaced  (linux eg. putty) 
        yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
