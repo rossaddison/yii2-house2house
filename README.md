@@ -1,6 +1,6 @@
 **yii2-house2house**
 
-**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Home Care - stock delivery, Plant delivery**
+**House to House Management Software eg. Cleaning Services, Delivery Services, Mobile Hairdressing, Home Care - stock delivery, Plant delivery, disaster relief**
 
 **Frequently Asked Questions ?**
 
@@ -10,7 +10,7 @@ It has been mainly structured for window cleaning in the UK but can be modified 
 **What is the structure of the database?** InnoDB using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been structured similar to Microsoft's Adventure Works making extensive use of foreign keys. Hence Yii2 is strong in this regard and therefore Yii2's relations in models are used extensively to facilitate Eager loading and Lazy loading which promotes an extremely quick retrieval of records.
 
 **How can the package be adapted?**
-The package can be adapted by modifying the Instruction list which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code from the Instruction list. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. The House is the customer so there is no Customer database. House is actually a Product according to the Adventure Works hierarchy of Productcategory (Postcode), Productsubcategory (Street), and Product (House). Similarly SalesorderHeader (Daily Clean), SalesorderDetail (Individual cleans for that particular day).
+The package can be adapted by modifying the Instruction list which will appear as a dropdown in the Daily Cleans list of houses. Each house will be associated with a specific code from the Instruction list. eg. FBS which stands for Front Back and Sides. Also you can alter the attribute values under frontend/models to reflect a more personal feel to your business. The House is the customer so there is no Customer database. House is actually a Product according to the Adventure Works hierarchy of Productcategory (Postcode), Productsubcategory (Street), and Product (House). This facilitates quick searching. Similarly SalesorderHeader (Daily Clean), SalesorderDetail (Individual cleans for that particular day).
 
 *By default the package is structured for shared hosting with a subscription through paypal's rest-api-sdk*. 
 So multiple companies/divisions/units/wards can signup to your site and share the software with or without a subscription service. The subscription service is enabled by default. However all users inherit the Free Subscription Privilege permission from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the employee role. All Mdb roles fall under the support role. 
@@ -143,13 +143,13 @@ This will install the dependencies that are under 'require' under composer.json 
    Check your 'path' environment settings, under Windows 10: ie. Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
    Install the sjaakp/pluto migration and frontend/migrations with the following command: 
    
-       php yii migrate-db-namespaced  (if no php path in environment settings) 
-       yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.1 in *environment settings* under windows)
+       php yii migrate-db-namespaced  (linux eg. putty) 
+       yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
        
    Install the ellera backup component with the following command:    
    
-       php yii migrate-db-non-namespaced    (if no php path in environment settings.)
-       yii migrate-db-non-namespaced    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.1 in *environment settings* under windows)
+       php yii migrate-db-non-namespaced    (linux eg. putty)
+       yii migrate-db-non-namespaced    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
 
    
    The migrate command will look at the db component contained in **common**/config/main-local.php and install the migrations to the  named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host using the commands which have been constructed in the ControllerMap in **console**/config/main.php eg. the command  'migrate-db-namespaced'.
@@ -225,19 +225,22 @@ Change the localhost ip address [127.0.0.1] above to your local ip address if yo
 
 To install the above auth tables through a migration run instead of through the auth.sql file, use the following command. Note the migrate-db-auth command is included in the controllerMap as a key-value pair. 
 
-Why are the auth tables important? They are the soul of RBAC (Role Based Access Control). After the admininstrator has done 'his thing', the auth_assignment table indicates the mediation that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role, that underlies its abilities. So create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, police partners, eternally flexible and ready to administer defined new laws:     
+Why are the auth tables important? They are the soul of RBAC (Role Based Access Control). After the admininstrator has done 'his thing', the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
 
-    php yii migrate-db-auth
+So create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, police partners, ready to flex their roles and administer 'allowed to' and 'denied':     
+
+    php yii migrate-db-auth (linux)
+    yii migrate-db-auth (windows with php path in environment settings)
     
- To install the subscription tables run the following command:
+ To install the subscription tables, if you intend to remove the Subscription Free Privilege to a particular user(s), run the following command:
  
-    php yii migrate-db-paypal
+    php yii migrate-db-paypal (linux)
+    yii migrate-db-paypal (windows with php path in environment settings)
     
- **Future developments:**
-Incorporate gocardless as a subscription payment solution.
-Prepare an automated RBAC solution.
- 
-    
+
+  
+     
+
  
     
 
