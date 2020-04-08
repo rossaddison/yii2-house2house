@@ -144,7 +144,7 @@ The package adopts a very cautious approach of NO ACTION where relations between
 
    1. **Security best practices:** Active Record uses prepared statements to avoid SQL injections.  
 
-   1. **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
+**I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 
 The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. Those users on mobile will have to have access to broadband though.
 
