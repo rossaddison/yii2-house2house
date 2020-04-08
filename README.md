@@ -173,14 +173,14 @@ On your host's (eg. One.com) Linux via eg. Putty - for your **main** database co
    
 1. **Check your 'path' environment settings, under Windows 10:**
 
-ie. Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
+       Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
    
-   Install the sjaakp/pluto migration and frontend/migrations with the following command: 
+1. **Install the sjaakp/pluto migration and frontend/migrations with the following command:** 
    
        php yii migrate-db-namespaced  (linux eg. putty) 
        yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
        
-   Install the ellera backup component with the following command:    
+1. **Install the ellera backup component with the following command:**    
    
        php yii migrate-db-non-namespaced    (linux eg. putty)
        yii migrate-db-non-namespaced    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
