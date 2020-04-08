@@ -142,12 +142,12 @@ This will install the dependencies that are under 'require' under composer.json 
    
    Install the sjaakp/pluto migration and frontend/migrations with the following command: 
    
-       php yii migrate-db-namespaced  (if an undefined php path in environment settings) 
+       php yii migrate-db-namespaced  (if no php path in environment settings) 
        yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.1 in *environment settings* under windows)
        
    Install the ellera backup component with the following command:    
    
-       php yii migrate-db-non-namespaced    (if an undefined php path in environment settings.)
+       php yii migrate-db-non-namespaced    (if no php path in environment settings.)
        yii migrate-db-non-namespaced    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.1 in *environment settings* under windows)
 
    
