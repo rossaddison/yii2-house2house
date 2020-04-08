@@ -280,9 +280,9 @@ So this command will create a bare-bones auth_assignment table, desperately hung
     php yii migrate-db-paypal (linux)
     yii migrate-db-paypal (windows with php path in environment settings)  
     
- **Installing roles and permissions using SQL**
+ **Installing roles and permissions using SQL on your localhost/host**
  
-Install roles, and permissions that are built into the software. Whilst in the h2h_db database, copy the sql  commands in SQL_roles_permissions/auth and run them in your phpMyadmin SQL section. 
+Whilst in the db database, copy the sql  commands in SQL_roles_permissions/auth and run them in your phpMyadmin SQL section. 
 
 **Running your backups from the console/command prompt/linux using putty**
 
