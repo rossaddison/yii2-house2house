@@ -231,7 +231,7 @@ On completion ensure the following:
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
-**Creating migrations on your local machine for the 'migrate' command from pre-exiting auth files. If you want to install the auth files using 'migrate' skip this section.**
+**Creating migrations on your local machine for the 'migrate' command from pre-exiting auth files. If you want to install the auth tables using 'migrate' skip this section.**
 
 Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. sql_roles_permissions/auth.php or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
 
@@ -262,7 +262,7 @@ Keep the localhost ip address [127.0.0.1]. Run the following command from your b
 
     mylocalhostname.myhost/gii/
 
-Assuming that you have already run the auth.sql under your phpAdmin, you should already have the auth files so select them and generate your migration. Make sure that you put the Namesapce command at the top of each migration php file once the migration is completed.  Alter the controllerMap with these new commands. 
+Assuming that you have already run the auth.sql under your phpAdmin, you should already have the auth tables in your database so select them and generate your migration. Make sure that you put the Namesapce command at the top of each migration php file once the migration is completed. After you have put this migration in the frontend/migrations/auth folder if necessary alter the controllerMap.  
 
 **Installation of roles and permissions by migrations**
 
