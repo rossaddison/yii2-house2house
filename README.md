@@ -229,7 +229,7 @@ On completion ensure the following:
 
 **Creating migrations on your local machine for the 'migrate' command from pre-exiting auth files. If you want to install the auth tables using 'migrate' skip this section.**
 
-Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. sql_roles_permissions/auth.php or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
+Occasionally you will need to create migrations in order to simplify a process instead of importing a sql file eg. console/migrations/auth/auth.sql or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
 
     auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
 
@@ -280,7 +280,7 @@ To install the subscription tables, if you intend to remove the Subscription Fre
     
  **Installing roles and permissions using SQL on your localhost/host**
  
-Whilst in the db database, copy the sql  commands in SQL_roles_permissions/auth and run them in your phpMyadmin SQL section. 
+Whilst in the db database, copy the sql  commands in console/migrations/auth and run them in your phpMyadmin SQL section. 
 
 **Running your backups from the console/command prompt/linux using putty**
 
