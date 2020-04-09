@@ -168,9 +168,8 @@ $this->registerJs($js);
  <footer class="footer">
  <div class="container-fluid">    
      <div class="alert alert-success" role="alert" style ="background:lightcyan" align="center">
-            <p class="center">&copy; <?php echo date('Y');?> Roundrunner  - All rights reserved </p>
+            <p class="center">&copy; <?php echo date('Y');?> House 2 House  - All rights reserved </p>
             <p class="center">Online ~ Regular Services Management Software </p>
-            <p class="center">Host with One.com and use our referral code at <?= Html::a('http://one.me/enahqymw','http://one.me/enahqymw'); ?> to get a &pound; 5.00 discount  </p>
       </div> 
  </div>
 </footer> 
