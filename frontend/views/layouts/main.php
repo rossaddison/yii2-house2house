@@ -164,7 +164,7 @@ $this->registerJs($js);
     if (Yii::$app->user->isGuest) {
              $menuItems[] = ['label' => Html::button('Home',['class'=>'btn btn-success btn-lg','title'=>'Home','data-toggle'=>'tooltip']), 'url' => ['/site/index'],];
              $menuItems[] = ['label' => Html::button('Login',['class'=>'btn btn-success btn-lg','title'=>'Login','data-toggle'=>'tooltip']), 'url' => ['/libra/login']];
-             $menuItems[] = ['label' => Html::button('Forum',['class'=>'btn btn-success btn-lg','title'=>'Forum','data-toggle'=>'tooltip']), 'url' => ['/flarum/public']];
+             //$menuItems[] = ['label' => Html::button('Forum',['class'=>'btn btn-success btn-lg','title'=>'Forum','data-toggle'=>'tooltip']), 'url' => ['/flarum/public']];
         
     } else {
     
