@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $viewMsg = 'View';
 $deleteMsg = 'Delete';
 $updateMsg = 'Update';
-$tooltipsortorder = Html::tag('span', 'Order', ['title'=>'This is the order in which jobs will be completed.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipsortorder = Html::tag('span', 'Order', ['title'=>'This is the order in which jobs will be completed. View to set to 500 for Quick Build.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 <div class="productsubcategory-index">
 
