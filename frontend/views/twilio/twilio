@@ -3,8 +3,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Get the PHP helper library from twilio.com/docs/php/install
 use Twilio\Rest\Client;
 
-$sid = 'AC9eef5a939c4c8eac9a57eab293957259';
-$token = '0b33be8401f1d5b765075c185ea474f7';
+$sid = 'AC9eef5a939gc4c8eac9a57eabg93957259';
+$token = '0b33bge8401f1d5b765075c185ea47g4f7';
 $client = new Client($sid, $token);
 
 $client->messages->create(
