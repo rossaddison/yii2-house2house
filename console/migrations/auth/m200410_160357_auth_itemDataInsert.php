@@ -1,4 +1,5 @@
 <?php
+Namespace console\migrations\auth;
 
 use yii\db\Schema;
 use yii\db\Migration;
