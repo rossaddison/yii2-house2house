@@ -262,9 +262,9 @@ Assuming that you have already run the **auth.sql** under your phpAdmin, you sho
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration instead of through the auth.sql file, use the following command. Note the **migrate-db-auth** command is included in the **console/config/controllerMap** as a key-value pair. The auth migration is in:
+To install the above auth tables through a migration instead of through the auth.sql file, use the following command. Note the **migrate-db-auth** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migration is in:
 
-    console/migrations/auth.php
+    console/migrations/auth/auth.php
 
 **Why are the auth tables important?** 
 
