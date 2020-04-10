@@ -129,7 +129,8 @@ return [
                         'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>', 
                         '<module:\w+>/backup/<controller:\w+><action:\w+>,' => '<module>/backup/<controller>/<action>',
                         '<module:\w+>/subscription/<controller:\w+><action:\w+>/<redirecturl:\d+>,' => '<module>/subscription/<controller>/<action>',
-              ],
+                        '<module:\w+>/installer/<controller:\w+><action:\w+>,' => '<module>/installer/<controller>/<action>',                       
+	    ],
        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager'
