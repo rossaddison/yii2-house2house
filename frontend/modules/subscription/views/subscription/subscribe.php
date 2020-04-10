@@ -162,6 +162,7 @@ $form = ActiveForm::begin([
     </div>
 </div>
 <?php } //if mode is sandbox ?>
+<div class="row collapse" >
 <?php if ($mode === 'live') { ?>
             <?= $form->field($model, 'plan_name')->hiddenInput()->label(false); ?>
             <?= $form->field($model, 'plan_description')->hiddenInput()->label(false); ?>
@@ -199,7 +200,7 @@ $form = ActiveForm::begin([
             <?= $form->field($model, 'shipping_address_postcode')->hiddenInput()->label(false); ?>
             <?= $form->field($model, 'shipping_address_countrycode')->hiddenInput()->label(false); ?>
             <?php  $yearOnly = date('c', time() + 3600); ?>
-   
+   </div>
    <div class="row">
        <div class="col-md-8 col-md-offset-2">
            <div class="alert alert-primary" role="alert">
