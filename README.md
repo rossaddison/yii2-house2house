@@ -262,9 +262,9 @@ Assuming that you have already run the **auth.sql** under your phpAdmin, you sho
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration instead of through the auth.sql file, use the following command. Note the **migrate-db-auth** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migration is in:
+To install the above auth tables through a migration instead of through the auth.sql file, use the following command. Note the **migrate-db-auth** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migrations are in:
 
-    console/migrations/auth/auth.php
+    console/migrations/auth
 
 **Why are the auth tables important?** 
 
@@ -287,3 +287,8 @@ Whilst in the db database, copy the sql  commands in console/migrations/auth and
 **Running your backups from the console/command prompt/linux using putty**
 
 Please consult the ellera documentation on https://www.yiiframework.com/extension/ellera/yii2-backup/
+
+**Allowing a manager to do their own 'Works' installation**
+All managers can do their own migration of the frontend database if you give them the **Migrate Works Database** permission. This permission is linked to the installer module and can be accessed by typing 'installer/installer' in the browser. By default nobody has this permission for security reasons.
+
+
