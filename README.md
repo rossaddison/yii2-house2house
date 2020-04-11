@@ -292,4 +292,6 @@ Please consult the ellera documentation on https://www.yiiframework.com/extensio
 
 All managers with Mdb roles can do their own migration of the frontend database if you give them the **Migrate Works Database** permission. This permission is linked to the installer module and can be accessed by typing 'installer/installer' in the browser. By default nobody has this permission for security reasons. The administrator will have to access individual databases one at a time in order to use the installer. The administrator will not need it for database 'db' because installation would have been done by the console/command prompt/putty etc in order to get the RBAC GUI. 
 
+**What repository did you learn the most from in developing this repository?**
 
+I have rearranged quite a bit of the code from https://github.com/DevGroup-ru/dotplant2 regarding the installation and backup module that is available here and thanks to their ideas I have been able to transfer this to the community. 
