@@ -17,7 +17,7 @@ use yii\web\Controller;
 class InstallerController extends Controller
 {
     // set simple layout
-    public $layout = 'installer';
+    //public $layout = 'installer';
     private $db = null;
     /**
      * @inheritdoc
