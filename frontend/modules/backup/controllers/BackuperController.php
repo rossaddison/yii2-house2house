@@ -14,7 +14,7 @@ use yii\web\Controller;
 class BackuperController extends Controller
 {
     // set simple layout
-    public $layout = 'backuper';
+    // public $layout = 'backuper';
     private $db = null;
     /**
      * @inheritdoc
