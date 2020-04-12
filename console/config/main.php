@@ -26,7 +26,7 @@ return [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationNamespaces' => [
                         '\\sjaakp\pluto\migrations',
-                        'frontend\migrations',                        
+                        'frontend\migrations',
                 ],
                'color'=>true,
                'comment'=> 'You are migrating the namespaced user table and main frontend tables to database connection component db which is your administration database.',
@@ -34,23 +34,21 @@ return [
                'interactive'=>1,
                'migrationPath' => null, // allows to disable not namespaced migration completely
           ],
-          'migrate-db-non-namespaced' => [
+          'migrate-db-ellera' => [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationPath' => '@vendor/ellera/yii2-backup/src/migrations',
+                'color'=>true,
                 'comment' => 'You are migrating the non-namespaced ellera backup module tables to database connection component db which is your administration database.',
                 'db' => 'db',
                 'interactive'=>1,
           ],
           'migrate-db-auth' => [
-                'class' => 'yii\console\controllers\MigrateController',
-                'migrationNamespaces' => [
-                        'console\migrations\auth',                        
-                ],
+               'class' => 'yii\console\controllers\MigrateController',
+               'migrationPath' => '@yii/rbac/migrations',
                'color'=>true,
-               'comment'=> 'You are migrating the namespaced authorisation tables to database connection component db which is your administration database.',
+               'comment'=> 'You are migrating the rbac authorisation tables to database connection component db which is your administration database.',
                'db' => 'db',
                'interactive'=>1,
-               'migrationPath' => null, // allows to disable not namespaced migration completely
           ],
           'migrate-db-paypal' => [
                 'class' => 'yii\console\controllers\MigrateController',
