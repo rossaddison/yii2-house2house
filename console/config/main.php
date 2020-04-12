@@ -42,13 +42,24 @@ return [
                 'db' => 'db',
                 'interactive'=>1,
           ],
-          'migrate-db-auth' => [
+          'migrate-db-rbac' => [
                'class' => 'yii\console\controllers\MigrateController',
                'migrationPath' => '@yii/rbac/migrations',
                'color'=>true,
                'comment'=> 'You are migrating the rbac authorisation tables to database connection component db which is your administration database.',
                'db' => 'db',
                'interactive'=>1,
+          ],
+          'migrate-db-rbac-fill' => [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationNamespaces' => [
+                        'console\migrations\auth',                        
+                ],
+               'color'=>true,
+               'comment'=> 'You are migrating the namespaced authorisation tables to database connection component db which is your administration database.',
+               'db' => 'db',
+               'interactive'=>1,
+               'migrationPath' => null, // allows to disable not namespaced migration completely
           ],
           'migrate-db-paypal' => [
                 'class' => 'yii\console\controllers\MigrateController',
