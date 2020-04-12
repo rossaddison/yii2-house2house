@@ -205,6 +205,9 @@ The backup module **ellera** does not contain a namespace and is included in the
        yii migrate-db1
 
 1. Repeat this process up until the 10th database if you intend to share your site to up to 10 companies. As you have probably noticed all 10 commands are contained in **console**/config/main.php under the controllerMap.
+
+   Users that have been given the **Manage Works Database** permission will be able to use the GUI to install their database themselves. 
+
 1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
 
     1. *frontend/**config**/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2* 
