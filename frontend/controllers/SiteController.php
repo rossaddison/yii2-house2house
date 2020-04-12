@@ -301,10 +301,6 @@ class SiteController extends Controller
       return $this->render('privacypolicy');
   }
   
-  public function actionMaintenance()
-  {
-      return $this->render('maintenance');
-  }
-
+  
     
 }
