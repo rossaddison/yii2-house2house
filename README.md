@@ -286,9 +286,6 @@ They are the soul of RBAC (Role Based Access Control). After the admininstrator 
 
 So the **yii migrate-db-namespaced** command will create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' permissions. The auth_rule table is for finer conditions. This command also creates the sjaakp/pluto user table and the works tables, and also the paypal tables which although not possibly used are important for the package to run.
 
- **Windows Batch Installation**
- WAMP - click on wamp_fill_database_db.bat
-     
  **Installing roles and permissions using SQL on your localhost/host**
  
 Whilst in the db database, copy the sql  commands in console/migrations/auth and run them in your phpMyadmin SQL section. 
@@ -303,4 +300,4 @@ All managers with Mdb roles can do their own migration of the frontend database 
 
 **What repository did you learn the most from in developing this repository?**
 
-I have rearranged quite a bit of the code from https://github.com/DevGroup-ru/dotplant2 regarding the installation and backup module that is available here and thanks to their ideas I have been able to transfer this to the community. 
+I have rearranged quite a bit of the code from https://github.com/DevGroup-ru/dotplant2 regarding the installation and backup module that is available here and thanks to their ideas I have been able to transfer this to the community. The symfony process component has been an interesting integration to work with.
