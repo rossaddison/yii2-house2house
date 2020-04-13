@@ -198,7 +198,7 @@ Regarding the above Yii migrate command, it will look at the db component contai
 
 This command will use the migration paths contained in **console**/config/main.php. There are currently two paths sjaakp/pluto and  frontend/migrations. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace after Gii generated the migration file from the developer's table. 
 
-The backup module **ellera** does not contain a namespace and is included in the composer.json therefore we have to run this separately under the *migrate-db-non-namespaced* command.
+The backup module **ellera** does not contain a namespace and is included in the composer.json therefore we have to run this separately as the *migrate-db-ellera* command.
 
 1. Linux via eg. Putty for your **subsequent** databases: 
 
@@ -276,39 +276,16 @@ Assuming that you have already run the **auth.sql** under your phpAdmin, you sho
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration instead of through the auth.sql file, use the following command. 
-
-    yii migrate-db-rbac (windows with php path in environment settings)
-
-Note the **yii migrate-db-rbac** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migrations necessary for filling the rbac auth tables are in:
+To install the above auth tables through a migration instead of through the auth.sql file, the namespace or path has now been included in the  **console/config/main.php controllerMap** command migrate-db-namespaced. The auth migrations necessary for filling the rbac auth tables are in:
 
     console/migrations/auth
-    
-To fill the rbac auth tables with roles and permissions relevant to this software: Perform the following command:
-
-    yii migrate-db-rbac-fill (windows with php path in environment settings)
 
 **Why are the auth tables important?** 
 
 They are the soul of RBAC (Role Based Access Control). After the admininstrator has done 'his thing', the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
 
-So this command will create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' permissions. The auth_rule table is for finer conditions. 
+So the **yii migrate-db-namespaced** command will create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' permissions. The auth_rule table is for finer conditions. This command also creates the sjaakp/pluto user table and the works tables, and also the paypal tables which although not possibly used are important for the package to run.
 
-    php yii migrate-db-rbac (linux)
-    
-    yii migrate-db-rbac (windows with php path in environment settings)
-    
-To fill the auth tables use the following commands:
-    
-    php yii migrate-db-rbac-fill (linux)
-    
-    yii migrate-db-rbac-fill (windows with php path in environment settings)
-    
-To install the subscription tables, if you intend to remove the Subscription Free Privilege to a particular user(s), run the following command:
- 
-    php yii migrate-db-paypal (linux)
-    yii migrate-db-paypal (windows with php path in environment settings)
-    
  **Windows Batch Installation**
  WAMP - click on wamp_fill_database_db.bat
      
