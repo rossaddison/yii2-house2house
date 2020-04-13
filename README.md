@@ -191,12 +191,12 @@ This will install the dependencies that are under 'require' under composer.json 
        
 1. **Install the ellera backup component with the following command:**    
    
-       php yii migrate-db-non-namespaced    (linux eg. putty)
-       yii migrate-db-non-namespaced    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
+       php yii migrate-db-ellera    (linux eg. putty)
+       yii migrate-db-ellera    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
   
 Regarding the above Yii migrate command, it will look at the db component contained in **common**/config/main-local.php and install the migrations to the  named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host using the commands which have been constructed in the ControllerMap in **console**/config/main.php eg. the command  'migrate-db-namespaced'.
 
-This command will use the migration paths contained in **console**/config/main.php. There are currently two paths sjaakp/pluto and  frontend/migrations. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace after Gii generated the migration file from the developer's table. 
+This command will use the migration paths contained in **console**/config/main.php. There are currently 4 paths sjaakp/pluto,   frontend/migrations, paypal, and auth. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace after Gii generated the migration file from the developer's table. 
 
 The backup module **ellera** does not contain a namespace and is included in the composer.json therefore we have to run this separately as the *migrate-db-ellera* command.
 
