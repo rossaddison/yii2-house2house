@@ -276,9 +276,17 @@ Assuming that you have already run the **auth.sql** under your phpAdmin, you sho
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration instead of through the auth.sql file, use the following command. Note the **migrate-db-auth** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migrations are in:
+To install the above auth tables through a migration instead of through the auth.sql file, use the following command. 
+
+    yii migrate-db-rbac (windows with php path in environment settings)
+
+Note the **yii migrate-db-rbac** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migrations are in:
 
     console/migrations/auth
+    
+To fill the rbac auth tables with roles and permissions relevant to this software: Perform the following command:
+
+    yii migrate-db-rbac-fill (windows with php path in environment settings)
 
 **Why are the auth tables important?** 
 
