@@ -173,7 +173,7 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
        C:\wamp64\www\<my_folder_name>\web>composer update
 
 This will install the dependencies that are under 'require' under composer.json into the vendor folder.
-1. Make sure that your frontend/config/main.php is properly configured.
+1. Make sure that your frontend/config/main.php is properly configured especially the mailer component so that you can register your first user which will inherit admin rights. Ensure that libra - fencemode is off to be able to register.
 1. Make sure that your frontend/modules/subscriptions/components/configpaypal.php is properly configured when you opt to use subscriptions although by default this will be ignored as long as you keep the **Subscription Free Privilege permission** assigned to the respective Udb role or Mdb role relevant to the database or, if you elect not to have it linked to these roles, the higher 'more universal' roles of 'employee' and 'support' respectively.
 1. Upload these folders to the web/public-html folder using ftp (File Transfer Protocol) upload software eg. **filezilla** to your host eg. one.com, godaddy.com
 1. Ensure that your databases on your host correspond to the number of databases in the four files mentioned below i,ii,iii,iv.
