@@ -38,7 +38,7 @@ Use username: demo, password: Demo1234. All data is deleted on exit. See fronten
 
 **How do I create a Daily Clean?**
 
-Go to Daily Clean and click the create button. A Daily Clean appears on the Grid. Having setup your Postcodes, Streets, and Houses, under Houses, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update/migration in the future is proposed to update the UK's postcodes and streets. 
+Go to Daily Clean and click the create button. A Daily Clean appears on the Grid. Having setup your Postcodes, Streets, and Houses, **under Houses**, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update/migration in the future is proposed to update the UK's postcodes and streets. 
 
 **How do I see the individual cleans for the day?**
 
@@ -184,7 +184,7 @@ This will install the dependencies that are under 'require' under composer.json 
 
        Search...Environment Settings...Advanced...Environment Variables...User variables...PATH...edit, for 'path'.
    
-1. **Install the sjaakp/pluto migration and frontend/migrations with the following command at your command prompt:** 
+1. **Install the sjaakp/pluto migration, frontend/migrations, paypal module migration, and auth migration with the following command at your command prompt:** 
    
        php yii migrate-db-namespaced  (linux eg. putty) 
        yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
@@ -219,7 +219,7 @@ The backup module **ellera** does not contain a namespace and is included in the
 
 1. In order to sign up your first user, you will have to make sure that **'fencemode'** is switched off:
 
-frontend/config/main.php
+**frontend/config/main.php**
 
     'modules' => [
       'libra' => [
