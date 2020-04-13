@@ -25,11 +25,23 @@ return [
          'migrate-db-namespaced' => [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationNamespaces' => [
+                        //sjaakp has NOT been aliased therefore use a double backslash
+                        //installs the user table
                         '\\sjaakp\pluto\migrations',
+                        
+                        //console has been aliased in common/config/bootstrap.php which appears in web/index.php
+                        //installs the mysql auth tables and inserts data
+                        'console\migrations\auth',
+                    
+                        //installs the paypal tables
+                        'frontend\modules\subscription\migrations',
+                    
+                        //frontend has been aliased in common/config/bootstrap.php which appears in web/index.php
+                        //installs the works tables and inserts data
                         'frontend\migrations',
                 ],
                'color'=>true,
-               'comment'=> 'You are migrating the namespaced user table and main frontend tables to database connection component db which is your administration database.',
+               'comment'=> 'You are migrating the namespaced tables to database connection component db which is your administration database.',
                'db' => 'db',
                'interactive'=>1,
                'migrationPath' => null, // allows to disable not namespaced migration completely
@@ -41,36 +53,6 @@ return [
                 'comment' => 'You are migrating the non-namespaced ellera backup module tables to database connection component db which is your administration database.',
                 'db' => 'db',
                 'interactive'=>1,
-          ],
-          'migrate-db-rbac' => [
-               'class' => 'yii\console\controllers\MigrateController',
-               'migrationPath' => '@yii/rbac/migrations',
-               'color'=>true,
-               'comment'=> 'You are migrating the rbac authorisation tables to database connection component db which is your administration database.',
-               'db' => 'db',
-               'interactive'=>1,
-          ],
-          'migrate-db-rbac-fill' => [
-                'class' => 'yii\console\controllers\MigrateController',
-                'migrationNamespaces' => [
-                        'console\migrations\auth',                        
-                ],
-               'color'=>true,
-               'comment'=> 'You are migrating the namespaced authorisation tables to database connection component db which is your administration database.',
-               'db' => 'db',
-               'interactive'=>1,
-               'migrationPath' => null, // allows to disable not namespaced migration completely
-          ],
-          'migrate-db-paypal' => [
-                'class' => 'yii\console\controllers\MigrateController',
-                'migrationNamespaces' => [
-                        'frontend\modules\subscription\migrations',                        
-                ],
-               'color'=>true,
-               'comment'=> 'You are migrating the namespaced user table and main frontend tables to database connection component db which is your administration database.',
-               'db' => 'db',
-               'interactive'=>1,
-               'migrationPath' => null, // allows to disable not namespaced migration completely
           ],
           'migrate-db1' => [
                 'class' => 'yii\console\controllers\MigrateController',
