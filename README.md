@@ -280,7 +280,7 @@ To install the above auth tables through a migration instead of through the auth
 
     yii migrate-db-rbac (windows with php path in environment settings)
 
-Note the **yii migrate-db-rbac** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migrations are in:
+Note the **yii migrate-db-rbac** command is included in the **console/config/main.php controllerMap** as a key-value pair. The auth migrations necessary for filling the rbac auth tables are in:
 
     console/migrations/auth
     
