@@ -14,7 +14,7 @@ It has been mainly built for **window cleaning** in the **UK** but can be modifi
 
 **How can the package be adapted?**
 
-By editing the **Instruction list** which appears as a **dropdown** in the Daily Cleans list of houses. Each house has a **specific code** from the Instruction list. eg. FBS which stands for Front, Back and Sides. Also you can change attributes or descriptions under frontend/models to give a more personal feel to your business. 
+By editing the **Instruction list** which appears as a **dropdown** in the Daily Cleans list of houses. Each house that has been transferred to the Salesorderdetails or Daily Clean details has a **specific code** from the Instruction list. eg. FBS which stands for Front, Back and Sides. Also you can change attributes or descriptions under frontend/models to give a more personal feel to your business. 
 
 The House is the customer. So there is **no Customer database because it is a cash business.** House is actually a Product according to the Adventure Works hierarchy of Productcategory (Postcode), Productsubcategory (Street), and Product (House). This helps quick searching. Similarly SalesorderHeader (Daily Clean), SalesorderDetail (Individual cleans for that particular day). 
 
