@@ -307,8 +307,11 @@ To fill the auth tables use the following commands:
 To install the subscription tables, if you intend to remove the Subscription Free Privilege to a particular user(s), run the following command:
  
     php yii migrate-db-paypal (linux)
-    yii migrate-db-paypal (windows with php path in environment settings)  
+    yii migrate-db-paypal (windows with php path in environment settings)
     
+ **Windows Batch Installation**
+ WAMP - click on wamp_yii_migrate.bat
+     
  **Installing roles and permissions using SQL on your localhost/host**
  
 Whilst in the db database, copy the sql  commands in console/migrations/auth and run them in your phpMyadmin SQL section. 
