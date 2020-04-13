@@ -130,6 +130,8 @@ Ensure that the permission 'Subscription Free Privilege' is assigned on a higher
 
 Yes there is an import facility although you will probably find it quicker to use the **Quick Build tool** depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the Secure menu using Admin rights.
 
+**Javascript is used to link the grids to the Yii2 Controllers. Where can I find this file?** scripts2.js is located under the Frontend /Assets/App folder.
+
 **How does House2house incorporate the security features of Yii2 according to https://www.yiiframework.com/doc/guide/2.0/en/security-overview ?**
 
    1. **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
