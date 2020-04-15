@@ -199,6 +199,12 @@ return [
       ],
       'subscription' => [
             'class' => 'frontend\modules\subscription\Module',
+      ],
+      'installer' => [
+            'class' => 'frontend\modules\installer\Module',
+      ],
+      'backuper'=> [
+             'class' => 'frontend\modules\backup\Module',
       ],    
       'gii' => [
       'class' => 'yii\gii\Module', //adding gii module
