@@ -191,16 +191,9 @@ This will install the dependencies that are under 'require' under composer.json 
        php yii migrate-db-namespaced  (linux eg. putty) 
        yii migrate-db-namespaced      (if a defined php path eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
        
-1. **Install the ellera backup component with the following command:**    
-   
-       php yii migrate-db-ellera    (linux eg. putty)
-       yii migrate-db-ellera    (if a defined php path  eg. c:\wamp64\bin\php\php7.4.4 in *environment settings* under windows)
-  
 Regarding the above Yii migrate command, it will look at the db component contained in **common**/config/main-local.php and install the migrations to the  named database eg. h2h_db on your localhost or to your_domain_co_uk_db on your host using the commands which have been constructed in the ControllerMap in **console**/config/main.php eg. the command  'migrate-db-namespaced'.
 
 This command will use the migration paths contained in **console**/config/main.php. There are currently 4 paths sjaakp/pluto,   frontend/migrations, paypal, and auth. Although the migration generator Gii created these migrations from tables, they have been namespaced ("pathed") ie. the word Namespace has been manually inserted at the top of the migration file generated and placed in the relevant folder on that path/namespace after Gii generated the migration file from the developer's table. 
-
-The backup module **ellera** does not contain a namespace and is included in the composer.json therefore we have to run this separately as the *migrate-db-ellera* command.
 
 **Installation Steps for subsequent manager databases 'db1','db2' and not admin database 'db'** 
 
@@ -296,14 +289,13 @@ So the **yii migrate-db-namespaced** command will create a bare-bones auth_assig
  
 Whilst in the db database, copy the sql  commands in console/migrations/auth and run them in your phpMyadmin SQL section. 
 
-**Running your backups from the console/command prompt/linux using putty**
-
-Please consult the ellera documentation on https://www.yiiframework.com/extension/ellera/yii2-backup/
-
 **Allowing a manager to do their own 'Works' installation**
 
 All managers with Mdb roles can do their own migration of the frontend database if you give them the **Migrate Works Database** permission. This permission is linked to the installer module and can be accessed by typing 'installer/installer' in the browser. By default nobody has this permission for security reasons. The administrator will have to access individual databases one at a time in order to use the installer. The administrator will not need it for database 'db' because installation would have been done by the console/command prompt/putty etc in order to get the RBAC GUI. 
 
-**What repository did you learn the most from in developing this repository?**
+**Allowing a manager to do their own 'Works' backup**
+All managers with Mdb roles can do their own backup of their separate frontend database eg. db1 if you give the **Backup database** permission to the eg. Mdb1 role for the Manager of db1.  The backup module can be accessed by typing 'backuper/backuper' in the browser. Only those who inherit the 'admin' or 'support' role will have access to the software via the controller and the frontend/views/layouts/main.php. 
 
-I have rearranged quite a bit of the code from https://github.com/DevGroup-ru/dotplant2 regarding the installation and backup module that is available here and thanks to their ideas I have been able to transfer this to the community. The symfony process component has been an interesting integration to work with.
+The backup module makes use of the **very popular ifsnop mySql** module. See https://packagist.org/packages/ifsnop/mysqldump-php.
+
+
