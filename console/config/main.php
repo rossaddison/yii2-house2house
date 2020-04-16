@@ -46,14 +46,6 @@ return [
                'interactive'=>1,
                'migrationPath' => null, // allows to disable not namespaced migration completely
           ],
-          'migrate-db-ellera' => [
-                'class' => 'yii\console\controllers\MigrateController',
-                'migrationPath' => '@vendor/ellera/yii2-backup/src/migrations',
-                'color'=>true,
-                'comment' => 'You are migrating the non-namespaced ellera backup module tables to database connection component db which is your administration database.',
-                'db' => 'db',
-                'interactive'=>1,
-          ],
           'migrate-db1' => [
                 'class' => 'yii\console\controllers\MigrateController',
                 'migrationNamespaces' => [
