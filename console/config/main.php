@@ -167,32 +167,8 @@ return [
                     'class' => 'sjaakp\pluto\Module',
                     // several options
             ],
-            'backup' => [
-                'class' => 'ellera\backup\Module',
-                'automated_cleanup' => [
-                    'daily' => true,
-                    'weekly' => true,
-                    'monthly' => true,
-                    'yearly' => true
-                ],
-                'databases' => [
-                    'db',
-                    'db1',
-                    'db2',
-                    'db3',
-                    'db4',
-                    'db5',
-                    'db6',
-                    'db7',
-                    'db8',
-                    'db9',
-                    'db10',
-                ],
-                'path' => '@frontend/_backup'
-            ],
             'backuper'=> [
-                                 'class' => 'frontend\modules\backup\Module',
-                          ],
-            
+                  'class' => 'frontend\modules\backup\Module',
+            ],
       ],
 ];
