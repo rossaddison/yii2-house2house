@@ -164,8 +164,13 @@ echo Slider::widget([
     //        'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
     //        'header'=>'Employee',
     //        'value' => function ($data) {
-    //            return $data->employee->title; 
-    //            // $data['name'] for array data, e.g. using SqlDataProvider.
+    //             $url = "tel:/".$data->employee->contact_telno;
+    //             //there are no names under employee ..frontend/migrations/mass
+    //             $name = $data->employee->title;
+    //             $mobile = $data->employee->contact_telno;
+    //             $name_and_mobile = $name."  ".$mobile;
+    //             $button_or_nobutton = ['class' => 'btn btn-info'];   
+    //             return Html::a($name_and_mobile,$url,$button_or_nobutton);            
     //        },
     //],
     [
