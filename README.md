@@ -165,7 +165,7 @@ The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. T
 
 **Installation Steps for Files:**
 
-1. **Clone** or **unzip** the folders into your C:\wamp64\www\my_folder_name\web  directory making sure that your composer.json is in the web folder ie. C:\wamp64\www\my_folder_name\web\composer.json
+1. **Clone** or **unzip** the folders into your C:\wamp64\www\my_folder_name\web  directory making sure that your composer.json is in the web folder ie. C:\wamp64\www\my_folder_name\web\composer.json. Composer will create the vendor folder for you if it does not exist.
 1. Install Composer from **composer.org** 
 1. On your local desktop using CLI (Command Line Interface) or windows command prompt, change your directory to C:\wamp64\www\yours\web which is where your composer.json and the vendor folder is located.
 1. Run the following command from the command prompt: composer update. 
