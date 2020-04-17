@@ -140,6 +140,7 @@ echo Slider::widget([
    
 ?> 
 <?php
+    Yii::$app->formatter->nullDisplay = ''; 
     $gridColumns = [
     [
      'class'=> 'kartik\grid\DataColumn',
