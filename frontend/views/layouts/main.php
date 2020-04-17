@@ -100,7 +100,8 @@ $this->registerJs($js);
                          ['label' => Html::button('Import Houses',['class'=>'btn btn-danger btn-lg']), 'url' => ['/importhouses/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          //the admin role does not inherit the support role. The installer controller under rules rejects those that do not hava the support role so admin is rejected. Only managers db1 upwards will get this ability.
                          ['label' => Html::button('Install database',['class'=>'btn btn-danger btn-lg','title'=>'Non-administrators ie. managers can install their own database once they have logged in.','data-toggle'=>'tooltip']), 'url' => ['/installer/installer/'],'visible'=>Yii::$app->user->can('Manage Admin') && Yii::$app->user->can('Migrate Works Database')],
-                   ],
+                         ['label' => Html::button('Backup database',['class'=>'btn btn-danger btn-lg','title'=>'Users with the Backup database permission can backup their own database.','data-toggle'=>'tooltip']), 'url' => ['/backuper/backuper/'],'visible'=>Yii::$app->user->can('Manage Admin') && Yii::$app->user->can('Backup Database') ],
+                  ],
                 ],
                 ['label' => Html::button('Admin',['class'=>'btn btn-success btn-lg']),'url'=> '', 'visible'=>Yii::$app->user->can('manageRoles'),
                  'items' => [
