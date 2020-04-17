@@ -936,6 +936,15 @@ class m200413_082835_auth_itemDataInsert extends Migration
         'created_at' => '1564039903',
         'updated_at' => '1564039903',
     ],
+    [
+        'name' => 'Backup Database',
+        'type' => '2',
+        'description' => 'Backup their allocated database',
+        'rule_name' => null,
+        'data' => null,
+        'created_at' => '1564039903',
+        'updated_at' => '1564039903',
+    ],                            
 ]
         );
     }
