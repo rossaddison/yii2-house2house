@@ -318,6 +318,8 @@ All managers with Mdb roles can do their own migration of the frontend database 
 
 All managers with Mdb roles can do their own backup of their separate frontend database/division/unit eg. db1 if you give the **Backup database** permission to the eg. Mdb1 role for the Manager of db1.  The backup module can be accessed by typing 'backuper/backuper' in the browser. Only those who inherit the 'admin' or 'support' role will have access to the software via the controller and the frontend/views/layouts/main.php. 
 
+The admin will have to assign the 'Backup Database' permission to the role admin in order to backup their mySql db database.
+
 The backup module makes use of the **very popular ifsnop mySql** module. See https://packagist.org/packages/ifsnop/mysqldump-php.
 
 
