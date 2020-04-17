@@ -160,19 +160,24 @@ echo Slider::widget([
             'options' => [ 'class'=> 'form=control-lg'],
             'filter'=> Html::activeDropDownList($searchModel,'status',ArrayHelper::map(Salesorderheader::find()->orderBy('status')->asArray()->all(),'status','status'),[ 'options' => [ 'class'=> 'form=control-lg'],'prompt'=>'Job Code...']),
     ],
-    //[
-    //        'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-    //        'header'=>'Employee',
-    //        'value' => function ($data) {
-    //             $url = "tel:/".$data->employee->contact_telno;
-    //             //there are no names under employee ..frontend/migrations/mass
-    //             $name = $data->employee->title;
-    //             $mobile = $data->employee->contact_telno;
-    //             $name_and_mobile = $name."  ".$mobile;
-    //             $button_or_nobutton = ['class' => 'btn btn-info'];   
-    //             return Html::a($name_and_mobile,$url,$button_or_nobutton);            
-    //        },
-    //],
+    [
+            'class' => 'kartik\grid\ActionColumn',
+            'template' => '{link}',// can be omitted, as it is the default
+            'header'=>'Employee',
+            'visible'=> !Yii::$app->user->can('Manage Admin') ? false : true,
+            'buttons' => ['link' => function ($url, $data,$key) {
+                           if (strlen($data->employee->contact_telno)===11){
+                           return $data->employee->title." ".Html::a($data->employee->contact_telno,$url);}
+                           else return $data->employee->contact_telno;
+                }
+                ],
+            'urlCreator' => function ($action, $data, $key, $index) {
+                         if (($action === 'link') ) {
+                             $url = "tel:/".$data->employee->contact_telno;
+                             return $url;
+                         }
+                }                
+    ],        
     [
     'class' => 'kartik\grid\EditableColumn',
     'header' => 'Clean Date',
