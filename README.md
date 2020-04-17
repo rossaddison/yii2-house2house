@@ -8,6 +8,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 **House to House Management Software eg. Cleaning Services, Delivery Services**
 
+**Composer - add to require section**
+
+    "rossaddison\yii2-house2house": "*", 
+
 **Frequently Asked Questions ?**
 
 **What has this software been used for mostly in the past?**
