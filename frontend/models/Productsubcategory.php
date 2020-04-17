@@ -60,7 +60,7 @@ class Productsubcategory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'productcategory_id' => 'Area',
             'name' => 'Name',
-            'sort_order'=>'Sequence',
+            'sort_order'=>'Sequence (Set to 500 if using with Quick Build)',
             'lat_start' => 'Latitude Start eg. 55.8888888',
             'lng_start' => 'Longitude Start eg. -4.1111111',
             'lat_finish' => 'Latitude Finish eg. 55.9999999',
