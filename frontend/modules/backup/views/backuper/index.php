@@ -3,12 +3,18 @@
 use \kartik\icons\Icon;
 use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'mySql Backup');
+$this->title = 'mySql Backup';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h3>
-    <?= Yii::t('app', 'mySql Backup') ?>
-</h3>
-
+<?= \frontend\modules\backup\widgets\Alert::widget() ?>
+<?php
+$form = ActiveForm::begin([
+    'type' => ActiveForm::TYPE_HORIZONTAL,
+    'formConfig' => ['labelSpan' => 2, 'deviceSize' => ActiveForm::SIZE_LARGE]
+]);
+?>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
 <?php if ($minPhpVersion === false): ?>
     <div class="alert alert-danger">
         <strong><?= Yii::t('app', 'Your PHP version {0} is lower then required 5.5+', [PHP_VERSION]) ?></strong>
@@ -24,7 +30,8 @@ $this->title = Yii::t('app', 'mySql Backup');
         </p>
     </div>
 <?php endif; ?>
-
+</div>
+</div>
 <div class="backuper-controls">
     <div class="alert alert-info">
         <strong><?= Yii::t('app', 'Your PHP version '.phpversion().' is suitable ie. > 5.5', [PHP_VERSION]) ?></strong>
