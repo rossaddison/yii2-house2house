@@ -1,22 +1,13 @@
 <?php
 use yii\helpers\Html;
 use \kartik\grid\GridView;
-use \kartik\editable\Editable; 
-use kartik\dialog\Dialog;
-use yii\widgets\ListView;
-use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\web\JqueryAsset;
-use yii\web\JsExpression;
 use yii\helpers\ArrayHelper;
 use frontend\models\Company;
 use frontend\models\Costheader;
 use frontend\models\Costcategory;
 use frontend\models\Costsubcategory;
 use frontend\models\Cost;
-use yii\bootstrap\ButtonDropdown;
-use yii\data\ActiveDataProvider;
-use kartik\icons\Icon;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
 //$this->registerJsFile('@web/js/scripts2.js',['depends' => [\yii\web\JqueryAsset::className()]]);
@@ -25,7 +16,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Costs', 'url' => ['cost/index']];
 $this->params['breadcrumbs'][] = $this->title;
 $pdfHeader = [
   'L' => [
-    'content' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone,
+    //'content' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone,
+    'content'=>  Yii::$app->session['sliderfontcost'],
   ],
   'C' => [
     'content' => 'Costs',
@@ -92,8 +84,30 @@ $updateMsg = 'Update';
    
 </div>       
 </p>
+<?php 
+use kartik\slider\Slider;
+echo Html::label('Font Size Adjuster:<br>');
+echo Slider::widget([
+    'name' => 'sliderfontcost',
+    'options' => [
+                   'id'=>'w928',
+                 ],
+    'sliderColor' => Slider::TYPE_INFO,
+    'handleColor' => Slider::TYPE_INFO,
+    'pluginOptions' => [
+        'orientation' => 'horizontal',
+        'handle' => 'round',
+        'min' => 1,
+        'max' => 32,
+        'step' => 1,
+        'tooltip'=>'Adjust to change the font size.',
+    ],
+]);   
+?> 
 
+<button id="w954" class = "btn btn-info btn-lg" onclick="js:getSlidercost()" title="Double-click to Adjust font." data-toggle="tooltip">Adjust font</button><br><br>';
 <?php
+    Yii::$app->formatter->nullDisplay = '';
     $gridColumns = [
     ['class' => 'kartik\grid\SerialColumn'],
     ['class' => 'kartik\grid\CheckboxColumn',
@@ -119,33 +133,39 @@ $updateMsg = 'Update';
             'value' => function ($data) {
                     return $data->frequency; 
             },
-             'filter'=> Html::activeDropDownList($searchModel,'frequency',ArrayHelper::map(Cost::find()->orderBy('frequency')->asArray()->all(),'frequency','frequency'),['class'=>'form-control','prompt'=>'Frequency...']), 
+            'filter'=> Html::activeDropDownList($searchModel,'frequency',ArrayHelper::map(Cost::find()->orderBy('frequency')->asArray()->all(),'frequency','frequency'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],'prompt'=>'Frequency...']), 
     ],     
     [
-     'header'=>'Category',
-     'attribute'=>'costcategory_id', 
-     'value' => function ($data) {
-     return $data->costcategory->name; 
-     },
-      'filter'=> Html::activeDropDownList($searchModel,'costcategory_id',ArrayHelper::map(Costcategory::find()->orderBy('name')->asArray()->all(),'id','name'),['class'=>'form-control','prompt'=>'Category...']),     
+            'header'=>'Category',
+            'attribute'=>'costcategory_id', 
+            'value' => function ($data) {
+            return $data->costcategory->name; 
+            },
+             'filter'=> Html::activeDropDownList($searchModel,'costcategory_id',ArrayHelper::map(Costcategory::find()->orderBy('name')->asArray()->all(),'id','name'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],'prompt'=>'Category...']),     
     ],    
     [
-     'header'=>'Subcategory',
-    'attribute'=>'costsubcategory_id',  
-     'value' => function ($data) {
-                return $data->costsubcategory->name; 
-            },
-     'filter'=> Html::activeDropDownList($searchModel,'costsubcategory_id',ArrayHelper::map(Costsubcategory::find()->where(['costcategory_id'=>$searchModel])->orderBy('name')->asArray()->all(),'id','name'),['class'=>'form-control','prompt'=>'Subcategory...']),                       
+        'header'=>'Subcategory',
+        'attribute'=>'costsubcategory_id',
+        'filterInputOptions' => [
+                     'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],
+                     'placeholder' => 'Surname...'
+        ],   
+        'value' => function ($data) {
+                   return $data->costsubcategory->name; 
+               },
+        'filter'=> Html::activeDropDownList($searchModel,'costsubcategory_id',ArrayHelper::map(Costsubcategory::find()->where(['costcategory_id'=>$searchModel])->orderBy('name')->asArray()->all(),'id','name'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],'prompt'=>'Subcategory...']),                       
     ],
     ['class'=>'kartik\grid\DataColumn',
+     'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],   
      'attribute'=>'description',
      'filterInputOptions' => [
-                  'class'       => 'form-control',
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],
                   'placeholder' => 'Cost Description...'
                 ],
     ],
     [
      'header'=>'List Price',
+     'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],   
      'value' => 'listprice',
      'hAlign'=>'right',
      'format'=>['decimal', 2],
@@ -154,13 +174,20 @@ $updateMsg = 'Update';
      
      //'sellstartdate',
 ];
+            
+if ((empty(Yii::$app->session['sliderfontcost'])) && (!isset(Yii::$app->session['sliderfontcost']))){Yii::$app->session['sliderfontcost'] = 18;}           
+            
 echo kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
-    'options' => ['style' => 'font-size:18px;'],
     'filterModel' => $searchModel,
     'columns' => $gridColumns,
+    'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],
     'containerOptions' => ['style'=>'overflow: auto'], 
     'pjax' => true,
+    'pjaxSettings' =>[
+                      'neverTimeout'=>true,
+                      'options'=>['id'=>'kv-unique-id-47'],                      
+                     ], 
     'bordered' => true,
     'striped' => true,
     'condensed' => false,
@@ -191,8 +218,6 @@ echo kartik\grid\GridView::widget([
      */  
     'type' => GridView::TYPE_PRIMARY,
     'heading'=> Company::findOne(1)->name . " - " . Company::findOne(1)->telephone ,
-    
-
     ],
     'exportConfig' => [
                    GridView::CSV => ['label' => 'Export as CSV','config' => $config_array, 'filename' => 'Costs_Printed_'.date('d-M-Y')],
