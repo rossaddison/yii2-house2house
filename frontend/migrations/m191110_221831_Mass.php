@@ -100,7 +100,7 @@ class m191110_221831_Mass extends Migration
             'costcategory_id'=> $this->integer(11)->notNull(),
             'costsubcategory_id'=> $this->integer(11)->notNull(),
             'cost_id'=> $this->integer(11)->notNull(),
-            'carousal_id'=> $this->integer(11)->notNull()->defaultValue(0),
+            'carousal_id'=> $this->integer(11)->null()->defaultValue(null),
             'order_qty'=> $this->integer(11)->notNull()->defaultValue(1),
             'unit_price'=> $this->decimal(9, 2)->notNull(),
             'line_total'=> $this->integer(11)->notNull(),
