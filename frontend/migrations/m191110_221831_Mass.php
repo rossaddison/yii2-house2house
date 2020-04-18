@@ -100,6 +100,7 @@ class m191110_221831_Mass extends Migration
             'costcategory_id'=> $this->integer(11)->notNull(),
             'costsubcategory_id'=> $this->integer(11)->notNull(),
             'cost_id'=> $this->integer(11)->notNull(),
+            'carousal_id'=> $this->integer(11)->notNull()->defaultValue(0),
             'order_qty'=> $this->integer(11)->notNull()->defaultValue(1),
             'unit_price'=> $this->decimal(9, 2)->notNull(),
             'line_total'=> $this->integer(11)->notNull(),
@@ -110,6 +111,7 @@ class m191110_221831_Mass extends Migration
         $this->createIndex('cost_detail_id','{{%works_costdetail}}',['cost_detail_id'],true);
         $this->createIndex('fk_costdetail_costheader_idx','{{%works_costdetail}}',['cost_header_id'],false);
         $this->createIndex('fk_costdetail_cost_idx','{{%works_costdetail}}',['cost_id'],false);
+        $this->createIndex('fk_costdetail_carousal_idx','{{%works_costdetail}}',['carousal_id'],false);
         $this->createIndex('nextcost_date','{{%works_costdetail}}',['nextcost_date'],false);
         $this->createIndex('cost_header_id','{{%works_costdetail}}',['cost_header_id'],false);
         $this->createIndex('cost_header_detail_id_1','{{%works_costdetail}}',['cost_detail_id'],false);
