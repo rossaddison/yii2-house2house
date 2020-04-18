@@ -3,8 +3,6 @@
 namespace frontend\models;
 use Yii;
 
-use common\models\User;
-
 class Costheader extends \yii\db\ActiveRecord
 {
     
