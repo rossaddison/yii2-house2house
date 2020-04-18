@@ -446,3 +446,13 @@ function getSliderproduct (){
         success: $.pjax.reload({container:'#kv-unique-id-7'})    
     });
 }
+
+function getSlidercost (){
+    var sf = document.getElementById("w928").value;
+    $.post({ type: "GET",
+             url: '/cost/slider/',
+        dataType: "json",
+        data: {sliderfontcost: sf},
+        success: $.pjax.reload({container:'#kv-unique-id-47'})    
+    });
+}
