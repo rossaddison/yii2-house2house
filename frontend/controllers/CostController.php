@@ -258,6 +258,11 @@ class CostController extends Controller
        
     }
     
+   public function actionSlider()
+   {
+        Yii::$app->session['sliderfontcost'] = Yii::$app->request->get('sliderfontcost');    
+   }
+    
     protected function findModel($id)
     {
         if (($model = Cost::findOne($id)) !== null) {
