@@ -1,27 +1,18 @@
 <?php
 namespace frontend\controllers;
 use Yii;
-use frontend\models\Company;
 use frontend\models\Costsubcategory;
-use frontend\models\Costcategory;
 use frontend\models\Cost;
 use frontend\models\Costdetail;
 use frontend\models\Costsearch;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\helpers\Html;
 use yii\web\Controller;
-use yii\web\Request;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\ActiveRecord;
 use yii\db\Query;
-use yii\db\IntegrityException;
-use kartik\mpdf\Pdf;
-use kartik\grid\EditableColumnAction;
 use yii\behaviors\TimestampBehavior;
-use yii\filters\AccessControl;
 
 class CostController extends Controller
 {
@@ -145,11 +136,11 @@ class CostController extends Controller
                 ]);
        }
    } 
-   
-   public function actionDoit()
+       
+     public function actionDoit()
    {
       //corder is the dropdownbox specific date's (w59:cost/index) cost header id
-      $dailycost_id = Yii::$app->request->get('ccost');
+      $cost_header_id = Yii::$app->request->get('ccost');
       $keylist = Yii::$app->request->get('keylist');
       //work through the costs that have been selected to be copied
       foreach ($keylist as $key => $value)
@@ -157,14 +148,16 @@ class CostController extends Controller
                     $model = Cost::findOne($value);
                     //prevent cost duplicates
                     $q = new Query();
-                    if  ($q->select('*')->from('works_costdetail')->where(['cost_header_id' => $dailycost_id])->andWhere(['cost_id'=>$value])->exists()) 
+                    if  ($q->select('*')->from('works_costdetail')->where(['cost_header_id' => $cost_header_id])->andWhere(['cost_id'=>$value])->exists()) 
                           {
-                            //ignore if the house already exists as a salesorderdetail on the sales order
+                            Yii::$app->session->setFlash('kv-detail-success',$cost_header_id ); 
+                            exit();
                           }
                           else {
                     $model2 = new Costdetail();
                     //the sales order id for the specific daily clean that we are copying to
-                    $model2->cost_header_id = $dailycost_id;
+                    $model2->cost_header_id = $cost_header_id;
+                    $model2->paymenttype = "Cash";
                     if ($model->frequency == "Daily")
                     {
                             $date = strtotime("+1 day");
@@ -198,18 +191,19 @@ class CostController extends Controller
                     if ($model->frequency == "Other")
                         {
                            $model2->nextcost_date = date("Y-m-d"); 
-                        };     
+                        };
+                    $model2->costcategory_id = $model->costcategory_id;
+                    $model2->costsubcategory_id = $model->costsubcategory_id;
+                    $model2->cost_id = $value;
+                    $model2->carousal_id = null;
                     $model2->order_qty=1;
                     $model2->unit_price = $model->listprice;
                     $model2->line_total = $model2->unit_price;
-                    $model2->cost_id = $value;
                     $model2->paid = 0;
-                    $model2->costcategory_id = $model->costcategory_id;
-                    $model2->costsubcategory_id = $model->costsubcategory_id;
                     $model2->save();
                     }
       }
-        
+      return;  
     }
     
     public function actionSubcatcost() 
@@ -254,8 +248,7 @@ class CostController extends Controller
        ->where(['costcategory_id'=>$cat_id])
        ->andWhere(['costsubcategory_id'=>$subcat_id])      
        ->select(['id', 'costnumber AS name'])->asArray()->all();
-       return $data;
-       
+        return $data;
     }
     
    public function actionSlider()
@@ -263,13 +256,13 @@ class CostController extends Controller
         Yii::$app->session['sliderfontcost'] = Yii::$app->request->get('sliderfontcost');    
    }
     
-    protected function findModel($id)
-    {
+   protected function findModel($id)
+   {
         if (($model = Cost::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
+   }
 }
 ?>
