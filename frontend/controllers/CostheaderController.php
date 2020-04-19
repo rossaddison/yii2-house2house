@@ -379,6 +379,12 @@ class CostheaderController extends Controller
       
     }
     
+   public function actionSlider()
+   {
+        Yii::$app->session['sliderfontcostheader'] = Yii::$app->request->get('sliderfontcostheader');    
+   }
+	
+	
     protected function findModel($id)
     {
         if (($model = Costheader::findOne($id)) !== null) {
