@@ -1,18 +1,11 @@
 <?php
-
 namespace frontend\models;
 
 use frontend\models\Costheader;
 use frontend\models\Costcategory;
 use frontend\models\Costsubcategory;
+use frontend\models\Carousal;
 use frontend\models\Cost;
-use frontend\models\Tax;
-use yii\helpers\ArrayHelper;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\db\Query;
-use Yii;
 
 class Costdetail extends \yii\db\ActiveRecord
 {
@@ -24,9 +17,7 @@ class Costdetail extends \yii\db\ActiveRecord
    {
        return \frontend\components\Utilities::userdb();
    }
-    
-    
-    
+        
     public static function tableName()
     {
         return 'works_costdetail';
@@ -46,7 +37,7 @@ class Costdetail extends \yii\db\ActiveRecord
             [['order_qty'], 'number'],
             [['unit_price','paid'], 'number','min'=>0.00,'max'=>10000.00],
             [['unit_price','paid','order_qty'], 'default','value' => 0.00],
-            [['carousal_id'], 'default','value' => 0],
+            [['carousal_id'], 'default','value' => null],
             [['carousal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Carousal::className(), 'targetAttribute' => ['carousal_id' => 'id']],
             [['cost_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cost::className(), 'targetAttribute' => ['cost_id' => 'id']],
             [['cost_header_id'], 'exist', 'skipOnError' => true, 'targetClass' => Costheader::className(), 'targetAttribute' => ['cost_header_id' => 'cost_header_id']],
@@ -58,6 +49,7 @@ class Costdetail extends \yii\db\ActiveRecord
         return [
             'cost_header_id' => 'Daily Cost ID',
             'cost_detail_id' => 'Cost(s) in Clean ID',
+            'paymenttype'=> 'Payment Type eg. Cash, Debitcard, Creditcard, Other',
             'nextcost_date' => 'Next Cost Date',
             'costcategory_id' => 'Costcode',
             'costsubcategory_id'=>'Costsubcode',
