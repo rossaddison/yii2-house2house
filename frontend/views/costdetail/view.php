@@ -2,9 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yii\db\Query;
 use yii\helpers\Url;
-use frontend\models\Costheader;
 
 $this->title = 'View Costs to Include: ID: ' . $model->cost_detail_id;
 $this->params['breadcrumbs'][] = ['label' => 'Daily Costs:', 'url' => ['costheader/index']];
@@ -42,6 +40,8 @@ $this->params['breadcrumbs'][] = 'View';
             ['attribute'=>'cost_id.costnumber','header'=>'Costnumber','value'=>$model->cost->costnumber],
             ['attribute'=>'costcategory_id','header'=>'Cost Code','value'=>$model->costcategory->name],
             ['attribute'=>'costsubcategory_id','header'=>'Cost Subcode','value'=>$model->costsubcategory->name],
+            ['attribute'=>'paymenttype','header'=>'Payment Type','value'=>$model->paymenttype],
+            
             'unit_price',
             'paid',
             'modified_date',
