@@ -2,12 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use \kartik\grid\GridView;
-use kartik\grid\ExpandRowColumn;
-use \kartik\datecontrol\DateControl;
-use yii\helpers\Json;
-use frontend\models\Costdetail;
 use frontend\models\Costheader;
-use yii\bootstrap4\breadcrumbs;
 use yii\helpers\ArrayHelper;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
@@ -17,10 +12,7 @@ $viewMsg = 'View';
 $deleteMsg = 'Delete';
 $updateMsg = 'Update';
 $yearOnly = date('Y', strtotime(Date('Y-m-d')));
-
-
 ?>
-
 
 <div class="costheader-index">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -59,8 +51,30 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
    //although the search model is not used keep it since it affects "unpaid ticked" javascript
     //echo $this->render('_search', ['model' => $searchModel]); 
 ?> 
+<?php 
+use kartik\slider\Slider;
+echo Html::label('Font Size Adjuster:<br>');
+echo Slider::widget([
+    'name' => 'sliderfontcostheader',
+    'options' => [
+                   'id'=>'w673',
+                 ],
+    'sliderColor' => Slider::TYPE_INFO,
+    'handleColor' => Slider::TYPE_INFO,
+    'pluginOptions' => [
+        'orientation' => 'horizontal',
+        'handle' => 'round',
+        'min' => 1,
+        'max' => 32,
+        'step' => 1,
+        'tooltip'=>'Adjust to change the font size.',
+    ],
+]). '<button id="w303" class = "btn btn-info btn-lg" onclick="js:getSlidercostheader()"  title="Double click to adjust font." data-toggle="tooltip">Adjust font</button><br><br>';   
+?> 
+
 
 <?php
+   Yii::$app->formatter->nullDisplay = '';
    $gridColumns = [
     ['class' => 'kartik\grid\CheckboxColumn',
             'name'=>'selection',
@@ -72,7 +86,7 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
     ['class'=>'kartik\grid\DataColumn',
      'attribute'=>'cost_header_id',
      'filterInputOptions' => [
-                  'class'       => 'form-control',
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
                   'placeholder' => 'Cost Id...'
                 ],
     ],
@@ -116,16 +130,14 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
             'class'=>'kartik\grid\DataColumn',
             'attribute' => 'status',
             'value' => 'status',
-            'filter'=> Html::activeDropDownList($searchModel,'status',ArrayHelper::map(Costheader::find()->orderBy('status')->asArray()->all(),'status','status'),['class'=>'form-control','prompt'=>'Cost Code...']),            
-            
-
+            'filter'=> Html::activeDropDownList($searchModel,'status',ArrayHelper::map(Costheader::find()->orderBy('status')->asArray()->all(),'status','status'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],'prompt'=>'Cost Code...']),            
     ],
     
     [
     'class' => 'kartik\grid\EditableColumn',
     'header' => 'Cost Date',
     'attribute' => 'cost_date',
-    'filter'=> Html::activeDropDownList($searchModel,'cost_date',ArrayHelper::map(Costheader::find()->orderBy('cost_date')->asArray()->all(),'cost_date','cost_date'),['class'=>'form-control','prompt'=>'From Date...']),      
+    'filter'=> Html::activeDropDownList($searchModel,'cost_date',ArrayHelper::map(Costheader::find()->orderBy('cost_date')->asArray()->all(),'cost_date','cost_date'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],'prompt'=>'From Date...']),      
     'hAlign' => 'center',
     'vAlign' => 'middle',
     'width' => '9%',
@@ -153,6 +165,7 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
             
     ['class'=>'kartik\grid\DataColumn',
              'header'=>'Total Due',
+             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
              'hAlign'=>'right',
              'format'=>['decimal', 2],  
              'value'=> function($data){
@@ -171,6 +184,7 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
    ['class'=>'kartik\grid\DataColumn',
              'header'=>'Paid to date',
              'hAlign'=>'right',
+             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
              'format'=>['decimal', 2], 
              'value'=> function($data){
                 $subtotal = 0.00;
@@ -198,12 +212,13 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
     'headerOptions' => ['class' => 'kartik-sheet-style'],
     ],    
    ];
-   
+                    
+   Yii::$app->formatter->nullDisplay = '';
    echo kartik\grid\GridView::widget([
       'dataProvider' => $dataProvider,
       'filterModel' => $searchModel,
       'columns' => $gridColumns,
-      'options' => ['style' => 'font-size:18px;'],
+      'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
       'containerOptions' => ['style'=>'overflow: auto'], 
       'pjax' => true,
       'pjaxSettings' =>['neverTimeout'=>false,
