@@ -1,19 +1,9 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use \kartik\helpers;
 use \kartik\grid\GridView;
-use yii\web\JqueryAsset;
-use yii\helpers\Json;
-use yii\web\JsExpression;
 use frontend\models\Costheader;
 use frontend\models\Company;
-use frontend\models\Messaging;
-use yii\db\Query;
-use yii\data\Sort;
-use kartik\icons\Icon;
-use yii\bootstrap4\breadcrumbs;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
 
@@ -97,6 +87,7 @@ $tooltipcatandsubcat = Html::tag('span', '', ['title'=>'Cost category and subcat
 </p>
 
 <?php
+    Yii::$app->formatter->nullDisplay = '';
     $gridColumns = [
     ['class' => 'kartik\grid\SerialColumn',      
     ],
@@ -142,14 +133,16 @@ $tooltipcatandsubcat = Html::tag('span', '', ['title'=>'Cost category and subcat
             'header'=>'Carousal File',
             'visible'=> Yii::$app->user->isGuest ? false : true,
             'buttons' => ['link' => function ($url, $data,$key) {
-                           return Html::a($data->carousal->image_source_filename,$url,['class' => 'btn btn-success']);
+                           if (!empty($data->carousal->image_source_filename)){  
+                           return Html::a($data->carousal->image_source_filename,$url,['class' => 'btn btn-success']);}
                 }
                 ],
             'urlCreator' => function ($action, $data, $key, $index) {
-                         if (($action === 'link') ) {
+                         if (($action === 'link')&& !empty($data->carousal->id)) {
                              $url = Url::toRoute(['carousal/view/'.$data->carousal->id]);
                              return $url;
                          }
+                         else {return ' '; }
                 }                
             ],  
             [
@@ -267,4 +260,4 @@ echo kartik\grid\GridView::widget([
 ]);
 ?>
 
-</div>   
+</div>  
