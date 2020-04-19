@@ -437,6 +437,16 @@ function getSlider (){
     });
 }
 
+function getSlidercostheader (){
+    var sf = document.getElementById("w673").value;
+    $.post({ type: "GET",
+             url: '/costheader/slider/',
+        dataType: "json",
+        data: {sliderfontcostheader: sf},
+        success: $.pjax.reload({container:'#kv-unique-id-0'})    
+    });
+}
+
 function getSliderproduct (){
     var sf = document.getElementById("w128").value;
     $.post({ type: "GET",
