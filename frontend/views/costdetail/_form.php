@@ -1,17 +1,8 @@
 <?php
-
-use yii\jui\Datepicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-//use kartik\depdrop\DepDrop;
-use kartik\widgets\DepDrop;
-use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
-use frontend\models\Costcategory;
-use frontend\models\Costsubcategory;
-use frontend\models\Cost;
 use frontend\models\Carousal;
-use yii\helpers\Url;
 ?>
 
 <div class="costdetail-form">
@@ -22,34 +13,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'nextcost_date')->widget(\yii\jui\DatePicker::classname(),[ 'dateFormat' => 'yyyy-MM-dd','inline'=>'true',]) ?> 
 
-    <?php //= $form->field($model, 'costcategory_id')->dropDownList(ArrayHelper::map(Costcategory::find()->all(),'id','name'),['id'=>'cat_id']) ?>
-     
-    <?php //= $form->field($model, 'costsubcategory_id')->widget(DepDrop::classname(), [
-        //'options'=>['id'=>'subcat_id'],
-        //'pluginOptions'=>[
-        //'depends'=>['cat_id'],   
-        //'loading'=>true,  
-        //'placeholder'=>'Select...',
-        // 'url'=>Url::to(['/cost/subcatcost'])        
-     // ]
-     // ]); 
-    ?>
-    
-    <?php //= $form->field($model, 'costsubcategory_id')->hiddenInput()->label(false) ?>
-    
-    <?php //= $form->field($model, 'cost_id')->widget(DepDrop::classname(),[
-        //'options'=>['id'=>'cost_id'],
-        //'pluginOptions'=>[
-        //'depends'=>['cat_id', 'subcat_id'],
-        //'nameParam'=>'costnumber',
-        ///'loading'=>true,
-        //'placeholder'=>'Select...',
-        //'url'=>Url::to(['/cost/cos']),
-        //'initialize'=>true,
-
-    //]
-    //]); 
-    ?>
+    <?= $form->field($model, 'paymenttype')->dropDownList(['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard'], ['prompt' => 'Select']) ?>
     
     <?= $form->field($model, 'cost_id')->hiddenInput()->label(false) ?>
     
