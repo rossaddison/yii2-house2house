@@ -453,7 +453,7 @@ function getSlidersalesdetail (){
              url: '/salesorderdetail/slider/',
         dataType: "json",
         data: {sliderfontsalesdetail: sf},
-        success: $.pjax.reload({container:'#kv-unique-id-5'})    
+        success: $.pjax.reload({container:'#kv-unique-id-1'})    
     });
 }
 
