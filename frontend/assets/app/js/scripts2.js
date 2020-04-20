@@ -447,6 +447,17 @@ function getSlidercostheader (){
     });
 }
 
+function getSlidercostdetail (){
+    var sf = document.getElementById("w701").value;
+    $.post({ type: "GET",
+             url: '/costdetail/slider/',
+        dataType: "json",
+        data: {sliderfontcostdetail: sf},
+        success: $.pjax.reload({container:'#kv-unique-id-1'})    
+    });
+}
+
+
 function getSlidersalesdetail (){
     var sf = document.getElementById("w528").value;
     $.post({ type: "GET",
