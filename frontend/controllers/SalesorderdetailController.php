@@ -446,7 +446,7 @@ class SalesorderdetailController extends Controller
                               $val = $rows[$key]['sales_order_id'];
                               $cleandate = Salesorderheader::findOne($val);
                               $date = "Clean date: " . $cleandate->clean_date;
-                              $owed = " Owing:£" . $rows[$key]['unit_price']; 
+                              $owed = " Owing:ï¿½" . $rows[$key]['unit_price']; 
                               $pay = $pay ." ".$date. $owed;                                
                             }
                             $pay = $pay. ".$subtotal payment appreciated. Reference: ".$model->product->name." Please reply -- paid -- to this text once payment has been made.";
@@ -634,6 +634,11 @@ class SalesorderdetailController extends Controller
      Yii::$app->session->setFlash('success',"This daily clean has been copied. Modify the date as necessary later.");
      return;
     }
+    
+    public function actionSlider()
+   {
+        Yii::$app->session['sliderfontsalesdetail'] = Yii::$app->request->get('sliderfontsalesdetail');    
+   }
     
     protected function findModel($id)
     {

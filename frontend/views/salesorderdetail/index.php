@@ -152,8 +152,8 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
 use kartik\slider\Slider;
 echo Html::label('Font Size Adjuster:<br>');
 echo Slider::widget([
-    'name' => 'sliderfontcostdetail',
-    'value'=> Yii::$app->session['sliderfontcostdetail'],
+    'name' => 'sliderfontsalesdetail',
+    'value'=> Yii::$app->session['sliderfontsalesdetail'],
     'options' => [
                    'id'=>'w528',
                  ],
@@ -167,7 +167,7 @@ echo Slider::widget([
         'step' => 1,
         'tooltip'=>'Adjust to change the font size.',
     ],
-]). '<button id="w654" class = "btn btn-info btn-lg" onclick="js:getSlidercostdetail()" title="Adjust to the required font." data-toggle="tooltip">Adjust font</button><br><br>';
+]). '<button id="w654" class = "btn btn-info btn-lg" onclick="js:getSlidersalesdetail()" title="Adjust to the required font." data-toggle="tooltip">Adjust font</button><br><br>';
    
 ?> 
 <?php
@@ -188,7 +188,7 @@ echo Slider::widget([
     [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
             'header'=>'Cleaned',
-            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],
             'value' => function ($dataProvider) {
                 return $dataProvider->cleaned; // $data['name'] for array data, e.g. using SqlDataProvider.
             },
@@ -208,7 +208,6 @@ echo Slider::widget([
             'filterType'=>GridView::FILTER_SELECT2,
             'filter'=>Arrayhelper::map(Instruction::find()->orderBy('id')->asArray()->all(),'id','code'),
             'filterWidgetOptions'=>[
-                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
                    'pluginOptions'=>['allowClear'=>true],
             ],
             
@@ -221,7 +220,6 @@ echo Slider::widget([
                             'format' =>Editable::FORMAT_BUTTON,
                             'inputType' => Editable::INPUT_DROPDOWN_LIST,
                                 'options' => [
-                                  'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',
                                   'pluginOptions' => 
                                   [
                                     'autoclose' => true,
@@ -271,7 +269,7 @@ echo Slider::widget([
             //],    
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],    
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],    
             'header'=> 'Firstname',
             'value' => function ($dataProvider) {
                 return $dataProvider->product->name; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -279,7 +277,7 @@ echo Slider::widget([
             ],
             [
             'class' => 'kartik\grid\DataColumn',
-            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],     // can be omitted, as it is the default
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],     // can be omitted, as it is the default
             'header'=> 'Surname',
             'value' => function ($dataProvider) {
                 return $dataProvider->product->surname; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -339,7 +337,7 @@ echo Slider::widget([
             ], 
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],     
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],     
             'header'=>'Remind',
             'value' => function ($dataProvider) {
                 return $dataProvider->product->specialrequest; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -351,8 +349,8 @@ echo Slider::widget([
                 'attribute' => 'unit_price',
                 'filterInputOptions' => [
                   //'options' => ['style' => 'font-size:18px;'],
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
-                  'class'=> 'form=control-lg',
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
+                  //'class'=> 'form=control-lg',
                   'placeholder' => 'Unit Price...'
                 ],
                 'header'=>$tooltipunitprice,
@@ -375,7 +373,7 @@ echo Slider::widget([
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'paid',
                 'filterInputOptions' => ['class'=> 'input',
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
                   'placeholder' => 'Paid...'
                 ],
                 'hAlign' => 'right', 
@@ -389,7 +387,6 @@ echo Slider::widget([
                 'header' => 'Paid', 
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                     'options' => [
-                        'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',
                         'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
                     ]
                 ],               
@@ -397,7 +394,7 @@ echo Slider::widget([
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
                 'header'=>$tooltipprepyt,
-                'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
+                'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
                 'width' => '7%',  
@@ -444,7 +441,7 @@ echo Slider::widget([
             [
                'class'=>'kartik\grid\DataColumn',
                'header'=>$tooltiptotalowed,
-               'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
+               'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
                'hAlign' => 'right', 
                'format'=>'raw',
                'vAlign' => 'middle',
@@ -488,7 +485,6 @@ echo Slider::widget([
                 'asPopover' => false,
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                     'options' => [
-                        'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',
                         'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
                     ]
                 ],               
@@ -515,7 +511,7 @@ echo Slider::widget([
 echo kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
-    'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
+    'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
     'columns' => $gridColumns,
      // the id for the container ie. W1 is autogenerated. Refer to vendor/kartik-v/yii2-grid\gridview
     'containerOptions' => ['style'=>'overflow: auto'], 
