@@ -148,7 +148,30 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
     </br>
 </p>
 
+<?php 
+use kartik\slider\Slider;
+echo Html::label('Font Size Adjuster:<br>');
+echo Slider::widget([
+    'name' => 'sliderfontcostdetail',
+    'value'=> Yii::$app->session['sliderfontcostdetail'],
+    'options' => [
+                   'id'=>'w528',
+                 ],
+    'sliderColor' => Slider::TYPE_INFO,
+    'handleColor' => Slider::TYPE_INFO,
+    'pluginOptions' => [
+        'orientation' => 'horizontal',
+        'handle' => 'round',
+        'min' => 1,
+        'max' => 32,
+        'step' => 1,
+        'tooltip'=>'Adjust to change the font size.',
+    ],
+]). '<button id="w654" class = "btn btn-info btn-lg" onclick="js:getSlidercostdetail()" title="Adjust to the required font." data-toggle="tooltip">Adjust font</button><br><br>';
+   
+?> 
 <?php
+    Yii::$app->formatter->nullDisplay = ''; 
     $gridColumns = [
     //['class' => 'kartik\grid\SerialColumn',      
     //],
@@ -165,6 +188,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
     [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
             'header'=>'Cleaned',
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
             'value' => function ($dataProvider) {
                 return $dataProvider->cleaned; // $data['name'] for array data, e.g. using SqlDataProvider.
             },
@@ -184,6 +208,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
             'filterType'=>GridView::FILTER_SELECT2,
             'filter'=>Arrayhelper::map(Instruction::find()->orderBy('id')->asArray()->all(),'id','code'),
             'filterWidgetOptions'=>[
+                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
                    'pluginOptions'=>['allowClear'=>true],
             ],
             
@@ -196,6 +221,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
                             'format' =>Editable::FORMAT_BUTTON,
                             'inputType' => Editable::INPUT_DROPDOWN_LIST,
                                 'options' => [
+                                  'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',
                                   'pluginOptions' => 
                                   [
                                     'autoclose' => true,
@@ -245,13 +271,15 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
             //],    
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],    
             'header'=> 'Firstname',
             'value' => function ($dataProvider) {
                 return $dataProvider->product->name; // $data['name'] for array data, e.g. using SqlDataProvider.
             },
             ],
             [
-            'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
+            'class' => 'kartik\grid\DataColumn',
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],     // can be omitted, as it is the default
             'header'=> 'Surname',
             'value' => function ($dataProvider) {
                 return $dataProvider->product->surname; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -311,6 +339,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
             ], 
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
+            'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],     
             'header'=>'Remind',
             'value' => function ($dataProvider) {
                 return $dataProvider->product->specialrequest; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -322,7 +351,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
                 'attribute' => 'unit_price',
                 'filterInputOptions' => [
                   //'options' => ['style' => 'font-size:18px;'],
-                  // 'options' => ['style' => 'width:100px;'],
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
                   'class'=> 'form=control-lg',
                   'placeholder' => 'Unit Price...'
                 ],
@@ -346,7 +375,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'paid',
                 'filterInputOptions' => ['class'=> 'input',
-                  'options' => ['style' => 'font-size:18px;'],
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
                   'placeholder' => 'Paid...'
                 ],
                 'hAlign' => 'right', 
@@ -360,6 +389,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
                 'header' => 'Paid', 
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                     'options' => [
+                        'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',
                         'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
                     ]
                 ],               
@@ -367,6 +397,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
                 'header'=>$tooltipprepyt,
+                'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
                 'width' => '7%',  
@@ -376,7 +407,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
             ],    
             [
                'class' => 'kartik\grid\ExpandRowColumn',
-               'header'=>$tooltiptotalowed,
+               'header'=>$tooltiptotalowed,                
                'expandTitle'=> 'Debt that has accumulated from previous cleans not including the current clean.',
                'expandIcon' => Icon::show('balance-scale', ['framework' => Icon::FAS]),
                'hAlign' => 'right', 
@@ -413,6 +444,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
             [
                'class'=>'kartik\grid\DataColumn',
                'header'=>$tooltiptotalowed,
+               'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
                'hAlign' => 'right', 
                'format'=>'raw',
                'vAlign' => 'middle',
@@ -456,6 +488,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
                 'asPopover' => false,
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                     'options' => [
+                        'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',
                         'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
                     ]
                 ],               
@@ -482,7 +515,7 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
 echo kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
-    'options' => ['style' => 'font-size:18px;'],
+    'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'], 
     'columns' => $gridColumns,
      // the id for the container ie. W1 is autogenerated. Refer to vendor/kartik-v/yii2-grid\gridview
     'containerOptions' => ['style'=>'overflow: auto'], 

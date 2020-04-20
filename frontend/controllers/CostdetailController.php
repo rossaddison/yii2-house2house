@@ -237,6 +237,11 @@ class CostdetailController extends Controller
       else throw new NotFoundHttpException('No ticks selected.');
     }
     
+   public function actionSlider()
+   {
+        Yii::$app->session['sliderfontcostdetail'] = Yii::$app->request->get('sliderfontcostdetail');    
+   }
+    
     protected function findModel($id)
     {
         if (($model = Costdetail::findOne($id)) !== null) {
