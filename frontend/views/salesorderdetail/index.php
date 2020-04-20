@@ -508,6 +508,8 @@ echo Slider::widget([
                 ],               
             ], 
 ];
+  if ((empty(Yii::$app->session['sliderfontsalesdetail'])) && (!isset(Yii::$app->session['sliderfontsalesdetail']))){Yii::$app->session['sliderfontsalesdetail'] = 18;}                      
+                        
 echo kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
