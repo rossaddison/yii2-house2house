@@ -1,0 +1,35 @@
+{
+  "name": "insolita/yii2-migration-generator",
+  "description": "Set of gii tools for generating  files for migration by schema of table , phpdoc or table data",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "insolita",
+      "email": "donnainsolita@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "insolita\\migrik\\": ""
+    }
+  },
+  "require": {
+    "yiisoft/yii2": ">=2.0.14"
+  },
+  "require-dev": {
+    "yiisoft/yii2-gii": "*"
+  },
+  "suggest": {
+    "nesbot/carbon": "for testing ",
+    "vlucas/phpdotenv": "for testing"
+  },
+  "extra": {
+    "bootstrap": "insolita\\migrik\\Bootstrap"
+  }
+}
