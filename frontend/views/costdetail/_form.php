@@ -13,7 +13,7 @@ use frontend\models\Carousal;
 
     <?= $form->field($model, 'nextcost_date')->widget(\yii\jui\DatePicker::classname(),[ 'dateFormat' => 'yyyy-MM-dd','inline'=>'true',]) ?> 
 
-    <?= $form->field($model, 'paymenttype')->dropDownList(['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard'], ['prompt' => 'Select']) ?>
+    <?= $form->field($model, 'paymenttype')->dropDownList(['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard','Other'=>'Other'], ['prompt' => 'Select']) ?>
     
     <?= $form->field($model, 'cost_id')->hiddenInput()->label(false) ?>
     

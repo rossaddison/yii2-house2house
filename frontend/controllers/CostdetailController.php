@@ -76,12 +76,17 @@ class CostdetailController extends Controller
      if (Yii::$app->request->post('hasEditable')) {
         $costheaderId = Yii::$app->request->post('editableKey');
         $model = Costdetail::findOne($costheaderId);
+        $out = Json::encode(['output'=>'', 'message'=>'']);
+        $posted = [];
         $posted = current($_POST['Costdetail']);
         $post = ['Costdetail' => $posted];
         if ($model->load($post)) {
         $model->save();
         }
-        
+        //$output must be initialised otherwise you will get an 'internal server error'
+        //if unit price and paid are not updated but paymenttype is updated.
+        $output = '';
+       
         if (isset($posted['unit_price'])) {
           $output = Yii::$app->formatter->asDecimal($model->unit_price, 2);
         }
@@ -129,6 +134,7 @@ class CostdetailController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session['costdetailupdate'] == $model;
             return $this->redirect(['view', 'id' => $model->cost_detail_id]);
         } else {
             return $this->render('update', [

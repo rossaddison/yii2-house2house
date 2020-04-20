@@ -154,11 +154,18 @@ class CarousalController extends Controller
     
     public function actionDelete($id)
     {
+        try{
         if (!\Yii::$app->user->can('Delete Carousal')) {
             throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a carousal.');
-        }
-        
+        }    
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
+        } catch(\yii\db\IntegrityException $e) {
+              throw new \yii\web\HttpException(404, 'This image or file is linked. You will have to remove this link first.');
+        }
+        
+        
+        
+        
     }
 }

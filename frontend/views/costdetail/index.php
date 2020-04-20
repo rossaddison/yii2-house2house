@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use \kartik\grid\GridView;
 use frontend\models\Costheader;
 use frontend\models\Company;
@@ -141,85 +142,144 @@ echo Slider::widget([
     'headerOptions' => ['class' => 'kartik-sheet-style'], 
     'expandOneOnly' => true,
     ],       
-            
-            [
-            'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            'header'=> 'Description',
-            'value' => function ($data) {
-                return $data->cost->description; // $data['name'] for array data, e.g. using SqlDataProvider.
-            },
-            ], 
-            [
-            'class' => 'kartik\grid\ActionColumn',
-            'template' => '{link}',// can be omitted, as it is the default
-            'header'=>'Carousal File',
-            'visible'=> Yii::$app->user->isGuest ? false : true,
-            'buttons' => ['link' => function ($url, $data,$key) {
-                           if (!empty($data->carousal->image_source_filename)){  
-                           return Html::a($data->carousal->image_source_filename,$url,['class' => 'btn btn-success']);}
-                }
+    [
+    'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
+    'header'=> 'Description',
+    'value' => function ($data) {
+        return $data->cost->description; // $data['name'] for array data, e.g. using SqlDataProvider.
+    },
+    ],
+    [
+            'class' => 'kartik\grid\EditableColumn', // can be omitted, as it is the default
+            'header'=>'Payment Type',
+            'filterType'=>GridView::FILTER_SELECT2,
+            'filter'=>['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard','Other'=>'Other'],
+            'attribute'=>'paymenttype',
+            'filterInputOptions' => [
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
+                  'placeholder' => 'Payment Type...'
+             ],
+              'filterWidgetOptions'=>[
+                   'pluginOptions'=>['allowClear'=>true],
                 ],
-            'urlCreator' => function ($action, $data, $key, $index) {
-                         if (($action === 'link')&& !empty($data->carousal->id)) {
-                             $url = Url::toRoute(['carousal/view/'.$data->carousal->id]);
-                             return $url;
-                         }
-                         else {return ' '; }
-                }                
-            ],  
-            [
-            'class' => 'kartik\grid\ActionColumn',
-            'template' => '{link}',// can be omitted, as it is the default
-            'header'=>'<',
-            'visible'=> Yii::$app->user->isGuest ? false : true,
-            'buttons' => ['link' => function ($url, $model,$key) {
-                           return Html::a("<",$url,['class' => 'btn btn-success']);
-                }
+                 'editableOptions' => function ($data,$key,$index,$widget)
+                {
+                    $arr = ['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard','Other'=>'Other'];
+                    return ['header'=>'Payment Type',
+                            'attribute'=>'paymenttype',
+                            'size' => 'sm',
+                            'format' =>kartik\Editable\Editable::FORMAT_BUTTON,
+                            'inputType' => kartik\Editable\Editable::INPUT_DROPDOWN_LIST,
+                                'options' => [
+                                  'pluginOptions' => 
+                                  [
+                                    'autoclose' => true,
+                                  ],
+                                ],
+                            'data'=>$arr,
+                            'displayValueConfig'=>$arr,
+                            ];
+                },
+             'hAlign' => 'right', 
+             'vAlign' => 'middle',
+             'width' => '7%',
+             'refreshGrid'=>true,
+             'readonly' => false,               
+    ],                    
+   ['class' => '\kartik\grid\EditableColumn',
+                'attribute' =>'paymentreference',
+                'filterInputOptions' => [
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
+                  'placeholder' => 'Reference...'
                 ],
-            'urlCreator' => function ($action, $model, $key, $index) {
-                         if (($action === 'link') ) {
-                             $url = Url::toRoute(['costheader/index']);
-                             return $url;
-                         }
-                }                
-            ],  
-            [
-                //refer to additional code in controller
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'unit_price',
+               
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
                 'width' => '7%',
-                'format' => ['decimal', 2],
-                'pageSummary' => true,
                 'refreshGrid'=>true,
+                //'headerOptions' => ['class' => 'kv-sticky-column'],
+                //'contentOptions' => ['class' => 'kv-sticky-column'],
+                'readonly' => false,
                 'editableOptions' => [
-                'asPopover' => false,      
-                'header' => 'Unit Price', 
-                'inputType' => kartik\editable\Editable::INPUT_SPIN,
+                    'asPopover' => false,
+                    'inputType' => \kartik\editable\Editable::INPUT_TEXT,
                     'options' => [
-                        'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
-                    ]
-                ],               
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'paid',
-                'hAlign' => 'right', 
-                'vAlign' => 'middle',
-                'width' => '7%',
-                'format' => ['decimal', 2],
-                'pageSummary' => true,
-                'refreshGrid'=>true,
-                'editableOptions' => [
-                'asPopover' => false, 
-                'header' => 'Paid', 
-                'inputType' => kartik\editable\Editable::INPUT_SPIN,
-                    'options' => [
-                        'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
-                    ]
-                ],               
-            ], 
+                        'pluginOptions' => ['autoclose' => true],                        
+                     ]
+                ],
+                
+    ],        
+    [
+    'class' => 'kartik\grid\ActionColumn',
+    'template' => '{link}',// can be omitted, as it is the default
+    'header'=>'Carousal File',
+    'visible'=> Yii::$app->user->isGuest ? false : true,
+    'buttons' => ['link' => function ($url, $data,$key) {
+                   if (!empty($data->carousal->image_source_filename)){  
+                   return Html::a($data->carousal->image_source_filename,$url,['class' => 'btn btn-success']);}
+        }
+        ],
+    'urlCreator' => function ($action, $data, $key, $index) {
+                 if (($action === 'link')&& !empty($data->carousal->id)) {
+                     $url = Url::toRoute(['carousal/view/'.$data->carousal->id]);
+                     return $url;
+                 }
+                 else {return ' '; }
+        }                
+    ],  
+    [
+    'class' => 'kartik\grid\ActionColumn',
+    'template' => '{link}',// can be omitted, as it is the default
+    'header'=>'<',
+    'visible'=> Yii::$app->user->isGuest ? false : true,
+    'buttons' => ['link' => function ($url, $model,$key) {
+                   return Html::a("<",$url,['class' => 'btn btn-success']);
+        }
+        ],
+    'urlCreator' => function ($action, $model, $key, $index) {
+                 if (($action === 'link') ) {
+                     $url = Url::toRoute(['costheader/index']);
+                     return $url;
+                 }
+        }                
+    ],  
+    [
+        //refer to additional code in controller
+        'class' => 'kartik\grid\EditableColumn',
+        'attribute' => 'unit_price',
+        'hAlign' => 'right', 
+        'vAlign' => 'middle',
+        'width' => '7%',
+        'format' => ['decimal', 2],
+        'pageSummary' => true,
+        'refreshGrid'=>true,
+        'editableOptions' => [
+        'asPopover' => false,      
+        'header' => 'Unit Price', 
+        'inputType' => kartik\editable\Editable::INPUT_SPIN,
+            'options' => [
+                'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
+            ]
+        ],               
+    ],
+    [
+        'class' => 'kartik\grid\EditableColumn',
+        'attribute' => 'paid',
+        'hAlign' => 'right', 
+        'vAlign' => 'middle',
+        'width' => '7%',
+        'format' => ['decimal', 2],
+        'pageSummary' => true,
+        'refreshGrid'=>true,
+        'editableOptions' => [
+        'asPopover' => false, 
+        'header' => 'Paid', 
+        'inputType' => kartik\editable\Editable::INPUT_SPIN,
+            'options' => [
+                'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
+            ]
+        ],               
+    ], 
                   
 ];
  if ((empty(Yii::$app->session['sliderfontcostdetail'])) && (!isset(Yii::$app->session['sliderfontcostdetail']))){Yii::$app->session['sliderfontcostdetail'] = 18;}                      

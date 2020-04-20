@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = 'View';
             ['attribute'=>'costcategory_id','header'=>'Cost Code','value'=>$model->costcategory->name],
             ['attribute'=>'costsubcategory_id','header'=>'Cost Subcode','value'=>$model->costsubcategory->name],
             ['attribute'=>'paymenttype','header'=>'Payment Type','value'=>$model->paymenttype],
-            
+            ['attribute'=>'paymentreference','header'=>'Payment Reference','value'=>$model->paymentreference],
             'unit_price',
             'paid',
             'modified_date',

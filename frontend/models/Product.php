@@ -4,8 +4,6 @@ namespace frontend\models;
 
 use frontend\models\Productcategory;
 use frontend\models\Productsubcategory;
-use frontend\models\Salesorderdetails;
-use frontend\models\Salesorderheader;
 
 use Yii;
 

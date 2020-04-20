@@ -96,6 +96,7 @@ class m191110_221831_Mass extends Migration
             'cost_header_id'=> $this->integer(11)->notNull(),
             'cost_detail_id'=> $this->primaryKey(11),
             'paymenttype'=> "enum('Cash', 'Cheque', 'Paypal', 'Debitcard', 'Creditcard', 'Other') NOT NULL",
+            'paymentreference'=>$this->string(20)->null()->defaultValue(null),
             'nextcost_date'=> $this->date()->notNull(),
             'costcategory_id'=> $this->integer(11)->notNull(),
             'costsubcategory_id'=> $this->integer(11)->notNull(),
