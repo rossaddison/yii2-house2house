@@ -1,14 +1,13 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use \kartik\grid\GridView;
 use frontend\models\Costheader;
 use frontend\models\Company;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
 
-$this->registerJsFile('@web/js/scripts2.js',['depends' => [\yii\web\JqueryAsset::className()]]);
+//$this->registerJsFile('@web/js/scripts2.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->title = 'Costs to include';
 $cost_date = DateTime::createFromFormat("Y-m-d", Costheader::findOne($id=Yii::$app->session['cost_header_id'])->cost_date)->format("l, d F Y");
 $pdfHeader = [
@@ -174,6 +173,7 @@ echo Slider::widget([
                                   'pluginOptions' => 
                                   [
                                     'autoclose' => true,
+                                    'style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px',  
                                   ],
                                 ],
                             'data'=>$arr,

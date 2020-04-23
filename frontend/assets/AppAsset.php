@@ -19,7 +19,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     
-    public $js = [ 'js/scripts2.js'
+    public $js = [ 'js/scripts2.js',
+                   'js/scripts_slider.js',
     ];
     
     public $depends = [

@@ -7,23 +7,17 @@ use frontend\models\Salesorderheader;
 use frontend\models\Salesorderdetail;
 use frontend\models\Product;
 use frontend\models\Company;
-use frontend\models\Messaging;
 use frontend\components\Utilities;
 use frontend\models\Messagelog;
 use yii\helpers\Url;
 use yii\helpers\Json;
-use yii\helpers\ArrayHelper;
 use yii\db\IntegrityException;
-use yii\db\ActiveRecord;
 use frontend\models\SalesorderdetailSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use Twilio\Rest\Client;
-use Twilio\Exceptions\TwilioException;
 use yii\db\Query;
 use frontend\models\Gocardlessinvoice;
-use kartik\grid\EditableColumnAction;
 
 
 
@@ -230,7 +224,7 @@ class SalesorderdetailController extends Controller
       }
       return;
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
     
@@ -252,7 +246,7 @@ class SalesorderdetailController extends Controller
      
       return;
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
     
@@ -297,7 +291,7 @@ class SalesorderdetailController extends Controller
                     if ($model !== null) {$model->delete();}
       } 
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
     
@@ -317,7 +311,7 @@ class SalesorderdetailController extends Controller
                     }
       }
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
     
@@ -337,7 +331,7 @@ class SalesorderdetailController extends Controller
                     }
       }
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
     
@@ -357,7 +351,7 @@ class SalesorderdetailController extends Controller
                     }
       }
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
     
@@ -387,7 +381,7 @@ class SalesorderdetailController extends Controller
          return;
       }     
       
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       return;
     }
    
@@ -412,13 +406,13 @@ class SalesorderdetailController extends Controller
         }
       }     
       
-      else throw new NotFoundHttpException('No ticks selected.'); 
+      else {throw new NotFoundHttpException('No ticks selected.');} 
       return;
     }
     
     public function actionOwingticked()
     {
-      if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
+      if (!\Yii::$app->user->can('Update Daily Job Sheet') && (!\Yii::$app->authManager->getAssignment('support',Yii::$app->user->user_id)==null)){
             throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
       }    
       $keylist = Yii::$app->request->get('keylist');
@@ -446,7 +440,7 @@ class SalesorderdetailController extends Controller
                               $val = $rows[$key]['sales_order_id'];
                               $cleandate = Salesorderheader::findOne($val);
                               $date = "Clean date: " . $cleandate->clean_date;
-                              $owed = " Owing:�" . $rows[$key]['unit_price']; 
+                              $owed = " Owing:" . $rows[$key]['unit_price']; 
                               $pay = $pay ." ".$date. $owed;                                
                             }
                             $pay = $pay. ".$subtotal payment appreciated. Reference: ".$model->product->name." Please reply -- paid -- to this text once payment has been made.";
@@ -485,7 +479,7 @@ class SalesorderdetailController extends Controller
                             $model2->save();
                         }
          }
-     } else throw new NotFoundHttpException('No ticks selected.');
+     } else {throw new NotFoundHttpException('No ticks selected.');}
      return;
      
     }
@@ -560,7 +554,7 @@ class SalesorderdetailController extends Controller
              } //if (($model !== null) & (!empty($model->product->email)) & (!empty($model->product->mandate))) 
           }//foreach ($keylist as $key => $value)                                
         } // if (!empty($keylist))
-        else throw new NotFoundHttpException('Exception: Either No ticks selected, no email of householder, or no direct debit mandate from householder.'); //if (($model !== null) & (!empty($model->product->email))) 
+        else {throw new NotFoundHttpException('Exception: Either No ticks selected, no email of householder, or no direct debit mandate from householder.');} //if (($model !== null) & (!empty($model->product->email))) 
         return;
     }
     
@@ -648,7 +642,4 @@ class SalesorderdetailController extends Controller
             throw new NotFoundHttpException('SalesorderdetailController: The requested model does not exist.');
         }
     }
-    
-    
-    
 }

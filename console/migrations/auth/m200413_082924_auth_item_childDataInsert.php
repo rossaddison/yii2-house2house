@@ -880,6 +880,22 @@ class m200413_082924_auth_item_childDataInsert extends Migration
     ],
     [
         'parent' => 'admin',
+        'child' => 'Use Gocardless',
+    ],
+    [
+        'parent' => 'support',
+        'child' => 'Use Gocardless',
+    ],
+    [
+        'parent' => 'admin',
+        'child' => 'Use Twilio',
+    ],
+    [
+        'parent' => 'support',
+        'child' => 'Use Twilio',
+    ],                            
+    [
+        'parent' => 'admin',
         'child' => 'View Bulletin Board',
     ],
     [

@@ -3,19 +3,13 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\Costheader;
 use frontend\models\Costdetail;
-use frontend\models\Messaging;
-use frontend\models\Messagelog;
-use yii\helpers\Url;
 use yii\helpers\Json;
 use yii\db\IntegrityException;
-use yii\db\ActiveRecord;
 use frontend\models\CostdetailSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\db\Query;
 
 class CostdetailController extends Controller
 {
@@ -134,7 +128,6 @@ class CostdetailController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session['costdetailupdate'] == $model;
             return $this->redirect(['view', 'id' => $model->cost_detail_id]);
         } else {
             return $this->render('update', [
@@ -170,7 +163,7 @@ class CostdetailController extends Controller
                     }
       }
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       
     }
     
@@ -187,7 +180,7 @@ class CostdetailController extends Controller
                     }
       }
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
       
     }
         
@@ -224,7 +217,7 @@ class CostdetailController extends Controller
                     if ($model !== null) {$model->delete();}
       } 
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
     }
     
      public function actionPaymentmethodcashticked()
@@ -240,7 +233,7 @@ class CostdetailController extends Controller
                     }
       }
       }
-      else throw new NotFoundHttpException('No ticks selected.');
+      else {throw new NotFoundHttpException('No ticks selected.');}
     }
     
    public function actionSlider()
@@ -252,9 +245,7 @@ class CostdetailController extends Controller
     {
         if (($model = Costdetail::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('CostdetailController: The requested model does not exist.');
-        }
+        } else {throw new NotFoundHttpException('CostdetailController: The requested model does not exist.');}
     }
     
     

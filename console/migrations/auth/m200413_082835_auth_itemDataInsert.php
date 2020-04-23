@@ -588,7 +588,7 @@ class m200413_082835_auth_itemDataInsert extends Migration
     [
         'name' => 'See Prices',
         'type' => '2',
-        'description' => 'See Prices',
+        'description' => 'Allow a worker or employee to see prices that are being charged for the job.',
         'rule_name' => null,
         'data' => null,
         'created_at' => '1583610917',
@@ -865,6 +865,24 @@ class m200413_082835_auth_itemDataInsert extends Migration
         'updated_at' => '1577666562',
     ],
     [
+        'name' => 'Use Gocardless',
+        'type' => '2',
+        'description' => 'Make payment requests by means of Gocardless to Householders email addresses if consent given.',
+        'rule_name' => null,
+        'data' => null,
+        'created_at' => '1577666563',
+        'updated_at' => '1577666563',
+    ],
+    [
+        'name' => 'Use Twilio',
+        'type' => '2',
+        'description' => 'Send individual or bulk sms messages by means of Twilio',
+        'rule_name' => null,
+        'data' => null,
+        'created_at' => '1577666563',
+        'updated_at' => '1577666563',
+    ],                            
+    [
         'name' => 'View Bulletin Board',
         'type' => '2',
         'description' => 'View Bulletin Board',
@@ -939,7 +957,7 @@ class m200413_082835_auth_itemDataInsert extends Migration
     [
         'name' => 'Backup Database',
         'type' => '2',
-        'description' => 'Backup their allocated database',
+        'description' => 'Managers Backup their allocated database.',
         'rule_name' => null,
         'data' => null,
         'created_at' => '1564039903',

@@ -120,21 +120,26 @@ $tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this num
                     <li><button id="w36" class = "btn btn-danger btn-lg" onclick="js:getCopyitbyfrequencysalesorderdetail()">+1 Month</button></li>    
                 </ul>
     <br>
-     <?php if (Yii::$app->user->can('Update Daily Job Sheet')) { ?>
+     
+    
     <div>
+    <?php if (Yii::$app->user->can('Use Gocardless')) {?>
     <Hr style = "border-top: 3px double #8c8b8b">   
-    <button id="w21" class = "btn btn-danger btn-lg" onclick="js:getGocardlesspayticks()" disabled="disabled" datatoggle="tooltip" title="This feature is currently disabled: Customers can be sent a direct debit variable mandate to consent to each time you need payment from them. ">Gocardless One-off (ticked)</button>
+    <button id="w21" class = "btn btn-danger btn-lg" onclick="js:getGocardlesspayticks()" datatoggle="tooltip" title="Customers can be sent a direct debit variable mandate to consent to each time you need payment from them. ">Gocardless One-off (ticked)</button>
          <?= Html::a('Add House', ['product/index'], ['class' => 'btn btn-warning btn-lg','datatoggle'=>'tooltip', 'title'=> '"This button will take you to Houses to create one. You will then be able to transfer the house through to the list of houses that are part of the daily clean.']) ?>
          <?= Html::a('Back', ['salesorderheader/index'], ['class' => 'btn btn-success btn-lg']) ?>
-        <Hr style = "border-top: 3px double #8c8b8b">
-        <button id="w16" class = "btn btn-success btn-lg" onclick="js:getOwingticks()" disabled="disabled" datatoggle ="tooltip" title="Different message types can be sent to your customer using Twilio, a service that requires a subscription">SMS-(ticked)</button>
+    <?php } ?>
+    <?php if (Yii::$app->user->can('Use Twilio')) {?>
+    <Hr style = "border-top: 3px double #8c8b8b">
+    <button id="w16" class = "btn btn-success btn-lg" onclick="js:getOwingticks()" datatoggle ="tooltip" title="Different message types can be sent to your customer using Twilio, a service that requires a subscription">SMS-(ticked)</button>
         <div>
            <br>
            <?= Html::label('Message: ') ?>
             <br>
-           <?= Html::dropDownList('sdmessage','', ArrayHelper::map(Messaging::find()->all(),'id','message'),['prompt' => 'Message...','id'=>'w33','class'=>'btn btn-success btn-lg','disabled'=>'disabled' ,'style'=>'width: 200px']) ?>
+           <?= Html::dropDownList('sdmessage','', ArrayHelper::map(Messaging::find()->all(),'id','message'),['prompt' => 'Message...','id'=>'w33','class'=>'btn btn-success btn-lg' ,'style'=>'width: 200px']) ?>
         </div>
-        <Hr style = "border-top: 3px double #8c8b8b">
+    
+    <Hr style = "border-top: 3px double #8c8b8b">
     </div>
     <?php } ?>
     </br>
