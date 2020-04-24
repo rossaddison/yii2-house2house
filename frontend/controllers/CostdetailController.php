@@ -106,7 +106,7 @@ class CostdetailController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a daily cost sheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a daily cost sheet.'));
         }        
         $model = new Costdetail();
         $model->cost_header_id = Yii::$app->session['cost_header_id'];
@@ -122,7 +122,7 @@ class CostdetailController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily cost sheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily cost sheet.'));
         }        
         
         $model = $this->findModel($id);
@@ -139,14 +139,14 @@ class CostdetailController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a daily cost sheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a daily cost sheet.'));
         }         
         try {
             $model = $this->findModel($id);
 	    $this->findModel($id)->delete();            
             return $this->redirect(['index','id'=>$model->cost_header_id]);
 	} catch(IntegrityException $e) {              
-              throw new \yii\web\HttpException(404, 'Integrity Constraint exception.');
+              throw new \yii\web\HttpException(404, Yii::t('app','Integrity Constraint exception.'));
         }
     }
     
@@ -163,7 +163,7 @@ class CostdetailController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       
     }
     
@@ -180,7 +180,7 @@ class CostdetailController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       
     }
         
@@ -207,7 +207,7 @@ class CostdetailController extends Controller
     public function actionDeleteticked()
    {
       if (!\Yii::$app->user->can('Delete Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a daily cost sheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a daily cost sheet.'));
       } 
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -217,7 +217,7 @@ class CostdetailController extends Controller
                     if ($model !== null) {$model->delete();}
       } 
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
     }
     
      public function actionPaymentmethodcashticked()
@@ -233,7 +233,7 @@ class CostdetailController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
     }
     
    public function actionSlider()
@@ -245,7 +245,7 @@ class CostdetailController extends Controller
     {
         if (($model = Costdetail::findOne($id)) !== null) {
             return $model;
-        } else {throw new NotFoundHttpException('CostdetailController: The requested model does not exist.');}
+        } else {throw new NotFoundHttpException(Yii::t('app','CostdetailController: The requested model does not exist.'));}
     }
     
     

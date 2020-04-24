@@ -1,12 +1,12 @@
 <?php
 namespace frontend\controllers;
+
 use Yii;
 use frontend\models\Company;
 use frontend\models\Product;
 use frontend\models\Salesorderdetail;
 use frontend\models\Salesorderheader;
 use frontend\models\Instruction;
-use frontend\models\Mandate;
 use frontend\models\Paymentrequest;
 use GoCardlessPro\Core\Exception\InvalidStateException;
 use frontend\components\Utilities;
@@ -19,7 +19,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\db\Query;
 use yii\behaviors\TimestampBehavior;
 use yii\di\ServiceLocator;
@@ -69,7 +68,7 @@ class ProductController extends Controller
     public function actionSubcat() 
     {
        if (!\Yii::$app->user->can('Create House')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a house.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a house.'));
         }
         $out = [];
         if (isset($_POST['depdrop_parents'])) {
@@ -92,24 +91,13 @@ class ProductController extends Controller
     } 
     
     public function actionIndex()
-    {    
-        //Yii::$app->session->setFlash('kv-detail-success', 'Saved record successfully to latest daily clean '. Salesorderheader::findOne($latest_salesorder_id)->clean_date . 'with jobcode '.Salesorderheader::findOne($latest_salesorder_id)->status . '. Daily Job Sheet: <a href="' . Url::to(['salesorderdetail/index/'.$latest_salesorder_id]) . '" class="btn btn-sm btn-info">
-        //                                                              .<i class="glyphicon glyphicon-hand-right"></i>  Click here</a> to proceed.');
-       
-        
-        
-        
+    {   
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination->pageSize=10;
         $dataProvider->sort->sortParam = false;
         $dataProvider->setSort([
             'attributes' => [
-                //'productnumber' => [
-                //    'asc' => ['works_product.productnumber' => SORT_ASC],
-                //    'desc' => ['works_product.productnumber' => SORT_DESC],
-                //    'default' => SORT_ASC,
-                //],
                 'productcategory_id' => [
                     'asc' => ['productcategory_id' => SORT_ASC],
                     'desc' => ['productcategory_id' => SORT_DESC],
@@ -124,37 +112,17 @@ class ProductController extends Controller
         if (Yii::$app->request->post('hasEditable')) {
         $editablekey = Yii::$app->request->post('editableKey');
         $model = Product::findOne($editablekey);
-
-        // store a default json response as desired by editable
         $out = Json::encode(['output'=>'', 'message'=>'']);
-
-        // fetch the first entry in posted data (there should only be one entry 
-        // anyway in this array for an editable submission)
-        // - $posted is the posted data for Book without any indexes
-        // - $post is the converted array for single model validation
         $post = [];
         $posted = current($_POST['Product']);
         $post = ['Product' => $posted];
-
-        // load model like any single model validation
         if ($model->load($post)) {
-        // can save model or do something before saving model
-        
-        $model->save();
+            $model->save();
         }
-        // custom output to return to be displayed as the editable grid cell
-        // data. Normally this is empty - whereby whatever value is edited by
-        // in the input by user is updated automatically.
         $output = '';
-        
-
-        ////if (isset($posted['listprice'])) {
-        ///// $output = Yii::$app->formatter->asDecimal($model->listprice, 2);
-        /////}
         if (isset($posted['listprice'])) {
            $output = Yii::$app->formatter->asDecimal($model->listprice, 2);
         }
-        
         return Json::encode(['output'=> $output, 'message'=>'']);
        }
         
@@ -162,13 +130,12 @@ class ProductController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-        
     }
     
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create House')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a house.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a house.'));
         }
         $model = new Product();
         
@@ -226,10 +193,10 @@ class ProductController extends Controller
                     $model3->line_total = $model->listprice;
                     $model3->paid =0;
                     $model3->save();
-                    Yii::$app->session->setFlash('kv-detail-success', 'Saved record successfully to latest daily clean '. Salesorderheader::findOne($latest_salesorder_id)->clean_date . 'with jobcode '.Salesorderheader::findOne($latest_salesorder_id)->status . '. Daily Job Sheet: <a href="' . Url::to(['salesorderdetail/index/'.$latest_salesorder_id]) . '" class="btn btn-sm btn-info">
-                                                                      .<i class="glyphicon glyphicon-hand-right"></i>  Click here</a> to proceed.');
+                    Yii::$app->session->setFlash('kv-detail-success', Yii::t('app','Saved record successfully to latest daily clean '). Salesorderheader::findOne($latest_salesorder_id)->clean_date . Yii::t('app','with jobcode ').Salesorderheader::findOne($latest_salesorder_id)->status . Yii::t('app','Daily Job Sheet: <a href="') . Url::to(['salesorderdetail/index/'.$latest_salesorder_id]) . '" class="btn btn-sm btn-info">
+                                                                      .<i class="glyphicon glyphicon-hand-right"></i>  '.Yii::t('app','Click here</a> to proceed.'));
                 } else {
-                    Yii::$app->session->setFlash('kv-detail-warning', 'Jobcode '.$model->jobcode . ' not found. House saved but not saved to latest daliy clean. Copy the house to the daily clean once you have created the daily clean.');
+                    Yii::$app->session->setFlash('kv-detail-warning', Yii::t('app','Jobcode ').$model->jobcode . Yii::t('app',' not found. House saved but not saved to latest daliy clean. Copy the house to the daily clean once you have created the daily clean.'));
                 }
                 
             }
@@ -244,7 +211,7 @@ class ProductController extends Controller
     public function actionView($id) {
         $model=$this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('kv-detail-success', 'Saved record successfully');
+            Yii::$app->session->setFlash('kv-detail-success', Yii::t('app','Saved record successfully'));
             return $this->redirect(['view', 'id'=>$model->id]);
         } else {
             return $this->render('view', ['model'=>$model]);
@@ -260,7 +227,7 @@ class ProductController extends Controller
         
     public function actionDelete() {
         if (!\Yii::$app->user->can('Delete House')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a house.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a house.'));
         }        
         try {
         $post = Yii::$app->request->post();
@@ -271,7 +238,7 @@ class ProductController extends Controller
               Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
               Yii::$app->response->content = Json::encode([
               'success' => true,
-              'messages' => ['kv-detail-info' => 'The house # ' . $id . ' was successfully deleted.']
+              'messages' => ['kv-detail-info' => Yii::t('app','The house # ') . $id . Yii::t('app',' was successfully deleted.')]
               ]);
             } 
           }
@@ -281,8 +248,8 @@ class ProductController extends Controller
               Yii::$app->response->content  = Json::encode([
                    'success' => false,
                    'messages' => [
-                       'kv-detail-error' => 'Cannot delete the house # ' . $id . '. It exists on Daily Clean'
-                     . ' schedule(s) already. Delete this house on these Daily Cleans first please.'
+                       'kv-detail-error' => Yii::t('app','Cannot delete the house # ') . $id . Yii::t('app','. It exists on Daily Clean')
+                     . Yii::t('app',' schedule(s) already. Delete this house on these Daily Cleans first please.')
                     ]
                ]);
        }
@@ -366,7 +333,7 @@ class ProductController extends Controller
          $model = $this->findModel($value);
          if ($model !== null) 
          { 
-             if ((empty($model->email)||(empty(Company::findOne(1)->email)))){throw new NotFoundHttpException('Either From: Company Email address does not exit or To: Customer Email address does not exist for House ID: '.$model->id. ' Please make sure both are filled in. Company email address can be entered here. '.Url::toRoute('company/index'));}
+             if ((empty($model->email)||(empty(Company::findOne(1)->email)))){throw new NotFoundHttpException(Yii::t('app','Either From: Company Email address does not exit or To: Customer Email address does not exist for House ID: ').$model->id. Yii::t('app',' Please make sure both are filled in. Company email address can be entered here. ').Url::toRoute('company/index'));}
              $client = new \GoCardlessPro\Client([
              'access_token' => Company::findOne(1)->gc_accesstoken,
             //'environment' => $comp->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
@@ -374,7 +341,7 @@ class ProductController extends Controller
             ]);
             $redirectFlow = $client->redirectFlows()->create([
               'params' => [
-                "description" => "Clean",
+                "description" => Yii::t('app','Clean'),
                 "session_token" => $sessionid,
                 "success_redirect_url" => Company::findOne(1)->gc_live_or_sandbox == 'SANDBOX' ? Url::to(['site/gocardlesscustomercreated'], 'http') : Url::to(['site/gocardlesscustomercreated'], 'https') ,
                 "prefilled_customer" => [
@@ -421,32 +388,32 @@ class ProductController extends Controller
                 ->setFrom(Company::findOne(1)->email)
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
-                ->setSubject(Company::findOne(1)->name. ': Cleaning Direct Debit mandate needs to be approved by you within 30 minutes from this time: '. date('Y-m-d H:i:s'))
+                ->setSubject(Company::findOne(1)->name. Yii::t('app',': Cleaning Direct Debit mandate needs to be approved by you within 30 minutes from this time: '). date('Y-m-d H:i:s'))
                 //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
-                ->setHtmlBody('Dear Customer,'
+                ->setHtmlBody(Yii::t('app','Dear Customer,')
                     .'<br>'
-                    . 'We have created a variable direct debit mandate link to Gocardless for you.'
+                    . Yii::t('app','We have created a variable direct debit mandate link to Gocardless for you.')
                     . '<br>'
-                    . 'Here is the link to the Gocardless secure Website where you will be required to enter your details. Please click on this link.'
+                    . Yii::t('app','Here is the link to the Gocardless secure Website where you will be required to enter your details. Please click on this link.')
                      .'<br>'
                      .'<br>'
-                    . Html::a('Gocardless Variable Direct Debit Mandate',$redirectFlow->redirect_url)
+                    . Html::a(Yii::t('app','Gocardless Variable Direct Debit Mandate'),$redirectFlow->redirect_url)
                     .'<br>'
                      .'<br>'
-                    . 'At no stage do we store any of your bank details. This is handled by Gocardless. Once you have approved the direct debit mandate we will, in the future, be able to issue you with a payment amount request through the Gocardless website. </b>'
-                    . 'We will send you an acknowledgment confirmation email once you have approved this once-off mandate. You should be redirected to our website once you have approved the mandate. </b>'
+                    . Yii::t('app','At no stage do we store any of your bank details. This is handled by Gocardless. Once you have approved the direct debit mandate we will, in the future, be able to issue you with a payment amount request through the Gocardless website. </b>')
+                    . Yii::t('app','We will send you an acknowledgment confirmation email once you have approved this once-off mandate. You should be redirected to our website once you have approved the mandate. </b>')
                     .'<br>'
                     .'<br>'
-                    . 'Regards'
+                    . Yii::t('app','Regards')
                     .'<br>'
                     .'<br>'
-                    . 'Director of '.Company::findOne(1)->name)
+                    . Yii::t('app','Director of ').Company::findOne(1)->name)
                      .'<br>'
                     .'<br>'
-                    . 'More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '. Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/')) 
+                    . Yii::t('app','More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '). Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/')) 
                 ->send();
                 $model->save();
-                $message = "Gocardless Variable Direct Debit Mandate Request sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::to(['Product/View/'.$model->id])). ' The customer will be redirected to this site once they have approved the Mandate. A simple flash message will be displayed to them. You will acknowledge receipt of the mandate by pressing a button on the main menu above House. This updates your records and sends an acknowledgement of receipt of mandate confirmation email to the customer with a confirmation link within their email.';
+                $message = Yii::t('app','Gocardless Variable Direct Debit Mandate Request sent from ') . Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])). Yii::t('app',' The customer will be redirected to this site once they have approved the Mandate. A simple flash message will be displayed to them. You will acknowledge receipt of the mandate by pressing a button on the main menu above House. This updates your records and sends an acknowledgement of receipt of mandate confirmation email to the customer with a confirmation link within their email.');
                 $message_all = $message_all ."  ".$message;
        } //foreach
        else 
@@ -455,37 +422,37 @@ class ProductController extends Controller
             ->setFrom(Company::findOne(1)->email)
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
-                ->setSubject(Company::findOne(1)->name. ': Cleaning Direct Debit mandate needs to be approved by you within 30 minutes from this time: '. date('Y-m-d H:i:s'))
+                ->setSubject(Company::findOne(1)->name. Yii::t('app',': Cleaning Direct Debit mandate needs to be approved by you within 30 minutes from this time: '). date('Y-m-d H:i:s'))
                 //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
-                ->setHtmlBody('Dear Customer,'
+                ->setHtmlBody(Yii::t('app','Dear Customer,')
                     .'<br>'
-                    . 'We have created a variable direct debit mandate link to Gocardless for you.'
+                    . Yii::t('app','We have created a variable direct debit mandate link to Gocardless for you.')
                     . '<br>'
-                    . 'Here is the link to the Gocardless secure Website where you will be required to enter your details. Please click on this link.'
+                    . Yii::t('app','Here is the link to the Gocardless secure Website where you will be required to enter your details. Please click on this link.')
                      .'<br>'
                     . Html::a('Gocardless Variable Direct Debit Mandate',$redirectFlow->redirect_url)
                     .'<br>'
-                    . 'At no stage do we store any of your bank details. This is handled by Gocardless. Once you have approved the direct debit mandate we will be able to issue you with a payment amount request through the Gocardless website. </b>'
-                    . 'Please reply to this email once you have approved the mandate. '
+                    . Yii::t('app','At no stage do we store any of your bank details. This is handled by Gocardless. Once you have approved the direct debit mandate we will be able to issue you with a payment amount request through the Gocardless website. </b>')
+                    . Yii::t('app','Please reply to this email once you have approved the mandate. ')
                     .'<br>'
                     .'<br>'
-                    . 'Regards'
+                    . Yii::t('app','Regards')
                     .'<br>'
                     .'<br>'
-                    . 'Director of '.Company::findOne(1)->name)
+                    . Yii::t('app','Director of ').Company::findOne(1)->name)
                     .'<br>'
                     .'<br>'
-                    . 'More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '. Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/')) 
+                    . Yii::t('app','More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '). Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/')) 
                 ->send();
                 $model->save();
-                $message = "Gocardless Variable Direct Debit Mandate Request sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::to(['Product/View/'.$model->id])). ' The customer will be redirected to this site once they have approved the Mandate. A simple flash message will be displayed to them. You will acknowledge receipt of the mandate by pressing a button on the main menu above House. This button will only appear once the mandate has been approved. This updates your records and sends an acknowledgement of receipt of mandate confirmation email to the customer with a confirmation link within their email.';
+                $message = Yii::t('app','Gocardless Variable Direct Debit Mandate Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])). Yii::t('app',' The customer will be redirected to this site once they have approved the Mandate. A simple flash message will be displayed to them. You will acknowledge receipt of the mandate by pressing a button on the main menu above House. This button will only appear once the mandate has been approved. This updates your records and sends an acknowledgement of receipt of mandate confirmation email to the customer with a confirmation link within their email.');
                 $message_all = $message_all ."  ".$message . "<br><br>";
        } //else      
       } //foreach
       Yii::$app->session->setFlash('kv-detail-success',$message_all ); 
       return $this->redirect(['view', 'id' => $model->id]);
       } //not empty keylist
-      else {throw new NotFoundHttpException('No tick selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No tick selected.'));}
    }
    
    //https://developer.gocardless.com/api-reference/#payments-create-a-payment
@@ -493,7 +460,7 @@ class ProductController extends Controller
    public function actionRequestpayment()
    {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       } 
    $keylist = Yii::$app->request->get('keylist'); 
    $message = '';
@@ -504,8 +471,8 @@ class ProductController extends Controller
          $model = $this->findModel($value);
          if ($model !== null) 
          { 
-             if ((empty($model->email)||(empty(Company::findOne(1)->email)))){throw new NotFoundHttpException('Either From: Company Email address does not exit or To: Customer Email address does not exist for House ID: '.$model->id. ' Please make sure both are filled in. Company email address can be entered here. '.Url::toRoute('company/index'));}
-             if ((empty($model->mandate) || (empty($model->gc_number)))){throw new NotFoundHttpException('Either Mandate or Gocardless Customer Number does not exist for House ID: '.$model->id. " Payments must be made against a valid mandate and customer registered on Gocardless.com");}       
+             if ((empty($model->email)||(empty(Company::findOne(1)->email)))){throw new NotFoundHttpException(Yii::t('app','Either From: Company Email address does not exit or To: Customer Email address does not exist for House ID: ').$model->id. Yii::t('app',' Please make sure both are filled in. Company email address can be entered here. ').Url::toRoute('company/index'));}
+             if ((empty($model->mandate) || (empty($model->gc_number)))){throw new NotFoundHttpException(Yii::t('app','Either Mandate or Gocardless Customer Number does not exist for House ID: ').$model->id. Yii::t('app',' Payments must be made against a valid mandate and customer registered on Gocardless.com'));}       
                     $rows_2  = $model->salesorderdetails;
                     $minitotal = 0.00;
                     $print = "";
@@ -522,7 +489,7 @@ class ProductController extends Controller
                                }
                              }
                      $minitotal = Yii::$app->formatter->asDecimal($minitotal, 2); 
-                     if ($minitotal < 1) {throw new NotFoundHttpException('Your total of ' . $minitotal . 'does not equal or exceed the minimum of 1 GBP.');}
+                     if ($minitotal < 1) {throw new NotFoundHttpException(Yii::t('app','Your total of ') . $minitotal . Yii::t('app','does not equal or exceed the minimum of 1 local currency.'));}
                       $client = new \GoCardlessPro\Client(array(
                       'access_token' => Company::findOne(1)->gc_accesstoken,
                       'environment'  => Company::findOne(1)->gc_live_or_sandbox == 'SANDBOX' ? \GoCardlessPro\Environment::SANDBOX : \GoCardlessPro\Environment::LIVE ,
@@ -557,11 +524,11 @@ class ProductController extends Controller
                              
                     //https://github.com/gocardless/gocardless-pro-php
                     } catch (InvalidStateException $e){
-                        $message = 'System message: ' . $e->getMessage();
+                        $message = Yii::t('app','System message: ') . $e->getMessage();
                         $message_all = $message_all ."  ". $message . "<br><br>";
                         throw new \yii\web\HttpException(424,$message );
                     } catch (ValidationFailedException $e){
-                        $message = 'System message: ' . $e->getMessage();
+                        $message = Yii::t('app','System message: ') . $e->getMessage();
                         $message_all = $message_all ."  ". $message . "<br><br>";
                         throw new \yii\web\HttpException(424,$message );
                     }
@@ -587,32 +554,32 @@ class ProductController extends Controller
                 ->setFrom(Company::findOne(1)->email)
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
-                ->setSubject(Company::findOne(1)->name. ': Payment request: '. date('Y-m-d'))
+                ->setSubject(Company::findOne(1)->name. Yii::t('app',': Payment request: '). date('Y-m-d'))
                 //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
-                ->setHtmlBody('Dear Customer,'
+                ->setHtmlBody(Yii::t('app','Dear Customer,')
                     . '<br>'
                     . '<br>'
-                    . 'Payment is due now for: '
+                    . Yii::t('app','Payment is due now for: ')
                     . '<br>'
                     . $print
                     . '<br>'
                     . '<br>'
-                    . 'Total:     &pound' . $minitotal
+                    . Yii::t('app','Total:     &pound') . $minitotal
                     . '<br>'
-                    . 'Gocardless will be emailing you shortly with a 3 day Direct Debit Advance Notice in order for you to arrange for any cancellation if you are not happy with the above amount. '
-                    . 'Please contact us on '. Company::findOne(1)->telephone . 'should you wish to cancel within the next 3 days.  '
+                    . Yii::t('app','Gocardless will be emailing you shortly with a 3 day Direct Debit Advance Notice in order for you to arrange for any cancellation if you are not happy with the above amount. ')
+                    . Yii::t('app','Please contact us on '). Company::findOne(1)->telephone . Yii::t('app','should you wish to cancel within the next 3 days.  ')
                     . '<br>'
-                    . 'Regards'
-                    . '<br>'
-                    . '<br>'
-                    . 'Director of '.Company::findOne(1)->name
+                    . Yii::t('app','Regards')
                     . '<br>'
                     . '<br>'
-                    . 'We use GoCardless to process your Direct Debit payments. More information on how GoCardless processes your personal data and your data protection rights, including your right '
-                    . 'to object, is available at '. Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/'))) 
+                    . Yii::t('app','Director of ').Company::findOne(1)->name
+                    . '<br>'
+                    . '<br>'
+                    . Yii::t('app','We use GoCardless to process your Direct Debit payments. More information on how GoCardless processes your personal data and your data protection rights, including your right ')
+                    . Yii::t('app','to object, is available at '). Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/'))) 
                 ->send();
                 $model->save();
-                $message = "Payment Request sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::to(['Product/View/'.$model->id])) . " Firstname: " . $model->name . " Surname: " . $model->surname . " Customer Gocardless Mandate Number: " .$model->gc_number . " Amount: &pound" . (int)$minitotal;
+                $message = Yii::t('app','Payment Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])) . Yii::t('app',' Firstname: ') . $model->name . Yii::t('app',' Surname: ') . $model->surname . Yii::t('app',' Customer Gocardless Mandate Number: ') .$model->gc_number . Yii::t('app',' Amount: &pound') . (int)$minitotal;
                 $message_all = $message_all ."  ".$message . "<br><br>";
        } //!empty(Company::findOne(1)
        else 
@@ -621,31 +588,31 @@ class ProductController extends Controller
             ->setFrom(Company::findOne(1)->email)
                 ->setTo($model->email)
                 ->setBcc(Company::findOne(1)->email)
-                ->setSubject(Company::findOne(1)->name. ': Payment request: '. date('Y-m-d'))
+                ->setSubject(Company::findOne(1)->name. Yii::t('app',': Payment request: '). date('Y-m-d'))
                 //->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
-                ->setHtmlBody('Dear Customer,'
+                ->setHtmlBody(Yii::t('app','Dear Customer,')
                     .'<br>'
                     .'<br>'
-                    . 'Payment is due now for: '
+                    . Yii::t('app','Payment is due now for: ')
                     . '<br>'
                     . $print
                     . '<br>'
                     . '<br>'
-                    . 'Total: &pound' . $minitotal
+                    . Yii::t('app','Total: &pound') . $minitotal
                     . '<br>'
-                    . 'Gocardless will be emailing you shortly with a 3 day Direct Debit Advance Notice in order for you to arrange for any cancellation if you are not happy with the above amount. '
-                    . 'Please contact us on '. Company::findOne(1)->telephone . 'should you wish to cancel within the next 3 days.  '
+                    . Yii::t('app','Gocardless will be emailing you shortly with a 3 day Direct Debit Advance Notice in order for you to arrange for any cancellation if you are not happy with the above amount. ')
+                    . Yii::t('app','Please contact us on '). Company::findOne(1)->telephone . Yii::t('app','should you wish to cancel within the next 3 days.  ')
                     . '<br>'
-                    . 'Regards'
-                    . '<br>'
-                    . '<br>'
-                    . 'Director of '.Company::findOne(1)->name
+                    . Yii::t('app','Regards')
                     . '<br>'
                     . '<br>'
-                    . 'We use GoCardless to process your Direct Debit payments. More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '. Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/'))) 
+                    . Yii::t('app','Director of ').Company::findOne(1)->name
+                    . '<br>'
+                    . '<br>'
+                    . Yii::t('app','We use GoCardless to process your Direct Debit payments. More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '). Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/'))) 
                 ->send();
                 $model->save();
-                $message = "Payment Request sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::to(['Product/View/'.$model->id])) . " Firstname: " . $model->name . " Surname: " . $model->surname . " Customer Gocardless Mandate Number: " .$model->gc_number . " Amount: &pound" . (int)$minitotal;
+                $message = Yii::t('app','Payment Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])) . Yii::t('app',' Firstname: ') . $model->name . Yii::t('app',' Surname: ') . $model->surname . Yii::t('app',' Customer Gocardless Mandate Number: ') .$model->gc_number . Yii::t('app',' Amount: &pound') . (int)$minitotal;
                 $message_all = $message_all ."  ".$message . "<br><br>";
        } //else
               
@@ -658,7 +625,7 @@ class ProductController extends Controller
    public function actionPaidticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -672,7 +639,7 @@ class ProductController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       
     } 
     
@@ -701,11 +668,11 @@ class ProductController extends Controller
                         $accept_mandate->administrator_acknowledged = 1;
                         $accept_mandate->save();
                         //$message = "The following customer's mandates have been acknowledged. sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::toRoute(['product/view','id'=>$model->id])). ' The customer will be redirected to this site once they have approved the Mandate and will be encouraged to reply to your original email stating that they have approved the Mandate. Access the Gocardless site to update the fields below.';
-                        $message = "Acknowledged Customer Mandate: ID " . $foundit->id;
+                        $message = Yii::t('app','Acknowledged Customer Mandate: ID ') . $foundit->id;
                         $message_all = $message_all ."  ".$message. "<br><br>";
                 } catch (InvalidStateException $e){
                         $foundit = Product::find()->where(['=','id',$value['product_id']])->one();
-                        $foundit->mandate = 'System message: Mandate has expired after 30 minutes. Send an automatic new mandate again. Customer must approve and confirm email link to Gocardless within 30 minutes. '. Date('Y-m-d H:i:s');
+                        $foundit->mandate = Yii::t('app','System message: Mandate has expired after 30 minutes. Send an automatic new mandate again. Customer must approve and confirm email link to Gocardless within 30 minutes. '). Date('Y-m-d H:i:s');
                         $foundit->gc_number = ''; 
                         $foundit->save();
                         $cancel_mandate = New Sessiondetail();
@@ -714,9 +681,7 @@ class ProductController extends Controller
                         $cancel_mandate->administrator_acknowledged = 0;
                         $cancel_mandate->redirect_flow_id = $cancel_mandate->redirect_flow_id . "XX";
                         $cancel_mandate->save();
-                        $message = 'System message: Customers must approve Mandates within 30 minutes. Send another mandate for approval to Customer ID: '. $foundit->id . ' Name: '. $foundit->name . ' '. $foundit->surname;
-                        //$message = "The following customer's mandates have been acknowledged. sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::toRoute(['product/view','id'=>$model->id])). ' The customer will be redirected to this site once they have approved the Mandate and will be encouraged to reply to your original email stating that they have approved the Mandate. Access the Gocardless site to update the fields below.';
-                        //$message = "Acknowledged Customer Mandate: ID " . $foundit->id;
+                        $message = Yii::t('app','System message: Customers must approve Mandates within 30 minutes. Send another mandate for approval to Customer ID: '). $foundit->id . Yii::t('app',' Name: '). $foundit->name . ' '. $foundit->surname;
                         $message_all = $message_all ."  ".$message. "<br><br>";
                         throw new \yii\web\HttpException(424,$message );
                 }
@@ -737,7 +702,7 @@ class ProductController extends Controller
         if (($model = Product::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }

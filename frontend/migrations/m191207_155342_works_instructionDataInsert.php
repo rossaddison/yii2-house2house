@@ -1,7 +1,6 @@
 <?php
 Namespace frontend\migrations;
 
-use yii\db\Schema;
 use yii\db\Migration;
 
 class m191207_155342_works_instructionDataInsert extends Migration

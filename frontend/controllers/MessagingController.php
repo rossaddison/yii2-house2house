@@ -76,7 +76,7 @@ class MessagingController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Messaging')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a message.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a message.'));
         }
         
         
@@ -101,7 +101,7 @@ class MessagingController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Messaging')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a message.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a message.'));
         }
         
         $model = $this->findModel($id);
@@ -126,7 +126,7 @@ class MessagingController extends Controller
     {
         
         if (!\Yii::$app->user->can('Delete Messaging')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a message.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a message.'));
         }
         
         $this->findModel($id)->delete();
@@ -147,6 +147,6 @@ class MessagingController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
     }
 }

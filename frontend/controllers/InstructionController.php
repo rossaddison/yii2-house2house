@@ -9,16 +9,7 @@ use yii\web\Controller;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\web\NotFoundHttpException;
-use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
-use yii\base\ErrorException;
-
-
-
-
-
-
-
 
 /**
  * InstructionController implements the CRUD actions for Instruction model.
@@ -70,7 +61,7 @@ class InstructionController extends Controller
     public function actionIndex()
     {
         if (!\Yii::$app->user->can('View Instruction')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create an instruction.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create an instruction.'));
         }     
         
         $dataProvider = new ActiveDataProvider([
@@ -91,7 +82,7 @@ class InstructionController extends Controller
     public function actionView($id)
     {
         if (!\Yii::$app->user->can('View Instruction')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission.'));
         }     
         
         return $this->render('view', [
@@ -107,7 +98,7 @@ class InstructionController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Instruction')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create an instruction.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create an instruction.'));
         }        
         
         $model = new Instruction();
@@ -131,7 +122,7 @@ class InstructionController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Instruction')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create an instruction.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create an instruction.'));
         }        
         
         $model = $this->findModel($id);
@@ -158,7 +149,7 @@ class InstructionController extends Controller
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete the daily clean detail where this instruction has been linked to then you will be able to delete this file.');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete the daily clean detail where this instruction has been linked to then you will be able to delete this file.'));
         }
     }
 
@@ -175,6 +166,6 @@ class InstructionController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
     }
 }

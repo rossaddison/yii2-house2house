@@ -148,7 +148,7 @@ class CarousalController extends Controller
         if (($model = Carousal::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
     
@@ -156,12 +156,12 @@ class CarousalController extends Controller
     {
         try{
         if (!\Yii::$app->user->can('Delete Carousal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a carousal.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a carousal.'));
         }    
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(\yii\db\IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'This image or file is linked. You will have to remove this link first.');
+              throw new \yii\web\HttpException(404, Yii::t('app','This image or file is linked. You will have to remove this link first.'));
         }
         
         

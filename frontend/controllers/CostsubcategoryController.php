@@ -57,7 +57,7 @@ class CostsubcategoryController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Street')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a Cost subcategory.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a Cost subcategory.'));
         }
         
         $model = new Costsubcategory();
@@ -74,7 +74,7 @@ class CostsubcategoryController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Street')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a costsubcategory.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a costsubcategory.'));
         }
         
         $model = $this->findModel($id);
@@ -91,14 +91,14 @@ class CostsubcategoryController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Street')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a costsubcategory.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a costsubcategory.'));
         }
         
         try{
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete the costs associated with this subcategory then you will be able to delete this subcategory.');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete the costs associated with this subcategory then you will be able to delete this subcategory.'));
         }
     }
     
@@ -107,7 +107,7 @@ class CostsubcategoryController extends Controller
         if (($model = Costsubcategory::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }

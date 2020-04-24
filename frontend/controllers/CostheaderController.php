@@ -120,7 +120,7 @@ class CostheaderController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a cost.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a cost.'));
         }     
         $model = new Costheader();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -135,7 +135,7 @@ class CostheaderController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a cost.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a cost.'));
         } 
         $model = $this->findModel($id);
 
@@ -151,21 +151,21 @@ class CostheaderController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a cost.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a cost.'));
         }        
         try{
 	    $this->findModel($id)->delete();
             return $this->redirect(['index']);
 	} catch(IntegrityException $e) {
               //Yii::warning('Delete cleans first under this clean.'); 
-              throw new \yii\web\HttpException(404, 'You have individual costs on the detail which you must delete first. Click on costs and delete all of the individual costs.');
+              throw new \yii\web\HttpException(404, Yii::t('app','You have individual costs on the detail which you must delete first. Click on costs and delete all of the individual costs.'));
         }
     }
     
   public function actionCopyticked($id)
    {
       if (!\Yii::$app->user->can('Update Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to copy the ticked step.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to copy the ticked step.'));
         }
       $keylist = Yii::$app->request->get('keylist');
       foreach ($keylist as $key => $value)
@@ -245,7 +245,7 @@ class CostheaderController extends Controller
            $model3->save();
        }       
      };
-     Yii::$app->session->setFlash('success',"Those costs that were checked or ticked have been copied to Costs:  ". $addeddate);
+     Yii::$app->session->setFlash('success',Yii::t('app','Those costs that were checked or ticked have been copied to Costs:  '. $addeddate));
      //return $this->render('index');
    }
     
@@ -371,7 +371,7 @@ class CostheaderController extends Controller
                         $totalamount = $totalamount + $result[$key]['unit_price'];
                     }
       }
-      Yii::$app->session->setFlash('success', "Expenditure: $costmonth/$costyear: Amount:".number_format($totalamount,2). " Paid: ".number_format($totalpaid,2));
+      Yii::$app->session->setFlash('success', Yii::t('app',"Expenditure: $costmonth/$costyear: Amount:").number_format($totalamount,2). Yii::t('app',' Paid: ').number_format($totalpaid,2));
       
     }
     
@@ -386,7 +386,7 @@ class CostheaderController extends Controller
         if (($model = Costheader::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
     

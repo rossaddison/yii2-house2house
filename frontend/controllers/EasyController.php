@@ -4,17 +4,8 @@ use Yii;
 use frontend\models\Easy;
 use frontend\models\Productsubcategory;
 use frontend\models\Product;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
-use yii\helpers\Html;
 use yii\web\Controller;
-use yii\web\Request;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\db\ActiveRecord;
-use yii\db\Query;
-use yii\db\IntegrityException;
-use yii\filters\AccessControl;
 
 class EasyController extends Controller
 {

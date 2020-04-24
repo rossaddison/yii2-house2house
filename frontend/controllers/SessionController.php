@@ -68,7 +68,7 @@ class SessionController extends Controller
     public function actionView($id)
     {
         if (!\Yii::$app->user->can('Access Session')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view a session.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view a session.'));
         }        
         
         return $this->render('view', [
@@ -84,7 +84,7 @@ class SessionController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Access Session')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view a session.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view a session.'));
         }      
         
         
@@ -110,7 +110,7 @@ class SessionController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Access Session')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a session.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a session.'));
         }      
                
         $model = $this->findModel($id);
@@ -134,7 +134,7 @@ class SessionController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Access Session')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a session.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a session.'));
         }      
         
         $this->findModel($id)->delete();
@@ -155,6 +155,6 @@ class SessionController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
     }
 }

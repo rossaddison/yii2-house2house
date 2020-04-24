@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+
 use Yii;
 use frontend\models\Costsubcategory;
 use frontend\models\Cost;
@@ -81,7 +82,7 @@ class CostController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create House')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a cost.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a cost.'));
         }
         $model = new Cost();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -96,7 +97,7 @@ class CostController extends Controller
     public function actionView($id) {
         $model=$this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('kv-detail-success', 'Saved record successfully');
+            Yii::$app->session->setFlash('kv-detail-success', Yii::t('app','Saved record successfully'));
             return $this->redirect(['view', 'id'=>$model->id]);
         } else {
             return $this->render('view', ['model'=>$model]);
@@ -105,7 +106,7 @@ class CostController extends Controller
     
     public function actionDelete() {
         if (!\Yii::$app->user->can('Delete House')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a cost.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a cost.'));
         }        
         try {
         $post = Yii::$app->request->post();
@@ -116,9 +117,9 @@ class CostController extends Controller
                 Yii::$app->response->content = Json::encode([
                     'success' => true,
                     'messages' => [
-                        'kv-detail-info' => 'The cost # ' . $id . ' was successfully deleted. <a href="' . 
+                        'kv-detail-info' => Yii::t('app','The cost # ') . $id . Yii::t('app',' was successfully deleted. <a href="') . 
                             Url::to(['/cost/index']) . '" class="btn btn-sm btn-info">' .
-                            '<i class="glyphicon glyphicon-hand-right"></i>  Click here</a> to proceed.'
+                            '<i class="glyphicon glyphicon-hand-right"></i>  '.Yii::t('app','Click here'). '</a> '. Yii::t('app','to proceed.')
                     ]
                 ]);
             } 
@@ -130,7 +131,7 @@ class CostController extends Controller
                 Yii::$app->response->content = Json::encode([
                     'success' => false,
                     'messages' => [
-                        'kv-detail-error' => 'Cannot delete the cost # ' . $id . '. It exists on Daily Cost'
+                        'kv-detail-error' => Yii::t('app','Cannot delete the cost # ') . $id . Yii::t('app',' It exists on Daily Cost')
                       . 'schedule(s) already. Delete this cost on these Daily Cost Schedules first please.'
                     ]
                 ]);
@@ -261,8 +262,8 @@ class CostController extends Controller
         if (($model = Cost::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
    }
 }
-?>
+

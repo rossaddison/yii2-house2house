@@ -5,7 +5,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name'=>'Hosue2house',
+    'name'=>Yii::t('app','Hosue 2 house'),
     'timezone' => 'UTC',
     //'defaultRoute'=>'/libra/login',
     'basePath' => dirname(__DIR__),
@@ -154,7 +154,7 @@ return [
         'class' => 'sjaakp\pluto\Module',
         //'passwordFlags' => ['all' => 'captcha'],
         'passwordFlags' => ['all' => 'reveal'],
-        'passwordHint' => 'At least eight characters, one uppercase, one digit',
+        'passwordHint' => Yii::t('app','At least eight characters, one uppercase, one digit'),
         'passwordRegexp' => '/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
         'identityClass' => 'sjaakp\pluto\models\User',
         'fenceMode' => true,

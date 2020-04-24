@@ -172,7 +172,7 @@ class SalesorderdetailController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a daily jobsheet.'));
         }        
         $model = new Salesorderdetail();
         $model->sales_order_id = Yii::$app->session['sales_order_id'];
@@ -195,21 +195,21 @@ class SalesorderdetailController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a daily jobsheet.'));
         }         
         try {
             $model = $this->findModel($id);
 	    $this->findModel($id)->delete();            
             return $this->redirect(['index','id'=>$model->sales_order_id]);
 	} catch(IntegrityException $e) {              
-              throw new \yii\web\HttpException(404, 'Integrity Constraint exception.');
+              throw new \yii\web\HttpException(404, Yii::t('app','Integrity Constraint exception.'));
         }
     }
     
     public function actionPaidticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -224,14 +224,14 @@ class SalesorderdetailController extends Controller
       }
       return;
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       return;
     }
     
     public function actionUnpaidticked()
    {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -255,7 +255,7 @@ class SalesorderdetailController extends Controller
     public function actionPay($id)
     {
         if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
         }    
         $model = $this->findModel($id);
         if ($model !== null) {
@@ -268,7 +268,7 @@ class SalesorderdetailController extends Controller
     public function actionUnpay($id)
     {
         if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
         }    
         $model = $this->findModel($id);
         if ($model !== null) {
@@ -281,7 +281,7 @@ class SalesorderdetailController extends Controller
     public function actionDeleteticked()
    {
       if (!\Yii::$app->user->can('Delete Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a daily jobsheet.'));
       } 
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -291,14 +291,14 @@ class SalesorderdetailController extends Controller
                     if ($model !== null) {$model->delete();}
       } 
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       return;
     }
     
     public function actionCleanedticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -311,14 +311,14 @@ class SalesorderdetailController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       return;
     }
     
      public function actionNotcleanedticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -331,14 +331,14 @@ class SalesorderdetailController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       return;
     }
     
      public function actionMissedticked()
      {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -351,14 +351,14 @@ class SalesorderdetailController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       return;
     }
     
     public function actionTransferticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       //$transadv assigned dropdownbox sales order id value
@@ -381,14 +381,14 @@ class SalesorderdetailController extends Controller
          return;
       }     
       
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       return;
     }
    
     public function actionAddpretopaidticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist))
@@ -406,14 +406,14 @@ class SalesorderdetailController extends Controller
         }
       }     
       
-      else {throw new NotFoundHttpException('No ticks selected.');} 
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));} 
       return;
     }
     
     public function actionOwingticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet') && (!\Yii::$app->authManager->getAssignment('support',Yii::$app->user->user_id)==null)){
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       $message_text = Yii::$app->request->get('sdmessage');
@@ -439,15 +439,15 @@ class SalesorderdetailController extends Controller
                               $subtotal += $rows[$key]['unit_price'];
                               $val = $rows[$key]['sales_order_id'];
                               $cleandate = Salesorderheader::findOne($val);
-                              $date = "Clean date: " . $cleandate->clean_date;
-                              $owed = " Owing:" . $rows[$key]['unit_price']; 
+                              $date = Yii::t('app','Clean date: ') . $cleandate->clean_date;
+                              $owed = Yii::t('app',' Owing:') . $rows[$key]['unit_price']; 
                               $pay = $pay ." ".$date. $owed;                                
                             }
-                            $pay = $pay. ".$subtotal payment appreciated. Reference: ".$model->product->name." Please reply -- paid -- to this text once payment has been made.";
+                            $pay = $pay. ' '.$subtotal. Yii::t('app',' payment appreciated. Reference: ').$model->product->name.Yii::t('app',' Please reply -- paid -- to this text once payment has been made.');
                             If ($subtotal > 0) {} else $pay = "";
                             date_default_timezone_set("Europe/London");
                             $date = date('d/m/Y h:i:s a', time());
-                            $completemessage = $date. " Hi ".$model->product->name .", ". $message_text. " " .$pay;
+                            $completemessage = $date. Yii::t('app',' Hi ').$model->product->name .", ". $message_text. " " .$pay;
                             $message = $twilioService->account->messages->create(
                             Yii::$app->params['DialingCodeRestriction'] .substr($model->product->contactmobile,1), // To a number that you want to send sms
                             array(
@@ -479,7 +479,7 @@ class SalesorderdetailController extends Controller
                             $model2->save();
                         }
          }
-     } else {throw new NotFoundHttpException('No ticks selected.');}
+     } else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
      return;
      
     }
@@ -496,7 +496,7 @@ class SalesorderdetailController extends Controller
     public function actionTakeoneoffpayment()
     {
         if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
         } 
         $comp = Company::findOne(1);
         $keylist = Yii::$app->request->get('keylist');
@@ -554,14 +554,14 @@ class SalesorderdetailController extends Controller
              } //if (($model !== null) & (!empty($model->product->email)) & (!empty($model->product->mandate))) 
           }//foreach ($keylist as $key => $value)                                
         } // if (!empty($keylist))
-        else {throw new NotFoundHttpException('Exception: Either No ticks selected, no email of householder, or no direct debit mandate from householder.');} //if (($model !== null) & (!empty($model->product->email))) 
+        else {throw new NotFoundHttpException(Yii::t('app','Exception: Either No ticks selected, no email of householder, or no direct debit mandate from householder.'));} //if (($model !== null) & (!empty($model->product->email))) 
         return;
     }
     
     public function actionCopyticked($id)
    {
       if (!\Yii::$app->user->can('Update Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to copy the ticked step.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to copy the ticked step.'));
       }
        $model2 = Salesorderheader::findOne(Yii::$app->session['sales_order_id']);
        $salesorderdetails = $model2->salesorderdetails;
@@ -625,7 +625,7 @@ class SalesorderdetailController extends Controller
            $model3->paid =0;
            $model3->save();
        } 
-     Yii::$app->session->setFlash('success',"This daily clean has been copied. Modify the date as necessary later.");
+     Yii::$app->session->setFlash('success',Yii::t('app','This daily clean has been copied. Modify the date as necessary later.'));
      return;
     }
     
@@ -639,7 +639,7 @@ class SalesorderdetailController extends Controller
         if (($model = Salesorderdetail::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('SalesorderdetailController: The requested model does not exist.');
+            throw new NotFoundHttpException('SalesorderdetailController: '.Yii::t('app', 'The requested model does not exist.'));
         }
     }
 }

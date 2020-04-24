@@ -1,7 +1,6 @@
 <?php
 Namespace frontend\migrations;
 
-use yii\db\Schema;
 use yii\db\Migration;
 
 class m191110_221831_Mass extends Migration

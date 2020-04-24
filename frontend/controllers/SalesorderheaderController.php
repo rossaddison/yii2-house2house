@@ -9,17 +9,11 @@ use frontend\models\Salesorderheader;
 use frontend\models\Product;
 use frontend\models\Salesorderdetail;
 use yii\helpers\Json;
-use yii\helpers\VarDumper;
 use frontend\models\SalesorderheaderSearch;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 use yii\db\ActiveRecord;
-use yii\db\Query;
-use yii\helpers\Url;
 use yii\behaviors\TimestampBehavior;
 use yii\filters\VerbFilter;
-use yii\base\ErrorException;
-
 
 /**
  * SalesorderheaderController implements the CRUD actions for Salesorderheader model.
@@ -110,7 +104,7 @@ class SalesorderheaderController extends Controller
         }
         
         if (!\Yii::$app->user->can('View Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view a daily clean.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view a daily clean.'));
         }   
        
         return $this->render('index', [
@@ -128,7 +122,7 @@ class SalesorderheaderController extends Controller
     public function actionView($id)
     {
         if (!\Yii::$app->user->can('View Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view a daily clean.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view a daily clean.'));
         }     
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -143,7 +137,7 @@ class SalesorderheaderController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a daily clean.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a daily clean.'));
         }     
         $model = new Salesorderheader();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -165,7 +159,7 @@ class SalesorderheaderController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily clean.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily clean.'));
         } 
         
         
@@ -189,21 +183,21 @@ class SalesorderheaderController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a daily clean.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a daily clean.'));
         }        
         try{
 	    $this->findModel($id)->delete();
             return $this->redirect(['index']);
 	} catch(IntegrityException $e) {
               //Yii::warning('Delete cleans first under this clean.'); 
-              throw new \yii\web\HttpException(404, 'You have individual cleans which you must delete first. Click on cleans and delete all of the individual cleans.');
+              throw new \yii\web\HttpException(404, Yii::t('app','You have individual cleans which you must delete first. Click on cleans and delete all of the individual cleans.'));
         }
     }
     
   public function actionCopyticked($id)
    {
       if (!\Yii::$app->user->can('Update Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to copy the ticked step.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to copy the ticked step.'));
       }
       $keylist = Yii::$app->request->get('keylist');
       foreach ($keylist as $key => $value)
@@ -308,7 +302,7 @@ class SalesorderheaderController extends Controller
               Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
               Yii::$app->response->content = Json::encode([
               'success' => true,
-              'messages' => ['kv-detail-info' => 'Those daily cleans that were checked or ticked have been copied. Modify the date as necessary.']
+              'messages' => ['kv-detail-info' => Yii::t('app','Those daily cleans that were checked or ticked have been copied. Modify the date as necessary.')]
               ]);
           }
        }
@@ -327,7 +321,7 @@ class SalesorderheaderController extends Controller
     public function actionTotalannualrevenue($id)
     {
         if (!\Yii::$app->user->can('Update Daily Clean')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to copy the ticked step.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to copy the ticked step.'));
         }
         $sorderyear = $id;
         $months =[];
@@ -449,7 +443,7 @@ class SalesorderheaderController extends Controller
                        $totalamount = $totalamount + $result[$key]['unit_price'];
                     }
       }
-      Yii::$app->session->setFlash('success', "Revenue  $sordermonth/$sorderyear: Amount ".number_format($totalamount,2). " Received: ".number_format($totalpaid,2));
+      Yii::$app->session->setFlash('success', Yii::t('app','Revenue') .  $sordermonth/$sorderyear.Yii::t('app','  Amount ').number_format($totalamount,2). Yii::t('app',' Received ').number_format($totalpaid,2));
       //return $this->render('index');
     }
 
@@ -475,7 +469,7 @@ class SalesorderheaderController extends Controller
         if (($model = Salesorderheader::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
     

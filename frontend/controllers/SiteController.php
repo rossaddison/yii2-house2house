@@ -1,40 +1,13 @@
 <?php
 namespace frontend\controllers;
 
-use Yii;
-use yii\db\IntegrityException;
-use yii\db\ServerErrorHttpException;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use yii\helpers\Url;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use frontend\models\Productsubcategory;
-use frontend\models\Productcategory;
-use frontend\models\Product;
 use frontend\models\Company;
 use frontend\models\Sessiondetail;
-use frontend\components\Utilities;
-use Yii\helpers\BaseUrl;
-use yii\db\ActiveRecord;
-use yii\db\Query;
 use yii\helpers\Json;
-use yii\helpers\Html;
-use yii\web\ErrorAction;
-use \SEOstats\Services as SEOstats;
-use yii\web\JqueryAsset;
-use Twilio\Rest\Client;
-use Twilio\Exceptions\TwilioException;
-use PayPal\Api\CreditCard as CreditCard;
-use PayPal\Exception\PaypalConnectionException as PaypalConnectionException;
-
-
 
 class SiteController extends Controller
 {
@@ -85,9 +58,9 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', Yii::t('app','Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', Yii::t('app','There was an error sending your message.'));
             }
 
             return $this->refresh();
@@ -267,11 +240,11 @@ class SiteController extends Controller
             try {
                 date_default_timezone_set("Europe/London");
                 $date = date('d/m/Y h:i:s a', time());
-                $completemessage = $date. " Hi ". $cfirstname .", Window Clean Request: " .$cmobile;
+                $completemessage = $date. Yii::t('app',' Hi '). $cfirstname .Yii::t('app',' , Clean Request: ') .$cmobile;
                 $message = $twilioService->account->messages->create(
-                "+44" .substr($cmobile,1), // To a number that you want to send sms
+                substr(Company::findOne(1)->twilio_telephone,0,3) .substr($cmobile,1), // To a number that you want to send sms
                             array(
-                                "from" => "+441315103755",   // From a number that you are sending
+                                "from" => Company::findOne(1)->twilio_telephone,   // From a number that you are sending
                                 "body" => $completemessage, 
                             ));
                            } catch (\Twilio\Exceptions\RestException $e) {

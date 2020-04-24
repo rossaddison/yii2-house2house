@@ -63,16 +63,9 @@ class ProductcategoryController extends Controller
      */
     public function actionView($id)
     {
-       // if(!Yii::$app->user->isGuest) 
-       //{ 
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-       //}
-       //else {
-       //     throw new NotFoundHttpException('You do not have permission to view.');
-      // }
-        
     }
 
     /**
@@ -82,9 +75,7 @@ class ProductcategoryController extends Controller
      */
     public function actionCreate()
     {
-       //if(!Yii::$app->user->isGuest) 
-       //{ 
-           $model = new Productcategory();
+        $model = new Productcategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -93,10 +84,6 @@ class ProductcategoryController extends Controller
                 'model' => $model,
             ]);
         }
-       //}
-       //else {
-       //     throw new NotFoundHttpException('You do not have permission to create.');
-       // }
     }
 
     /**
@@ -106,11 +93,8 @@ class ProductcategoryController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {
-       // if(!Yii::$app->user->isGuest) 
-       //{ 
+    {   
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -118,41 +102,25 @@ class ProductcategoryController extends Controller
                 'model' => $model,
             ]);
         }
-        //}
-       //else {
-       //     throw new NotFoundHttpException('You do not have permission to make adjustments.');
-       // }
     }
 
-    /**
-     * Deletes an existing Productcategory model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
+   
     public function actionDelete($id)
     {
        try{
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
        } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete subcategory ie. Streets linked to this category ie. Postcode then you will be able to delete this category ie. Postcode');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete subcategory ie. Streets linked to this category ie. Postcode then you will be able to delete this category ie. Postcode'));
        }
     }
 
-    /**
-     * Finds the Productcategory model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Productcategory the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Productcategory::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }

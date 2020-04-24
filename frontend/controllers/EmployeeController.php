@@ -47,7 +47,7 @@ class EmployeeController extends Controller
     public function actionIndex()
     {
         if (!\Yii::$app->user->can('Create Employee')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view these details.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view these details.'));
         }  
         
         $dataProvider = new ActiveDataProvider([
@@ -67,7 +67,7 @@ class EmployeeController extends Controller
     public function actionView($id)
     {
         if (!\Yii::$app->user->can('Create Employee')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view these details.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view these details.'));
         }         
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -82,7 +82,7 @@ class EmployeeController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Employee')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create an employee.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create an employee.'));
         } 
         $model = new Employee();
 
@@ -104,7 +104,7 @@ class EmployeeController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Employee')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update an employee.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update an employee.'));
         } 
         
         $model = $this->findModel($id);
@@ -127,13 +127,13 @@ class EmployeeController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Employee')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete an employee.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete an employee.'));
         }
         try{
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete the Daily Cleans that the employee is linked to then you will be able to delete this employee.');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete the Daily Cleans that the employee is linked to then you will be able to delete this employee.'));
         }
     }
 
@@ -149,7 +149,7 @@ class EmployeeController extends Controller
         if (($model = Employee::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }

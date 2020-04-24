@@ -64,7 +64,7 @@ class CompanyController extends Controller
          $model = $this->findModel($value);
          if ($model !== null) 
            { //ifmodelbegin
-             if (empty($model->email) || (empty(Company::findOne()->email))){throw new NotFoundHttpException('Either your Company email address has not been filled in or your Customer Email address does not exist for House ID: '.$model->id);}
+             if (empty($model->email) || (empty(Company::findOne()->email))){throw new NotFoundHttpException(Yii::t('app','Either your Company email address has not been filled in or your Customer Email address does not exist for House ID: ').$model->id);}
              $client = new \GoCardlessPro\Client([
             //'access_token' => getenv('GC_ACCESS_TOKEN'),
             //https://pay-sandbox.gocardless.com/AL00003Y2KPGT1
@@ -99,23 +99,23 @@ class CompanyController extends Controller
        $send = Yii::$app->mailer->compose()
                 ->setFrom(Company::findOne(1)->email)
                 ->setTo($model->email)
-                ->setSubject('Cleaning Direct Debit mandate needs to be approved by you.')
-                ->setTextBody('Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.')
-                ->setHtmlBody('<b>Hello. We have created a variable direct debit mandate through Gocardless. That you will approve each time payment is required from you<i></i></b>')
+                ->setSubject(Yii::t('app','Cleaning Direct Debit mandate needs to be approved by you.'))
+                ->setTextBody(Yii::t('app','Hello. We have created a variable direct debit mandate through Gocardless that you will approve each time payment is required from you.'))
+                ->setHtmlBody(Yii::t('app','<b>Hello. We have created a variable direct debit mandate through Gocardless. That you will approve each time payment is required from you<i></i></b>'))
                 ->send();
                 if($send){
-                    echo "An email has been sent.";
+                    echo Yii::t('app','An email has been sent.');
                 }
         
        //send an email to customer with this link
        //Yii::$app->session->setFlash('kv-detail-success', 'Go cardless customer has been created');
-       Yii::$app->session->setFlash('kv-detail-success', "ID: " . $redirectFlow->id ." Create Customer on Gocardless: ".Html::a($redirectFlow->redirect_url,$redirectFlow->redirect_url));
+       Yii::$app->session->setFlash('kv-detail-success', "ID: " . $redirectFlow->id .Yii::t('app',' Create Customer on Gocardless: ').Html::a($redirectFlow->redirect_url,$redirectFlow->redirect_url));
        return $this->redirect(['view', 'id' => $model->id]);
        }
        else
            
            {//else begin 
-              throw new NotFoundHttpException('No ticks selected.');
+              throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));
        
             }//else model end
        } //foreach end
@@ -125,7 +125,7 @@ class CompanyController extends Controller
    public function actionPaidticked()
     {
       if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a daily jobsheet.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily jobsheet.'));
       }    
       $keylist = Yii::$app->request->get('keylist');
       if (!empty($keylist)){
@@ -139,7 +139,7 @@ class CompanyController extends Controller
                     }
       }
       }
-      else {throw new NotFoundHttpException('No ticks selected.');}
+      else {throw new NotFoundHttpException(Yii::t('app','No ticks selected.'));}
       
     }   
 
@@ -150,7 +150,7 @@ class CompanyController extends Controller
     public function actionIndex()
     {
         if (!\Yii::$app->user->can('Update Company')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to view these details.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to view these details.'));
         } 
         
          $dataProvider = new ActiveDataProvider([
@@ -182,7 +182,7 @@ class CompanyController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Company')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a company.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a company.'));
         }        
         $counted = Company::find()->count(); 
         if (empty($counted))
@@ -202,7 +202,7 @@ class CompanyController extends Controller
         }
         else 
         {
-           throw new ForbiddenHttpException('You can only create one company. Modify details of the current company.');
+           throw new ForbiddenHttpException(Yii::t('app','You can only create one company. Modify details of the current company.'));
         }
         
         
@@ -218,7 +218,7 @@ class CompanyController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Company')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update company details.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update company details.'));
         } 
         
         $model = $this->findModel($id);
@@ -242,7 +242,7 @@ class CompanyController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Company')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a company.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a company.'));
         } 
         
         $this->findModel(1)->delete();
@@ -263,7 +263,7 @@ class CompanyController extends Controller
             return $model;
         } else {
             $model = New Company;
-            $model->name = "Your Company Name";
+            $model->name = Yii::t('app','Your Company Name');
             $model->save();
             return $model;
             //throw new \yii\web\ForbiddenHttpException('The requested page does not exist.');

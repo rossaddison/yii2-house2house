@@ -1,6 +1,6 @@
 <?php
 Namespace frontend\migrations;
-use yii\db\Schema;
+
 use yii\db\Migration;
 
 class m191207_161454_works_importhouses extends Migration

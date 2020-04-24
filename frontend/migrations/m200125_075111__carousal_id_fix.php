@@ -1,5 +1,6 @@
 <?php
 Namespace frontend\migrations;
+
 use frontend\models\Salesorderheader;
 use yii\db\Migration;
 

@@ -5,7 +5,6 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\Messagelog;
 use frontend\models\MessagelogSearch;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -96,7 +95,7 @@ class MessagelogController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Messagelog')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a messagelog.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a messagelog.'));
         }        
         
         $model = new Messagelog();
@@ -120,7 +119,7 @@ class MessagelogController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Messagelog')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a messagelog.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a messagelog.'));
         }        
         
         $model = $this->findModel($id);
@@ -144,13 +143,13 @@ class MessagelogController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Messagelog')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a messagelog.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a messagelog.'));
         }        
         try{
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete the daily clean items this message was sent to then you will be able to delete this message.');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete the daily clean items this message was sent to then you will be able to delete this message.'));
         }
     }
 
@@ -167,6 +166,6 @@ class MessagelogController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
     }
 }

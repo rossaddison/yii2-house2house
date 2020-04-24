@@ -3,12 +3,9 @@
 namespace frontend\controllers;
 
 use Yii;
-use yii\helpers\Url;
 use frontend\models\Importhouses;
-use frontend\models\product;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
@@ -79,7 +76,7 @@ class ImporthousesController extends Controller
     public function actionCreate()
         {
            if (!\Yii::$app->user->can('Import Houses')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to import houses.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to import houses.'));
            }
         
           $model = new Importhouses();
@@ -108,7 +105,7 @@ class ImporthousesController extends Controller
    public function actionUpdate($id)
         {
           if (!\Yii::$app->user->can('Import Houses')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update the file.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update the file.'));
           }
                  
           $model = $this->findModel($id);
@@ -140,7 +137,7 @@ class ImporthousesController extends Controller
             $productcategory_id = null;
             $productsubcategory_id = null; 
             if (!\Yii::$app->user->can('Import Houses')) {
-                throw new \yii\web\ForbiddenHttpException('You do not have permission to update the file.');
+                throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update the file.'));
             } 
             $productcategory_id = Yii::$app->request->get('productcategory_id');
             $productsubcategory_id = Yii::$app->request->get('productsubcategory_id');
@@ -196,23 +193,23 @@ class ImporthousesController extends Controller
                                     $product->gc_number = '';
                                     $product->save();
                                } catch (Exception $ex) {
-                                   throw new \yii\web\ForbiddenHttpException('Validation error: First row of import file must include headings and will be skipped. Check your field values. ');
+                                   throw new \yii\web\ForbiddenHttpException(Yii::t('app','Validation error: First row of import file must include headings and will be skipped. Check your field values. '));
                                }
                                
                            } //for($row = 1; $row <=$highestRow;$row++)
                     } // if ($model !== null)
                 } //foreach ($keylist as $key => $value)
                 
-                Yii::$app->session->setFlash('success','Import completed successfully');
+                Yii::$app->session->setFlash('success',Yii::t('app','Import completed successfully'));
                 return $this->redirect(['product/index?ProductSearch%5Bspecialrequest%5D=&ProductSearch%5Bfrequency%5D=&ProductSearch%5Bproductcategory_id%5D='.$productcategory_id.'&ProductSearch%5Bproductsubcategory_id%5D='.$productsubcategory_id.'&ProductSearch%5Bsellstartdate%5D=&ProductSearch%5Bname%5D=&ProductSearch%5Bsurname%5D=&ProductSearch%5Blistprice%5D=&ProductSearch%5Bgc_number%5D=']);
                 //http://multi2.myhost/product/index?ProductSearch%5Bspecialrequest%5D=&ProductSearch%5Bfrequency%5D=&ProductSearch%5Bproductcategory_id%5D=5&ProductSearch%5Bproductsubcategory_id%5D=31&ProductSearch%5Bsellstartdate%5D=&ProductSearch%5Bname%5D=&ProductSearch%5Bsurname%5D=&ProductSearch%5Blistprice%5D=&ProductSearch%5Bgc_number%5D=
             } //if (!empty($keylist) && !empty($productcategory_id) && !empty($productsubcategory_id)
             elseif (empty($productcategory_id) || empty($productsubcategory_id)){
-                Yii::$app->session->setFlash('warning','Select your postcode and street!');
+                Yii::$app->session->setFlash('warning',Yii::t('app','Select your postcode and street!'));
                 //exit;
             }
             elseif (empty($keylist)){
-                Yii::$app->session->setFlash('warning','No file selected.');
+                Yii::$app->session->setFlash('warning',Yii::t('app','No file selected.'));
                 //exit;
             }
     }
@@ -222,14 +219,14 @@ class ImporthousesController extends Controller
         if (($model = Importhouses::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
     
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Import Houses')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete an uploaded file.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete an uploaded file.'));
         }
         $this->findModel($id)->delete();
         return $this->redirect(['index']);

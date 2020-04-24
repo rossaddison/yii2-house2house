@@ -91,7 +91,7 @@ class CostcategoryController extends Controller
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete the cost subcategory or cost then you will be able to delete this file.');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete the cost subcategory or cost then you will be able to delete this file.'));
         }
     }
 
@@ -100,7 +100,7 @@ class CostcategoryController extends Controller
         if (($model = Costcategory::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }

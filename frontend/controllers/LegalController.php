@@ -66,7 +66,7 @@ class LegalController extends Controller
     public function actionIndex()
     {
          if (!\Yii::$app->user->can('Create Legal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission.'));
         }        
         
         $dataProvider = new ActiveDataProvider([
@@ -87,7 +87,7 @@ class LegalController extends Controller
     public function actionView($id)
     {
          if (!\Yii::$app->user->can('Create Legal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission.'));
         }    
         
         return $this->render('view', [
@@ -103,7 +103,7 @@ class LegalController extends Controller
     public function actionCreate()
     {
          if (!\Yii::$app->user->can('Create Legal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission.'));
         }           
         
         $model = new Legal();
@@ -127,7 +127,7 @@ class LegalController extends Controller
     public function actionUpdate($id)
     {
          if (!\Yii::$app->user->can('Create Legal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission.'));
         }            
         
         $model = $this->findModel($id);
@@ -151,7 +151,7 @@ class LegalController extends Controller
     public function actionDelete($id)
     {
          if (!\Yii::$app->user->can('Create Legal')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission.'));
         }    
         
         $this->findModel($id)->delete();
@@ -172,6 +172,6 @@ class LegalController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
     }
 }

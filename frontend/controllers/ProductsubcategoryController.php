@@ -130,7 +130,7 @@ class ProductsubcategoryController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Street')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to create a street.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a street.'));
         }
         
         $model = new Productsubcategory();
@@ -153,7 +153,7 @@ class ProductsubcategoryController extends Controller
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Street')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to update a street.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a street.'));
         }
         
         $model = $this->findModel($id);
@@ -167,38 +167,25 @@ class ProductsubcategoryController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing Productsubcategory model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Street')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to delete a street.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a street.'));
         }
         try{
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, 'First delete the houses associated with this subcategory ie. street then you will be able to delete this street.');
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete the houses associated with this subcategory ie. street then you will be able to delete this street.'));
         }
     }
 
-    /**
-     * Finds the Productsubcategory model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Productsubcategory the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Productsubcategory::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }
