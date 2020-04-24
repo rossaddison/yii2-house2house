@@ -292,7 +292,7 @@ Keep the localhost ip address [127.0.0.1]. Run the following command from your b
 
     mylocalhostname.myhost/gii/
 
-Assuming that you have already run the **auth.sql** under your phpAdmin, you should already have the auth tables in your database so select them and generate your migration. Make sure that you put the Namesapce command at the top of each migration php file once the migration is completed. After you have put this migration in the console/migrations/auth folder if necessary alter the controllerMap.  
+Assuming that you have already run the **auth.sql** under your phpAdmin, you should already have the auth tables in your database so select them and generate your migration. Make sure that you put the Namespace command at the top of each migration php file once the migration is completed. After you have put this migration in the console/migrations/auth folder if necessary alter the controllerMap.  
 
 **Installation of roles and permissions by migrations**
 
