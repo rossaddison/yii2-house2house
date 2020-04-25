@@ -5,12 +5,13 @@ use yii\db\Query;
 use yii\data\ArrayDataProvider;
 use kartik\grid\GridView;
 use frontend\models\Salesorderheader;
-$tooltipview = Html::tag('span', 'View', ['title'=>'View or Update or Delete','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltippayoff = Html::tag('span', 'Unpaid', ['title'=>'Record as paid.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipdailycleandate  = Html::tag('span', 'Date', ['title'=>'Clean Date of Daily Clean','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+use Yii;
+$tooltipview = Html::tag('span', Yii::t('app','View'), ['title'=>Yii::t('app','View or Update or Delete'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltippayoff = Html::tag('span', Yii::t('app','Unpaid'), ['title'=>'Record as paid.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipdailycleandate  = Html::tag('span', Yii::t('app','Date'), ['title'=>Yii::t('app','Clean Date of Daily Clean'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 <div class="salesorderdetail-expandable-viewdebtsheet">
-<button id="w47" class = "btn btn-success btn-lg" onclick="js:getPaidall()">Pay off all (ticked)</button>    
+<button id="w47" class = "btn btn-success btn-lg" onclick="js:getPaidall()"><?php echo Yii::t('app','Pay off all (ticked)') ?></button>    
     <?php
         $q = new Query;
         $rows = $q->select('*')
@@ -23,7 +24,6 @@ $tooltipdailycleandate  = Html::tag('span', 'Date', ['title'=>'Clean Date of Dai
     ?>  
 <?php
 $data = $rows;
-
 $provider = new ArrayDataProvider([
         'allModels' => $data,
         'key'=> 'sales_order_detail_id',
@@ -34,8 +34,7 @@ $provider = new ArrayDataProvider([
             'attributes' => ['sales_order_id', 'sales_order_detail_id'],
         ],
     ]);
- ?>
-
+?>
 <?php echo GridView::widget([
     'dataProvider' => $provider,
     'containerOptions' => [
@@ -66,7 +65,7 @@ $provider = new ArrayDataProvider([
                 'value' => function ($provider) {
                      $getdate_id = $provider['sales_order_id']; 
                      $getdate = Salesorderheader::find()->where(['sales_order_id'=>$getdate_id])->one();
-                     return $getdate['clean_date']; // $data['name'] for array data, e.g. using SqlDataProvider.
+                     return $getdate['clean_date']; 
                 },
         ],
         'sales_order_id',
@@ -81,7 +80,7 @@ $provider = new ArrayDataProvider([
                             'link' => function ($url, $provider,$key) {
                             $getdate_id = $provider['sales_order_id'];  
                             $getdate = Salesorderheader::find()->where(['sales_order_id'=>$getdate_id])->one();
-                            return Html::a("View: ".$getdate['clean_date'],  $url,['class' => 'btn btn-success btn-lg']);
+                            return Html::a(Yii::t('app','View ').$getdate['clean_date'],  $url,['class' => 'btn btn-success btn-lg']);
                             },
                     ],
                     'urlCreator' => function ($action, $provider, $key, $index) {
@@ -100,7 +99,7 @@ $provider = new ArrayDataProvider([
                     'buttons' => [
                             'link' => function ($url, $provider,$key) {
                             if  ($provider['paid'] < $provider['unit_price']){
-                            return Html::a("Unpaid", $url,['class' => 'btn btn-danger btn-lg']);
+                            return Html::a(Yii::t('app','Unpaid'), $url,['class' => 'btn btn-danger btn-lg']);
                             }
                             },
                     ],
@@ -117,9 +116,7 @@ $provider = new ArrayDataProvider([
         'unit_price',       
     ],
 ]); 
- 
 ?>
-
 </div>
 
 

@@ -1,20 +1,14 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ListView;
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Taxes';
+use Yii;
+$this->title = Yii::t('app','Taxes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tax-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Tax', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Tax'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

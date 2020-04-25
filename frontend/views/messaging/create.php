@@ -1,21 +1,13 @@
 <?php
-
 use yii\helpers\Html;
-
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Messaging */
-
-$this->title = 'Create Messaging';
-$this->params['breadcrumbs'][] = ['label' => 'Messagings', 'url' => ['index']];
+use Yii;
+$this->title = Yii::t('app','Create Messaging');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Messagings'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="messaging-create">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

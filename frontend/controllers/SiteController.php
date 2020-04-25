@@ -8,6 +8,7 @@ use frontend\models\ContactForm;
 use frontend\models\Company;
 use frontend\models\Sessiondetail;
 use yii\helpers\Json;
+use Yii;
 
 class SiteController extends Controller
 {
@@ -197,19 +198,10 @@ class SiteController extends Controller
     }
     return Json::encode(['output'=>'', 'selected'=>'']);
     }
-    
-    //normally under D:\wamp29\www\advanced\web\vendor\yiisoft\yii2\views\errorHandler 
-    //if errorHandler is set under config\main.php to site\error then 
-    //You should now create a view file located at views/site/error.php. In this view file,
-    //you can access the following variables if the error action is defined as yii\web\ErrorAction:
-  
+      
     public function actionError()
     {
     $exception = Yii::$app->errorHandler->exception;
-    //if ($exception instanceof \yii\db\IntegrityException) {
-    //    $message = 'NB: In order to delete a house you must make sure there is no house included in any Daily Clean. Delete this house in the Daily Clean first.';
-    //    echo $message;
-    //}
     if ($exception !== null) {
         return $this->render('error', ['exception' => $exception]);
     }
@@ -227,9 +219,7 @@ class SiteController extends Controller
             ],
         ];
     }
-    
-   
-   
+       
    public function actionSitemessage()
    {
        $cfirstname = Yii::$app->request->get('custfirstname');

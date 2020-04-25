@@ -2,17 +2,12 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use \kartik\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Sessions';
+use Yii;
+$this->title = Yii::t('app','Sessions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="session-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <?php
     $gridColumns = [
       ['class' => 'yii\grid\ActionColumn'],
@@ -20,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
       [
         'class' => 'kartik\grid\ActionColumn',
         'template' => '{link}',
-        'header'=>'Details',
+        'header'=>Yii::t('app','Details'),
         'visible'=> Yii::$app->user->can("Access Session") ? true : false,
         'buttons' => [ 
                 'link' => function ($url, $model,$key) {
-                                return Html::a('Details', $url);
+                                return Html::a(Yii::t('app','Details'), $url);
                     },
         ],
         'urlCreator' => function ($action, $model, $key, $index) {
@@ -41,13 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'data',
       'user_id',
     ];
-   
-   
     echo kartik\grid\GridView::widget([
       'dataProvider' => $dataProvider,
-      //'filterModel' => $searchModel,
       'columns' => $gridColumns,
-      //'bootstrap'=>'true',
       'containerOptions' => ['style'=>'overflow: auto'], 
       'pjax' => true,
       'pjaxSettings' =>['neverTimeout'=>true,
@@ -61,15 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'hover' => true,
       'floatHeader' => false,
       'showPageSummary' => true,
-      //'export'=>false,
       'panel' => [
         'type' => GridView::TYPE_PRIMARY
       ],
-      
-   ]);  
-   
+  ]);  
  ?>
-    
-    
-
 </div>

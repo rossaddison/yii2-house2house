@@ -9,14 +9,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * MessagingController implements the CRUD actions for Messaging model.
- */
 class MessagingController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+   
     public function behaviors()
     {
         return [
@@ -40,10 +35,7 @@ class MessagingController extends Controller
         ];
     }
 
-    /**
-     * Lists all Messaging models.
-     * @return mixed
-     */
+    
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
@@ -55,12 +47,6 @@ class MessagingController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Messaging model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -68,11 +54,6 @@ class MessagingController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Messaging model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Messaging')) {
@@ -91,13 +72,6 @@ class MessagingController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Messaging model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Messaging')) {
@@ -115,13 +89,6 @@ class MessagingController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Messaging model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         
@@ -134,13 +101,6 @@ class MessagingController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Messaging model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Messaging the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Messaging::findOne($id)) !== null) {

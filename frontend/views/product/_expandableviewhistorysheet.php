@@ -5,11 +5,12 @@ use yii\db\Query;
 use yii\data\ArrayDataProvider;
 use kartik\grid\GridView;
 use frontend\models\Salesorderheader;
-$tooltipview = Html::tag('span', 'View', ['title'=>'View or Update or Delete','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltippayoff = Html::tag('span', 'Unpaid', ['title'=>'Record as paid.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipdailycleandate  = Html::tag('span', 'Date', ['title'=>'Clean Date of Daily Clean','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipsalesorderheader = Html::tag('span', 'SOH', ['title'=>'Sales Order Header','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipsalesorderdetail = Html::tag('span', 'SOD', ['title'=>'Sales Order Detail','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+use Yii;
+$tooltipview = Html::tag('span', Yii::t('app','View'), ['title'=>Yii::t('app','View or Update or Delete'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltippayoff = Html::tag('span', Yii::t('app','Unpaid'), ['title'=>Yii::t('app','Record as paid.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipdailycleandate  = Html::tag('span', Yii::t('app','Date'), ['title'=>Yii::t('app','Clean Date of Daily Clean'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipsalesorderheader = Html::tag('span', 'SOH', ['title'=>Yii::t('app','Sales Order Header'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipsalesorderdetail = Html::tag('span', 'SOD', ['title'=>Yii::t('app','Sales Order Detail'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 <div class="product-expandable-viewhistorysheet">
     <?php
@@ -22,7 +23,6 @@ $tooltipsalesorderdetail = Html::tag('span', 'SOD', ['title'=>'Sales Order Detai
     ?>  
 <?php
 $data = $rows;
-
 $provider = new ArrayDataProvider([
         'allModels' => $data,
         'key'=> 'sales_order_detail_id',
@@ -34,7 +34,6 @@ $provider = new ArrayDataProvider([
         ],
     ]);
  ?>
-
 <?php echo GridView::widget([
     'dataProvider' => $provider,
     ///'containerOptions' => [
@@ -103,7 +102,7 @@ $provider = new ArrayDataProvider([
                         }
                     }
          ],   
-             [
+        [
                     'class' => 'kartik\grid\ActionColumn',
                     'template' => '{link}',
                     'header'=>$tooltippayoff,
@@ -111,10 +110,10 @@ $provider = new ArrayDataProvider([
                     'buttons' => [
                             'link' => function ($url, $provider,$key) {
                             if  ($provider['paid'] < $provider['unit_price']){
-                            return Html::a("Unpaid", $url,['class' => 'btn btn-danger']);
+                            return Html::a(Yii::t('app','Unpaid'), $url,['class' => 'btn btn-danger']);
                             }
                             if  ($provider['paid'] == $provider['unit_price']){
-                            return Html::a("Paid", $url,['class' => 'btn btn-success']);
+                            return Html::a(Yii::t('app','Paid'), $url,['class' => 'btn btn-success']);
                             }
                             },
                     ],
@@ -129,9 +128,7 @@ $provider = new ArrayDataProvider([
         'unit_price',       
     ],
 ]); 
- 
 ?>
-
 </div>
 
 

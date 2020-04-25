@@ -1,17 +1,17 @@
 <?php
 use yii\helpers\Html;
+use frontend\models\Product;
+use frontend\models\Productsubcategory;
+use frontend\models\Productcategory;
+use frontend\models\Company;
+use \supplyhog\ClipboardJs\ClipboardJsWidget;
+use Yii;
 ?>
 <div class="salesorderheader-expandable-view">
     <table border="0" class="table transparent">
     <?php
-    use frontend\models\Product;
-    use frontend\models\Productsubcategory;
-    use frontend\models\Productcategory;
-    use frontend\models\Company;
-    use \supplyhog\ClipboardJs\ClipboardJsWidget;
     $rows = $model->salesorderdetails;
     $names = '';
-    
     foreach ($rows as $key => $value)
     {
         $myvalue = $value['product_id'];
@@ -25,25 +25,22 @@ use yii\helpers\Html;
         $url3 = ltrim($name['productnumber'], '0')." ".$streetname['name']." ".$postalcodename['name'];
         $url4 = "tel:/".preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone);
         if ($value['paid'] < $value['unit_price']) {
-                    $paid_or_unpaid = "Unpaid";
-                    //$green_or_red = ['class' => 'btn btn-danger'];} 
+                    $paid_or_unpaid = Yii::t('app','Unpaid');
                     $green_or_red = 'btn btn-danger btn-lg';} 
                     else {
-                    $paid_or_unpaid = "Paid";    
-                   // $green_or_red = ['class' => 'btn btn-success'];}
+                    $paid_or_unpaid = Yii::t('app','Paid');    
                     $green_or_red = 'btn btn-success btn-lg';}
         if (($value['paid'] == 0) && ($value['unit_price'] == 0)) {
-                    $paid_or_unpaid = "Ignore";
+                    $paid_or_unpaid = Yii::t('app','Ignore');
                     $green_or_red = "";}             
         if ((strlen($name['contactmobile'])<>11) || ($name['contactmobile'] == '07777777777'))
         {$button_or_nobutton = ['class' => 'btn btn-danger btn-lg'];
-            $ifmobile = "No mobile number";
+            $ifmobile = Yii::t('app','No mobile number');
             $url=['product/view/?id='.$myvalue];
         }else {$button_or_nobutton = ['class' => 'btn btn-info btn-lg'];
                                $ifmobile = $name['contactmobile'];}
         if (Yii::$app->user->can('See Prices')) {                      
-        //copy the clipboard folder into bower from vendor/bower-asset                       
-            echo Html::tag('div',
+             echo Html::tag('div',
              Html::tag('tr',
                  '<td >'.
                  $name['name']
@@ -52,16 +49,16 @@ use yii\helpers\Html;
                  ."</td><td>". 
                  Html::a($ifmobile,$url,$button_or_nobutton)
                  ."</td><td>". 
-                 Html::a($url3,$url2,['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>'Goto Google maps using this address.'])                 
+                 Html::a($url3,$url2,['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','Goto Google maps using this address.')])                 
                  ."</td><td>".
-                 \supplyhog\ClipboardJs\ClipboardJsWidget::widget([
+                 ClipboardJsWidget::widget([
                      'text' => $url3,
-                     'label' => 'Copy address to clipboard',
+                     'label' => Yii::t('app','Copy address to clipboard'),
                      'htmlOptions' => ['class' => 'btn btn-lg'],
                      'tag' => 'button',
                  ])  
                  ."</td><td>".
-                 Html::a(preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone),$url4,['class' => 'btn btn-warning btn-lg','data-toggle'=>'tooltip','title'=>'Telephone number of Boss obtained from Company settings...telephone.'])                 
+                 Html::a(preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone),$url4,['class' => 'btn btn-warning btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','Telephone number of Boss obtained from Company settings...telephone.')])                 
                  ."</td><td>".
                  $value['unit_price']
                  ."</td><td>".
@@ -79,11 +76,11 @@ use yii\helpers\Html;
                  ."</td><td>". 
                  $name['surname']
                  ."</td><td>".
-                 Html::a($url3,$url2,['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>'Goto Google maps using this address.'])                 
+                 Html::a($url3,$url2,['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','Goto Google maps using this address.')])                 
                  ."</td><td>".
-                 \supplyhog\ClipboardJs\ClipboardJsWidget::widget([
+                 ClipboardJsWidget::widget([
                      'text' => $url3,
-                     'label' => 'Copy address to clipboard',
+                     'label' => Yii::t('app','Copy address to clipboard'),
                      'htmlOptions' => ['class' => 'btn btn-lg'],
                      'tag' => 'button',
                  ])  
@@ -93,9 +90,6 @@ use yii\helpers\Html;
             ); //html tag div 
         } //else
     } //foreach
-    
     ?>
-    
-    
     </table>
 </div>

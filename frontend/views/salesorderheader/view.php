@@ -1,30 +1,23 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Salesorderheader */
-
+use Yii;
 $this->title = $model->sales_order_id;
-$this->params['breadcrumbs'][] = ['label' => 'Daily Cleans', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Daily Cleans'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="salesorderheader-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->sales_order_id], ['class' => 'btn btn-primary btn-lg']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->sales_order_id], [
+        <?= Html::a(Yii::t('app','Update'), ['update', 'id' => $model->sales_order_id], ['class' => 'btn btn-primary btn-lg']) ?>
+        <?= Html::a(Yii::t('app','Delete'), ['delete', 'id' => $model->sales_order_id], [
             'class' => 'btn btn-danger btn-lg',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
     </p>
-
    <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,16 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'statusfile',
         ['attribute'=>'employee_id','header'=>'Employee','value'=>$model->employee->title],
         'clean_date',
+        //auto filled from sales order details
         //'sub_total',
         //'tax_amt',
         //'total_due',
         'modified_date',
         ],
     ]) ?>
-    
-    
-    
-  
-
-
 </div>

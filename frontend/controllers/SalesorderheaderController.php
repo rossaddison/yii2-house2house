@@ -1,5 +1,4 @@
 <?php
-
 namespace frontend\controllers;
 
 use Yii;
@@ -15,16 +14,8 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\filters\VerbFilter;
 
-/**
- * SalesorderheaderController implements the CRUD actions for Salesorderheader model.
- */
 class SalesorderheaderController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    
-    
     public function behaviors()
     {
         return [
@@ -60,10 +51,6 @@ class SalesorderheaderController extends Controller
         ];
     }
 
-    /**
-     * Lists all Salesorderheader models.
-     * @return mixed
-     */
     public function actionIndex()
     {
             $searchModel = new SalesorderheaderSearch();
@@ -114,11 +101,6 @@ class SalesorderheaderController extends Controller
         
     }
 
-    /**
-     * Displays a single Salesorderheader model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         if (!\Yii::$app->user->can('View Daily Clean')) {
@@ -129,11 +111,6 @@ class SalesorderheaderController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Salesorderheader model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Daily Clean')) {
@@ -148,23 +125,14 @@ class SalesorderheaderController extends Controller
             ]);
         }
     }
-
-    /**
-     * Updates an existing Salesorderheader model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    
+   
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Daily Clean')) {
             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a daily clean.'));
         } 
-        
-        
         $model = $this->findModel($id);
-
+ 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->sales_order_id]);
         }
@@ -173,13 +141,7 @@ class SalesorderheaderController extends Controller
             'model' => $model,
         ]);
     }
-
-    /**
-     * Deletes an existing Salesorderheader model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
+    
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Daily Clean')) {
@@ -238,10 +200,7 @@ class SalesorderheaderController extends Controller
        $model->sub_total = 0;
        $model->tax_amt=0;
        $model->total_due=0;
-       //save the record to generate a new sales order id
        $model->save();
-       //find the last record's sales_order_id just saved
-       //Yii::$app->session['salesoid'] = $model->sales_order_id;
        Yii::$app->session['sod'] = $salesorderdetails;
        foreach ($salesorderdetails as $key => $value)
        {
@@ -317,8 +276,7 @@ class SalesorderheaderController extends Controller
        }  
    }
    
-    //public function actionAllmonthsrevenue()
-    public function actionTotalannualrevenue($id)
+   public function actionTotalannualrevenue($id)
     {
         if (!\Yii::$app->user->can('Update Daily Clean')) {
             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to copy the ticked step.'));
@@ -412,57 +370,12 @@ class SalesorderheaderController extends Controller
         return $this->render('totalannualrevenue',['months'=>$months,'year'=>$sorderyear]);
     }
     
-    public function actionTotalmonthlyrevenue()
-    {
-       $sordermonth = Yii::$app->request->get('sordermonth');
-       $sorderyear = Yii::$app->request->get('sorderyear');
-       $sorderyearcompare = $sorderyear;
-       $monthadd = $sordermonth +1;
-       If ($monthadd === 13) {
-          $monthadd = 1;
-           $sorderyearcompare = $sorderyearcompare + 1;
-       } 
-       
-       //filter the dates out for the month selected
-       $monthlycleans = Salesorderheader::find()
-       ->where(['<=','clean_date',"$sorderyearcompare"."-".$monthadd."-"."01"])
-       ->andFilterWhere(['>=','clean_date',"$sorderyear"."-".$sordermonth."-"."01"])
-       ->orderBy('clean_date')
-       ->all();
-       $totalamount = 0.00;
-       $totalpaid = 0.00;
-       $totalamount = number_format($totalamount,2);
-       $totalpaid = number_format($totalpaid,2);
-       foreach ($monthlycleans as $key)
-      {
-                    $result = [];
-                    $result = Salesorderdetail::find()->where(['sales_order_id'=>$key['sales_order_id']])->all();
-                    foreach ($result as $key => $value)
-                    {
-                       $totalpaid = $totalpaid + $result[$key]['paid'];
-                       $totalamount = $totalamount + $result[$key]['unit_price'];
-                    }
-      }
-      Yii::$app->session->setFlash('success', Yii::t('app','Revenue') .  $sordermonth/$sorderyear.Yii::t('app','  Amount ').number_format($totalamount,2). Yii::t('app',' Received ').number_format($totalpaid,2));
-      //return $this->render('index');
-    }
-
-    /**
-     * Finds the Salesorderheader model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Salesorderheader the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    
     public function actionFilterpaid()
     {
         $saretheypaid = Yii::$app->request->get('checkbox1');
         Yii::$app->session->setFlash('success', "Checkbox1: $saretheypaid");
         return $this->render('index');
     }
-    
-    
     
     protected function findModel($id)
     {
@@ -471,16 +384,6 @@ class SalesorderheaderController extends Controller
         } else {
             throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
-    }
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
     
 }

@@ -1,15 +1,7 @@
-<?php
-/* @var $this \yii\web\View */
-/* @var $exception \Exception */
-/* @var $handler \yii\web\ErrorHandler */
-?>
 <?php if (method_exists($this, 'beginPage')) $this->beginPage(); ?>
-<!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8"/>
-
     <title><?php
         $name = $handler->getExceptionName($exception);
         if ($exception instanceof \yii\web\HttpException) {
@@ -23,7 +15,6 @@
             }
         }
     ?></title>
-
     <style type="text/css">
 /* reset */
 html,body,div,span,h1,h2,h3,h4,h5,h6,p,pre,a,code,em,img,strong,b,i,ul,li{

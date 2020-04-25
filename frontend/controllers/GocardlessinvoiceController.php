@@ -9,9 +9,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * GocardlessinvoiceController implements the CRUD actions for Gocardlessinvoice model.
- */
 class GocardlessinvoiceController extends Controller
 {
     /**
@@ -47,10 +44,6 @@ class GocardlessinvoiceController extends Controller
         ];
     }
 
-    /**
-     * Lists all Gocardlessinvoice models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new Gocardlessinvoicesearch();
@@ -62,12 +55,6 @@ class GocardlessinvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Gocardlessinvoice model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -75,11 +62,7 @@ class GocardlessinvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Gocardlessinvoice model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+    
     public function actionCreate()
     {
         $model = new Gocardlessinvoice();
@@ -93,13 +76,7 @@ class GocardlessinvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Gocardlessinvoice model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+   
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -113,13 +90,7 @@ class GocardlessinvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Gocardlessinvoice model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -127,13 +98,7 @@ class GocardlessinvoiceController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Gocardlessinvoice model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Gocardlessinvoice the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     protected function findModel($id)
     {
         if (($model = Gocardlessinvoice::findOne($id)) !== null) {

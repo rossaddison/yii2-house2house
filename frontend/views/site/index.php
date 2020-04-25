@@ -2,9 +2,8 @@
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
-$this->title = 'House 2 house';
+$this->title = Yii::t('app','House 2 house');
 ?>
-
 <div class="site-index">
     <div class="body-content">
         <div class="container">

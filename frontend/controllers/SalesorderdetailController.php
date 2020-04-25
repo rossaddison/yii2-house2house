@@ -20,15 +20,9 @@ use yii\db\Query;
 use frontend\models\Gocardlessinvoice;
 
 
-
-/**
- * SalesorderdetailController implements the CRUD actions for Salesorderdetail model.
- */
 class SalesorderdetailController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+   
     public function behaviors()
     {
         return [
@@ -56,11 +50,7 @@ class SalesorderdetailController extends Controller
         ];
     }
 
-    /**
-     * Lists all Salesorderdetail models.
-     * @return mixed
-     */
-    //this is the sales order id that is passed from the salesorderheader
+    
     public function actionIndex($id)
     {
             Yii::$app->session['sales_order_id'] = $id;
@@ -89,44 +79,24 @@ class SalesorderdetailController extends Controller
      if (Yii::$app->request->post('hasEditable')) {
         $salesorderId = Yii::$app->request->post('editableKey');
         $model = Salesorderdetail::findOne($salesorderId);
-
-        // fetch the first entry in posted data (there should only be one entry 
-        // anyway in this array for an editable submission)
-        // - $posted is the posted data for Model without any indexes
-        // - $post is the converted array for single model validation
         $posted = current($_POST['Salesorderdetail']);
         $post = ['Salesorderdetail' => $posted];
-
-        // load model like any single model validation
         if ($model->load($post)) {
-        // can save model or do something before saving model
         $model->save();
         }
-        // custom output to return to be displayed as the editable grid cell
-        // data. Normally this is empty - whereby whatever value is edited by
-        // in the input by user is updated automatically.
         $output = '';
-
-
         if (isset($posted['unit_price'])) {
           $output = Yii::$app->formatter->asDecimal($model->unit_price, 2);
         }
-        
         if (isset($posted['paid'])) {
           $output = Yii::$app->formatter->asDecimal($model->paid, 2);
         }
-        
         if (isset($posted['advance_payment'])) {
           $output = Yii::$app->formatter->asDecimal($model->advance_payment, 2);
         }
-        
         if (isset($posted['tip'])) {
           $output = Yii::$app->formatter->asDecimal($model->tip, 2);
         }
-        // similarly you can check if the name attribute was posted as well
-        // if (isset($posted['name'])) {
-        // $output = ''; // process as you need
-        // }
         
         return Json::encode(['output'=>$output, 'message'=>'']);
         
@@ -151,11 +121,7 @@ class SalesorderdetailController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Salesorderdetail model.
-     * @param integer $id
-     * @return mixed
-     */
+    
     public function actionView($id)
     {
         
@@ -164,11 +130,7 @@ class SalesorderdetailController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Salesorderdetail model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+   
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Daily Job Sheet')) {
@@ -184,14 +146,7 @@ class SalesorderdetailController extends Controller
             ]);
         }
     }
-
-
-    /**
-     * Deletes an existing Salesorderdetail model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
+   
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Daily Job Sheet')) {
@@ -483,16 +438,7 @@ class SalesorderdetailController extends Controller
      return;
      
     }
-    
-    /**
-     * Finds the Salesorderdetail model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Salesorderdetail the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    
-    
+        
     public function actionTakeoneoffpayment()
     {
         if (!\Yii::$app->user->can('Update Daily Job Sheet')) {
@@ -579,10 +525,7 @@ class SalesorderdetailController extends Controller
        $model->sub_total = 0;
        $model->tax_amt=0;
        $model->total_due=0;
-       //save the record to generate a new sales order id
        $model->save();
-       //find the last record's sales_order_id just saved
-       //Yii::$app->session['salesoid'] = $model->sales_order_id; 
        foreach ($salesorderdetails as $key => $value)
        {
            $model3= new Salesorderdetail();

@@ -2,21 +2,15 @@
 use yii\helpers\Html;
 use frontend\models\Productsubcategory;
 use frontend\models\Productcategory;
-use frontend\models\Product;
 use dosamigos\google\maps\LatLng;
-use dosamigos\google\maps\services\DirectionsWayPoint;
 use dosamigos\google\maps\services\TravelMode;
 use dosamigos\google\maps\overlays\PolylineOptions;
 use dosamigos\google\maps\services\DirectionsRenderer;
 use dosamigos\google\maps\services\DirectionsService;
-use dosamigos\google\maps\overlays\InfoWindow;
-use dosamigos\google\maps\overlays\Marker;
 use dosamigos\google\maps\Map;
-use dosamigos\google\maps\Size;
 use dosamigos\google\maps\services\DirectionsRequest;
-use dosamigos\google\maps\overlays\Polygon;
-use dosamigos\google\maps\layers\BicyclingLayer;
 use frontend\components\Utilities;
+use Yii;
 ?>
 <div class="productsubcategory-expandable-view">
     <table border="0" class="table transparent">
@@ -47,7 +41,6 @@ use frontend\components\Utilities;
                      'draggable' => true
                  ]);
                  //for all the streets within the postcode
-
                 foreach ($array3 as $key3 => $value3)
                  {
                      //take each street 
@@ -75,10 +68,8 @@ use frontend\components\Utilities;
                              ]);
                              //overlay the street
                              $map->appendScript($directionsService->getJs());
-
                              $atleast1 = $atleast1 + 1;
                      } 
-
                      $totalcount = $count + $totalcount;
                  }
                  //display the map only once all the streets have been overlayed and there is at least one street
@@ -88,7 +79,7 @@ use frontend\components\Utilities;
                  echo  "<h4>&nbsp;&nbsp;".$strpcodename." (".$totalcount.")"."</h4>";
                  $url2 = "https://maps.google.com/maps?q=".$streetname['name']." ".$postalcodename['name'];
                  $url3 = $streetname['name']." ".$postalcodename['name'];            
-                 echo Html::a($url3,$url2,['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>'Goto Google maps using this address.']);                
+                 echo Html::a($url3,$url2,['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>Yii::t('app','Goto Google maps using this address.')]);                
            }// not empty$array3
      ?>                  
     </table>

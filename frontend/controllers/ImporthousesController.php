@@ -1,5 +1,4 @@
 <?php
-
 namespace frontend\controllers;
 
 use Yii;
@@ -47,10 +46,7 @@ class ImporthousesController extends Controller
         ];
     }
 
-    /**
-     * Lists all Carousal models.
-     * @return mixed
-     */
+   
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
@@ -61,11 +57,7 @@ class ImporthousesController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single ImportHouses model.
-     * @param integer $id
-     * @return mixed
-     */
+   
     public function actionView($id)
     {
         return $this->render('view', [

@@ -1,28 +1,18 @@
 <?php
-
 use yii\helpers\Html;
 use kartik\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $searchModel frontend\models\QuicknoteSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Quicknotes';
-$this->params['breadcrumbs'][] = ['label' => 'Quicknotes', 'url' => ['quicknote/index']];
+use Yii;
+$this->title = Yii::t('app','Quick Notes');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Quick Notes'), 'url' => ['quicknote/index']];
 $this->params['breadcrumbs'][] = $this->title;
-$viewMsg = 'View';
-$updateMsg = 'Update';
+$viewMsg = Yii::t('app','View');
+$updateMsg = Yii::t('app','Update');
 ?>
 <div class="quicknote-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Quicknote', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Quicknote'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -31,14 +21,14 @@ $updateMsg = 'Update';
             'id',
             ['class' => 'kartik\grid\ActionColumn',
             'dropdown' => false,
-            'header'=>'View',
+            'header'=>Yii::t('app','View'),
             'vAlign'=>'middle',
             'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
             'template'=> '{view}',
            ],
            ['class' => 'kartik\grid\ActionColumn',
             'dropdown' => false,
-            'header'=>'Update',
+            'header'=>Yii::t('app','Update'),
             'vAlign'=>'middle',
             'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
             'template'=> '{update}',
@@ -61,6 +51,4 @@ $updateMsg = 'Update';
             'modified_at',
         ],
     ]); ?>
-
-
 </div>

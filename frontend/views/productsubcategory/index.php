@@ -1,46 +1,40 @@
 <?php
-
 use yii\helpers\Html;
 use frontend\models\Productcategory;
-/* @var $this yii\web\View */
-/* @var $searchModel frontend\models\ProductsubcategorySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Street';
+use Yii;
+$this->title = Yii::t('app','Street');
 $this->params['breadcrumbs'][] = $this->title;
-$viewMsg = 'View';
-$deleteMsg = 'Delete';
-$updateMsg = 'Update';
-$tooltipsortorder = Html::tag('span', 'Order', ['title'=>'This is the order in which jobs will be completed. View to set to 500 for Quick Build.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$viewMsg = Yii::t('app','View');
+$deleteMsg = Yii::t('app','Delete');
+$updateMsg = Yii::t('app','Update');
+$tooltipsortorder = Html::tag('span', 'Order', ['title'=>Yii::t('app','This is the order in which jobs will be completed. View to set to 500 for Quick Build.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 <div class="productsubcategory-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Street', ['create'], ['class' => 'btn btn-success btn-lg']) ?>
-        <?= Html::a('Postcode Finder', "http://pcf.raggedred.net/", ['class' => 'btn btn-success btn-lg']) ?>
+        <?= Html::a(Yii::t('app','Create Street'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
+        <?= Html::a(Yii::t('app','Postcode Finder'), "http://pcf.raggedred.net/", ['class' => 'btn btn-success btn-lg']) ?>
     </p>
     <?php
     $gridColumns = [
     ['class' => 'kartik\grid\SerialColumn'],
     ['class' => 'kartik\grid\ActionColumn',
      'dropdown' => false,
-     'header'=>'View',
+     'header'=>Yii::t('app','View'),
      'vAlign'=>'middle',
      'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
      'template'=> '{view}',
     ], 
     ['class' => 'kartik\grid\ActionColumn',
      'dropdown' => false,
-     'header'=>'Update',
+     'header'=>Yii::t('app','Update'),
      'vAlign'=>'middle',
      'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
      'template'=> '{update}',
     ],   
     [
             'class'=>'kartik\grid\DataColumn',
-            'header'=>'Area Code',
+            'header'=>Yii::t('app','Area Code'),
             'attribute'=>'productcategory_id',
             'value' => function ($dataProvider) {
                     return $dataProvider->productcategory->name; 
@@ -52,12 +46,12 @@ $tooltipsortorder = Html::tag('span', 'Order', ['title'=>'This is the order in w
      'attribute'=>'name',
      'filterInputOptions' => [
                   'class'       => 'form-control',
-                  'placeholder' => 'Street Name...'
+                  'placeholder' => Yii::t('app','Street Name '). '...',
                 ],
     ],
     [
     'class' => 'kartik\grid\ExpandRowColumn',
-    'header'=>'Map',  
+    'header'=>Yii::t('app','Map'),  
     'expandTitle'=> 'Postcode and Street',
     'width' => '300px',
     'value' => function ($dataProvider, $key, $index, $column) {
@@ -79,7 +73,7 @@ $tooltipsortorder = Html::tag('span', 'Order', ['title'=>'This is the order in w
             'visible'=> Yii::$app->user->isGuest ? false : true,
             'buttons' => ['link' => function ($url, $dataProvider,$key) {
                $url3 = $dataProvider->name." ".$dataProvider->productcategory->name;   
-               return Html::a($url3,$url,['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>'Goto Google maps using this address.']);
+               return Html::a($url3,$url,['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>Yii::t('app','Goto Google maps using this address.')]);
              }
              ],
             'urlCreator' => function ($action, $dataProvider, $key, $index) {
@@ -151,31 +145,9 @@ echo kartik\grid\GridView::widget([
     'floatHeader' => false,
     'showPageSummary' => true,
     'panel' => [
-    /**
-     * @var array the panel settings for displaying the grid view within a bootstrap styled panel. This property is
-     * therefore applicable only if [[bootstrap]] property is `true`. The following array keys can be configured:
-     * - `type`: _string_, the panel contextual type. Set it to one of the TYPE constants. If not set, will default to
-     *   [[TYPE_DEFAULT]].
-     * - `heading`: `string`|`boolean`, the panel heading. If set to `false`, will not be displayed.
-     * - `headingOptions`: _array_, HTML attributes for the panel heading container. Defaults to
-     *   `['class'=>'panel-heading']`.
-     * - `footer`: `string`|`boolean`, the panel footer. If set to `false` will not be displayed.
-     * - `footerOptions`: _array_, HTML attributes for the panel footer container. Defaults to
-     *   `['class'=>'panel-footer']`.
-     * - 'before': `string`|`boolean`, content to be placed before/above the grid (after the header). To not display
-     *   this section, set this to `false`.
-     * - `beforeOptions`: _array_, HTML attributes for the `before` text. If the `class` is not set, it will default to
-     *   `kv-panel-before`.
-     * - 'after': `string`|`boolean`, any content to be placed after/below the grid (before the footer). To not
-     *   display this section, set this to `false`.
-     * - `afterOptions`: _array_, HTML attributes for the `after` text. If the `class` is not set, it will default to
-     *   `kv-panel-after`.
-     */  
     'type' => GridView::TYPE_PRIMARY,
     'heading'=> '' ,
-
     ],
 ]);
 ?> 
-
 </div>

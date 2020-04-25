@@ -11,12 +11,9 @@ use yii\db\Query;
 use kartik\Editable\Editable;
 use kartik\icons\Icon;
 use kartik\icons\FontAwesomeAsset;
+use Yii;
 FontAwesomeAsset::register($this);
-//use frontend\assets\AppAsset;
-//use frontend\assets\ThemeAsset;
-//AppAsset::register($this);
-//ThemeAsset::register($this);
-$this->title = 'Houses to clean';
+$this->title = Yii::t('app','Houses to clean');
 $clean_date = DateTime::createFromFormat("Y-m-d", Salesorderheader::findOne($id=Yii::$app->session['sales_order_id'])->clean_date)->format("l, d F Y");
 $clean_date_this = Salesorderheader::findOne($id=Yii::$app->session['sales_order_id'])->clean_date;
 $status = Salesorderheader::findOne($id=Yii::$app->session['sales_order_id'])->status;
@@ -25,7 +22,7 @@ $pdfHeader = [
     'content' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone . " - " . DateTime::createFromFormat("Y-m-d", Salesorderheader::findOne($id=Yii::$app->session['sales_order_id'])->clean_date)->format("l, d F Y"),
   ],
   'C' => [
-    'content' => 'Daily Cleans',
+    'content' => Yii::t('app','Daily Cleans'),
     'font-size' => 10,
     'font-style' => 'B',
     'font-family' => 'arial',
@@ -65,89 +62,75 @@ $config_array = [
       ],
       'options' => [
         'title' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone . " - " . DateTime::createFromFormat("Y-m-d", Salesorderheader::findOne($id=Yii::$app->session['sales_order_id'])->clean_date)->format("l, d F Y"),
-        'subject' => 'Daily Cleans',
-        'keywords' => 'daily, clean, daily clean'
+        'subject' => Yii::t('app','Daily Cleans'),
+        'keywords' => Yii::t('app','daily, clean, daily clean')
       ],
     ];
-$this->params['breadcrumbs'][] = ['label' => 'Daily Cleans', 'url' => ['salesorderheader/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Daily Cleans'), 'url' => ['salesorderheader/index']];
 $this->params['breadcrumbs'][] = ['label' => $clean_date];
 $this->params['breadcrumbs'][] = $this->title;
-$viewMsg = 'View';
+$viewMsg = Yii::t('app','View');
 $arr2 = Arrayhelper::map(Instruction::find()->orderBy('id')->asArray()->all(),'id','code');
-$deleteMsg = 'Delete';
-$updateMsg = 'Update';
-$tooltiptextpaid = Html::tag('span', 'Text Paid', ['title'=>'Inform Boss of payment by text','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipunitprice = Html::tag('span', 'Unit Price', ['title'=>'Price charged per clean','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipprepyt = Html::tag('span', 'PrePyt', ['title'=>'Prepayment from a previous date. This cannot be edited since it is transferred from a previous date.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipadvpyt = Html::tag('span', 'AdvPyt', ['title'=>'Cash received today for future clean date. Transfer to future date using button above.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltiptips = Html::tag('span', 'Tips', ['title'=>'All tips.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipwhat = Html::tag('span', 'Do', ['title'=>'What is to be done. Load your codes under main menu instructions.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltiptotalowed = Html::tag('span', 'Debt', ['title'=>'Debt from previous cleans not including the current clean.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltipaddress = Html::tag('span', '', ['title'=>'Address','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
-$tooltiphousenumbermobile = Html::tag('span', 'Hse-Mbl', ['title'=>'Use this number to text your customer.','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$deleteMsg = Yii::t('app','Delete');
+$updateMsg = Yii::t('app','Update');
+$tooltiptextpaid = Html::tag('span', Yii::t('app','Text Paid'), ['title'=>Yii::t('app','Inform Boss of payment by text'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipunitprice = Html::tag('span', Yii::t('app','Unit Price'), ['title'=>Yii::t('app','Price charged per clean'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipprepyt = Html::tag('span', 'Past Paid', ['title'=>Yii::t('app','Prepayment from a previous date. This cannot be edited since it is transferred from a previous date.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipadvpyt = Html::tag('span', 'Paid Future', ['title'=>Yii::t('app','Cash received today for future clean date. Transfer to future date using button above.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltiptips = Html::tag('span', Yii::t('app','Tips'), ['title'=>Yii::t('app','All tips.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipwhat = Html::tag('span', Yii::t('app','Do'), ['title'=>Yii::t('app','What is to be done. Load your codes under main menu instructions.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltiptotalowed = Html::tag('span', Yii::t('app','Debt'), ['title'=>Yii::t('app','Debt from previous cleans not including the current clean.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltipaddress = Html::tag('span', '', ['title'=>Yii::t('app','Address'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$tooltiphousenumbermobile = Html::tag('span', Yii::t('app','House Mobile'), ['title'=>Yii::t('app','Use this number to text your customer.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 <div class="info">
 <?php if(Yii::$app->session->hasFlash('success')){echo Yii::$app->session->getFlash('success');}?>
 </div>
 <div class="salesorderdetail-index">
 <h1><?= Html::encode($this->title) ?></h1>
-
-<?php 
-   //although the search model is not used keep it since it affects "unpaid ticked" javascript
-   //hide the fields within the search if you are not going to use it the actual search model itself.
-   //echo $this->render('_search', ['model' => $searchModel]); 
-?>
 <p>
-    <button id="w13" class = "btn btn-info btn-lg" onclick="js:getCleanedticks()" datatoggle="tooltip" title="Use the checkbox column to select all the houses that have been cleaned. All houses are assumed cleaned by default.">Cleaned (ticked)</button>
-    <button id="w14" class = "btn btn-danger btn-lg" onclick="js:getMissedticks()">Missed (ticked)</button>
-    <button id="w15" class = "btn btn-danger btn-lg" onclick="js:getNotcleanedticks()" datatoggle="tooltip" title="Use the checkbox column to select all the houses that have not been cleaned. All houses are assumed cleaned by default.">Not Cleaned (ticked)</button>
+    <button id="w13" class = "btn btn-info btn-lg" onclick="js:getCleanedticks()" datatoggle="tooltip" title="<?php echo Yii::t('app','Use the checkbox column to select all the houses that have been cleaned. All houses are assumed cleaned by default.') ?>"><?php echo Yii::t('app','Cleaned (ticked)') ?></button>
+    <button id="w14" class = "btn btn-danger btn-lg" onclick="js:getMissedticks()"><?php echo Yii::t('app','Missed (ticked)') ?></button>
+    <button id="w15" class = "btn btn-danger btn-lg" onclick="js:getNotcleanedticks()" datatoggle="tooltip" title="<?php echo Yii::t('app','Use the checkbox column to select all the houses that have not been cleaned. All houses are assumed cleaned by default.') ?>"><?php echo Yii::t('app','Not Cleaned (ticked)') ?></button>
     <?php if (Yii::$app->user->can('Update Daily Job Sheet')) { ?>
-    <button id="w10" class = "btn btn-success btn-lg" onclick="js:getPaidticks()">Paid (ticked)</button>
-    <button id="w11" class = "btn btn-danger btn-lg" onclick="js:getUnpaidticks()">Unpaid (ticked)</button>
+    <button id="w10" class = "btn btn-success btn-lg" onclick="js:getPaidticks()"><?php echo Yii::t('app','Paid (ticked)') ?></button>
+    <button id="w11" class = "btn btn-danger btn-lg" onclick="js:getUnpaidticks()"><?php echo Yii::t('app','Unpaid (ticked)') ?></button>
     <Hr style = "border-top: 3px double #8c8b8b">   
-    <button id="w23" class = "btn btn-danger btn-lg" onclick="js:getAddpretopaid()">Add pre payment (ticked) to Paid</button>  
+    <button id="w23" class = "btn btn-danger btn-lg" onclick="js:getAddpretopaid()"><?php echo Yii::t('app','Add pre payment (ticked) to Paid') ?></button>  
     <Hr style = "border-top: 3px double #8c8b8b">   
-    <button id="w22" class = "btn btn-danger btn-lg" onclick="js:getTransferticks()">Transfer advance payments (ticked) to future pre-payment: </button> 
-    <?= 
-    Html::dropDownList('transadv','', ArrayHelper::map(Salesorderheader::find()->where(['>','clean_date',$clean_date_this])->andWhere(['status'=>$status])->orderBy('status')->all(),'sales_order_id','clean_date','status'),['prompt' => '--- select ---','id'=>'w61','class'=>'btn btn-danger  btn-lg','style'=>'width: 200px']) ?>
-    
-        
+    <button id="w22" class = "btn btn-danger btn-lg" onclick="js:getTransferticks()"><?php echo Yii::t('app','Transfer advance payments (ticked) to future pre-payment') ?></button> 
+    <?= Html::dropDownList('transadv','', ArrayHelper::map(Salesorderheader::find()->where(['>','clean_date',$clean_date_this])->andWhere(['status'=>$status])->orderBy('status')->all(),'sales_order_id','clean_date','status'),['prompt' => Yii::t('app','--- select ---'),'id'=>'w61','class'=>'btn btn-danger  btn-lg','style'=>'width: 200px']) ?>
     <?php } ?>
-    
-    <button id="w33" class = "btn btn-danger dropdown-toggle btn-lg" type="button" data-toggle="dropdown" >Create Future Clean<span class="caret"></span></button>
+    <button id="w33" class = "btn btn-danger dropdown-toggle btn-lg" type="button" data-toggle="dropdown" ><?php echo Yii::t('app','Create Future Clean') ?><span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><button id="w35" class = "btn btn-danger btn-lg" onclick="js:getCopyitbytodaysdatesalesorderdetail()">Today's date</button></li>  
-                    <li><button id="w36" class = "btn btn-danger btn-lg" onclick="js:getCopyitbyfrequencysalesorderdetail()">+1 Month</button></li>    
+                    <li><button id="w35" class = "btn btn-danger btn-lg" onclick="js:getCopyitbytodaysdatesalesorderdetail()"><?php echo Yii::t('app','Date Today') ?></button></li>  
+                    <li><button id="w36" class = "btn btn-danger btn-lg" onclick="js:getCopyitbyfrequencysalesorderdetail()"><?php echo Yii::t('app',' +1 Month') ?></button></li>    
                 </ul>
     <br>
-     
-    
     <div>
     <?php if (Yii::$app->user->can('Use Gocardless')) {?>
     <Hr style = "border-top: 3px double #8c8b8b">   
-    <button id="w21" class = "btn btn-danger btn-lg" onclick="js:getGocardlesspayticks()" datatoggle="tooltip" title="Customers can be sent a direct debit variable mandate to consent to each time you need payment from them. ">Gocardless One-off (ticked)</button>
-         <?= Html::a('Add House', ['product/index'], ['class' => 'btn btn-warning btn-lg','datatoggle'=>'tooltip', 'title'=> '"This button will take you to Houses to create one. You will then be able to transfer the house through to the list of houses that are part of the daily clean.']) ?>
-         <?= Html::a('Back', ['salesorderheader/index'], ['class' => 'btn btn-success btn-lg']) ?>
+    <button id="w21" class = "btn btn-danger btn-lg" onclick="js:getGocardlesspayticks()" datatoggle="tooltip" title="<?php echo Yii::t('app','Customers can be sent a direct debit variable mandate to consent to each time you need payment from them.') ?>">Gocardless<?php echo Yii::t('app',' One-off (ticked)') ?></button>
+         <?= Html::a(Yii::t('app','Add House'), ['product/index'], ['class' => 'btn btn-warning btn-lg','datatoggle'=>'tooltip', 'title'=> '"This button will take you to Houses to create one. You will then be able to transfer the house through to the list of houses that are part of the daily clean.']) ?>
+         <?= Html::a(Yii::t('app','Back'), ['salesorderheader/index'], ['class' => 'btn btn-success btn-lg']) ?>
     <?php } ?>
     <?php if (Yii::$app->user->can('Use Twilio')) {?>
     <Hr style = "border-top: 3px double #8c8b8b">
-    <button id="w16" class = "btn btn-success btn-lg" onclick="js:getOwingticks()" datatoggle ="tooltip" title="Different message types can be sent to your customer using Twilio, a service that requires a subscription">SMS-(ticked)</button>
+    <button id="w16" class = "btn btn-success btn-lg" onclick="js:getOwingticks()" datatoggle ="tooltip" title="<?php echo Yii::t('app','Different message types can be sent to your customer using Twilio, a service that requires a subscription') ?>">SMS-(ticked)</button>
         <div>
            <br>
-           <?= Html::label('Message: ') ?>
+           <?= Html::label(Yii::t('app','Message ')) ?>
             <br>
-           <?= Html::dropDownList('sdmessage','', ArrayHelper::map(Messaging::find()->all(),'id','message'),['prompt' => 'Message...','id'=>'w33','class'=>'btn btn-success btn-lg' ,'style'=>'width: 200px']) ?>
+           <?= Html::dropDownList('sdmessage','', ArrayHelper::map(Messaging::find()->all(),'id','message'),['prompt' => Yii::t('app','Message ...'),'id'=>'w33','class'=>'btn btn-success btn-lg' ,'style'=>'width: 200px']) ?>
         </div>
-    
     <Hr style = "border-top: 3px double #8c8b8b">
     </div>
     <?php } ?>
     </br>
 </p>
-
 <?php 
 use kartik\slider\Slider;
-echo Html::label('Font Size Adjuster:<br>');
+echo Html::label(Yii::t('app','Font Size Adjuster'). '<br>');
 echo Slider::widget([
     'name' => 'sliderfontsalesdetail',
     'value'=> Yii::$app->session['sliderfontsalesdetail'],
@@ -162,18 +145,15 @@ echo Slider::widget([
         'min' => 1,
         'max' => 32,
         'step' => 1,
-        'tooltip'=>'Adjust to change the font size.',
+        'tooltip'=>Yii::t('app','Adjust to change the font size.'),
     ],
-]). '<button id="w654" class = "btn btn-info btn-lg" onclick="js:getSlidersalesdetail()" title="Adjust to the required font." data-toggle="tooltip">Adjust font</button><br><br>';
-   
-?> 
+]);
+?>
+<button id="w654" class = "btn btn-info btn-lg" onclick="js:getSlidersalesdetail()" title="<?php echo Yii::t('app','Adjust to the required font.') ?>" data-toggle="tooltip"><?php echo Yii::t('app','Adjust font') ?></button><br><br>';
+
 <?php
     Yii::$app->formatter->nullDisplay = ''; 
     $gridColumns = [
-    //['class' => 'kartik\grid\SerialColumn',      
-    //],
-    //'sales_order_id',
-    //'sales_order_detail_id',
     [
             'class' => 'kartik\grid\CheckboxColumn',
             'name'=>'selection',
@@ -183,11 +163,11 @@ echo Slider::widget([
             }
     ],             
     [
-            'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            'header'=>'Cleaned',
+            'class' => 'kartik\grid\DataColumn', 
+            'header'=>Yii::t('app','Cleaned'),
             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],
             'value' => function ($dataProvider) {
-                return $dataProvider->cleaned; // $data['name'] for array data, e.g. using SqlDataProvider.
+                return $dataProvider->cleaned;
             },
     ],
     [
@@ -207,11 +187,11 @@ echo Slider::widget([
             'filterWidgetOptions'=>[
                    'pluginOptions'=>['allowClear'=>true],
             ],
-            
             'editableOptions' => function ($dataProvider,$key,$index,$widget)
             {
                     $arr = Arrayhelper::map(Instruction::find()->where(['include'=>1])->orderBy('id')->asArray()->all(),'id','code','code_meaning');
-                    return ['header'=>'Code',
+                    return [
+                            'header'=>Yii::t('app','Code'),
                             'attribute'=>'instruction_id',
                             'size' => 'sm',
                             'format' =>Editable::FORMAT_BUTTON,
@@ -237,7 +217,7 @@ echo Slider::widget([
     [
     'class' => 'kartik\grid\ExpandRowColumn',
     'header'=>$tooltipaddress,  
-    'expandTitle'=> 'Postcode and Street',
+    'expandTitle'=> Yii::t('app','Postcode and Street'),
     'width' => '300px',
     'value' => function ($dataProvider, $key, $index, $column) {
         return GridView::ROW_COLLAPSED;
@@ -250,7 +230,7 @@ echo Slider::widget([
     ],      
             //[
             //'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            //'header'=>'Postcode',
+            //'header'=>Yii::t('app','Postcode'),
             //'group'=>true,
             //'value' => function ($data) {
             //    return $data->productcategory->name; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -258,7 +238,7 @@ echo Slider::widget([
             //],
             //[
             //'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            //'header'=>'Street',
+            //'header'=>Yii::t('app','Street'),
             //'group'=>true,  
             //'value' => function ($data) {
             //    return $data->productsubcategory->name; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -267,7 +247,7 @@ echo Slider::widget([
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],    
-            'header'=> 'Firstname',
+            'header'=> Yii::t('app','Firstname'),
             'value' => function ($dataProvider) {
                 return $dataProvider->product->name; // $data['name'] for array data, e.g. using SqlDataProvider.
             },
@@ -275,7 +255,7 @@ echo Slider::widget([
             [
             'class' => 'kartik\grid\DataColumn',
             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],     // can be omitted, as it is the default
-            'header'=> 'Surname',
+            'header'=> Yii::t('app','Surname'),
             'value' => function ($dataProvider) {
                 return $dataProvider->product->surname; // $data['name'] for array data, e.g. using SqlDataProvider.
             },
@@ -335,7 +315,7 @@ echo Slider::widget([
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],     
-            'header'=>'Remind',
+            'header'=>Yii::t('app','Remind'),
             'value' => function ($dataProvider) {
                 return $dataProvider->product->specialrequest; // $data['name'] for array data, e.g. using SqlDataProvider.
             },
@@ -345,9 +325,7 @@ echo Slider::widget([
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'unit_price',
                 'filterInputOptions' => [
-                  //'options' => ['style' => 'font-size:18px;'],
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
-                  //'class'=> 'form=control-lg',
                   'placeholder' => 'Unit Price...'
                 ],
                 'header'=>$tooltipunitprice,
@@ -359,7 +337,7 @@ echo Slider::widget([
                 'refreshGrid'=>true,
                 'editableOptions' => [
                 'asPopover' => false, 
-                'header' => 'Tip: Reduce to 0 if customer cancels', 
+                'header' => Yii::t('app','Tip - Reduce to 0 if customer cancels'), 
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                     'options' => [
                         'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
@@ -371,7 +349,7 @@ echo Slider::widget([
                 'attribute' => 'paid',
                 'filterInputOptions' => ['class'=> 'input',
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
-                  'placeholder' => 'Paid...'
+                  'placeholder' => Yii::t('app','Paid ...')
                 ],
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
@@ -381,7 +359,7 @@ echo Slider::widget([
                 'refreshGrid'=>true,
                 'editableOptions' => [
                 'asPopover' => false,  
-                'header' => 'Paid', 
+                'header' => Yii::t('app','Paid'), 
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                     'options' => [
                         'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
@@ -402,7 +380,7 @@ echo Slider::widget([
             [
                'class' => 'kartik\grid\ExpandRowColumn',
                'header'=>$tooltiptotalowed,                
-               'expandTitle'=> 'Debt that has accumulated from previous cleans not including the current clean.',
+               'expandTitle'=> Yii::t('app','Debt that has accumulated from previous cleans not including the current clean.'),
                'expandIcon' => Icon::show('balance-scale', ['framework' => Icon::FAS]),
                'hAlign' => 'right', 
                'vAlign' => 'middle',
@@ -462,7 +440,6 @@ echo Slider::widget([
                      $subtotal = Yii::$app->formatter->asDecimal($subtotal, 2);; // $data['name'] for array data, e.g. using SqlDataProvider.
                         if ($subtotal > 0.00) return $subtotal ." ". Icon::show('thumbs-down', ['framework' => Icon::FAS]);
                             else  
-                                //return $subtotal." ". Icon::show('thumbs-up', ['framework' => Icon::FAS]);
                                 return " ";
                      
                         },
@@ -490,7 +467,6 @@ echo Slider::widget([
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'tip',
                 'header'=>$tooltiptips,
-                //'visible'=> !Yii::$app->user->can('Update Daily Job Sheet') ? false : true,
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
                 'width' => '7%',
@@ -499,20 +475,19 @@ echo Slider::widget([
                 'refreshGrid'=> true,
                 'editableOptions' => [
                 'asPopover' => false,  
-                'header' => 'Tips',  
+                'header' => Yii::t('app','Tips'),  
                 'inputType' => kartik\editable\Editable::INPUT_SPIN,
                 'options' => ['pluginOptions' => ['min' => 0.00, 'max' =>10000.00],]
                 ],               
             ], 
 ];
-  if ((empty(Yii::$app->session['sliderfontsalesdetail'])) && (!isset(Yii::$app->session['sliderfontsalesdetail']))){Yii::$app->session['sliderfontsalesdetail'] = 18;}                      
+if ((empty(Yii::$app->session['sliderfontsalesdetail'])) && (!isset(Yii::$app->session['sliderfontsalesdetail']))){Yii::$app->session['sliderfontsalesdetail'] = 18;}                      
                         
 echo kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'], 
     'columns' => $gridColumns,
-     // the id for the container ie. W1 is autogenerated. Refer to vendor/kartik-v/yii2-grid\gridview
     'containerOptions' => ['style'=>'overflow: auto'], 
     'pjax' => true,
     'pjaxSettings' =>['neverTimeout'=>false,
@@ -524,7 +499,7 @@ echo kartik\grid\GridView::widget([
     'striped' => true,
     'condensed' => false,
     'toolbar' => [
-          ['content'=>Html::a('<i class="fas fa-redo"></i>',['salesorderdetail/index', 'id' => Yii::$app->session['sales_order_id']],['data-pjax'=>0,'class'=> 'btn btn-danger','title'=>'Refresh Grid if data entered not displaying.'])
+          ['content'=>Html::a('<i class="fas fa-redo"></i>',['salesorderdetail/index', 'id' => Yii::$app->session['sales_order_id']],['data-pjax'=>0,'class'=> 'btn btn-danger','title'=>Yii::t('app','Refresh Grid if data entered not displaying.')])
          ],
     ],
     'responsive' => true,
@@ -533,38 +508,16 @@ echo kartik\grid\GridView::widget([
     'floatHeader' => false,
     'showPageSummary' => true,
     'panel' => [
-    /**
-     * @var array the panel settings for displaying the grid view within a bootstrap styled panel. This property is
-     * therefore applicable only if [[bootstrap]] property is `true`. The following array keys can be configured:
-     * - `type`: _string_, the panel contextual type. Set it to one of the TYPE constants. If not set, will default to
-     *   [[TYPE_DEFAULT]].
-     * - `heading`: `string`|`boolean`, the panel heading. If set to `false`, will not be displayed.
-     * - `headingOptions`: _array_, HTML attributes for the panel heading container. Defaults to
-     *   `['class'=>'panel-heading']`.
-     * - `footer`: `string`|`boolean`, the panel footer. If set to `false` will not be displayed.
-     * - `footerOptions`: _array_, HTML attributes for the panel footer container. Defaults to
-     *   `['class'=>'panel-footer']`.
-     * - 'before': `string`|`boolean`, content to be placed before/above the grid (after the header). To not display
-     *   this section, set this to `false`.
-     * - `beforeOptions`: _array_, HTML attributes for the `before` text. If the `class` is not set, it will default to
-     *   `kv-panel-before`.
-     * - 'after': `string`|`boolean`, any content to be placed after/below the grid (before the footer). To not
-     *   display this section, set this to `false`.
-     * - `afterOptions`: _array_, HTML attributes for the `after` text. If the `class` is not set, it will default to
-     *   `kv-panel-after`.
-     */  
     'type' => GridView::TYPE_PRIMARY,
     'heading'=> Company::findOne(1)->name . " - " . Company::findOne(1)->telephone . " - " . DateTime::createFromFormat("Y-m-d", Salesorderheader::findOne($id=Yii::$app->session['sales_order_id'])->clean_date)->format("l, d F Y"),
-
     ],
     'exportConfig' => [
-                   GridView::CSV => ['label' => 'Export as CSV','config' => $config_array, 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
-                   GridView::HTML => ['label' => 'Export as HTML','config' => $config_array, 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
-                   GridView::PDF => [ 'label' => 'Export as PDF','config' => $config_array, 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')], 
-                   GridView::EXCEL=> ['label' => 'Export as EXCEL', 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
-                   GridView::TEXT=> ['label' => 'Export as TEXT', 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
-                ],
-    
+                   GridView::CSV => ['label' => Yii::t('app','Export as CSV'),'config' => $config_array, 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
+                   GridView::HTML => ['label' => Yii::t('app','Export as HTML'),'config' => $config_array, 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
+                   GridView::PDF => [ 'label' => Yii::t('app','Export as PDF'),'config' => $config_array, 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')], 
+                   GridView::EXCEL=> ['label' => Yii::t('app','Export as EXCEL'), 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
+                   GridView::TEXT=> ['label' => Yii::t('app','Export as TEXT'), 'filename' => 'Clean_date-'.$clean_date.'_Printed_'.date('d-M-Y')],
+    ],
 ]);
 ?>
 </div>

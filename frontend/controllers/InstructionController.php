@@ -11,14 +11,9 @@ use yii\behaviors\TimestampBehavior;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * InstructionController implements the CRUD actions for Instruction model.
- */
 class InstructionController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+    
     public function behaviors()
     {
         return [
@@ -54,10 +49,6 @@ class InstructionController extends Controller
         ];
     }
 
-    /**
-     * Lists all Instruction models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         if (!\Yii::$app->user->can('View Instruction')) {
@@ -73,12 +64,6 @@ class InstructionController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Instruction model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         if (!\Yii::$app->user->can('View Instruction')) {
@@ -90,11 +75,6 @@ class InstructionController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Instruction model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Instruction')) {
@@ -112,13 +92,6 @@ class InstructionController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Instruction model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         if (!\Yii::$app->user->can('Update Instruction')) {
@@ -136,13 +109,6 @@ class InstructionController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Instruction model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
       try{
@@ -153,13 +119,6 @@ class InstructionController extends Controller
         }
     }
 
-    /**
-     * Finds the Instruction model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Instruction the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Instruction::findOne($id)) !== null) {

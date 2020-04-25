@@ -1,16 +1,12 @@
 <?php
-use yii\helpers\Html;
-use yii\helpers\Json;
 use kartik\detail\DetailView;
 use yii\helpers\ArrayHelper;
 use frontend\models\Productcategory;
-use frontend\models\Productsubcategory;
-use frontend\models\Salesorderheader;
 use yii\helpers\Url;
-use kartik\depdrop\DepDrop;
-$this->title='View House'; 
-$this->params['breadcrumbs'][]=['label'=>'Houses', 'url'=>['index']];
-$this->params['breadcrumbs'][]=['label'=>'Create House', 'url'=>['create']];
+use Yii;
+$this->title=Yii::t('app','View House'); 
+$this->params['breadcrumbs'][]=['label'=>Yii::t('app','Houses'), 'url'=>['index']];
+$this->params['breadcrumbs'][]=['label'=>Yii::t('app','Create House'), 'url'=>['create']];
 $this->params['breadcrumbs'][]=$this->title;
 $attributes=[
     [
@@ -50,8 +46,7 @@ $attributes=[
     [
        'attribute'=>'frequency',
        'type' => DetailView::INPUT_DROPDOWN_LIST,
-       'items'=> ['Weekly'=>'Weekly','Fortnightly'=>'Fortnightly','Monthly'=>'Monthly','Every two months'=>'Every two months','Not applicable'=>'Not applicable'],
-       //'items'=> ArrayHelper::map(['Monthly'=>'Monthly','Weekly'=>'Weekly'],'id','frequency'),
+       'items'=> [Yii::t('app','Weekly')=>Yii::t('app','Weekly'),Yii::t('app','Fortnightly')=>Yii::t('app','Fortnightly'),Yii::t('app','Monthly')=>Yii::t('app','Monthly'),Yii::t('app','Every two months')=>Yii::t('app','Every two months'),Yii::t('app','Not applicable')=>Yii::t('app','Not applicable')],
        'value'=>$model->frequency, 
        'inputWidth'=>'40%'
     ],
@@ -74,16 +69,6 @@ $attributes=[
         ],
         'inputWidth'=>'40%'
     ],
-    ////[
-    /////    'attribute'=>'discontinueddate', 
-    ////    'type'=>DetailView::INPUT_DATE,
-    ////   'format'=>'date',
-   /// ////    'type'=>DetailView::INPUT_DATE,
-    ////////    'widgetOptions'=>[
-  ////          'pluginOptions'=>['format'=>'yyyy-mm-dd']
-   ////     ],
-  ////      'inputWidth'=>'40%'
- ////   ],
     [
         'attribute'=>'isactive', 
         'type'=>DetailView::INPUT_CHECKBOX,
@@ -103,7 +88,7 @@ $attributes=[
     'hover'=>true,
     'mode'=>DetailView::MODE_VIEW,
     'panel'=>[
-        'heading'=>'House # ' . $model->id,
+        'heading'=>Yii::t('app','House No ') . $model->id,
         'type'=>DetailView::TYPE_INFO,
     ],
     'deleteOptions'=>['params' => ['id' => $model->id, 'housedelete' => true],'url'=>['delete', 'id' => $model->id],],

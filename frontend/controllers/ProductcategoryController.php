@@ -1,5 +1,4 @@
 <?php
-
 namespace frontend\controllers;
 
 use Yii;
@@ -9,14 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * ProductcategoryController implements the CRUD actions for Productcategory model.
- */
-class ProductcategoryController extends Controller
+Class ProductcategoryController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -41,10 +34,6 @@ class ProductcategoryController extends Controller
         ];
     }
 
-    /**
-     * Lists all Productcategory models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new ProductcategorySearch();
@@ -56,11 +45,6 @@ class ProductcategoryController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Productcategory model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -68,11 +52,6 @@ class ProductcategoryController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Productcategory model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Productcategory();
@@ -86,12 +65,6 @@ class ProductcategoryController extends Controller
         }
     }
 
-    /**
-     * Updates an existing Productcategory model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {   
         $model = $this->findModel($id);
@@ -103,7 +76,6 @@ class ProductcategoryController extends Controller
             ]);
         }
     }
-
    
     public function actionDelete($id)
     {

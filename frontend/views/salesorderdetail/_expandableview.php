@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use Yii;
 ?>
 <div class="salesorderdetail-expandable-view">
     <table border="0" class="table transparent">
@@ -11,11 +12,11 @@ use yii\helpers\Html;
          echo Html::tag('div',
              Html::tag('tr',
                  '<td >'.
-                 "Postcode Name (Set under Postcode)"
+                 Yii::t('app','Postcode Name (Set under Postcode)')
                  ."</td><td>". 
-                 "Street Name (Set under Street)"
+                 Yii::t('app','Street Name (Set under Street)')
                  ."</td><td>".
-                  "Sort Order (Set under Street)"
+                 Yii::t('app','Sort Order (Set under Street)')
                  ."</td>"
               )
             );

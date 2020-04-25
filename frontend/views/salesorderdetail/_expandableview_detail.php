@@ -1,18 +1,18 @@
 <?php
 use yii\helpers\Html;
+use frontend\models\Product;
+use frontend\models\Productsubcategory;
+use frontend\models\Productcategory;
+use frontend\models\Company;
+use \supplyhog\ClipboardJs\ClipboardJsWidget;
+use Yii;
 ?>
 <div class="salesorderdetail-expandable-view">
-    <table border="0" class="table transparent">
-    <?php
-    use frontend\models\Product;
-    use frontend\models\Productsubcategory;
-    use frontend\models\Productcategory;
-    use frontend\models\Company;
-    use \supplyhog\ClipboardJs\ClipboardJsWidget;
+<table border="0" class="table transparent">
+<?php
     $rows = $model->salesorderdetails;
     $names = '';
-    
-    foreach ($rows as $key => $value)
+        foreach ($rows as $key => $value)
     {
         $myvalue = $value['product_id'];
         $myvalue2 = $value['productsubcategory_id'];
@@ -25,17 +25,17 @@ use yii\helpers\Html;
         $url3 = ltrim($name['productnumber'], '0')." ".$streetname['name']." ".$postalcodename['name'];
         $url4 = "tel:/".preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone);
         if ($value['paid'] < $value['unit_price']) {
-                    $paid_or_unpaid = "Unpaid";
+                    $paid_or_unpaid = Yii::t('app','Unpaid');
                     $green_or_red = ['class' => 'btn btn-danger'];} 
                     else {
-                    $paid_or_unpaid = "Paid";    
+                    $paid_or_unpaid = Yii::t('app','Paid');    
                     $green_or_red = ['class' => 'btn btn-success'];}
         if (($value['paid'] == 0) && ($value['unit_price'] == 0)) {
-                    $paid_or_unpaid = "Ignore";
+                    $paid_or_unpaid = Yii::t('app','Ignore');
                     $green_or_red = "";}             
         if ((strlen($name['contactmobile'])<>11) || ($name['contactmobile'] == '07777777777'))
         {$button_or_nobutton = ['class' => 'btn btn-danger'];
-            $ifmobile = "No mobile number";
+            $ifmobile = Yii::t('app','No mobile number');
             $url=['product/view/?id='.$myvalue];
         }else {$button_or_nobutton = ['class' => 'btn btn-info'];
                                $ifmobile = $name['contactmobile'];}
@@ -51,9 +51,9 @@ use yii\helpers\Html;
                  ."</td><td>". 
                  Html::a($url3,$url2,['class' => 'btn btn-success'])                 
                  ."</td><td>".
-                 \supplyhog\ClipboardJs\ClipboardJsWidget::widget([
+                 ClipboardJsWidget::widget([
                      'text' => $url3,
-                     'label' => 'Copy address to clipboard',
+                     'label' => Yii::t('app','Copy address to clipboard'),
                      'htmlOptions' => ['class' => 'btn'],
                      'tag' => 'button',
                  ])  
@@ -68,9 +68,6 @@ use yii\helpers\Html;
               )
             );
     }
-    
-    ?>
-    
-    
-    </table>
+?>
+</table>
 </div>

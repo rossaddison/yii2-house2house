@@ -11,14 +11,9 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\filters\VerbFilter;
 
-/**
- * QuicknoteController implements the CRUD actions for Quicknote model.
- */
 class QuicknoteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+    
     public function behaviors()
     {
         return [
@@ -40,10 +35,7 @@ class QuicknoteController extends Controller
         ];
     }
 
-    /**
-     * Lists all Quicknote models.
-     * @return mixed
-     */
+    
     public function actionIndex()
     {
         $searchModel = new QuicknoteSearch();
@@ -75,14 +67,6 @@ class QuicknoteController extends Controller
     }
     
     
-    
-
-    /**
-     * Displays a single Quicknote model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -90,11 +74,7 @@ class QuicknoteController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Quicknote model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+  
     public function actionCreate()
     {
         $model = new Quicknote();
@@ -111,13 +91,7 @@ class QuicknoteController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Quicknote model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -135,13 +109,7 @@ class QuicknoteController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Quicknote model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -149,13 +117,7 @@ class QuicknoteController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Quicknote model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Quicknote the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     protected function findModel($id)
     {
         if (($model = Quicknote::findOne($id)) !== null) {

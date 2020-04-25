@@ -1,9 +1,7 @@
 <?php
-
-/* @var $this yii\web\View */
-
 use yii\helpers\Html;
-$this->title = 'Privacy Policy';
+use Yii;
+$this->title = Yii::t('app','Privacy Policy');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-privacypolicy">
