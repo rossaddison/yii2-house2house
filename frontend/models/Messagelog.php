@@ -4,19 +4,6 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_messagelog".
- *
- * @property int $id
- * @property string $message
- * @property string $date
- * @property string $phoneto
- * @property int $salesorderdetail_id
- * @property int $product_id
- *
- * @property WorksProduct $product
- * @property WorksSalesorderdetail $salesorderdetail
- */
 class Messagelog extends \yii\db\ActiveRecord
 {
     /**
@@ -27,10 +14,7 @@ class Messagelog extends \yii\db\ActiveRecord
    {
        return \frontend\components\Utilities::userdb();
    }
-    
-    
-    
-    
+   
     public static function tableName()
     {
         return 'works_messagelog';
@@ -59,12 +43,12 @@ class Messagelog extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'message' => 'Message',
-            'date' => 'Date',
-            'phoneto' => 'Mobile',
-            'salesorderdetail_id' => 'Salesorderdetail ID',
-            'product_id' => 'Product ID',
+            'id' => Yii::t('app','ID'),
+            'message' => Yii::t('app','Message'),
+            'date' => Yii::t('app','Date'),
+            'phoneto' => Yii::t('app','Mobile'),
+            'salesorderdetail_id' => Yii::t('app','Salesorderdetail ID'),
+            'product_id' => Yii::t('app','Product ID'),
         ];
     }
 

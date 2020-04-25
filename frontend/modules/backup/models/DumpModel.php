@@ -2,8 +2,6 @@
 
 namespace frontend\modules\backup\models;
 
-use Yii;
-
 class DumpModel extends \yii\base\Model
 {  
     public $created_directory_successfully = false; 

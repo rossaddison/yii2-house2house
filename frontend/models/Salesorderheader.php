@@ -1,30 +1,11 @@
 <?php
-
 namespace frontend\models;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\models\Employee;
 use Yii;
 
-/**
- * This is the model class for table "works_salesorderheader".
- *
- * @property integer $sales_order_id
- * @property string $status
- * @property string $statusfile
- * @property integer $employee_id
- * @property integer $jobfrequency_id
- * @property integer $user_id
- * @property string $clean_date
- * @property string $sub_total
- * @property string $tax_amt
- * @property string $total_due
- * @property string $modified_date
- *
- * @property WorksSalesorderdetail[] $worksSalesorderdetails
- * @property WorksEmployee $employee
- * @property User $user
- */
 class Salesorderheader extends \yii\db\ActiveRecord
 {
     /**
@@ -58,24 +39,21 @@ class Salesorderheader extends \yii\db\ActiveRecord
         ];
     }
     
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
-            'sales_order_id' => 'No.',
-            'status' => 'Job Code eg. BL',
-            'statusfile' => 'Job Code Suffix',
-            'employee_id' => 'Employee ID',
-            'carousal_id' => 'Carousal ID',
-            'clean_date' => 'Clean Date',
-            'sub_total' => 'Sub Total',
-            'tax_amt' => 'Tax Amt',
-            'total_due' => 'Total Due',
-            'hoursworked' =>'Hrs',
-            'income_per_hour' => 'Income hr',
-            'modified_date' => 'Modified Date',
+            'sales_order_id' => Yii::t('app','No.'),
+            'status' => Yii::t('app','Job Code eg. BL'),
+            'statusfile' => Yii::t('app','Job Code Suffix'),
+            'employee_id' => Yii::t('app','Employee ID'),
+            'carousal_id' => Yii::t('app','Carousal ID'),
+            'clean_date' => Yii::t('app','Clean Date'),
+            'sub_total' => Yii::t('app','Sub Total'),
+            'tax_amt' => Yii::t('app','Tax Amt'),
+            'total_due' => Yii::t('app','Total Due'),
+            'hoursworked' =>Yii::t('app','Hrs'),
+            'income_per_hour' => Yii::t('app','Income hr'),
+            'modified_date' => Yii::t('app','Modified Date'),
         ];
     }
     
@@ -87,21 +65,14 @@ class Salesorderheader extends \yii\db\ActiveRecord
 
     return Html::a('MyLink', $url, $options); // assuming you have a relation called profile
 
-}
+    }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getSalesorderdetails()
     {
         return $this->hasMany(Salesorderdetail::className(), ['sales_order_id' => 'sales_order_id']);
     }
     
-    
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getEmployee()
     {
         return $this->hasOne(Employee::className(), ['id' => 'employee_id']);

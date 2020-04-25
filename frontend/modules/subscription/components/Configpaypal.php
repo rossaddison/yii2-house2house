@@ -3,11 +3,7 @@ Namespace frontend\modules\subscription\components;
     
 use Yii;
 use yii\base\Component;
-use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
-use yii\base\ErrorException;
 use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Api\RedirectUrls;
 use PayPal\Rest\ApiContext;
     
 class Configpaypal extends Component

@@ -1,13 +1,8 @@
 <?php
-
 use \kartik\icons\Icon;
 use yii\helpers\Url;
 use \kartik\form\ActiveForm;
 use yii\helpers\Html;
-
-/** @var \yii\web\View $this */
-/** @var array $languages */
-/** @var \yii\base\DynamicModel $model */
 
 $this->title = Yii::t('app', 'Installer - Language selection');
 $this->params['breadcrumbs'][] = ['label' => 'Step Two', 'url' => ['language']];

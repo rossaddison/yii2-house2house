@@ -1,32 +1,15 @@
 <?php
-
 namespace frontend\models;
 
-use frontend\models\Session;
 use Yii;
 
-/**
- * This is the model class for table "session_detail".
- *
- * @property int $session_detail_id
- * @property string $session_id
- * @property string $redirect_flow_id
- * @property string $db
- * @property int $product_id
- */
 class SessionDetail extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return 'session_detail';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -39,21 +22,17 @@ class SessionDetail extends \yii\db\ActiveRecord
           ];  
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
-            'session_detail_id' => 'Session Detail ID',
-            'session_id' => 'Session ID',
-            'redirect_flow_id' => 'Redirect Flow ID',
-            'db' => 'Db',
-            'user_id'=>'User ID',
-            'product_id' => 'Product ID',
-            'customer_approved'=>'Mandate Confirmed by Customer',
-            'administrator_acknowledged'=> 'Acknowledged by Administrator',
+            'session_detail_id' => Yii::t('app','Session Detail ID'),
+            'session_id' => Yii::t('app','Session ID'),
+            'redirect_flow_id' => Yii::t('app','Redirect Flow ID'),
+            'db' => Yii::t('app','Db'),
+            'user_id'=>Yii::t('app','User ID'),
+            'product_id' => Yii::t('app','Product ID'),
+            'customer_approved'=>Yii::t('app','Mandate Confirmed by Customer'),
+            'administrator_acknowledged'=> Yii::t('app','Acknowledged by Administrator'),
         ];
     }
-    
 }

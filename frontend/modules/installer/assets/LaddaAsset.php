@@ -1,7 +1,5 @@
 <?php
-
 namespace frontend\modules\installer\assets;
-
 
 use yii\web\AssetBundle;
 

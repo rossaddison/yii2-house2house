@@ -2,11 +2,7 @@
 
 namespace frontend\modules\installer\components;
 
-
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
-use Symfony\Component\Process\Exception\ProcessTimedOutException;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Yii;
 use yii\base\Component;
 
@@ -24,18 +20,6 @@ class UpdateHelper extends Component
     public $backupCronTimeout = 3600;
     public $backupCronIdleTimeout = 60;
 
-    /**
-     * Applies migrations for module.
-     *
-     * Function returns Process, but not runs it.
-     * For synchronous run use applyMigrations()->mustRun()
-     * For async run use applyMigrations()->start & wait
-     *
-     * @param string $migrationPath Path to migrations (`--migrationPath` argument for `yii migrate/up` command).
-     * @param bool $applyAppMigrations True if we also need to apply application migrations before module migration
-     * @param bool $updateComposer True if we also need to run composer update before all actions
-     * @return \Symfony\Component\Process\Process
-     */
     public function applyMigrations($migrationPath, $migrationTable = '{{%migration}}', $applyAppMigrations = true, $updateComposer = true, $down = false)
     {
         if ($applyAppMigrations === true) {
@@ -55,17 +39,6 @@ class UpdateHelper extends Component
         return $process;
     }
 
-    /**
-     * Applies all latest application migrations.
-     * Migrations from modules are not applied.
-     *
-     * Function returns Process, but not runs it.
-     * For synchronous run use applyAppMigrations()->mustRun()
-     * For async run use applyAppMigrations()->start & wait
-     *
-     * @param bool $updateComposer True if we should update composer before applying migrations
-     * @return \Symfony\Component\Process\Process
-     */
     public function applyAppMigrations($updateComposer = true, $down = false, $dbCode = '')
     {
         if ($updateComposer === true) {
@@ -82,9 +55,8 @@ class UpdateHelper extends Component
 
         return $process;
     }
-
        
-     public function applyAppBackupCron()
+    public function applyAppBackupCron()
     {
         
         $builder = $this->backupCreateCronCommandBuilder();
@@ -101,8 +73,6 @@ class UpdateHelper extends Component
     private function migrationCommandBuilder($migrationPath = '', $migrationTable = '{{%migration}}', $down = false, $dbCode = '')
     {
         $builder = new ProcessBuilder();
-        //$phpbin = preg_replace("@/lib(64)?/.*$@", "/bin/php", ini_get("extension_dir"));
-        //common config bootstrap @migrations
         $builder
             ->setWorkingDirectory(Yii::getAlias('@webroot'))
               ->setPrefix($this->getPhpExecutable())

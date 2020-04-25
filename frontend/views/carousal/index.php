@@ -1,13 +1,9 @@
 <?php
-
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Slider/Carousal Images';
+$this->title = Yii::t('app','Slider/Carousal Images');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="carousal-index">
@@ -15,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Carousal', ['create'], ['class' => 'btn btn-success btn-lg']) ?>
+        <?= Html::a(Yii::t('app','Create Carousal'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               if ($model->image_web_filename!='') {
                                     return '<br /><p><img src="'.Url::to('@web/images/demo/'.Yii::$app->session['demo_image_timestamp_directory'].'/'.$model->image_web_filename.'" width=50px" height = "auto"></p>', true); } else 
                                {
-                                   return 'no image';
+                                   return Yii::t('app','no image');
                                }           
                           } else
                           {
@@ -39,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return '<br /><p><img src="'.Url::to('@web/images/'.$model->image_web_filename.'" width=50px" height = "auto"></p>', true); 
                               } else 
                               { 
-                                 return 'no image';
+                                 return Yii::t('app','no image');
                               }         
                           }
               }
@@ -50,8 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'content_title',
             'content_caption',
             'fontcolor',
-
-            
         ],
     ]); ?>
     

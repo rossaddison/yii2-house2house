@@ -2,21 +2,14 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use kartik\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Messagelog';
+$this->title = Yii::t('app','Message log');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="messagelog-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Messagelog', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Messagelog'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'options' => ['style' => 'font-size:18px;'],
@@ -34,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phoneto',
             ['class' => 'kartik\grid\ActionColumn',
                     'template' => '{link}',
-                    'header'=>'Clean',
+                    'header'=>Yii::t('app','Clean'),
                     'visible'=> Yii::$app->user->isGuest ? false : true,
                     'buttons'=>[
                         'link' => function ($url, $data,$key) {

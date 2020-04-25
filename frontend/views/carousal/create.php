@@ -1,13 +1,8 @@
 <?php
-
 use yii\helpers\Html;
 
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Carousal */
-
-$this->title = 'Create Carousal';
-$this->params['breadcrumbs'][] = ['label' => 'Carousals', 'url' => ['index']];
+$this->title = Yii::t('app','Create Carousal');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Carousals'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="carousal-create">

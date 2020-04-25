@@ -1,25 +1,15 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\grid\GridView;
-
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Legals';
+$this->title = Yii::t('app','Legals');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="legal-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Legal', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Legal'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -29,8 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'terms_conditions',
             'last_updated',
         ],
-    ]); ?>
-    
+    ]); ?>    
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
@@ -38,6 +27,4 @@ $this->params['breadcrumbs'][] = $this->title;
             return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
         },
     ]) ?>
-
-
 </div>

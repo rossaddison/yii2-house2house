@@ -3,9 +3,6 @@ use yii\helpers\Html;
 use frontend\modules\installer\assets\InstallerAsset;
 use yii\bootstrap4\Breadcrumbs;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 InstallerAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -48,10 +45,6 @@ InstallerAsset::register($this);
         </div>
     </div>
 </div>
-
-
-
-
 
 <?php $this->endBody() ?>
 </body>

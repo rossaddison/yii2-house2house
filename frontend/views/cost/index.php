@@ -10,17 +10,15 @@ use frontend\models\Costsubcategory;
 use frontend\models\Cost;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
-//$this->registerJsFile('@web/js/scripts2.js',['depends' => [\yii\web\JqueryAsset::className()]]);
-$this->title = 'Costs';
-$this->params['breadcrumbs'][] = ['label' => 'Costs', 'url' => ['cost/index']];
+$this->title = Yii::t('app','Costs');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Costs'), 'url' => ['cost/index']];
 $this->params['breadcrumbs'][] = $this->title;
 $pdfHeader = [
   'L' => [
-    //'content' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone,
     'content'=>  Yii::$app->session['sliderfontcost'],
   ],
   'C' => [
-    'content' => 'Costs',
+    'content' => Yii::t('app','Costs'),
     'font-size' => 10,
     'font-style' => 'B',
     'font-family' => 'arial',
@@ -33,7 +31,7 @@ $pdfHeader = [
 ];
 $pdfFooter = [
   'L' => [
-    'content' => 'Filename: Costs_Printed_'.date('d-M-Y-h-s'),
+    'content' => Yii::t('app','Filename: Costs_Printed_').date('d-M-Y-h-s'),
     'font-size' => 10,
     'color' => '#333333',
     'font-family' => 'arial',
@@ -60,8 +58,8 @@ $config_array = [
       ],
       'options' => [
         'title' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone,
-        'subject' => 'Costs',
-        'keywords' => 'Costs'
+        'subject' => Yii::t('app','Costs'),
+        'keywords' => Yii::t('app','Costs'),
       ],
     ];
 $viewMsg = 'View';
@@ -71,22 +69,19 @@ $updateMsg = 'Update';
 
 <div class="cost-index">
 <h1><?= Html::encode($this->title) ?></h1>
-<?php 
-    //echo $this->render('_search', ['model' => $searchModel]); 
-?>
-<p><?= Html::a('Create Cost', ['create'], ['class' => 'btn btn-success']) ?>
+<p><?= Html::a(Yii::t('app','Create Cost'), ['create'], ['class' => 'btn btn-success']) ?>
         <Hr style = "border-top: 3px double #8c8b8b">
        <button id="w75" class = "btn btn-success" onclick="js:getKeyscost()">Copy Selected to: </button>
-   <?= Html::label('Daily Costs Date: ') ?>
-   <?= Html::dropDownList('ccost','', ArrayHelper::map(Costheader::find()->orderBy(['cost_date'=>SORT_DESC])->all(),'cost_header_id','status','cost_date'),['prompt' => '--- select ---','id'=>'w59']) ?>
-   <?= Html::a('Back', Url::previous(), ['class' => 'btn btn-success']) ?>    
+   <?= Html::label(Yii::t('app','Daily Costs Date: ')) ?>
+   <?= Html::dropDownList('ccost','', ArrayHelper::map(Costheader::find()->orderBy(['cost_date'=>SORT_DESC])->all(),'cost_header_id','status','cost_date'),['prompt' => Yii::t('app','--- select ---'),'id'=>'w59']) ?>
+   <?= Html::a(Yii::t('app','Back'), Url::previous(), ['class' => 'btn btn-success']) ?>    
         <Hr style = "border-top: 3px double #8c8b8b">
-   
+<p>   
 </div>       
-</p>
+<div>
 <?php 
 use kartik\slider\Slider;
-echo Html::label('Font Size Adjuster:<br>');
+echo Html::label(Yii::t('app','Font Size Adjuster:<br>'));
 echo Slider::widget([
     'name' => 'sliderfontcost',
     'options' => [
@@ -100,7 +95,7 @@ echo Slider::widget([
         'min' => 1,
         'max' => 32,
         'step' => 1,
-        'tooltip'=>'Adjust to change the font size.',
+        'tooltip'=>Yii::t('app','Adjust to change the font size.'),
     ],
 ]);   
 ?> 
@@ -144,11 +139,11 @@ echo Slider::widget([
              'filter'=> Html::activeDropDownList($searchModel,'costcategory_id',ArrayHelper::map(Costcategory::find()->orderBy('name')->asArray()->all(),'id','name'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],'prompt'=>'Category...']),     
     ],    
     [
-        'header'=>'Subcategory',
+        'header'=>Yii::t('app','Subcategory'),
         'attribute'=>'costsubcategory_id',
         'filterInputOptions' => [
                      'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],
-                     'placeholder' => 'Surname...'
+                     'placeholder' => Yii::t('app','Surname...')
         ],   
         'value' => function ($data) {
                    return $data->costsubcategory->name; 
@@ -160,11 +155,11 @@ echo Slider::widget([
      'attribute'=>'description',
      'filterInputOptions' => [
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],
-                  'placeholder' => 'Cost Description...'
+                  'placeholder' => Yii::t('app','Cost Description...')
                 ],
     ],
     [
-     'header'=>'List Price',
+     'header'=>Yii::t('app','List Price'),
      'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcost'].'px'],   
      'value' => 'listprice',
      'hAlign'=>'right',
@@ -196,26 +191,6 @@ echo kartik\grid\GridView::widget([
     'floatHeader' => false,
     'showPageSummary' => true,
     'panel' => [
-    /**
-     * @var array the panel settings for displaying the grid view within a bootstrap styled panel. This property is
-     * therefore applicable only if [[bootstrap]] property is `true`. The following array keys can be configured:
-     * - `type`: _string_, the panel contextual type. Set it to one of the TYPE constants. If not set, will default to
-     *   [[TYPE_DEFAULT]].
-     * - `heading`: `string`|`boolean`, the panel heading. If set to `false`, will not be displayed.
-     * - `headingOptions`: _array_, HTML attributes for the panel heading container. Defaults to
-     *   `['class'=>'panel-heading']`.
-     * - `footer`: `string`|`boolean`, the panel footer. If set to `false` will not be displayed.
-     * - `footerOptions`: _array_, HTML attributes for the panel footer container. Defaults to
-     *   `['class'=>'panel-footer']`.
-     * - 'before': `string`|`boolean`, content to be placed before/above the grid (after the header). To not display
-     *   this section, set this to `false`.
-     * - `beforeOptions`: _array_, HTML attributes for the `before` text. If the `class` is not set, it will default to
-     *   `kv-panel-before`.
-     * - 'after': `string`|`boolean`, any content to be placed after/below the grid (before the footer). To not
-     *   display this section, set this to `false`.
-     * - `afterOptions`: _array_, HTML attributes for the `after` text. If the `class` is not set, it will default to
-     *   `kv-panel-after`.
-     */  
     'type' => GridView::TYPE_PRIMARY,
     'heading'=> Company::findOne(1)->name . " - " . Company::findOne(1)->telephone ,
     ],
@@ -226,8 +201,7 @@ echo kartik\grid\GridView::widget([
                    GridView::EXCEL=> ['label' => 'Export as EXCEL', 'filename' => 'Costs_Printed_'.date('d-M-Y')],
                    GridView::TEXT=> ['label' => 'Export as TEXT', 'filename' => 'Costs_Printed_'.date('d-M-Y')],
                 ],
-  
-]);
+  ]);
 ?> 
 
 </div>

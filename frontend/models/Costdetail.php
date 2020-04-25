@@ -50,22 +50,22 @@ class Costdetail extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'cost_header_id' => 'Daily Cost ID',
-            'cost_detail_id' => 'Cost(s) in Clean ID',
-            'paymenttype'=> 'Payment Type eg. Cash, Cheque, Paypal, Debitcard, Creditcard, Other *Default: Cash',
-            'paymentreference'=>'Payment Reference:',
-            'nextcost_date' => 'Next Cost Date',
-            'costcategory_id' => 'Costcode',
-            'costsubcategory_id'=>'Costsubcode',
-            'cost_id'=>'Cost',
-            'cost_id.costdescription' => 'Cost Description',
-            'cost_id.costnumber'=>'Cost Number',
-            'carousal_id' => 'Carousal File eg. jpg, png, pdf, xls, xlsx',
-            'order_qty'=>'Order Qty',
-            'unit_price' => 'Unit Price',
-            'line_total'=> 'Line Total',
-            'paid' => 'Paid',
-            'modified_date' => 'Modified Date',
+            'cost_header_id' => Yii::t('app','Daily Cost ID'),
+            'cost_detail_id' => Yii::t('app','Cost(s) in Clean ID'),
+            'paymenttype'=> Yii::t('app','Payment Type eg. Cash, Cheque, Paypal, Debitcard, Creditcard, Other *Default: Cash'),
+            'paymentreference'=>Yii::t('app','Payment Reference:'),
+            'nextcost_date' => Yii::t('app','Next Cost Date'),
+            'costcategory_id' => Yii::t('app','Costcode'),
+            'costsubcategory_id'=>Yii::t('app','Costsubcode'),
+            'cost_id'=>Yii::t('app','Cost'),
+            'cost_id.costdescription' => Yii::t('app','Cost Description'),
+            'cost_id.costnumber'=>Yii::t('app','Cost Number'),
+            'carousal_id' => Yii::t('app','Carousal File eg. jpg, png, pdf, xls, xlsx'),
+            'order_qty'=>Yii::t('app','Order Qty'),
+            'unit_price' => Yii::t('app','Unit Price'),
+            'line_total'=> Yii::t('app','Line Total'),
+            'paid' => Yii::t('app','Paid'),
+            'modified_date' => Yii::t('app','Modified Date'),
         ];
     }
     

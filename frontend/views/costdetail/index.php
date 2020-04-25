@@ -6,16 +6,14 @@ use frontend\models\Costheader;
 use frontend\models\Company;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
-
-//$this->registerJsFile('@web/js/scripts2.js',['depends' => [\yii\web\JqueryAsset::className()]]);
-$this->title = 'Costs to include';
+$this->title = Yii::t('app','Costs to include');
 $cost_date = DateTime::createFromFormat("Y-m-d", Costheader::findOne($id=Yii::$app->session['cost_header_id'])->cost_date)->format("l, d F Y");
 $pdfHeader = [
   'L' => [
     'content' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone . " - " . DateTime::createFromFormat("Y-m-d", Costheader::findOne($id=Yii::$app->session['cost_header_id'])->cost_date)->format("l, d F Y"),
   ],
   'C' => [
-    'content' => 'Daily Costs',
+    'content' => Yii::t('app','Daily Costs'),
     'font-size' => 10,
     'font-style' => 'B',
     'font-family' => 'arial',
@@ -28,13 +26,13 @@ $pdfHeader = [
 ];
 $pdfFooter = [
   'L' => [
-    'content' => 'Filename: Clean_date-'.$cost_date.'_Printed_'.date('d-M-Y'),
+    'content' => Yii::t('app','Filename: Clean_date-').$cost_date.'_Printed_'.date('d-M-Y'),
     'font-size' => 10,
     'color' => '#333333',
     'font-family' => 'arial',
   ],
   'C' => [
-    'content' => 'Printed: ' .date('d-M-Y'),
+    'content' => Yii::t('app','Printed ') .date('d-M-Y'),
   ],
   'R' => [
     'content' => '',
@@ -55,17 +53,17 @@ $config_array = [
       ],
       'options' => [
         'title' => Company::findOne(1)->name . " - " . Company::findOne(1)->telephone . " - " . DateTime::createFromFormat("Y-m-d", Costheader::findOne($id=Yii::$app->session['cost_header_id'])->cost_date)->format("l, d F Y"),
-        'subject' => 'Daily Costs',
-        'keywords' => 'daily, cost, daily cost'
+        'subject' => Yii::t('app','Daily Costs'),
+        'keywords' => Yii::t('app','daily, cost, daily cost')
       ],
     ];
-$this->params['breadcrumbs'][] = ['label' => 'Daily Costs', 'url' => ['costheader/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Daily Costs'), 'url' => ['costheader/index']];
 $this->params['breadcrumbs'][] = ['label' => $cost_date];
 $this->params['breadcrumbs'][] = $this->title;
-$viewMsg = 'View';
-$deleteMsg = 'Delete';
-$updateMsg = 'Update';
-$tooltipcatandsubcat = Html::tag('span', '', ['title'=>'Cost category and subcategory','data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
+$viewMsg = Yii::t('app','View');
+$deleteMsg = Yii::t('app','Delete');
+$updateMsg = Yii::t('app','Update');
+$tooltipcatandsubcat = Html::tag('span', '', ['title'=>Yii::t('app','Cost category and subcategory'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 <div class="info">
 <?php if(Yii::$app->session->hasFlash('success')){echo Yii::$app->session->getFlash('success');}?>
@@ -80,15 +78,15 @@ $tooltipcatandsubcat = Html::tag('span', '', ['title'=>'Cost category and subcat
     <button id="w110" class = "btn btn-success" onclick="js:getPaidcostticks()">Paid (ticked)</button>
     <button id="w111" class = "btn btn-danger" onclick="js:getUnpaidcostticks()">Unpaid (ticked)</button>
     
-    <?= Html::a('Add Cost', ['cost/index'], ['class' => 'btn btn-warning']) ?>
-    <?= Html::a('Back', ['costheader/index'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app','Add Cost'), ['cost/index'], ['class' => 'btn btn-warning']) ?>
+    <?= Html::a(Yii::t('app','Back'), ['costheader/index'], ['class' => 'btn btn-success']) ?>
     <br>
     </br>
 </p>
 
 <?php 
 use kartik\slider\Slider;
-echo Html::label('Font Size Adjuster:<br>');
+echo Html::label(Yii::t('app','Font Size Adjuster:<br>'));
 echo Slider::widget([
     'name' => 'sliderfontcostdetail',
     'value'=> Yii::$app->session['sliderfontcostdetail'],
@@ -103,9 +101,9 @@ echo Slider::widget([
         'min' => 1,
         'max' => 32,
         'step' => 1,
-        'tooltip'=>'Adjust to change the font size.',
+        'tooltip'=>Yii::t('app','app','Adjust to change the font size.'),
     ],
-]). '<button id="w991" class = "btn btn-info btn-lg" onclick="js:getSlidercostdetail()" title="Adjust to the required font." data-toggle="tooltip">Adjust font</button><br><br>';
+]). '<button id="w991" class = "btn btn-info btn-lg" onclick="js:getSlidercostdetail()" title='.Yii::t('Adjust to the required font.').' data-toggle="tooltip">Adjust font</button><br><br>';
    
 ?> 
 <?php
@@ -130,7 +128,7 @@ echo Slider::widget([
     [
     'class' => 'kartik\grid\ExpandRowColumn',
     'header'=>$tooltipcatandsubcat,  
-    'expandTitle'=> 'Cost category and Subcategory',
+    'expandTitle'=> Yii::t('app','Cost category and Subcategory'),
     'width' => '300px',
     'value' => function ($model, $key, $index, $column) {
         return GridView::ROW_COLLAPSED;
@@ -143,28 +141,28 @@ echo Slider::widget([
     ],       
     [
     'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-    'header'=> 'Description',
+    'header'=> Yii::t('app','Description'),
     'value' => function ($data) {
         return $data->cost->description; // $data['name'] for array data, e.g. using SqlDataProvider.
     },
     ],
     [
             'class' => 'kartik\grid\EditableColumn', // can be omitted, as it is the default
-            'header'=>'Payment Type',
+            'header'=>Yii::t('app','Payment Type'),
             'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard','Other'=>'Other'],
+            'filter'=>[Yii::t('app','Cash') =>Yii::t('app','Cash'),Yii::t('app','Cheque')=>Yii::t('app','Cheque'),Yii::t('app','Paypal')=>Yii::t('app','Paypal'),Yii::t('app','Debitcard')=>Yii::t('app','Debitcard'),Yii::t('app','Creditcard')=>Yii::t('app','Creditcard'),Yii::t('app','Other')=>Yii::t('app','Other')],
             'attribute'=>'paymenttype',
             'filterInputOptions' => [
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
-                  'placeholder' => 'Payment Type...'
+                  'placeholder' => Yii::t('app','Payment Type...')
              ],
               'filterWidgetOptions'=>[
                    'pluginOptions'=>['allowClear'=>true],
                 ],
                  'editableOptions' => function ($data,$key,$index,$widget)
                 {
-                    $arr = ['Cash' =>'Cash','Cheque'=>'Cheque','Paypal'=>'Paypal','Debitcard'=>'Debitcard','Creditcard'=>'Creditcard','Other'=>'Other'];
-                    return ['header'=>'Payment Type',
+                    $arr = [Yii::t('app','Cash') =>Yii::t('app','Cash'),Yii::t('app','Cheque')=>Yii::t('app','Cheque'),Yii::t('app','Paypal')=>Yii::t('app','Paypal'),Yii::t('app','Debitcard')=>Yii::t('app','Debitcard'),Yii::t('app','Creditcard')=>Yii::t('app','Creditcard'),Yii::t('app','Other')=>Yii::t('app','Other')];
+                    return ['header'=>Yii::t('app','Payment Type'),
                             'attribute'=>'paymenttype',
                             'size' => 'sm',
                             'format' =>kartik\Editable\Editable::FORMAT_BUTTON,
@@ -190,15 +188,12 @@ echo Slider::widget([
                 'attribute' =>'paymentreference',
                 'filterInputOptions' => [
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostdetail'].'px'],
-                  'placeholder' => 'Reference...'
+                  'placeholder' => Yii::t('app','Reference...')
                 ],
-               
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
                 'width' => '7%',
                 'refreshGrid'=>true,
-                //'headerOptions' => ['class' => 'kv-sticky-column'],
-                //'contentOptions' => ['class' => 'kv-sticky-column'],
                 'readonly' => false,
                 'editableOptions' => [
                     'asPopover' => false,
@@ -207,12 +202,11 @@ echo Slider::widget([
                         'pluginOptions' => ['autoclose' => true],                        
                      ]
                 ],
-                
     ],        
     [
     'class' => 'kartik\grid\ActionColumn',
     'template' => '{link}',// can be omitted, as it is the default
-    'header'=>'Carousal File',
+    'header'=>Yii::t('app','Carousal File'),
     'visible'=> Yii::$app->user->isGuest ? false : true,
     'buttons' => ['link' => function ($url, $data,$key) {
                    if (!empty($data->carousal->image_source_filename)){  
@@ -255,14 +249,14 @@ echo Slider::widget([
         'refreshGrid'=>true,
         'editableOptions' => [
         'asPopover' => false,      
-        'header' => 'Unit Price', 
+        'header' => Yii::t('app','Unit Price'), 
         'inputType' => kartik\editable\Editable::INPUT_SPIN,
             'options' => [
                 'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
             ]
         ],               
     ],
-    [
+     [
         'class' => 'kartik\grid\EditableColumn',
         'attribute' => 'paid',
         'hAlign' => 'right', 
@@ -273,7 +267,7 @@ echo Slider::widget([
         'refreshGrid'=>true,
         'editableOptions' => [
         'asPopover' => false, 
-        'header' => 'Paid', 
+        'header' => Yii::t('app','Paid'), 
         'inputType' => kartik\editable\Editable::INPUT_SPIN,
             'options' => [
                 'pluginOptions' => ['min' => 0.00, 'max' =>10000.00],                        
@@ -308,40 +302,16 @@ echo kartik\grid\GridView::widget([
     'floatHeader' => false,
     'showPageSummary' => true,
     'panel' => [
-    /**
-     * @var array the panel settings for displaying the grid view within a bootstrap styled panel. This property is
-     * therefore applicable only if [[bootstrap]] property is `true`. The following array keys can be configured:
-     * - `type`: _string_, the panel contextual type. Set it to one of the TYPE constants. If not set, will default to
-     *   [[TYPE_DEFAULT]].
-     * - `heading`: `string`|`boolean`, the panel heading. If set to `false`, will not be displayed.
-     * - `headingOptions`: _array_, HTML attributes for the panel heading container. Defaults to
-     *   `['class'=>'panel-heading']`.
-     * - `footer`: `string`|`boolean`, the panel footer. If set to `false` will not be displayed.
-     * - `footerOptions`: _array_, HTML attributes for the panel footer container. Defaults to
-     *   `['class'=>'panel-footer']`.
-     * - 'before': `string`|`boolean`, content to be placed before/above the grid (after the header). To not display
-     *   this section, set this to `false`.
-     * - `beforeOptions`: _array_, HTML attributes for the `before` text. If the `class` is not set, it will default to
-     *   `kv-panel-before`.
-     * - 'after': `string`|`boolean`, any content to be placed after/below the grid (before the footer). To not
-     *   display this section, set this to `false`.
-     * - `afterOptions`: _array_, HTML attributes for the `after` text. If the `class` is not set, it will default to
-     *   `kv-panel-after`.
-     */  
     'type' => GridView::TYPE_PRIMARY,
     'heading'=> Company::findOne(1)->name . " - " . Company::findOne(1)->telephone . " - " . DateTime::createFromFormat("Y-m-d", Costheader::findOne($id=Yii::$app->session['cost_header_id'])->cost_date)->format("l, d F Y"),
-    
-
     ],
     'exportConfig' => [
-                   GridView::CSV => ['label' => 'Export as CSV','config' => $config_array, 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
-                   GridView::HTML => ['label' => 'Export as HTML','config' => $config_array, 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
-                   GridView::PDF => [ 'label' => 'Export as PDF','config' => $config_array, 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')], 
-                   GridView::EXCEL=> ['label' => 'Export as EXCEL', 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
-                   GridView::TEXT=> ['label' => 'Export as TEXT', 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
+                   GridView::CSV => ['label' => Yii::t('app','Export as CSV'),'config' => $config_array, 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
+                   GridView::HTML => ['label' => Yii::t('app','Export as HTML'),'config' => $config_array, 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
+                   GridView::PDF => [ 'label' => Yii::t('app','Export as PDF'),'config' => $config_array, 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')], 
+                   GridView::EXCEL=> ['label' => Yii::t('app','Export as EXCEL'), 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
+                   GridView::TEXT=> ['label' => Yii::t('app','Export as TEXT'), 'filename' => 'Cost_date-'.$cost_date.'_Printed_'.date('d-M-Y')],
                 ],
-    
-]);
+  ]);
 ?>
-
 </div>  

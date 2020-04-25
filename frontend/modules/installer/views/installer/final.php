@@ -1,12 +1,8 @@
 <?php
-
 use \kartik\icons\Icon;
 use yii\helpers\Url;
 use \kartik\form\ActiveForm;
 use yii\helpers\Html;
-/** @var \app\modules\installer\models\FinalStep $model */
-/** @var \yii\web\View $this */
-/** @var array $cacheClasses */
 
 $this->title = Yii::t('app', 'Installer - Final step');
 
@@ -26,10 +22,8 @@ $form = ActiveForm::begin([
         <h2>
             <?= Yii::t('app', 'Site settings:') ?>
         </h2>
-
         <?= $form->field($model, 'serverName')->hint(Yii::t('app', 'This is the hostname that your site will be using.')) ?>
         <?= $form->field($model, 'serverPort')->hint(Yii::t('app', 'This is port that your site will be using.')) ?>
-
         <h2>
             <?= Yii::t('app', 'Cache settings:') ?>
         </h2>

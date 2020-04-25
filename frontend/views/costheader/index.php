@@ -6,21 +6,20 @@ use frontend\models\Costheader;
 use yii\helpers\ArrayHelper;
 use kartik\icons\FontAwesomeAsset;
 FontAwesomeAsset::register($this);
-$this->title = 'Daily Costs';
+$this->title = Yii::t('app','Daily Costs');
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['costheader/index']];
-$viewMsg = 'View';
-$deleteMsg = 'Delete';
-$updateMsg = 'Update';
+$viewMsg = Yii::t('app','View');
+$deleteMsg = Yii::t('app','Delete');
+$updateMsg = Yii::t('app','Update');
 $yearOnly = date('Y', strtotime(Date('Y-m-d')));
 ?>
-
 <div class="costheader-index">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
-        <?= Html::a('Create Daily Cost', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Copy Costs to Daily Costs', ['cost/index'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Daily Cost'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Copy Costs to Daily Costs'), ['cost/index'], ['class' => 'btn btn-success']) ?>
        <div class="dropdown">
-            <button title="Use the checkbox column below to copy complete lists with paid reset to 0 for each item." id="w125" class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">(Ticked) Copy <span class="caret"></span></button>
+           <button title=<?php Yii::t('app','Use the checkbox column below to copy complete lists with paid reset to 0 for each item.') ?> id="w125" class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php Yii::t('app','(Ticked) Copy') ?> <span class="caret"></span></button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a onclick="js:getCopycostitbytodaysdate()" class="btn btn-danger dropdown-item" href="#">Using today's date</a>
                 <a onclick="js:getCopycostitbyfrequency()" class="btn btn-danger dropdown-item" href="#">+ 1 month</a>
@@ -28,15 +27,7 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
         </div>
          <Hr style = "border-top: 3px double #8c8b8b">
          <div>
-            <!--<Hr style = "border-top: 3px double #8c8b8b">-->    
-            <!--<button id="w95" class = "btn btn-success" onclick="js:getYearmonthcost()">Expenditure:</button>--> 
-            <?php //Html::dropDownList('costyear','',[$yearOnly+1=>$yearOnly+1,$yearOnly=>$yearOnly,$yearOnly-1=>$yearOnly-1,$yearOnly-2=>$yearOnly-2] ,['prompt' => 'Year','class'=>'btn btn-success','id'=>'w179']) ?>
-            <?php //Html::dropDownList('costmonth','',[1=>'January',2=>'February',3=>'March',4=>'April',5=>'May',6=>'June',7=>'July',8=>'August',9=>'September',10=>'October',11=>'November',12=>'December'] ,['prompt' => 'Month','class'=>'btn btn-success','id'=>'w189']) ?>          
-            <!--<Hr style = "border-top: 3px double #8c8b8b">-->       
-        </div>
-        <div>
-       
-        <?= Html::label('Cost'); ?> 
+        <?= Html::label(Yii::t('app','Cost')); ?> 
         <?= Html::a(($yearOnly-3), ['costheader/totalannualcost/'.($yearOnly-3)], ['class' => 'btn btn-success']) ?>
         <?= Html::a(($yearOnly-2), ['costheader/totalannualcost/'.($yearOnly-2)], ['class' => 'btn btn-success']) ?>
         <?= Html::a(($yearOnly-1), ['costheader/totalannualcost/'.($yearOnly-1)], ['class' => 'btn btn-success']) ?>
@@ -47,13 +38,10 @@ $yearOnly = date('Y', strtotime(Date('Y-m-d')));
     
        
     </p>
-<?php 
-   //although the search model is not used keep it since it affects "unpaid ticked" javascript
-    //echo $this->render('_search', ['model' => $searchModel]); 
-?> 
+ 
 <?php 
 use kartik\slider\Slider;
-echo Html::label('Font Size Adjuster:<br>');
+echo Html::label(Yii::t('app','Font Size Adjuster:<br>'));
 echo Slider::widget([
     'name' => 'sliderfontcostheader',
     'options' => [
@@ -67,12 +55,10 @@ echo Slider::widget([
         'min' => 1,
         'max' => 32,
         'step' => 1,
-        'tooltip'=>'Adjust to change the font size.',
+        'tooltip'=>Yii::t('app','Adjust to change the font size.'),
     ],
 ]). '<button id="w303" class = "btn btn-info btn-lg" onclick="js:getSlidercostheader()"  title="Double click to adjust font." data-toggle="tooltip">Adjust font</button><br><br>';   
 ?> 
-
-
 <?php
    Yii::$app->formatter->nullDisplay = '';
    $gridColumns = [
@@ -87,7 +73,7 @@ echo Slider::widget([
      'attribute'=>'cost_header_id',
      'filterInputOptions' => [
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
-                  'placeholder' => 'Cost Id...'
+                  'placeholder' => Yii::t('app','Cost Id...')
                 ],
     ],
     [
@@ -135,7 +121,7 @@ echo Slider::widget([
     
     [
     'class' => 'kartik\grid\EditableColumn',
-    'header' => 'Cost Date',
+    'header' => Yii::t('app','Cost Date'),
     'attribute' => 'cost_date',
     'filter'=> Html::activeDropDownList($searchModel,'cost_date',ArrayHelper::map(Costheader::find()->orderBy('cost_date')->asArray()->all(),'cost_date','cost_date'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],'prompt'=>'From Date...']),      
     'hAlign' => 'center',
@@ -164,7 +150,7 @@ echo Slider::widget([
     ],
             
     ['class'=>'kartik\grid\DataColumn',
-             'header'=>'Total Due',
+             'header'=>Yii::t('app','Total Due'),
              'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
              'hAlign'=>'right',
              'format'=>['decimal', 2],  
@@ -182,7 +168,7 @@ echo Slider::widget([
              'pageSummaryFunc'=>Gridview::F_SUM,
    ],
    ['class'=>'kartik\grid\DataColumn',
-             'header'=>'Paid to date',
+             'header'=>Yii::t('app','Paid to date'),
              'hAlign'=>'right',
              'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontcostheader'].'px'],
              'format'=>['decimal', 2], 
@@ -235,7 +221,5 @@ echo Slider::widget([
       'type' => GridView::TYPE_PRIMARY
     ],
    ]); 
-?>
-
-  
+?>  
 </div>

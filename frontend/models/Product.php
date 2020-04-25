@@ -54,31 +54,29 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
     
-     
-
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Firstname (Not required)',
-            'surname' => 'Surname (Not required)',
-            'contactmobile' => 'Contact Mobile',
-            'specialrequest' => 'Special Request',
-            'listprice' => 'Price (required)',
-            'frequency'=> 'Frequency (required)',
-            'productnumber'=>'House Number',
-            'productcategory_id' => 'Postcode Area (eg. G32 - Carntyne)',
-            'postcodefirsthalf' =>'Postcode Firsthalf eg. G32 (Max 4 characters)',
-            'postcodesecondhalf' =>'Postcode Secondhalf eg. 6LF (Max 3 characters)',
-            'productcategory_id.description'=>'Description',
-            'productsubcategory_id' => 'Street (required)',
-            'sellstartdate' => 'First captured date',
-            'sellenddate' => 'Termination date (default: 2099/12/31) . Set to remove from round.',
-            'discontinueddate' => 'Modified Date (ignore)',
-            'isactive'=>'Is this active?',
-            'jobcode' => 'Latest daily clean job code to link house to.',
-            'mandate'=> 'Gocardless customer mandate link sent to customer in email (not approved yet) / Mandate Number eg. MD1234AA123BB (approved) ',
-            'gc_number'=> 'Gocardless customer number in Gocardless Website indicating that direct debit mandate has been approved.',
+            'id' => Yii::t('app','ID'),
+            'name' => Yii::t('app','Firstname (Not required)'),
+            'surname' => Yii::t('app','Surname (Not required)'),
+            'contactmobile' => Yii::t('app','Contact Mobile'),
+            'specialrequest' => Yii::t('app','Special Request'),
+            'listprice' => Yii::t('app','Price (required)'),
+            'frequency'=> Yii::t('app','Frequency (required)'),
+            'productnumber'=>Yii::t('app','House Number'),
+            'productcategory_id' => Yii::t('app','Postcode Area (eg. G32 - Carntyne)'),
+            'postcodefirsthalf' =>Yii::t('app','Postcode Firsthalf eg. G32 (Max 4 characters)'),
+            'postcodesecondhalf' =>Yii::t('app','Postcode Secondhalf eg. 6LF (Max 3 characters)'),
+            'productcategory_id.description'=>Yii::t('app','Description'),
+            'productsubcategory_id' => Yii::t('app','Street (required)'),
+            'sellstartdate' => Yii::t('app','First captured date'),
+            'sellenddate' => Yii::t('app','Termination date (default: 2099/12/31) . Set to remove from round.'),
+            'discontinueddate' => Yii::t('app','Modified Date (ignore)'),
+            'isactive'=>Yii::t('app','Is this active?'),
+            'jobcode' => Yii::t('app','Latest daily clean job code to link house to.'),
+            'mandate'=> Yii::t('app','Gocardless customer mandate link sent to customer in email (not approved yet) / Mandate Number eg. MD1234AA123BB (approved) '),
+            'gc_number'=> Yii::t('app','Gocardless customer number in Gocardless Website indicating that direct debit mandate has been approved.'),
           ];
     }
 

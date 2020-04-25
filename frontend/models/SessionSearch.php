@@ -1,19 +1,12 @@
 <?php
-
 namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\models\Session;
 
-/**
- * SessionSearch represents the model behind the search form of `frontend\models\Session`.
- */
 class SessionSearch extends Session
 {
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -22,22 +15,12 @@ class SessionSearch extends Session
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Session::find();

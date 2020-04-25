@@ -5,17 +5,12 @@ use frontend\modules\installer\components\SessionHelper;
 $config = [
     'id' => 'frontend-installer',
     'basePath' => dirname(__DIR__),
-    //'extensions' => require(__DIR__ . '/vendor/yiisoft/extensions.php'),
     'language' => 'en',
     'defaultRoute' => 'installer/installer',
-    //'bootstrap' => [
-    //    'installer',
-    //],
     'modules' => [
         'installer' => [
             'class' => 'frontend\modules\installer\Module',
         ],
-        
     ],
     'components' => [
         'cache' => [
@@ -32,7 +27,7 @@ $config = [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=installer',
+            'dsn' => 'mysql:host=localhost;dbname=db',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -49,7 +44,6 @@ $config = [
         'sessionHelper' => [
             'class' => SessionHelper::class
         ]
-
     ],
     'params' => [
         'icon-framework' => 'fa',

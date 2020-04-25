@@ -4,16 +4,6 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_gocardless_invoice".
- *
- * @property int $id
- * @property int $product_id
- * @property string $date
- * @property string $amount
- *
- * @property WorksProduct $product
- */
 class GocardlessInvoice extends \yii\db\ActiveRecord
 {
     /**
@@ -51,10 +41,10 @@ class GocardlessInvoice extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'product_id' => 'Product ID',
-            'date' => 'Date',
-            'amount' => 'Amount',
+            'id' => Yii::t('app','ID'),
+            'product_id' => Yii::t('app','Product ID'),
+            'date' => Yii::t('app','Date'),
+            'amount' => Yii::t('app','Amount'),
         ];
     }
 

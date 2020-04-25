@@ -34,9 +34,9 @@ Class Easy extends \yii\base\Model
     public function attributeLabels()
     {
         return [
-            'housenumber_ids' => 'House Numbers',
-            'start' => 'Start Number',
-            'finish' => 'Finish Number',
+            'housenumber_ids' => Yii::t('app','House Numbers'),
+            'start' => Yii::t('app','Start Number'),
+            'finish' => Yii::t('app','Finish Number'),
         ];
     }
     

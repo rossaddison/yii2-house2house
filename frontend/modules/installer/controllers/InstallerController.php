@@ -1,9 +1,7 @@
 <?php
-
 namespace frontend\modules\installer\controllers;
 
 use frontend\modules\installer\components\UpdateHelper;
-use frontend\modules\installer\components\SessionHelper;
 use frontend\modules\installer\models\DbConfig;
 use frontend\modules\installer\components\InstallerFilter;
 use frontend\modules\installer\components\InstallerHelper;
@@ -13,15 +11,12 @@ use Yii;
 use yii\base\DynamicModel;
 use yii\web\Controller;
 
-
 class InstallerController extends Controller
 {
-    // set simple layout
+    
     //public $layout = 'installer';
     private $db = null;
-    /**
-     * @inheritdoc
-     */
+    
     public function behaviors()
     {
         return
@@ -46,16 +41,18 @@ class InstallerController extends Controller
     public function actionIndex()
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         $minPhpVersion = version_compare(PHP_VERSION, '5.5.0') >= 0;
         $docRoot = strpos(Yii::$app->request->url, '/installer') === 0;
+        $databasecode = Utilities::userdb_database_code();
 
         return $this->render(
             'index',
             [
                 'minPhpVersion' => $minPhpVersion,
                 'docRoot' => $docRoot,
+                'databasehandler'=>$databasecode,
             ]
         );
     }
@@ -63,7 +60,7 @@ class InstallerController extends Controller
     public function actionLanguage()
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+           throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db.'));
         }
         $model = new DynamicModel(['language']);
         $model->addRule(['language'], 'required');
@@ -85,7 +82,7 @@ class InstallerController extends Controller
     public function actionDbConfig()
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         $config = $this->getDbConfigFromSession();
         $model = new DbConfig();
@@ -97,7 +94,7 @@ class InstallerController extends Controller
             if ($model->testConnection()) {
                 $config['connectionOk'] = true;
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Database connection - ok'));
-                if (isset($_POST['next'])) {
+                if (Yii::$app->request->post('next')) {
                     $sessionHelper->set('db-config', $config);
                     return $this->redirect(['migrate']);
                 }
@@ -117,7 +114,7 @@ class InstallerController extends Controller
     private function getDbConfigFromSession()
     { 
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         $sessionHelper = Yii::$app->get('sessionHelper');
         return $sessionHelper->get('db-config', [
@@ -135,13 +132,14 @@ class InstallerController extends Controller
     public function actionMigrate()
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         $model = new MigrateModel();
         $sessionHelper = Yii::$app->get('sessionHelper');
         //the user administering the installer will only be able to access their allocated database via the RBAC. 
         //the administrator will have to swop in and out of different databases 
         $model->dbCode = $sessionHelper->get('dbCode',Utilities::userdb_database_code());
+        if ($model->dbCode = 'db'){throw new \yii\web\ForbiddenHttpException(Yii::t('app','You are trying to create the Works Tables for database db by means of migrations. These have already been done by means of the migrate-db-namespaced command ...see console config main ...'));}
         if ($model->load(Yii::$app->request->post())) {
             $model->validate();
             foreach ($model->getAttributes() as $key => $value) {
@@ -175,7 +173,7 @@ class InstallerController extends Controller
     public function actionComplete()
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         return $this->render(
             'complete'
@@ -186,7 +184,7 @@ class InstallerController extends Controller
     private function db()
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         if ($this->db === null) {
             $config = InstallerHelper::createDatabaseConfig($this->getDbConfigFromSession());
@@ -203,10 +201,10 @@ class InstallerController extends Controller
     private function checkTime($ignoreTimeLimit=false)
     {
         if (!\Yii::$app->user->can('Migrate Works Database')) {
-            throw new \yii\web\ForbiddenHttpException('You do not have permission to do this migration.');
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have to have the .. Migrate Works Database .. permission to do this migration. This facility is only to be run for databases db1 to db10. NOT the admin database db'));
         }
         if (InstallerHelper::unlimitTime() === false && $ignoreTimeLimit === false) {
-            Yii::$app->session->setFlash('warning', Yii::t('app', 'Can\'t set time limit to 0. Some operations may not complete.'));
+            Yii::$app->session->setFlash('warning', Yii::t('app', 'Cannot set time limit to 0. Some operations may not complete.'));
             return false;
         } else {
             return true;

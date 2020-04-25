@@ -40,15 +40,15 @@ class Costheader extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'cost_header_id' => 'No.',
-            'status' => 'Cost Code',
-            'statusfile' => 'Cost Code Suffix',
-            'employee_id' => 'Employee ID',
-            'cost_date' => 'Cost Date',
-            'sub_total' => 'Sub Total',
-            'tax_amt' => 'Tax Amt',
-            'total_due' => 'Total Due',
-            'modified_date' => 'Modified Date',
+            'cost_header_id' => Yii::t('app','No.'),
+            'status' => Yii::t('app','Cost Code'),
+            'statusfile' => Yii::t('app','Cost Code Suffix'),
+            'employee_id' => Yii::t('app','Employee ID'),
+            'cost_date' => Yii::t('app','Cost Date'),
+            'sub_total' => Yii::t('app','Sub Total'),
+            'tax_amt' => Yii::t('app','Tax Amt'),
+            'total_due' => Yii::t('app','Total Due'),
+            'modified_date' => Yii::t('app','Modified Date'),
         ];
     }
 

@@ -4,22 +4,9 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_productcategory".
- *
- * @property integer $id
- * @property string $name
- * @property integer $tax_id
- * @property string $modifieddate
- *
- * @property WorksTax $tax
- * @property WorksProductsubcategory[] $worksProductsubcategories
- */
 class Productcategory extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+    
      public static function getDb()
    {
        return \frontend\components\Utilities::userdb();
@@ -30,9 +17,6 @@ class Productcategory extends \yii\db\ActiveRecord
         return 'works_productcategory';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -50,9 +34,9 @@ class Productcategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
-            'tax_id' => 'Tax ID',
-            'modifieddate' => 'Modifieddate',
+            'name' => Yii::t('app','Name'),
+            'tax_id' => Yii::t('app','Tax ID'),
+            'modifieddate' => Yii::t('app','Modifieddate'),
         ];
     }
 

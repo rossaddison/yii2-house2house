@@ -18,14 +18,14 @@ use yii\helpers\Html;
         $subcostname = Costsubcategory::find()->where(['id'=>$myvalue2])->one();
         $costname = Costcategory::find()->where(['id'=>$myvalue3])->one();
         if ($value['paid'] < $value['unit_price']) {
-                    $paid_or_unpaid = "Unpaid";
+                    $paid_or_unpaid = Yii::t('app','Unpaid');
                     $green_or_red = ['class' => 'btn btn-danger'];} 
                     else {
-                    $paid_or_unpaid = "Paid";    
+                    $paid_or_unpaid = Yii::t('app','Paid');    
                     $green_or_red = ['class' => 'btn btn-success'];}
         if (($value['paid'] == 0) && ($value['unit_price'] == 0)) {
-                    $paid_or_unpaid = "Ignore";
-                    $green_or_red = "";}  
+                    $paid_or_unpaid = Yii::t('app','Ignore');
+                    $green_or_red = '';}  
         echo Html::tag('div',
              Html::tag('tr',
                  '<td >'.

@@ -44,10 +44,10 @@ class Legal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'=>'ID',
-            'privacy_policy' => 'Privacy Policy',
-            'terms_conditions' => 'Terms and Conditions',
-            'last_updated' => 'Last Updated',
+            'id'=>Yii::t('app','ID'),
+            'privacy_policy' => Yii::t('app','Privacy Policy'),
+            'terms_conditions' => Yii::t('app','Terms and Conditions'),
+            'last_updated' => Yii::t('app','Last Updated'),
         ];
     }
 }

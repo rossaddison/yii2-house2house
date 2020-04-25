@@ -1,22 +1,18 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
 $this->title = $model->cost_header_id;
-$this->params['breadcrumbs'][] = ['label' => 'Daily Costs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Daily Costs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="costheader-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->cost_header_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->cost_header_id], [
+        <?= Html::a(Yii::t('app','Update'), ['update', 'id' => $model->cost_header_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app','Delete'), ['delete', 'id' => $model->cost_header_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,16 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'statusfile',
         ['attribute'=>'employee_id','header'=>'Employee','value'=>$model->employee->title],
         'cost_date',
+        //the below figures are auto generated from the detail section
         //'sub_total',
         //'tax_amt',
         //'total_due',
         'modified_date',
         ],
     ]) ?>
-    
-    
-    
-  
-
-
 </div>

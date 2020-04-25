@@ -4,15 +4,6 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_paymentrequest".
- *
- * @property int $id
- * @property int $sales_order_detail_id
- * @property string $gc_payment_request_id
- * @property string $status
- * @property string $modified_date
- */
 class Paymentrequest extends \yii\db\ActiveRecord
 {
     /**
@@ -28,9 +19,6 @@ class Paymentrequest extends \yii\db\ActiveRecord
         return 'works_paymentrequest';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -43,17 +31,14 @@ class Paymentrequest extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'sales_order_detail_id' => 'Sales Order Detail ID',
-            'gc_payment_request_id' => 'Gocardless Payment Request ID',
-            'status' => 'Status',
-            'modified_date' => 'Modified Date',
+            'id' => Yii::t('app','ID'),
+            'sales_order_detail_id' => Yii::t('app','Sales Order Detail ID'),
+            'gc_payment_request_id' => Yii::t('app','Gocardless Payment Request ID'),
+            'status' => Yii::t('app','Status'),
+            'modified_date' => Yii::t('app','Modified Date'),
         ];
     }
 }

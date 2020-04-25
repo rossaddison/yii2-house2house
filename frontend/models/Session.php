@@ -1,35 +1,16 @@
 <?php
-
 namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "session".
- *
- * @property string $id
- * @property int $expire
- * @property resource $data
- * @property int $user_id
- * @property string $db
- * @property string $gc_rid
- */
 class Session extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    
-    
     
     public static function tableName()
     {
         return 'session';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -41,18 +22,15 @@ class Session extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'expire' => 'Expire',
-            'data' => 'Data',
-            'user_id' => 'User ID',
-            'db' => 'Db',
-            'gc_rid' => 'Gc Rid',
+            'id' => Yii::t('app','ID'),
+            'expire' => Yii::t('app','Expire'),
+            'data' => Yii::t('app','Data'),
+            'user_id' => Yii::t('app','User ID'),
+            'db' => Yii::t('app','Db'),
+            'gc_rid' => Yii::t('app','Gc Rid'),
         ];
     }
 }

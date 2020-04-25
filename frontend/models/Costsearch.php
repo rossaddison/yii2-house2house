@@ -27,16 +27,16 @@ class Costsearch extends Cost
     public function attributeLabels()
     {
         return [
-            'id' => 'Cost',
-            'description' => 'Description',
-            'listprice' => 'Price',
-            'costnumber'=>'Cost Number',
-            'costcategory_id' => 'Costcode (eg. DIR - Direct Expenses)',
-            'costcode' =>'Costcode',
-            'costsubcategory_id' => 'eg. Labour',
-            'coststartdate' => 'First cost date',
-            'costenddate' => 'Cost End date',
-            'discontinueddate' => 'Discontinued Date',           
+            'id' => Yii::t('Cost'),
+            'description' => Yii::t('Description'),
+            'listprice' => Yii::t('Price'),
+            'costnumber'=>Yii::t('Cost Number'),
+            'costcategory_id' => Yii::t('Costcode (eg. DIR - Direct Expenses)'),
+            'costcode' =>Yii::t('Costcode'),
+            'costsubcategory_id' => Yii::t('eg. Labour'),
+            'coststartdate' => Yii::t('First cost date'),
+            'costenddate' => Yii::t('Cost End date'),
+            'discontinueddate' => Yii::t('Discontinued Date'),           
         ];
     }
     

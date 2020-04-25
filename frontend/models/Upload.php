@@ -2,13 +2,10 @@
 namespace frontend\models;
 
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class Upload extends Model
 {
-    /**
-     * @var UploadedFile
-     */
+   
     public $imageFile;
 
     public function rules()

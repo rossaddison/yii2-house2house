@@ -1,9 +1,7 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-//$this->title = $model->sales_order_id;
-$this->params['breadcrumbs'][] = ['label' => 'Monthly Revenue'];
+$this->params['breadcrumbs'][] = ['label' =>Yii::t('app','Monthly Revenue')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="salesorderheader-view">
@@ -21,10 +19,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'modified_date',
         ],
     ]) ?>
-    
-    
-    
-  
-
-
 </div>

@@ -17,6 +17,7 @@ use frontend\models\Costdetail;
 use frontend\models\Quicknote;
 use frontend\models\Messaging;
 use frontend\models\Carousal;
+use frontend\models\SessionDetail;
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\TravelMode;
 use dosamigos\google\maps\services\DirectionsRenderer;

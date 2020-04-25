@@ -160,7 +160,7 @@ return [
         'class' => 'sjaakp\pluto\Module',
         //'passwordFlags' => ['all' => 'captcha'],
         'passwordFlags' => ['all' => 'reveal'],
-        'passwordHint' => Yii::t('At least eight characters, one uppercase, one digit'),
+        'passwordHint' => Yii::t('app','At least eight characters, one uppercase, one digit'),
         'passwordRegexp' => '/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
         'identityClass' => 'sjaakp\pluto\models\User',
         //prevent the external guest signing up of users until site is stable by setting fenceMode to true

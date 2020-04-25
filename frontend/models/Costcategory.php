@@ -37,9 +37,9 @@ class Costcategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
-            'tax_id' => 'Tax ID',
-            'modifieddate' => 'Modifieddate',
+            'name' => Yii::t('app','Name'),
+            'tax_id' => Yii::t('app','Tax ID'),
+            'modifieddate' => Yii::t('app','Modifieddate'),
         ];
     }
 

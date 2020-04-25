@@ -4,7 +4,6 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
-use yii\data\Sort;
 use yii\data\ActiveDataProvider;
 use frontend\models\Product;
 
@@ -20,9 +19,6 @@ class ProductImport extends Product
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -32,32 +28,25 @@ class ProductImport extends Product
     public function attributeLabels()
     {
         return [
-            'id' => 'House',
-            'name' => 'Firstname',
-            'surname' => 'Surname',
-            'contactmobile' => 'Contact Mobile',
-            'specialrequest' => 'Special Request',
-            'listprice' => 'Price',
-            'productnumber'=>'House Number',
-            'productcategory_id' => 'Postcode Area (eg. G32 - Carntyne)',
-            'postcode' =>'Postcode',
-            'productsubcategory_id' => 'Street',
-            'sellstartdate' => 'First clean date',
-            'sellenddate' => 'Next Clean date',
-            'discontinueddate' => 'Discontinued Date',           
+            'id' => Yii::t('app','House'),
+            'name' => Yii::t('app','Firstname'),
+            'surname' => Yii::t('app','Surname'),
+            'contactmobile' => Yii::t('app','Contact Mobile'),
+            'specialrequest' => Yii::t('app','Special Request'),
+            'listprice' => Yii::t('app','Price'),
+            'productnumber'=>Yii::t('app','House Number'),
+            'productcategory_id' => Yii::t('app','Postcode Area (eg. G32 - Carntyne)'),
+            'postcode' =>Yii::t('app','Postcode'),
+            'productsubcategory_id' => Yii::t('app','Street'),
+            'sellstartdate' => Yii::t('app','First clean date'),
+            'sellenddate' => Yii::t('app','Next Clean date'),
+            'discontinueddate' => Yii::t('app','Discontinued Date'),           
         ];
     }
     
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
-        //$query = Product::find()->indexBy('id');
+        
         $query = Product::find();
         
         $dataProvider = new ActiveDataProvider([

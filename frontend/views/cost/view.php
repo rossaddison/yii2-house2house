@@ -1,14 +1,10 @@
 <?php
-use yii\helpers\Html;
-use yii\helpers\Json;
 use kartik\detail\DetailView;
 use yii\helpers\ArrayHelper;
 use frontend\models\Costcategory;
-use frontend\models\Costsubcategory;
 use yii\helpers\Url;
-use kartik\depdrop\DepDrop;
-$this->title='View Cost'; 
-$this->params['breadcrumbs'][]=['label'=>'Costs', 'url'=>['index']];
+$this->title=Yii::t('app','View Cost'); 
+$this->params['breadcrumbs'][]=['label'=>Yii::t('app','Costs'), 'url'=>['index']];
 $this->params['breadcrumbs'][]=$this->title;
 $attributes=[
     [
@@ -45,7 +41,7 @@ $attributes=[
     [
        'attribute'=>'frequency',
        'type' => DetailView::INPUT_DROPDOWN_LIST,
-       'items'=> ['Daily'=>'Daily','Weekly'=>'Weekly','Fortnightly'=>'Fortnightly','Monthly'=>'Monthly','Every two months'=>'Every two months','Other'=>'Other'],
+       'items'=> [Yii::t('app','Daily')=>Yii::t('app','Daily'),Yii::t('app','Weekly')=>Yii::t('app','Weekly'),Yii::t('app','Fortnightly')=>Yii::t('app','Fortnightly'),Yii::t('app','Monthly')=>Yii::t('app','Monthly'),Yii::t('app','Every two months')=>Yii::t('app','Every two months'),Yii::t('app','Other')=>Yii::t('app','Other')],
        'value'=>$model->frequency, 
        'inputWidth'=>'40%'
     ],

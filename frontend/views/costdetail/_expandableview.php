@@ -10,9 +10,9 @@ use yii\helpers\Html;
         $costcodename = Costcategory::find()->where(['id'=>$costcode_id])->one();
         echo Html::tag('div',
              Html::tag('tr',
-                 '<td >'."Category: ".
+                 '<td >'. Yii::t('app','Category ').
                  $costcodename['name']
-                 ."</td><td>"."Subcategory: ". 
+                 ."</td><td>".Yii::t('app','Subcategory '). 
                  $costsubcodename['name']
                  ."</td>"
               )

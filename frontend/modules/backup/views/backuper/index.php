@@ -1,8 +1,7 @@
 <?php
-
 use \kartik\icons\Icon;
 use yii\helpers\Url;
-
+use \kartik\form\ActiveForm;
 $this->title = 'mySql Backup';
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -40,11 +39,11 @@ $form = ActiveForm::begin([
     <div class="alert alert-info">
     <p>
             <?= Yii::t('app', 'Your document root is correctly set to: ') ?>
-            <code><?= realpath(Yii::getAlias('@webroot')) ?></code>.
+            <code><?php echo realpath(Yii::getAlias('@webroot')) ?></code>.
     </p>
     </div>
     <a href="<?= Url::toRoute(['dump']) ?>" class="btn btn-primary btn-lg pull-right ladda-button" data-style="expand-left">
         <?= Yii::t('app', 'Next') ?>
-        <?= Icon::show('arrow-right') ?>
+        <?php echo Icon::show('arrow-right') ?>
     </a>
 </div>

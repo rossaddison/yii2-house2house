@@ -33,14 +33,14 @@
                  ."</td><td align='right'><b>". $months[10][0] . " "
                     
                  ."</td><td align='right'><b>". $months[11][0] . " "
-                 ."</td><td align='right'><b>Total"   
+                 ."</td><td align='right'><b>". Yii::t('app','Total')   
               )
               
            );
      
      echo Html::tag('div',
                 Html::tag('tr',
-                 '<td ><b>'. "Owed"
+                 '<td ><b>'. Yii::t('app','Owed')
                  
                  ."</td><td align='right'><b>". $months[0][1] . " "
                 
@@ -106,7 +106,7 @@
      
      echo Html::tag('div',
                 Html::tag('tr',
-                 '<td ><b>'. "Paid"
+                 '<td ><b>'. Yii::t('app','Paid')
                  
                  ."</td><td align='right'>". $months[0][2] . " "
                 
@@ -135,106 +135,10 @@
                  ."</td><td align='right'><b>".$months[12][2] . " "
               )
            );
-     
-     //////echo Html::tag('div',
-     ///////           Html::tag('tr',
-     ////////////            '<td ><b>'. "Tips"
-     ///////            
-     //////////            ."</td><td align='right'>". $months[0][3] . " "
-     //////////           
-     //////////            ."</td><td align='right'>". $months[1][3] . " "
-     ///////           
-     //////////            ."</td><td align='right'>". $months[2][3] . " "
-     /////////                
-     /////////            ."</td><td align='right'>". $months[3][3] . " "
-     /////////           
-     ///////////            ."</td><td align='right'>". $months[4][3] . " "
-     ////////              
-     /////////            ."</td><td align='right'>". $months[5][3] . " "
-     //////////            
-     //////////            ."</td><td align='right'>". $months[6][3] . " "
-    //////////             
-    ///////////             ."</td><td align='right'>". $months[7][3] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[8][3] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[9][3] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[10][3] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[11][3] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'><b>".$months[12][3] . " "
-    ///////////          )
-      //////     );
-   ///////////   
-   ///////////    echo Html::tag('div',
-   ///////////             Html::tag('tr',
-   ///////////              '<td ><b>'. "Adv Pyt"
-   ///////////              
-  ///////////              ."</td><td align='right'>". $months[0][4] . " "
-    ///////////            
-     ///////////            ."</td><td align='right'>". $months[1][4] . " "
-    ///////////            
-    ///////////             ."</td><td align='right'>". $months[2][4] . " "
-    ///////////                 
-    ///////////             ."</td><td align='right'>". $months[3][4] . " "
-    ///////////            
-     ///////////            ."</td><td align='right'>". $months[4][4] . " "
-     ///////////              
-     ///////////            ."</td><td align='right'>". $months[5][4] . " "
-     ///////////            
-     ///////////            ."</td><td align='right'>". $months[6][4] . " "
-     ///////////            
-     ///////////            ."</td><td align='right'>". $months[7][4] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[8][4] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[9][4] . " "
-    ///////////                
-     ///////////            ."</td><td align='right'>". $months[10][4] . " "
-     ///////////               
-    ///////////             ."</td><td align='right'>". $months[11][4] . " "
-   ///////////                 
-   ///////////              ."</td><td align='right'><b>".$months[12][4] . " "
-   ///////////           )
-  ///////////         );
-       
-   ///////////    echo Html::tag('div',
-  ///////////              Html::tag('tr',
-   ///////////              '<td ><b>'. "Pre Pyt"
-   ///////////              
-   ///////////              ."</td><td align='right'>". $months[0][5] . " "
-  ///////////              
-    ///////////             ."</td><td align='right'>". $months[1][5] . " "
-   ///////////             
-   ///////////              ."</td><td align='right'>". $months[2][5] . " "
-    ///////////                 
-    ///////////             ."</td><td align='right'>". $months[3][5] . " "
-   ///////////             
-    ///////////             ."</td><td align='right'>". $months[4][5] . " "
-    ///////////               
-    ///////////             ."</td><td align='right'>". $months[5][5] . " "
-    ///////////             
-    ///////////             ."</td><td align='right'>". $months[6][5] . " "
-  ///////////               
-    ///////////             ."</td><td align='right'>". $months[7][5] . " "
-     ///////////               
-    ///////////            ."</td><td align='right'>". $months[8][5] . " "
-    ///////////                
-    ///////////             ."</td><td align='right'>". $months[9][5] . " "
-   ///////////                 
-    ///////////             ."</td><td align='right'>". $months[10][5] . " "
-   ///////////                 
-     ///////////            ."</td><td align='right'>". $months[11][5] . " "
-    ///////////                
-   ///////////              ."</td><td align='right'><b>".$months[12][5] . " "
-    ///////////          )
-    ///////////       );
-       
+           
        echo Html::tag('div',
                 Html::tag('tr',
-                 '<td ><b>'. "Total"
+                 '<td ><b>'. Yii::t('app','Total')
                  
                  ."</td><td align='right'><b>". $months[0][6] . " "
                 

@@ -1,39 +1,21 @@
 <?php
-
 namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_tax".
- *
- * @property integer $tax_id
- * @property string $tax_type
- * @property string $tax_name
- * @property string $tax_percentage
- *
- * @property WorksProductcategory[] $worksProductcategories
- */
 class Tax extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     
      public static function getDb()
    {
        return \frontend\components\Utilities::userdb();
    } 
-    
-    
+        
     public static function tableName()
     {
         return 'works_tax';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -44,24 +26,13 @@ class Tax extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
-            'tax_id' => 'Tax ID',
-            'tax_type' => 'Tax Type',
-            'tax_name' => 'Tax Name',
-            'tax_percentage' => 'Tax Percentage',
+            'tax_id' => Yii::t('app','Tax ID'),
+            'tax_type' => Yii::t('app','Tax Type'),
+            'tax_name' => Yii::t('app','Tax Name'),
+            'tax_percentage' => Yii::t('app','Tax Percentage'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getWorksProductcategories()
-    {
-        return $this->hasMany(WorksProductcategory::className(), ['tax_id' => 'tax_id']);
     }
 }

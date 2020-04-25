@@ -1,9 +1,7 @@
 <?php
-
 namespace frontend\modules\installer\commands;
 
 use frontend\modules\installer\components\UpdateHelper;
-use frontend\modules\installer\components\SessionHelper;
 use frontend\modules\installer\models\AdminUser;
 use frontend\modules\installer\models\DbConfig;
 use frontend\modules\installer\components\InstallerFilter;
@@ -16,10 +14,7 @@ use yii\helpers\Console;
 class InstallController extends Controller
 {
     private $db = null;
-
-    /**
-     * @inheritdoc
-     */
+    
     public function behaviors()
     {
         return [
@@ -31,7 +26,7 @@ class InstallController extends Controller
 
     public function actionIndex()
     {
-        $this->stdout("Checking permissions\n", Console::FG_YELLOW);
+        $this->stdout(Yii::t('app','Checking permissions'), Console::FG_YELLOW);
         $permissions = InstallerHelper::checkPermissions();
         $ok = true;
         foreach ($permissions as $file => $result) {
@@ -46,7 +41,7 @@ class InstallController extends Controller
             $ok = $ok && $result;
         }
         if (!$ok) {
-            if ($this->confirm("\nSome of your files are not accessible.\nContinue at your own risk?", true)) {
+            if ($this->confirm(Yii::t('app','Some of your files are not accessible. Continue at your own risk?'), true)) {
                 return $this->language();
             } else {
                 return 1;
@@ -58,11 +53,8 @@ class InstallController extends Controller
 
     private function language()
     {
-        /**
-         * @var $sessionHelper SessionHelper
-         */
         $sessionHelper = Yii::$app->get('sessionHelper');
-        $sessionHelper->set('language', $this->prompt('Enter language(ie. ru, zh-CN, en)',[
+        $sessionHelper->set('language', $this->prompt(Yii::t('app','Enter language'),[
             'required' => true,
             'default' => 'en',
         ]));
@@ -76,7 +68,7 @@ class InstallController extends Controller
         $model = new DbConfig();
         $model->setAttributes($config);
 
-        $this->stdout("Enter your database configuration:\n", Console::FG_YELLOW);
+        $this->stdout(Yii::t('app','Enter your database configuration'), Console::FG_YELLOW);
         foreach ($model->attributes() as $attribute) {
             if ($attribute !== 'enableSchemaCache') {
                 $model->setAttributes(
@@ -106,7 +98,7 @@ class InstallController extends Controller
 
         if ($model->testConnection() === false) {
             $config['connectionOk'] = true;
-            $this->stderr("Could not connect to databse!\n", Console::FG_RED);
+            $this->stderr(Yii::t('app','Could not connect to databse!'), Console::FG_RED);
             $this->dbConfig();
         }
         /**
@@ -121,7 +113,6 @@ class InstallController extends Controller
     private function migration()
     {
         $config = $this->getDbConfigFromSession();
-
         $dbConfigModel = new DbConfig();
         $dbConfigModel->setAttributes($config);
         $config = InstallerHelper::createDatabaseConfig($dbConfigModel->getAttributes());
@@ -129,7 +120,7 @@ class InstallController extends Controller
             $this->stderr(Yii::t('app', 'Unable to create db-local config'), Console::FG_RED);
             return false;
         }
-        $this->stdout("Running migrations...\n", Console::FG_YELLOW);
+        $this->stdout(Yii::t('app','Running migrations'), Console::FG_YELLOW);
         /** @var UpdateHelper $helper */
         $helper = Yii::createObject([
             'class' => UpdateHelper::className(),
@@ -169,7 +160,7 @@ class InstallController extends Controller
             InstallerHelper::createAdminUser($model, $this->db());
             return $this->finalStep();
         } else {
-            $this->stderr("Error in input data: ".var_export($model->errors, true), Console::FG_RED);
+            $this->stderr(Yii::t('app','Error in input data: ').var_export($model->errors, true), Console::FG_RED);
             return $this->adminUser();
         }
     }
@@ -189,29 +180,13 @@ class InstallController extends Controller
                     ]
                 );
             } else {
-                $model->useMemcached = $this->confirm("Use memcached extension?", false);
+                $model->useMemcached = $this->confirm(Yii::t('app','Use memcached extension?'), false);
             }
 
         }
-        if (getenv('DP2_SERVER_NAME')) {
-            $model->serverName = getenv('DP2_SERVER_NAME');
-        }
-        if (getenv('DP2_SERVER_PORT')) {
-            $model->serverPort = intval(getenv('DP2_SERVER_PORT'));
-        }
-        if (InstallerHelper::writeCommonConfig($model) && InstallerHelper::updateConfigurables()) {
-            file_put_contents(Yii::getAlias('@app/installed.mark'), '1');
-            $this->stdout("Installation complete!\n", Console::FG_GREEN);
-        } else {
-            $this->stderr("Unable to write configs!\n", Console::FG_RED);
-        }
         return 0;
     }
-
-    /**
-     * @return \yii\db\Connection
-     * @throws \yii\base\InvalidConfigException
-     */
+   
     private function db()
     {
         if ($this->db === null) {
@@ -227,9 +202,6 @@ class InstallController extends Controller
 
     private function getDbConfigFromSession()
     {
-        /**
-         * @var $sessionHelper SessionHelper
-         */
         $sessionHelper = Yii::$app->get('sessionHelper');
         return $sessionHelper->get('db-config', [
             'db_host' => 'localhost',

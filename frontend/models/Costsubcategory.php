@@ -1,5 +1,4 @@
 <?php
-
 namespace frontend\models;
 
 use Yii;
@@ -33,9 +32,9 @@ class Costsubcategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'costcategory_id' => 'Cost Category',
-            'name' => 'Name',
+            'id' => Yii::t('app','ID'),
+            'costcategory_id' => Yii::t('app','Cost Category'),
+            'name' => Yii::t('app','Name'),
         ];
     }
     
@@ -48,9 +47,6 @@ class Costsubcategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Costcategory::className(), ['id' => 'costcategory_id']);
     }
-    
-   
-    
     
     
 }

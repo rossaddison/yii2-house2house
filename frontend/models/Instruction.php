@@ -4,36 +4,19 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_instruction".
- *
- * @property int $id
- * @property string $code
- * @property string $code_meaning
- * @property int $include
- * @property string $modified_date
- */
 class Instruction extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    
-     public static function getDb()
+   public static function getDb()
    {
        return \frontend\components\Utilities::userdb();
    } 
     
-    
-    public static function tableName()
-    {
+   public static function tableName()
+   {
         return 'works_instruction';
-    }
+   }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+   public function rules()
     {
         return [
             [['code_meaning'], 'required'],
@@ -46,17 +29,14 @@ class Instruction extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+   public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'code' => 'Code',
-            'code_meaning' => 'Code Meaning',
-            'include' => 'Include in Sales Order Detail Drop Down List',
-            'modified_date' => 'Modified Date',
+            'id' => Yii::t('app','ID'),
+            'code' => Yii::t('app','Code'),
+            'code_meaning' => Yii::t('app','Code Meaning'),
+            'include' => Yii::t('app','Include in Sales Order Detail Drop Down List'),
+            'modified_date' => Yii::t('app','Modified Date'),
         ];
     }
 }

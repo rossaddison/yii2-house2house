@@ -1,18 +1,14 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ListView;
-
-$this->title = 'Cost Subcategory';
+$this->title = Yii::t('app','Cost Subcategory');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="costsubcategory-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Cost Subcategory', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Cost Subcategory'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

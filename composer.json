@@ -53,7 +53,8 @@
         "ruskid/yii2-csv-importer": "dev-master",
         "phpoffice/phpspreadsheet":"*", 
         "league/omnipay": "*",
-        "paragonie/random_compat": "*"
+        "paragonie/random_compat": "*",
+        "symfony/process": "3.0.*@dev"
     },
    "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

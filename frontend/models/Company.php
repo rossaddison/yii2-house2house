@@ -4,46 +4,7 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_company".
- *
- * @property int $id
- * @property string $name
- * @property string $address_street
- * @property string $address_area1
- * @property string $address_area2
- * @property string $address_areacode
- * @property string $telephone
- * @property string $external_website_url
- * @property string $email
- * @property string $twilio_telephone
- * @property string $fax
- * @property string $finyear_start_date
- * @property string $finyear_end_date
- * @property string $corp_tax_duedate
- * @property string $company_regno
- * @property string $vat_no
- * @property string $alt_reg_name
- * @property string $alt_reg_no
- * @property string $alt_expiry_date
- * @property string $alt2_reg_name
- * @property string $alt2_reg_no
- * @property string $alt2_expiry_date
- * @property string $sic_name
- * @property string $sic_code
- * @property string $sic2_name
- * @property string $sic2_code
- * @property int $salesorderheader_excludefullypaid
- * @property int $costheader_excludefullypaid
- * @property string $homepage
- * @property string $gc_accesstoken
- * @property string $gc_live_or_sandbox
- * @property string $smtp_transport_host
- * @property string $smtp_transport_username
- * @property string $smtp_transport_password
- * @property int $smtp_transport_port
- * @property string $smtp_transport_encryption
- */
+
 class Company extends \yii\db\ActiveRecord
 {
     /**
@@ -54,22 +15,12 @@ class Company extends \yii\db\ActiveRecord
        return \frontend\components\Utilities::userdb();
    }  
     
-    
-    
-    
+       
     public static function tableName()
     {
         return 'works_company';
     }
 
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-   
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -96,42 +47,42 @@ class Company extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'address_street' => 'Address Street',
-            'address_area1' => 'Address Area1 eg. Glasgow',
-            'address_area2' => 'Address Area2 eg. Lanarkshire',
-            'address_areacode' => 'Address Postcode',
-            'telephone' => 'Telephone',
-            'external_website_url' => 'External Website Url',
-            'email' => 'Email',
-            'twilio_telephone' => 'Twilio Telephone eg. eg. "+441315103755" if in the UK. The zero is dropped between the second 4 and the 1',
-            'fax' => 'Fax',
-            'finyear_start_date' => 'Financial Year Start Date',
-            'finyear_end_date' => 'Financial Year End Date',
-            'corp_tax_duedate' => 'Corporation Tax Due Date',
-            'company_regno' => 'Company Registration Number',
-            'vat_no' => 'Vat No',
-            'alt_reg_name' => 'Alternative Registration Name',
-            'alt_reg_no' => 'Alternative Registration No.',
-            'alt_expiry_date' => 'Alt Expiry Date',
-            'alt2_reg_name' => 'Alt2 Registration Name',
-            'alt2_reg_no' => 'Alt2 Registration No',
-            'alt2_expiry_date' => 'Alt2 Expiry Date',
-            'sic_name' => 'Sic Name',
-            'sic_code' => 'Sic Code',
-            'sic2_name' => 'Sic2 Name',
-            'sic2_code' => 'Sic2 Code',
-            'salesorderheader_excludefullypaid' => 'Exclude Fully Paid Daily Cleans from List',
-            'costheader_excludefullypaid' => 'Exclude Fully Paid Daily Costs from List',
-            'homepage' => 'Notes visible on Home Page when worker is logged in.',
-            'gc_accesstoken' => 'Gocardless Accesstoken',
-            'gc_live_or_sandbox' => 'Gocardless Live Or Sandbox eg. Live',
-            'smtp_transport_host' => 'Smtp Transport Host eg. send.one.com',
-            'smtp_transport_username' => 'Smtp Transport Username',
-            'smtp_transport_password' => 'Smtp Transport Password',
-            'smtp_transport_port' => 'Smtp Transport Port',
-            'smtp_transport_encryption' => 'Smtp Transport Encryption',
+            'id' => Yii::t('app','ID'),
+            'name' => Yii::t('app','Name'),
+            'address_street' => Yii::t('app','Address Street'),
+            'address_area1' => Yii::t('app','Address Area1 eg. Glasgow'),
+            'address_area2' => Yii::t('app','Address Area2 eg. Lanarkshire'),
+            'address_areacode' => Yii::t('app','Address Postcode'),
+            'telephone' => Yii::t('app','Telephone'),
+            'external_website_url' => Yii::t('app','External Website Url'),
+            'email' => Yii::t('app','Email'),
+            'twilio_telephone' => Yii::t('app','Twilio Telephone eg. eg. "+441315103755" if in the UK. The zero is dropped between the second 4 and the 1'),
+            'fax' => Yii::t('app','Fax'),
+            'finyear_start_date' => Yii::t('app','Financial Year Start Date'),
+            'finyear_end_date' => Yii::t('app','Financial Year End Date'),
+            'corp_tax_duedate' => Yii::t('app','Corporation Tax Due Date'),
+            'company_regno' => Yii::t('app','Company Registration Number'),
+            'vat_no' => Yii::t('app','Vat No'),
+            'alt_reg_name' => Yii::t('app','Alternative Registration Name'),
+            'alt_reg_no' => Yii::t('app','Alternative Registration No.'),
+            'alt_expiry_date' => Yii::t('app','Alt Expiry Date'),
+            'alt2_reg_name' => Yii::t('app','Alt2 Registration Name'),
+            'alt2_reg_no' => Yii::t('app','Alt2 Registration No'),
+            'alt2_expiry_date' => Yii::t('app','Alt2 Expiry Date'),
+            'sic_name' => Yii::t('app','Sic Name'),
+            'sic_code' => Yii::t('app','Sic Code'),
+            'sic2_name' => Yii::t('app','Sic2 Name'),
+            'sic2_code' => Yii::t('app','Sic2 Code'),
+            'salesorderheader_excludefullypaid' => Yii::t('app','Exclude Fully Paid Daily Cleans from List'),
+            'costheader_excludefullypaid' => Yii::t('app','Exclude Fully Paid Daily Costs from List'),
+            'homepage' => Yii::t('app','Notes visible on Home Page when worker is logged in.'),
+            'gc_accesstoken' => Yii::t('app','Gocardless Accesstoken'),
+            'gc_live_or_sandbox' => Yii::t('app','Gocardless Live Or Sandbox eg. Live'),
+            'smtp_transport_host' => Yii::t('app','Smtp Transport Host eg. send.one.com'),
+            'smtp_transport_username' => Yii::t('app','Smtp Transport Username'),
+            'smtp_transport_password' => Yii::t('app','Smtp Transport Password'),
+            'smtp_transport_port' => Yii::t('app','Smtp Transport Port'),
+            'smtp_transport_encryption' => Yii::t('app','Smtp Transport Encryption'),
         ];
     }
 }

@@ -4,14 +4,9 @@ use \kartik\icons\Icon;
 use yii\helpers\Url;
 use \kartik\form\ActiveForm;
 use yii\helpers\Html;
-/** @var \app\modules\installer\models\MigrateModel $model */
-/** @var \yii\web\View $this */
-/** @var \Symfony\Component\Process\Process $process */
-/** @var boolean $check */
-/** @var string $commandToRun */
 
 $this->title = Yii::t('app', 'Installer - Database migration');
-$this->params['breadcrumbs'][] = ['label' => 'Step Three', 'url' => ['migrate']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Step Three'), 'url' => ['migrate']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
@@ -29,7 +24,6 @@ $form = ActiveForm::begin([
     <div class="col-md-8 col-md-offset-2">
         <h2>
             <?= Yii::t('app', 'Migration settings:') ?>
-            <?php // $form->field($model, 'dbCode')->hiddenInput() ?>
 
 <h4><?= Yii::t('app', 'Command:') ?></h4>
 <pre>
@@ -71,15 +65,8 @@ $form = ActiveForm::begin([
         ]
     )
     ?>
-
 </div>
-<?php
-  ////  var_dump(Yii::$app->db);
-  ///  var_dump(Yii::$app->gmrr004);
- /////  echo Yii::getAlias('@webroot');
-  ////  echo Yii::getAlias('@frontend');
-  ////  var_dump($process);
-?>
+
 <?php
 ActiveForm::end();
 $js = <<<JS

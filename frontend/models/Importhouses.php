@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use Yii;
-use yii\web\UploadedFile;
 
 class Importhouses extends \yii\db\ActiveRecord
 {
@@ -33,25 +32,17 @@ class Importhouses extends \yii\db\ActiveRecord
         return [
             [['importfile'], 'safe'],
             [['importfile_source_filename','importfile_web_filename'], 'string', 'max' => 255],
-            [['importfile'], 'file','skipOnEmpty' => true, 'maxSize' => 2000000,'tooBig' => 'The import file cannot be larger than 2MB.', 'extensions'=>'xls, xlsx, ods','wrongExtension' => 'The file must be a XLS, XLSX or ODS.'],
+            [['importfile'], 'file','skipOnEmpty' => true, 'maxSize' => 2000000,'tooBig' => Yii::t('app','The import file cannot be larger than 2MB.'), 'extensions'=>'xls, xlsx, ods','wrongExtension' => 'The file must be a XLS, XLSX or ODS.'],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'importfile_source_filename' => 'Client-side Filename',
-            'importfile_web_filename' => 'Server-side Filename',
-            'importfile' =>'Import File'
+            'id' => Yii::t('app','ID'),
+            'importfile_source_filename' => Yii::t('app','Client-side Filename'),
+            'importfile_web_filename' => Yii::t('app','Server-side Filename'),
+            'importfile' =>Yii::t('app','Import File'),
         ];
     }
-    
-    
-    
-    
-    
 }

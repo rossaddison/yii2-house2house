@@ -1,22 +1,14 @@
 <?php
-
 use yii\helpers\Html;
 use kartik\grid\GridView;
-
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Instructions';
+$this->title = Yii::t('app','Instructions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="instruction-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Instruction', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Instruction'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'options' => ['style' => 'font-size:18px;'],

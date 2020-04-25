@@ -5,17 +5,7 @@ use frontend\models\Product;
 use frontend\models\Productcategory;
 use Yii;
 
-/**
- * This is the model class for table "works_productsubcategory".
- *
- * @property integer $id
- * @property integer $productcategory_id
- * @property string $name
- * @property string $modifieddate
- *
- * @property WorksProduct[] $worksProducts
- * @property WorksProductcategory $productcategory
- */
+
 class Productsubcategory extends \yii\db\ActiveRecord
 {
     /**
@@ -57,16 +47,16 @@ class Productsubcategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'productcategory_id' => 'Area',
-            'name' => 'Name',
-            'sort_order'=>'Sequence (Set to 500 if using with Quick Build)',
-            'lat_start' => 'Latitude Start eg. 55.8888888',
-            'lng_start' => 'Longitude Start eg. -4.1111111',
-            'lat_finish' => 'Latitude Finish eg. 55.9999999',
-            'lng_finish' => 'Longitude Finish eg. -4.2222222',
-            'directions_to_next_productsubcategory' => 'Directions to next street',
-            'isactive'=>'Is this active? (Default: Ticked)',
+            'id' => Yii::t('app','ID'),
+            'productcategory_id' => Yii::t('app','Area'),
+            'name' => Yii::t('app','Name'),
+            'sort_order'=>Yii::t('app','Sequence (Set to 500 if using with Quick Build)'),
+            'lat_start' => Yii::t('app','Latitude Start eg. 55.8888888'),
+            'lng_start' => Yii::t('app','Longitude Start eg. -4.1111111'),
+            'lat_finish' => Yii::t('app','Latitude Finish eg. 55.9999999'),
+            'lng_finish' => Yii::t('app','Longitude Finish eg. -4.2222222'),
+            'directions_to_next_productsubcategory' => Yii::t('app','Directions to next street'),
+            'isactive'=>Yii::t('app','Is this active? (Default: Ticked)'),
         ];
     }
 

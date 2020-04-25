@@ -42,18 +42,18 @@ class Cost extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'description' => 'Description',
-            'listprice' => 'Price',
-            'costnumber'=>'Cost Number',
-            'costcategory_id' => 'Category Code (eg. SUB - Subcontractor)',
-            'costcodefirsthalf' =>'Category Code Firsthalf eg. SUB (Max 4 characters)',
-            'costcodesecondhalf' =>'Category Code Secondhalf eg. 001 (Max 3 characters)',
-            'costcategory_id.description'=>'Description',
-            'costsubcategory_id' => 'Specialisation',
-            'coststartdate' => 'First cost date',
-            'costenddate' => 'Termination date (default: 2099/12/31) . Set to remove from cost list.',
-            'discontinueddate' => 'Modified Date (ignore)',           
+            'id' => Yii::t('app','ID'),
+            'description' => Yii::t('app','Description'),
+            'listprice' => Yii::t('app','Price'),
+            'costnumber'=>Yii::t('app','Cost Number'),
+            'costcategory_id' => Yii::t('app','Category Code (eg. SUB - Subcontractor)'),
+            'costcodefirsthalf' =>Yii::t('app','Category Code Firsthalf eg. SUB (Max 4 characters)'),
+            'costcodesecondhalf' =>Yii::t('app','Category Code Secondhalf eg. 001 (Max 3 characters)'),
+            'costcategory_id.description'=>Yii::t('app','Description'),
+            'costsubcategory_id' => Yii::t('app','Specialisation'),
+            'coststartdate' => Yii::t('app','First cost date'),
+            'costenddate' => Yii::t('app','Termination date (default: 2099/12/31) . Set to remove from cost list.'),
+            'discontinueddate' => Yii::t('app','Modified Date (ignore)'),           
         ];
     }
 

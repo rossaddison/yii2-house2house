@@ -4,25 +4,6 @@ namespace frontend\models;
 
 use Yii;
 
-/**
- * This is the model class for table "works_employee".
- *
- * @property integer $id
- * @property string $nationalinsnumber
- * @property string $contact_telno
- * @property string $title
- * @property string $birthdate
- * @property string $maritalstatus
- * @property string $gender
- * @property string $hiredate
- * @property integer $salariedflag
- * @property integer $vacationhours
- * @property integer $sickleavehours
- * @property integer $currentflag
- * @property string $modifieddate
- *
- * @property WorksSalesorderheader[] $worksSalesorderheaders
- */
 class Employee extends \yii\db\ActiveRecord
 {
     /**
@@ -33,10 +14,7 @@ class Employee extends \yii\db\ActiveRecord
    {
        return \frontend\components\Utilities::userdb();
    }
-    
-    
-    
-    
+   
     public static function tableName()
     {
         return 'works_employee';
@@ -70,19 +48,19 @@ class Employee extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'nationalinsnumber' => 'Unique identification Number',
-            'contact_telno' => 'Contact Telephone Number',
-            'title' => 'Title',
-            'birthdate' => 'Birth Date',
-            'maritalstatus' => 'Marital Status',
-            'gender' => 'Gender',
-            'hiredate' => 'Hire date',
-            'salariedflag' => 'Salaried flag',
-            'vacationhours' => 'Vacation hours',
-            'sickleavehours' => 'Sickleave hours',
-            'currentflag' => 'Current flag',
-            'modifieddate' => 'Modified date',
+            'id' => Yii::t('app','ID'),
+            'nationalinsnumber' => Yii::t('app','Unique identification Number'),
+            'contact_telno' => Yii::t('app','Contact Telephone Number'),
+            'title' => Yii::t('app','Title'),
+            'birthdate' => Yii::t('app','Birth Date'),
+            'maritalstatus' => Yii::t('app','Marital Status'),
+            'gender' => Yii::t('app','Gender'),
+            'hiredate' => Yii::t('app','Hire date'),
+            'salariedflag' => Yii::t('app','Salaried flag'),
+            'vacationhours' => Yii::t('app','Vacation hours'),
+            'sickleavehours' => Yii::t('app','Sickleave hours'),
+            'currentflag' => Yii::t('app','Current flag'),
+            'modifieddate' => Yii::t('app','Modified date'),
         ];
     }
 

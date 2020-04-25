@@ -2,12 +2,10 @@
 use \kartik\icons\Icon;
 use \kartik\form\ActiveForm;
 use yii\helpers\Html;
-use yii\helpers\HtmlPurifier;
 use yii\helpers\Url;
-use frontend\modules\subscription\components\Tools;
 
 $this->title = 'mySql';
-$this->params['breadcrumbs'][] = ['label' => 'Your Backup Details'];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Your Backup Details')];
 $this->params['breadcrumbs'][] = $this->title;   
 
 ?>
@@ -22,15 +20,14 @@ $form = ActiveForm::begin([
     <div class="col-md-8 col-md-offset-2">
     <?php if ($created_directory_successfully = true) {?>
         <h2>
-            <?php //echo "Your backup sql file has been saved to: ". $path_and_filename; ?>
-            <?= Html::a('Download', Url::to($model->save_from_path_and_filename), ['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>'Save your backup to your local drive in a safe place.']) ?>
+            <?= Html::a(Yii::t('app','Download'), Url::to($model->save_from_path_and_filename), ['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>Yii::t('app','Save your backup to your local drive in a safe place.')]) ?>
             <?php //var_dump($dumpit); ?>
         </h2>
     <?php } ?>
     <?php if ($created_directory_successfully = false) {?>
         <h2>
-            <?php echo "Your backup sql file could not be saved due to the following error:  ". $resultmessage; ?>
-            <?php echo "Your backup sql file would have been saved to: ". $path_and_filename; ?>
+            <?php echo Yii::t('app','Your backup sql file could not be saved due to the following error:  '). $resultmessage; ?>
+            <?php echo Yii::t('app','Your backup sql file would have been saved to: '). $path_and_filename; ?>
         </h2>
     <?php } ?>
     </div>     
@@ -41,9 +38,6 @@ $form = ActiveForm::begin([
         <?= Icon::show('arrow-left') ?>
         <?= Yii::t('app', 'Back') ?>
     </a>
-
-   
-
 </div>
 
 <?php

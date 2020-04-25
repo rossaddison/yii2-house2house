@@ -1,7 +1,5 @@
 <?php
-
 namespace frontend\modules\installer\components;
-
 
 use Yii;
 use yii\base\Component;

@@ -6,28 +6,8 @@ use frontend\models\Salesorderheader;
 use frontend\models\Productcategory;
 use frontend\models\Productsubcategory;
 use frontend\models\Product;
-use frontend\models\Tax;
-use yii\helpers\ArrayHelper;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\db\Query;
 use Yii;
 
-/**
- * This is the model class for table "works_salesorderdetail".
- *
- * @property integer $sales_order_id
- * @property integer $sales_order_detail_id
- * @property string $nextclean_date
- * @property integer $product_id
- * @property string $unit_price
- * @property integer $paid
- * @property string $modified_date
- *
- * @property WorksProduct $product
- * @property WorksSalesorderheader $salesOrder
- */
 class Salesorderdetail extends \yii\db\ActiveRecord
 {
     /**
@@ -43,9 +23,6 @@ class Salesorderdetail extends \yii\db\ActiveRecord
        return \frontend\components\Utilities::userdb();
    }     
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -66,26 +43,22 @@ class Salesorderdetail extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'sales_order_id' => 'Daily Clean ID',
-            'sales_order_detail_id' => 'House(s) to Clean ID',
-            'nextclean_date' => 'Next Clean Date',
-            'productcategory_id' => 'Postal Code',
-            'productsubcategory_id'=>'Street',
-            'product_id'=>'House',
-            'product_id.homeowner' => 'Homeowner',
-            'product_id.productnumber'=>'House Number',
-            'order_qty'=>'Order Qty',
-            'unit_price' => 'Unit Price',
-            'line_total'=> 'Line Total',
-            'paid' => 'Paid',
-            'modified_date' => 'Modified Date',
+            'sales_order_id' => Yii::t('app','Daily Clean ID'),
+            'sales_order_detail_id' => Yii::t('app','House(s) to Clean ID'),
+            'nextclean_date' => Yii::t('app','Next Clean Date'),
+            'productcategory_id' => Yii::t('app','Postal Code'),
+            'productsubcategory_id'=>Yii::t('app','Street'),
+            'product_id'=>Yii::t('app','House'),
+            'product_id.homeowner' => Yii::t('app','Homeowner'),
+            'product_id.productnumber'=>Yii::t('app','House Number'),
+            'order_qty'=>Yii::t('app','Order Qty'),
+            'unit_price' => Yii::t('app','Unit Price'),
+            'line_total'=> Yii::t('app','Line Total'),
+            'paid' => Yii::t('app','Paid'),
+            'modified_date' => Yii::t('app','Modified Date'),
         ];
     }
     
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getProduct()
     {
         return $this->hasOne(Product::className(), ['id' => 'product_id']);
@@ -100,10 +73,7 @@ class Salesorderdetail extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Productsubcategory::className(), ['id' => 'productsubcategory_id']);
     }
-       
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getSalesOrder()
     {
         return $this->hasOne(Salesorderheader::className(), ['sales_order_id' => 'sales_order_id']);

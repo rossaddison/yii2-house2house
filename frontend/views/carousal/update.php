@@ -1,14 +1,10 @@
 <?php
-
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Carousal */
-
-$this->title = 'Update Carousal: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Carousals', 'url' => ['index']];
+$this->title = Yii::t('app','Update Carousal') . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Carousals'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('app','Update');
 ?>
 <div class="carousal-update">
 

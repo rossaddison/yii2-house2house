@@ -1,14 +1,7 @@
 <?php
-
 namespace frontend\modules\installer\components;
 
-use frontend\modules\installer\models\AdminUser;
-use frontend\modules\installer\models\FinalStep;
-use Yii;
 use yii\helpers\ArrayHelper;
-use yii\helpers\VarDumper;
-use frontend\modules\installer\components\ConfigurationUpdater;
-use frontend\modules\installer\models\Configurable;
 
 class InstallerHelper
 {

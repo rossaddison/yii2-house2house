@@ -4,11 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Carousal */
-
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Carousals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Carousals'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="carousal-view">
@@ -16,11 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-lg']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app','Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-lg']) ?>
+        <?= Html::a(Yii::t('app','Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger btn-lg',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -40,8 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
     
     <?php
-            //echo "basepath ".  Yii::$app->params['uploadPath'] = Yii::$app->basePath .'\web\images';
-            //echo "savepath - path and filename  ".$path = Yii::$app->params['uploadPath'] ."/". $model->image_web_filename;
             if ($model->image_web_filename!='') {
                if (Yii::$app->user->identity->attributes['name'] === 'demo')
                {    

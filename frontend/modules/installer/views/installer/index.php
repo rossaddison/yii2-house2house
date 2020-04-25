@@ -1,12 +1,7 @@
 <?php
-
+//this installation module has been adapted from dotplant2's installation module.
 use \kartik\icons\Icon;
 use yii\helpers\Url;
-use yii\bootstrap4\Breadcrumbs;
-/** @var \yii\web\View $this */
-/** @var array $file_permissions */
-/** @var bool $minPhpVersion True if PHP version is ok */
-/** @var bool $docRoot True if document root is ok */
 
 $this->title = Yii::t('app', 'Installer');
 $permissions_ok = true;
@@ -14,7 +9,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Step One', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
-    <?= Yii::t('app', 'Installation') ?>
+    <?= Yii::t('app', 'Installation of Works Database tables to either db1 to db10.') ?>
 </h1>
 
 <?php if ($minPhpVersion === false): ?>
@@ -34,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <strong><?= Yii::t('app', 'Your DocumentRoot is not set to application/web/'.Yii::$app->request->url) ?></strong>
         <p>
             <?= Yii::t('app', 'You MUST set your DocumentRoot setting in your web server config to') ?>
-            <code><?= realpath(Yii::getAlias('@app/web/')) ?></code>.
+            <code><?php echo realpath(Yii::getAlias('@app/web/')) ?></code>.
         </p>
     </div>
 <?php endif; ?>
@@ -46,6 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </div>
 <?php endif; ?>
+<?php if ($databasehandler === 'db'): ?>
+    <div class="alert alert-danger">
+        <strong><?= Yii::t('app', 'You are currently working from the admin database and will NOT be able to do a Works migration since these tables are already set up. The console migration command eg. migrate-db1 picks up the current database that you are working from which is db and not in the range of db1 to db10. As admin you will have to change your ...Access db...permission to ... Access db1 ... in order to perform this migration.', [PHP_VERSION]) ?></strong>
+    </div>
+<?php endif; ?>
 
 <div class="installer-controls">
     <a href="<?= Url::toRoute(['language']) ?>" class="btn btn-primary btn-lg pull-right ladda-button" data-style="expand-left">
@@ -54,11 +54,3 @@ $this->params['breadcrumbs'][] = $this->title;
     </a>
 </div>
 
-<?php
-   //echo "Docroot is ".$docRoot;
-   //echo "<br>";
-   //echo "Yii request url ".Yii::$app->request->url;
-   //echo "<br>";
-   //echo "strpos " . strpos(Yii::$app->request->url, '/installer');
-   //echo "alias @migrations" .Yii::getAlias('@migrations');
- ?>
