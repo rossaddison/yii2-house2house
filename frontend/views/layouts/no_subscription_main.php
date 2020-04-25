@@ -64,32 +64,49 @@ $this->registerJs($js);
          } // Yii::$app->user->can('Manage Admin'))
          
         $menuItems = [    
-                ['label' => Html::button(Yii::t('app','Secure'),['class'=>'btn btn-success btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
+                ['label' => Html::button(Yii::t('app','Settings'),['class'=>'btn btn-info btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
                          ['label' => Html::button(Yii::t('app','Company'),['class'=>'btn btn-info btn-lg']), 'url' => ['/company/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                         ['label' => Html::button(Yii::t('app','Texting - Messages'),['class'=>'btn btn-info']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                         ['label' => Html::button(Yii::t('app','Message Log'), ['class'=>'btn btn-info']),'url' => ['/messagelog/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         ['label' => Html::button(Yii::t('app','Texting - Messages'),['class'=>'btn btn-info btn-lg']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         ['label' => Html::button(Yii::t('app','Message Log'), ['class'=>'btn btn-info btn-lg']),'url' => ['/messagelog/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Employee'),['class'=>'btn btn-info btn-lg']), 'url' => ['/employee/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Tax Codes'),['class'=>'btn btn-info btn-lg','title'=>Yii::t('app','Used to categorize revenue and expenses. These codes are NOT used in any VAT calculations. In fact there are no vat calculations therefore figures that you enter eg. under Daily Cleans or House must be inclusive of vat.'),'data-toggle'=>'tooltip']), 'url' => ['/tax/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Images / Files Upload'),['class'=>'btn btn-info btn-lg','datatoggle'=>'tooltip', 'title'=> $tooltipcarousal]), 'url' => ['/carousal/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Instruction'),['class'=>'btn btn-info btn-lg']), 'url' => ['/instruction/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                       
+                  ],
+                ],
+                ['label' => Html::button(Yii::t('app','Revenue'),['class'=>'btn btn-success btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
+                 'items' => [
+                         
                          ['label' => Html::button(Yii::t('app','Postcode'),['class'=>'btn btn-success btn-lg']), 'url' => ['/productcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Street'),['class'=>'btn btn-success btn-lg']), 'url' => ['/productsubcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Quick Build'),['class'=>'btn btn-danger btn-lg']), 'url' => ['/easy/initialize'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','House'),['class'=>'btn btn-success btn-lg']), 'url' => ['/product/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Acknowledge Mandates (').$check_howmany_mandates.')',['class'=>'btn btn-danger btn-lg']), 'url' => ['/product/acknowledge_mandates'],'visible'=>($check_howmany_mandates > 0)],
                          ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Daily Cleans'),['class'=>'btn btn-success btn-lg']), 'url' => ['/salesorderheader/index'],'visible'=>Yii::$app->user->can('Manage Basic')],
+                        
+                  ],
+                ],
+                ['label' => Html::button(Yii::t('app','Expenses'),['class'=>'btn btn-warning btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
+                 'items' => [
+                        
                          ['label' => Html::button(Yii::t('app','Costcode'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Costsubcode'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costsubcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Cost'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/cost/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Daily Costs'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costheader/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                        
+                  ],
+                ],
+                 ['label' => Html::button(Yii::t('app','Database'),['class'=>'btn btn-danger btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
+                 'items' => [
                          ['label' => Html::button(Yii::t('app','Import Houses'),['class'=>'btn btn-danger btn-lg']), 'url' => ['/importhouses/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          //the admin role does not inherit the support role. The installer controller under rules rejects those that do not hava the support role so admin is rejected. Only managers db1 upwards will get this ability.
                          ['label' => Html::button(Yii::t('app','Install database'),['class'=>'btn btn-danger btn-lg','title'=>Yii::t('app','Non-administrators ie. managers can install their own database once they have logged in.'),'data-toggle'=>'tooltip']), 'url' => ['/installer/installer/'],'visible'=>Yii::$app->user->can('Manage Admin') && Yii::$app->user->can('Migrate Works Database')],
                          ['label' => Html::button(Yii::t('app','Backup database'),['class'=>'btn btn-danger btn-lg','title'=>Yii::t('app','Users with the Backup database permission can backup their own database.'),'data-toggle'=>'tooltip']), 'url' => ['/backuper/backuper/'],'visible'=>Yii::$app->user->can('Manage Admin') && Yii::$app->user->can('Backup Database') ],
                   ],
                 ],
-                ['label' => Html::button(Yii::t('app','Admin'),['class'=>'btn btn-success btn-lg']),'url'=> '', 'visible'=>Yii::$app->user->can('manageRoles'),
+                ['label' => Html::button(Yii::t('app','Admin'),['class'=>'btn btn-info btn-lg']),'url'=> '', 'visible'=>Yii::$app->user->can('manageRoles'),
                  'items' => [
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Role Management (Admin)'),['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/role'],'visible'=>Yii::$app->user->can('manageRoles')],
                             ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;'.'&nbsp;'.Html::button(Yii::t('app','Update Admin'),['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/role/update/admin'],'visible'=>Yii::$app->user->can('manageRoles')],
@@ -103,7 +120,7 @@ $this->registerJs($js);
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Signup a User'),['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/signup'],'visible'=>Yii::$app->user->can('manageRoles')],
                   ],
                 ],
-                ['label' => Html::button(Yii::t('app','Quick Note'),['class'=>'btn btn-danger btn-lg']),'url'=> '/quicknote/create', 'visible'=>Yii::$app->user->can('Manage Basic'),
+                ['label' => Html::button(Yii::t('app','Quick Note'),['class'=>'btn btn-primary btn-lg']),'url'=> '/quicknote/create', 'visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [                        
                 ],
                 ],
