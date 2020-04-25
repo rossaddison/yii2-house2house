@@ -14,7 +14,6 @@ return array(
     'GTB_awesomeHash' => $vendorDir . '/seostats/seostats/SEOstats/Services/3rdparty/GTB_PageRank.php',
     'GTB_ieHash' => $vendorDir . '/seostats/seostats/SEOstats/Services/3rdparty/GTB_PageRank.php',
     'GTB_jenkinsHash' => $vendorDir . '/seostats/seostats/SEOstats/Services/3rdparty/GTB_PageRank.php',
-    'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Omnipay\\Omnipay' => $vendorDir . '/omnipay/common/src/Omnipay.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
