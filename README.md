@@ -23,22 +23,40 @@ under roundrunner.co.uk. As a former teacher, this package will be instrumental 
 
 **What is the structure of the database?** 
 
-**InnoDB** using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been built similar to **Microsoft's Adventure Works** making use of foreign keys. Yii2 is strong in this regard. Therefore Yii2's relations in models are used in many places to help **Eager loading and Lazy loading**. The package is bootstrapped. So it is viewable by means of desktop, mobile, and tablet provided you have an internet connection. 
+**InnoDB** using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been built similar to **Microsoft's Adventure Works** making use of foreign keys. Yii2 is strong in this regard. Therefore Yii2's relations in models are used in many places to help **Eager loading and Lazy loading**.
+
+**Can I use this package on a mobile phone?**
+The package is bootstrapped. So it is viewable by means of desktop, mobile, and tablet, amongst others, provided you have an internet connection. 
+
+**Is the package available in more than one language?**
+Yii2 provides the Yii::t('Convert this text into another language.') function which has been incorporated in this package.   
+
+**Where do I setup the language?**
+
+
+**We are a multi-language cleaning company. My one worker wants his division in his language. Where does he set this up?**
+
 
 **How can the package be adapted?**
 
-By editing the **Instruction list** which appears as a **dropdown** in the Daily Cleans list of houses. Each house that has been transferred to the Salesorderdetails or Daily Clean details has a **specific code** from the Instruction list. eg. FBS which stands for Front, Back and Sides. Also you can change attributes or descriptions under frontend/models to give a more personal feel to your business. 
+By editing the **Instruction list** table under **settings** which appears as a **dropdown** in the Daily Cleans list of houses. Each house that has been transferred to the Salesorderdetails or Daily Clean details has a **specific code** from the Instruction list. eg. FBS which stands for Front, Back and Sides. Also you can change attributes or descriptions under frontend/models to give a more personal feel to your business. 
 
 The House is the customer. So there is **no Customer database because it is a cash business.** House is actually a Product according to the Adventure Works hierarchy of Productcategory (Postcode), Productsubcategory (Street), and Product (House). This helps quick searching. Similarly SalesorderHeader (Daily Clean), SalesorderDetail (Individual cleans for that particular day). 
 
 This database relational design works hand in glove with **Kartik-v's** three tiered **dependency dropdown**. This thee tiered functionality works perfectly well in the Search Models and also in Kartik's grid's filters enabling quick retrieval of house records.
 
 The Default is **shared hosting** with a subscription through **paypal's rest-api-sdk***. 
-**10** companies/divisions/units can signup to your site. Users all get a **Free Subscription Privilege permission** from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the **employee role**. All Mdb roles fall under the **support role**. As a result the **paypal** service config details do **not** have to be setup if all users keep their Subscription Free Privilege.
+**10** companies/divisions/units can signup to your site. Users all get a **Free Subscription Privilege permission** from either their Udb role for employees or their Mdb role for managers. All Udb roles fall under the **employee role**. All Mdb roles fall under the **support role**. As a result the **paypal** service config details do **not** have to be setup if all users keep their Subscription Free Privilege. (frontend/modules/subscription/components/Configpaypal).
 
 Each database works separately from the others. Each database shares the frontend code. How does this happen? Each model has the userDb() function. This function gives a database to  a user at login by using the function **frontend/components/ Utiilites::userLogin_set_database**. When the user registers, the administrator must match a role to the user . Each database has 2 roles. **eg. Mdb1 and Udb1 for db1** . Both have the permission **Access db1**. So when the administrator matches the user to a role eg. Udb1, and makes this connection 'active', the user can access db1.  
 
-The first user to sign up gets the admin role. Admin matches all users of companies or divisions to role. 
+The first user to sign up gets the admin role. Admin matches all users of companies or divisions to role.
+
+**Where do I setup the Swiftmailer SMTP connection settings of my host?**
+Frontend/config/main.php
+
+**Where do individual companies signing up setup their SMTP settings?**
+Login...Settings...Company. If set their personal email host overrides the host's email facility.
 
 **Php version?**
 
