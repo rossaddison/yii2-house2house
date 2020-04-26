@@ -23,7 +23,7 @@ under roundrunner.co.uk. As a former teacher, this package will be instrumental 
 
 **What is the structure of the database?** 
 
-**InnoDB** using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been built similar to **Microsoft's Adventure Works** making use of foreign keys. Yii2 is strong in this regard. Therefore Yii2's relations in models are used in many places to help **Eager loading and Lazy loading**. 
+**InnoDB** using collation utf8mb4_unicode_ci running on mySQL. The tables works_salesorderheader and works_salesorderdetails for instance have been built similar to **Microsoft's Adventure Works** making use of foreign keys. Yii2 is strong in this regard. Therefore Yii2's relations in models are used in many places to help **Eager loading and Lazy loading**. The package is bootstrapped. So it is viewable by means of desktop, mobile, and tablet provided you have an internet connection. 
 
 **How can the package be adapted?**
 
@@ -57,27 +57,28 @@ Go to Daily Clean and click the create button. A Daily Clean appears on the Grid
 
 Under the Daily Clean, if you click on the + sign, the grid will expand and you will be able to see all the cleans for that day. You will be able to mark as paid those that have paid you. Click on 'cleans' and you will see a more detailed list of the overall cleans. 
 
-A useful feature is if you are lost you will be able to click on the address button to take you to Google maps.  If the postcode is not descriptive use Google's latitude and longitude coordinates for the beginning and end of the street. These streets will appear highlighted on the map if you choose good 'begin' and 'end' coordinates for each street. 
+A useful feature is, if you are lost, you will be able to click on the address button to take you to Google maps.  If the postcode is not descriptive use Google's latitude and longitude coordinates for the beginning and end of the street. These streets will appear **highlighted** on the map if you choose good 'begin' and 'end' **coordinates** for each street. 
 
 **How do I change the sequence or order of my streets to clean?**
 
-Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. 
+Give the street an order number. Each order number should be unique.  The Daily Clean will be sorted according to the order of the streets if you have more than one street under the Daily Clean. If the run is difficult to follow, 'directions to next clean' is a field that you can use to direct the cleaner to the next street.
 
 **What should I put under 'job code' in the Daily Clean?**
 
 eg. Bridgestone and Whitley run.
  
 You should preferably not include a number since this run is going to occur at least once a month. 
-Once the houses have been copied from 'House' how do I repeat the Daily Clean for a future clean? 
-Tick the relevant Daily Clean and then tick on the Ticked (copy) button to get your choices.  
+
+**Once the houses have been copied from 'House' how do I repeat the Daily Clean for a future clean?** 
+Tick the relevant Daily Clean and then tick on the Ticked (copy) button to get your choices of weekly, fortnightly etc.  
 
 **How do I get a balance of the amount that my customer owes me?** 
 
-If you go to houses and look at the far right side of the grid you will see the column Debt represented by a set of scales. Click on this icon and you will get a break down of the overall debt. You will have the ability to go to the individual debt. SOD stands for Sales Order Detail and represents a single house or clean on the Daily Clean (Sales Order).
+If you go to houses and look at the far right side of the grid you will see the column **Debt** represented by a set of scales. Click on this icon and you will get a break down of the overall debt. You will have the ability to go to the individual debt. **SOD** (**Sales Order Detail**) stands for Sales Order Detail and represents a single house or clean on the Daily Clean **SOH** (**Sales Order Header**).
 
 **I have several cleans in one area but do not want to enter them individually as this is time consuming. How can I speed the process up?**
 
-Use the Quick Build facility situated between Street and Houses. Under the specific street, set the sequence or sort order to 500, and simply move the house numbers on the left to the right. Set the sequence number back to the default of 99 once you have completed your build.
+Use the **Quick Build** facility situated between Street and Houses. Under the specific street, set the sequence or sort order to **500**, and simply move the house numbers on the left to the right. Set the sequence number back to the default of **99** once you have completed your build.
 
 **How do I find my turnover or costs?** 
 
@@ -176,13 +177,13 @@ The package adopts a very cautious approach of NO ACTION where relations between
    
    1. **Views security:** Cross Site Request Forgery (CSRF) built into frontend/config/main.php.
 
-   1. **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy. 
+   1. **Data Protection and Privacy:** It is the responsibility of the administrator to ensure data is backed up regularly and to ensure that users signing up are familiar with the Privacy and Data Protection Policy.  
 
    1. **Security best practices:** Active Record uses prepared statements to avoid SQL injections.  
 
 **I appreciate the security features that Yii2 offers but how do I ensure that only users that I have signed up can access the site?**
 
-The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. Those users on mobile will have to have access to broadband though.
+The sjaakp/pluto login can be set to 'fence mode' in frontend/config/main.php. This will restrict external users from accessing the site. 
 
 **Installation Steps for Files:**
 
@@ -230,9 +231,8 @@ This command will use the migration paths contained in **console**/config/main.p
 
 **Installation Steps if wanting more than 10 independent sharers.** 
 
-1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following four files:
+1. If you have more than 10 companies/divisions/units that you as administrator are wanting to signup you will need to edit the following three files:
 
-    1. *frontend/**config**/main.php - Adjust the backup module to include more than one database. Keep to the naming convention eg. db1, db2* 
     1. *frontend/**components**/Utilities::userLogin_set_database(). Include additional databases here using the naming convention eg. db1, db2*
     1. ***common**/config/main-local.php - Follow the naming convention eg. db1, db2*
     1. ***console**/config/main.php - edit and replicate the commands in the **controllerMap** for migrations over and above the 10 databases.*
@@ -246,11 +246,11 @@ This command will use the migration paths contained in **console**/config/main.p
         'class' => 'sjaakp\pluto\Module',
         'fenceMode' => true,
         
- and that your mailer component under frontend\config\main.php is correctly set so that your user can respond to your email. Testing on your **localhost**, the port will normally be **port 25** since you will be going through your service provider, such as BT. 
+ and that your mailer component under frontend\config\main.php is correctly set so that your user can respond to your email. Testing on your **localhost** and wampserver, the port will normally be **port 25** since you will be going through your service provider, such as BT. 
  
  **Troubleshooting**
  
- Besides the issues section for this repository in order to debug your code, defaults have been set in the following files:
+ Besides the issues section for this repository, in order to debug your code, defaults have been set in the following files:
     web/index.php
     
     defined('YII_DEBUG') or define('YII_DEBUG', true);
@@ -261,9 +261,11 @@ On completion ensure the following:
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 
-**Creating migrations on your local machine for the 'migrate' command from pre-existing auth tables. If you want to install the auth tables using 'migrate' skip this section.**
+**Creating migration files on your local machine so that you can use the 'migrate' command in future. You will use pre-existing auth tables that you installed by means of the sql files. (If you want to install the auth tables using 'migrate' skip this section.**)
 
-Occasionally you will need to create migrations in order to simplify a process instead of importing a **sql** file eg. console/migrations/**auth**/auth.sql or running sql commands from the phpMyadmin SQL section. For instance create migrations for: 
+Occasionally you will need to create migration files in order to simplify a process instead of importing a **sql** file such as the included console/migrations/**auth**/auth.sql or running sql commands from the phpMyadmin SQL section. 
+
+For instance create migrations for: 
 
     auth_assignment - the critical assignment of a user_id from the user table to a pre-built role. After the user table is filled after signup, this table will be filled second after the installation automatically with first user_id and the admin role.
 
@@ -292,19 +294,21 @@ Keep the localhost ip address [127.0.0.1]. Run the following command from your b
 
     mylocalhostname.myhost/gii/
 
-Assuming that you have already run the **auth.sql** under your phpAdmin, you should already have the auth tables in your database so select them and generate your migration. Make sure that you put the Namespace command at the top of each migration php file once the migration is completed. After you have put this migration in the console/migrations/auth folder if necessary alter the controllerMap.  
+Assuming that you have already run the **auth.sql** under your phpAdmin, you should already have the auth tables in your database so select them and generate your migration. 
+
+Make sure that you put the **Namespace** command at the top of each migration php file once the migration is completed. After you have put this migration in the console/migrations/auth folder if necessary alter the controllerMap.  
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration instead of through the auth.sql file, the namespace or path has now been included in the  **console/config/main.php controllerMap** command migrate-db-namespaced. The auth migrations necessary for filling the rbac auth tables are in:
+To install the above auth tables through a migration instead of through the auth.sql file, the namespace or path has now been included in the  **console/config/main.php controllerMap** command migrate-db-namespaced. The migration files have been generated from the auth.sql files. The auth migrations necessary for filling the rbac auth tables are in:
 
     console/migrations/auth
 
 **Why are the auth tables important?** 
 
-They are the soul of RBAC (Role Based Access Control). After the administrator has done 'his thing', the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
+They are the soul of RBAC (Role Based Access Control). After the administrator has given the user a role eg. mdb2 for manager, the auth_assignment table indicates the admin's decision that has occurred between the user table and the auth_item a.k.a permissions table with its buddy the auth_item_child table or 'role and permissions table' and the result ... in the auth_assignment table is a lonely user_id digit (that has so much significance in his home town the 'user table') with its companion and close associate, a simple role with all its potential. 
 
-So the **yii migrate-db-namespaced** command will create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' permissions. The auth_rule table is for finer conditions. This command also creates the sjaakp/pluto user table and the works tables, and also the paypal tables which although not possibly used are important for the package to run.
+So the **yii migrate-db-namespaced** command will create a bare-bones auth_assignment table, desperately hungry to track admin decisions, and a powerful duo, the auth_item and auth_item_child, policing partners, ready to flex their roles and administer 'allowed to' and 'denied' permissions. The auth_rule table is for finer conditions. This command also creates the sjaakp/pluto user table and the works tables, and also the paypal tables which, although not possibly used, are important for the package to run.
 
  **Installing roles and permissions using SQL on your localhost/host**
  
@@ -312,13 +316,13 @@ Whilst in the db database, copy the sql  commands in console/migrations/auth and
 
 **Allowing a manager to do their own 'Works' installation**
 
-All managers with Mdb roles can do their own migration of the frontend database if you give them the **Migrate Works Database** permission. This permission is linked to the installer module and can be accessed by typing 'installer/installer' in the browser. By default nobody has this permission for security reasons. The administrator will have to access individual databases one at a time in order to use the installer. The administrator will not need it for database 'db' because installation would have been done by the console/command prompt/putty etc in order to get the RBAC GUI. 
+All managers with Mdb roles can do their own migration of the frontend database if you give them the **Migrate Works Database** permission. This permission is linked to the installer module and can be accessed by typing 'installer/installer' in the browser. By default nobody has this permission for security reasons. The administrator will have to access individual databases one at a time in order to use the installer. The administrator will not need it for database 'db' because installation would have been done by the console/command prompt/putty etc in order to get the RBAC GUI running the migrate-db-namespaced command. So the installer is intended for managers and not administrators so that they can install their own databases. 
 
 **Allowing a manager to do their own 'Works' backup**
 
-All managers with Mdb roles can do their own backup of their separate frontend database/division/unit eg. db1 if you give the **Backup database** permission to the eg. Mdb1 role for the Manager of db1.  The backup module can be accessed by typing 'backuper/backuper' in the browser. Only those who inherit the 'admin' or 'support' role will have access to the software via the controller and the frontend/views/layouts/main.php. 
+The Works tables are all those tables given to managers of each individual database. Managers do not have access to database db. All managers with Mdb roles can do their own backup of their separate frontend database/division/unit eg. db1 if you give the **Backup database** permission to the eg. Mdb1 role for the Manager of db1.  The backup module can be accessed by typing 'backuper/backuper' in the browser or by clicking on the Backup Database button. Only those who inherit the 'admin' or 'support' role will have access to the software via the controller and the frontend/views/layouts/main.php. 
 
-The **admin** will have to assign the **'Backup Database'** permission to the **role** admin in order to backup their mySql db database.
+The **admin** will have to give the **'Backup Database'** permission to the **role** admin in order to backup their mySql db database.
 
 The backup module makes use of the **very popular ifsnop mySql** module. See https://packagist.org/packages/ifsnop/mysqldump-php.
 
