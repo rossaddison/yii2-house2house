@@ -29,13 +29,24 @@ under roundrunner.co.uk. As a former teacher, this package will be instrumental 
 The package is bootstrapped. So it is viewable by means of desktop, mobile, and tablet, amongst others, provided you have an internet connection. 
 
 **Is the package available in more than one language?**
-Yii2 provides the Yii::t('Convert this text into another language.') function which has been incorporated in this package.   
 
+Yii2 provides the Yii::t('app','Convert this text into another language.') function which has been incorporated in this package. At the console/command prompt running the following command will generate a language specific folder under frontend\messages eg. frontend\messages\nl for the Dutch language. 
+
+        yii message/extract @frontend/messages/template.php
+        
+This command looks at all the occurances of the Yii::t function in all files, takes the relevant text, looks up the languages setting in the template.php file and, for each two letter abbreviation eg. nl, creates a sub-folder under messages ie. messages/nl and inserts a app.php file which contains all these occurances. Using Google translate you can then translate these sentences and insert the results into the app.php file. app.php is now the PhpMessageSource.
+
+To generate a DbMessageSource. Go a little further down the template.php file and uncomment the db, format, and sourceMessageTable settings. Perform the following command to generate the relevant tables under database db.
+
+        yii migrate --db=db --migrationPath=@yii/i18n/migrations
+        
+ Perform the following command:
+ 
+        yii message/extract @frontend/messages/template.php
+        
 **Where do I setup the language?**
 
-
-**We are a multi-language cleaning company. My one worker wants his division in his language. Where does he set this up?**
-
+Once you have compiled a app.php file for your language set the language setting under frontend/config/main.php to your language.
 
 **How can the package be adapted?**
 
