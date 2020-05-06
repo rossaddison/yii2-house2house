@@ -45,7 +45,8 @@ $config = yii\helpers\ArrayHelper::merge(
 (new yii\web\Application($config));
 
 if (!Yii::$app->user->isGuest) {
-    Yii::$app->session['currentdatabase'] = \frontend\components\Utilities::userLogin_set_database();
+    Yii::$app->session['currentdatabase'] = \frontend\components\Utilities::userLogin_set_database(); 
+    \frontend\components\Utilities::setLanguage();
 }
 
 Yii::$app->run(); 

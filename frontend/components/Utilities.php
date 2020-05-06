@@ -18,6 +18,7 @@ use frontend\models\Quicknote;
 use frontend\models\Messaging;
 use frontend\models\Carousal;
 use frontend\models\SessionDetail;
+use frontend\models\Company;
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\TravelMode;
 use dosamigos\google\maps\services\DirectionsRenderer;
@@ -209,7 +210,7 @@ public static function userLogin_set_database()
                     exit;
                 }
 	        else if (\Yii::$app->user->can('Access db')) {
-                    return \Yii::$app->db; 
+                    return \Yii::$app->db;
                     exit;
                 }
                 else if (\Yii::$app->user->can('Access db1')) {
@@ -312,5 +313,11 @@ public static function displayRecursiveResults($arrayObject,$searchkey) {
         }
     }
 }
-}
 
+public static function setLanguage()
+{
+  //if (!empty(Company::findOne(1)->language->one())) (Yii::$app->language = Company::findOne(1)->language;) 
+  if  (!empty(Company::findOne(1)->language)){Yii::$app->language = Company::findOne(1)->language;} 
+}     
+    
+}// class

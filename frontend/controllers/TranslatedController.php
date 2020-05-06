@@ -54,7 +54,7 @@ class TranslatedController extends \yii\web\Controller
         //store cacert.pem file in ...bin/php/php7.4.4 or latest php directory. Adjust 'curl.cainfo' setting in php.ini to
     //[curl] eg. for wampserver curl.cainfo ="C:/wamp64/bin/php/php7.4.4/cacert.pem"
         $ssl_get_cacert_pem_url ="http://curl.haxx.se/ca/cacert.pem";
-        $all_languages = ['af', 'ar', 'az', 'be', 'bg', 'bs', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fr', 'he', 'hr', 'hu', 'hy', 'id', 'it', 'ja', 'ka', 'kk', 'ko', 'kz', 'lt', 'lv', 'ms', 'nb-NO', 'nl', 'pl', 'pt', 'pt-BR', 'ro', 'ru', 'sk', 'sl', 'sr', 'sr-Latn', 'sv', 'tg', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-TW'];
+        //$all_languages = ['af', 'ar', 'az', 'be', 'bg', 'bs', 'ca', 'cs', 'da', 'de', 'el', 'es', 'et', 'fa', 'fi', 'fr', 'he', 'hr', 'hu', 'hy', 'id', 'it', 'ja', 'ka', 'kk', 'ko', 'kz', 'lt', 'lv', 'ms', 'nb-NO', 'nl', 'pl', 'pt', 'pt-BR', 'ro', 'ru', 'sk', 'sl', 'sr', 'sr-Latn', 'sv', 'tg', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-TW'];
               
         if (!\Yii::$app->user->can('Google Translate')) {
             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to translate this package into a language of your choice. Ask your Administrator for the Google Translate permission and you will be able to multi select which sentences you want Google to translate. '));
