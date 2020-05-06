@@ -1,6 +1,7 @@
 <?php 
 use kartik\number\NumberControl;
 use frontend\models\Company;
+use Yii;
 ?>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">

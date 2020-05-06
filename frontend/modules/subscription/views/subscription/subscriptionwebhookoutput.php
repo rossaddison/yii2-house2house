@@ -1,9 +1,12 @@
+<?php
+  use Yii;  
+?>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
          <h5>
          <div class="alert alert-primary" role="alert">   
           <?php 
-                echo "Webhook output" . $output . "<br><br>";
+                echo Yii::t('Webhook output') . $output . "<br><br>";
                 echo "<br>";
           ?>
           <?php

@@ -1,10 +1,12 @@
+<?php
+  use Yii;  
+?>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
          <h5>
          <div class="alert alert-primary" role="alert">   
-          <?php echo "Paypal Agreement: <br><br>";
-                echo "Your subscription has to be active in order to cancelled. Your subscription is currently suspended so reactivate and then cancel.";
-                echo "<br>";
+          <?php echo Yii::t('app','Paypal Agreement: <br><br>'). Yii::t('app','Your subscription has to be active in order to be cancelled. Your subscription is currently suspended so reactivate and then cancel.').
+                  "<br>";
           ?>
           <?php
            // var_dump($summary_agreement_plan->toArray());

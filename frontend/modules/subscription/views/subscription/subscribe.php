@@ -1,8 +1,8 @@
 <?php
-
 use \kartik\icons\Icon;
 use yii\helpers\Html;
 use \kartik\form\ActiveForm;
+use Yii;
 if ($mode === 'sandbox') {$this->title = Yii::t('app', 'Subscription - Part 1 - subscribe.php');}
 if ($mode === 'live') {$this->title = Yii::t('app', 'Subscription');}
 $this->params['breadcrumbs'][] = ['label' => 'Subscribe', 'url' => ['subscription/subscription/subscribe.php']];
