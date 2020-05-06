@@ -19,7 +19,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 It has been built for **window cleaning** in the **UK** but can be modified for other service based companies. **Data protection** has been considered carefully in the package so most fields under the **Product table** (House) do not require data input and these fields are therefore not listed under the **'required'** fields. Refer to the suggested Privacy and Data Protection Policy under the /site/privacypolicy url when the site is hosted or under **frontend/views/site/privacypolicy.php.**.
 
 **Demo?**
-This repository is sometimes a month ahead of the demo. **https:\\roundrunner.co.uk** 
+This repository is sometimes a month ahead of the demo at **roundrunner.co.uk** 
 
 **What is the structure of the database?** 
 
