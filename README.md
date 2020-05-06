@@ -36,7 +36,7 @@ Yii2 provides the Yii::t('app','Convert this text into another language.') funct
         
 This command looks at all the occurances of the Yii::t function in all files, takes the relevant text, looks up the languages setting in the template.php file and, for each two letter abbreviation eg. nl, creates a sub-folder under messages ie. messages/nl and inserts a app.php file which contains all these occurances. Using Google translate you can then translate these sentences and insert the results into the app.php file. app.php is now the PhpMessageSource.
 
-To generate a DbMessageSource. Go a little further down the template.php file and uncomment the db, format, and sourceMessageTable settings. Perform the following command to generate the relevant tables under database db.
+To generate a DbMessageSource. Go a little further down the template.php file and uncomment the db, format, and sourceMessageTable settings. Perform the following command to generate the **source_message** and **message** tables under database db.
 
         yii migrate --db=db --migrationPath=@yii/i18n/migrations
         
@@ -44,9 +44,7 @@ To generate a DbMessageSource. Go a little further down the template.php file an
  
         yii message/extract @frontend/messages/template.php
         
-**Where do I setup the language?**
-
-Once you have compiled a app.php file for your language set the language setting under frontend/config/main.php to your language.
+This fills the **source_message table** with English extracts, and you will be able to use the **Google Translate** grid to translate the English extracts to whatever languages are in the languages array under template.php. 
 
 **How can the package be adapted?**
 
