@@ -67,7 +67,7 @@ class ProductController extends Controller
     
     public function actionSubcat() 
     {
-       if (!\Yii::$app->user->can('Create House')) {
+        if (!\Yii::$app->user->can('Create House')) {
             throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a house.'));
         }
         $out = [];

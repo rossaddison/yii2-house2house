@@ -33,15 +33,19 @@ $form = ActiveForm::begin([
 </div>
 </div>
 <div class="backuper-controls">
+    <?php if ($minPhpVersion === true): ?>  
     <div class="alert alert-info">
         <strong><?= Yii::t('app', 'Your PHP version '.phpversion().' is suitable ie. > 5.5', [PHP_VERSION]) ?></strong>
     </div>
+    <?php endif; ?>
+    <?php if ($docRoot === true): ?>
     <div class="alert alert-info">
     <p>
             <?= Yii::t('app', 'Your document root is correctly set to: ') ?>
             <code><?php echo realpath(Yii::getAlias('@webroot')) ?></code>.
     </p>
     </div>
+    <?php endif; ?>
     <a href="<?= Url::toRoute(['dump']) ?>" class="btn btn-primary btn-lg pull-right ladda-button" data-style="expand-left">
         <?= Yii::t('app', 'Next') ?>
         <?php echo Icon::show('arrow-right') ?>

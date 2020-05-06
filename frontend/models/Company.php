@@ -30,9 +30,11 @@ class Company extends \yii\db\ActiveRecord
             [['name', 'external_website_url', 'sic_name', 'sic2_name'], 'string', 'max' => 100],
             [['address_street', 'address_area1', 'address_area2', 'gc_accesstoken', 'smtp_transport_host', 'smtp_transport_username', 'smtp_transport_password'], 'string', 'max' => 50],
             [['address_areacode'], 'string', 'max' => 9],
+            [['google_translate_json_filename_and_path'], 'string', 'max' => 200],
             [['telephone', 'twilio_telephone'], 'string', 'max' => 15],
             [['email'], 'string', 'max' => 128],
             [['fax', 'corp_tax_duedate'], 'string', 'max' => 11],
+            [['language','currency_prefix','currency_suffix'],'string','max'=>16],
             [['finyear_start_date', 'finyear_end_date', 'alt_expiry_date', 'alt2_expiry_date'], 'string', 'max' => 20],
             [['company_regno'], 'string', 'max' => 8],
             [['vat_no', 'alt_reg_no', 'alt2_reg_no', 'sic_code', 'sic2_code'], 'string', 'max' => 10],
@@ -83,6 +85,10 @@ class Company extends \yii\db\ActiveRecord
             'smtp_transport_password' => Yii::t('app','Smtp Transport Password'),
             'smtp_transport_port' => Yii::t('app','Smtp Transport Port'),
             'smtp_transport_encryption' => Yii::t('app','Smtp Transport Encryption'),
+            'google_translate_json_filename_and_path' => 'Google Translate JSON '. Yii::t('app','filename and path with the quotes and with forward slashes eg. "c:/path/filename.json"'),
+            'language'=>Yii::t('app','Language'),
+            'currency_prefix'=>Yii::t('app','Currency prefix eg. $'),
+            'currency_suffix'=>Yii::t('app','Currency suffix eg. c'),
         ];
     }
 }

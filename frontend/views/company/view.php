@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sic_code',
             'sic2_name',
             'sic2_code',
-            'salesorderheader_excludefullypaid',
+            'salesorderheader_excludefullypaid',            
             'homepage',            
             'gc_accesstoken',
             'gc_live_or_sandbox',
@@ -55,6 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'smtp_transport_password',
             'smtp_transport_encryption',
             'smtp_transport_port',
+            'google_translate_json_filename_and_path',
+            'language',
+            'currency_prefix',
+            'currency_suffix',
         ],
     ]) ?>
 </div>

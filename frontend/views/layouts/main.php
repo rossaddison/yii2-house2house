@@ -91,8 +91,8 @@ $this->registerJs($js);
                 ['label' => Html::button(Yii::t('app','Expenses'),['class'=>'btn btn-warning btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
                         
-                         ['label' => Html::button(Yii::t('app','Costcode'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
-                         ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Costsubcode'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costsubcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         ['label' => Html::button(Yii::t('app','Cost Code'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Cost Sub Code'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costsubcategory/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Cost'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/cost/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Daily Costs'),['class'=>'btn btn-warning btn-lg']), 'url' => ['/costheader/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                         
@@ -104,7 +104,8 @@ $this->registerJs($js);
                          //the admin role does not inherit the support role. The installer controller under rules rejects those that do not hava the support role so admin is rejected. Only managers db1 upwards will get this ability.
                          ['label' => Html::button(Yii::t('app','Install database'),['class'=>'btn btn-danger btn-lg','title'=>Yii::t('app','Non-administrators ie. managers can install their own database once they have logged in.'),'data-toggle'=>'tooltip']), 'url' => ['/installer/installer/'],'visible'=>Yii::$app->user->can('Manage Admin') && Yii::$app->user->can('Migrate Works Database')],
                          ['label' => Html::button(Yii::t('app','Backup database'),['class'=>'btn btn-danger btn-lg','title'=>Yii::t('app','Users with the Backup database permission can backup their own database.'),'data-toggle'=>'tooltip']), 'url' => ['/backuper/backuper/'],'visible'=>Yii::$app->user->can('Manage Admin') && Yii::$app->user->can('Backup Database') ],
-                  ],
+                         ['label' => Html::button(Yii::t('app','Google Translate'),['class'=>'btn btn-danger btn-lg','title'=>Yii::t('app','English ->  Your Language. Set your JSON file name and path that you downloaded from Gooogle Translate in Company and ensure that your administrator has given you the Google Translate permission. '),'data-toggle'=>'tooltip']), 'url' => ['/translated/index/']],
+                   ],
                 ],
                 ['label' => Html::button(Yii::t('app','Admin'),['class'=>'btn btn-info btn-lg']),'url'=> '', 'visible'=>Yii::$app->user->can('manageRoles'),
                  'items' => [
@@ -143,7 +144,7 @@ $this->registerJs($js);
     //subscribed but not assigned a database role
     if ((!Yii::$app->user->isGuest) && (empty(Yii::$app->session['currentdatabase'])) && ((Yii::$app->session['sub'] === 1)||(Yii::$app->session['sub'] === 0))) 
          {
-            $menuItems[] = ['label' => Html::button(Yii::t('app','Contact Support to setup an account either Manager or Employee.'),['class'=>'btn btn-success btn-lg','title'=>Yii::t('app','Support will assign a role and database to you.'),'data-toggle'=>'tooltip']), 'url' => "tel:/07777777777",
+            $menuItems[] = ['label' => Html::button(Yii::t('app','Contact Support to setup an account either Manager eg. Mdb Role (All Mdb Roles inherit the support role) or Employee eg. Udb Role. (All Udb roles inherit the employee role)'),['class'=>'btn btn-success btn-lg','title'=>Yii::t('app','Support will assign a role and database to you.'),'data-toggle'=>'tooltip']), 'url' => "tel:/07777777777",
                             'items' => [
                            ],
                        ]; 

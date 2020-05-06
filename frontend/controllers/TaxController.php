@@ -75,7 +75,7 @@ class TaxController extends Controller
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create Tax')) {
-            throw new \yii\web\ForbiddenHttpException(Yii::t('You do not have permission to create a tax code.'));
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to create a tax code.'));
         }
         
         $model = new Tax();
@@ -99,7 +99,7 @@ class TaxController extends Controller
     {
         
         if (!\Yii::$app->user->can('Update Tax')) {
-            throw new \yii\web\ForbiddenHttpException(Yii::t('You do not have permission to update a tax code.'));
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to update a tax code.'));
         }
         
         $model = $this->findModel($id);
@@ -122,13 +122,13 @@ class TaxController extends Controller
     public function actionDelete($id)
     {
         if (!\Yii::$app->user->can('Delete Tax')) {
-            throw new \yii\web\ForbiddenHttpException(Yii::t('You do not have permission to delete a tax code.'));
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You do not have permission to delete a tax code.'));
         }
         try{
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
         } catch(IntegrityException $e) {
-              throw new \yii\web\HttpException(404, Yii::t('First delete Daily cleans or costs that this tax code has been linked to then you will be able to delete this tax code.'));
+              throw new \yii\web\HttpException(404, Yii::t('app','First delete Daily cleans or costs that this tax code has been linked to then you will be able to delete this tax code.'));
         }
     }
 
@@ -144,7 +144,7 @@ class TaxController extends Controller
         if (($model = Tax::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('The requested page does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
         }
     }
 }

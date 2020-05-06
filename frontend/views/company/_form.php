@@ -39,6 +39,10 @@ use dosamigos\ckeditor\CKEditor;
     <?= $form->field($model, 'smtp_transport_password')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'smtp_transport_encryption')->dropDownList(['' =>'','tls'=>'tls','ssl'=>'ssl','tls/ssl'=>'tls/ssl'], ['prompt' => 'Select']) ?>
     <?= $form->field($model, 'smtp_transport_port')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'google_translate_json_filename_and_path')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'language')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'currency_prefix')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'currency_suffix')->textInput(['maxlength' => true]) ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

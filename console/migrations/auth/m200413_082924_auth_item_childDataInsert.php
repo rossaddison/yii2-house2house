@@ -23,6 +23,10 @@ class m200413_082924_auth_item_childDataInsert extends Migration
         'child' => 'Access db',
     ],
     [
+        'parent' => 'fencemode',
+        'child'=>'User can Login but not Signup - Fence Mode On',    
+    ],
+    [
         'parent' => 'Mdb0',
         'child' => 'Access db',
     ],
@@ -1026,6 +1030,18 @@ class m200413_082924_auth_item_childDataInsert extends Migration
         'parent' => 'support',
         'child' => 'View Revenue Reports',
     ],
+    [
+        'parent' => 'admin',
+        'child' => 'fencemode',
+    ],
+    [
+        'parent' => 'support',
+        'child' => 'fencemode',
+    ],
+    [
+        'parent' => 'employee',
+        'child' => 'fencemode',
+    ],                            
 ]
         );
     }

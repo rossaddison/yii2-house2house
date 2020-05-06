@@ -41,6 +41,7 @@
         "kartik-v/yii2-mpdf":"dev-master",
         "kartik-v/bootstrap-star-rating": "@dev",
         "kartik-v/yii2-slider": "dev-master",
+        "kartik-v/yii2-number" : "@dev",
         "mpdf/mpdf":"~8.0.0",
         "2amigos/yii2-google-maps-library" : "*",
         "2amigos/yii2-ckeditor-widget" : "~2.1",
@@ -54,7 +55,8 @@
         "phpoffice/phpspreadsheet":"*", 
         "league/omnipay": "*",
         "paragonie/random_compat": "*",
-        "symfony/process": "3.0.*@dev"
+        "symfony/process": "3.0.*@dev",
+        "google/cloud-translate": "*"
     },
    "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

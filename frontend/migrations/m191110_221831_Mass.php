@@ -58,6 +58,10 @@ class m191110_221831_Mass extends Migration
             'smtp_transport_password'=> $this->string(50)->null()->defaultValue(null),
             'smtp_transport_port'=> $this->integer(11)->null()->defaultValue(null),
             'smtp_transport_encryption'=> "enum('', 'null', 'tls', 'ssl') NOT NULL DEFAULT 'tls'",
+            'google_translate_json_filename_and_path'=> $this->string(200)->null()->defaultValue(null),
+            'language'=> $this->string(16)->null()->defaultValue(null),
+            'currency_prefix'=>$this->string(16)->null()->defaultValue(null),
+            'currency_suffix'=>$this->string(16)->null()->defaultValue(null),
         ], $tableOptions);
 
 
@@ -293,10 +297,6 @@ class m191110_221831_Mass extends Migration
             'quoteamount'=> $this->integer(2)->notNull(),
             'acceptedamount'=> $this->integer(2)->notNull(),
         ], $tableOptions);
-
-
-      
-
 
         $this->createTable('{{%works_salesorderdetail}}',[
             'sales_order_id'=> $this->integer(11)->notNull(),

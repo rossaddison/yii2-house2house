@@ -77,7 +77,7 @@ $tooltipgocardlesscustomer = Html::tag('span', 'Gocardless'. Yii::t('app','Manda
 <h1><?= Html::encode($this->title) ?></h1>
 <?= Html::a(Yii::t('app','Create House'), ['create'], ['class' => 'btn btn-success btn-lg','title'=>Yii::t('app','Have you setup your Postcode and street?'),'data-toggle'=>'tooltip']) ?>
    <Hr style = "border-top: 3px double #8c8b8b">    
-   <button id="w5" class = "btn btn-success btn-lg" onclick="js:getKeys()" title="<?php Yii::t('app','Have you created your Daily Clean?') ?>" data-toggle="tooltip"><?php Yii::t('app','Copy Ticked to: ') ?></button>
+   <button id="w5" class = "btn btn-success btn-lg" onclick="js:getKeys()" title="<?php Yii::t('app','Have you created your Daily Clean?') ?>" data-toggle="tooltip"><?php echo Yii::t('app','Copy Ticked to: ') ?></button>
    <?= Html::label(Yii::t('app','Daily Cleans Date: ')) ?>
    <?= Html::dropDownList('sorder','', ArrayHelper::map(Salesorderheader::find()->orderBy(['clean_date'=>SORT_DESC])->all(),'sales_order_id','status','clean_date'),['prompt' => '--- select ---','id'=>'w9']) ?>
    <?= Html::a(Yii::t('app','Goto Daily Cleans'), ['salesorderheader/index'], ['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','This will take you back to your Daily Cleans.')]) ?>

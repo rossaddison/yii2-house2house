@@ -411,7 +411,6 @@ class SalesorderdetailController extends Controller
                             ));
                            } catch (\Twilio\Exceptions\RestException $e) {
                                 echo $e->getMessage();
-                                var_dump($e->getMessage());
                            }                            
                     }                  
       }

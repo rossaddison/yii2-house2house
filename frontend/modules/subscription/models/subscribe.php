@@ -2,12 +2,8 @@
 
 namespace frontend\modules\subscription\models;
 
-use Yii;
-use Yii\helpers\Url;
-
 class subscribe extends \yii\base\Model
 {
-    
     public $plan_name = 'Subscription Monthly';
     public $plan_description = 'Monthly Subscription Plan';
     public $plan_type = 'FIXED'; 
@@ -25,8 +21,11 @@ class subscribe extends \yii\base\Model
     public $charge_model_amount_value = 0;
     public $charge_model_amount_currency = 'GBP';
     
-    public $merchant_preference_returnurl =  \Yii::$app->getUrlManager()->getBaseUrl().'/subscription/subscription/success';
-    public $merchant_preference_cancelurl = \Yii::$app->getUrlManager()->getBaseUrl().'/subscription/subscription/cancel';
+    //public $merchant_preference_returnurl =  \Yii::$app->getUrlManager()->getBaseUrl().'/subscription/subscription/success';
+    //public $merchant_preference_cancelurl = \Yii::$app->getUrlManager()->getBaseUrl().'/subscription/subscription/cancel';
+    
+    public $merchant_preference_returnurl =  '/subscription/subscription/success';
+    public $merchant_preference_cancelurl =  '/subscription/subscription/cancel';
     
     public $autobillamount = 'yes';
     public $initial_fail_amount_action = 'CONTINUE';
@@ -160,4 +159,4 @@ class subscribe extends \yii\base\Model
         ];
     }
 }
-?>
+

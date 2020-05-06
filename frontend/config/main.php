@@ -3,13 +3,15 @@ $params = array_merge(
     //admin email, support email, bootstrap versioning located under params.php
     require(__DIR__ . '/params.php')
  );
-
 Use frontend\modules\subscription\components\SessionHelper;
 
 return [
     'id' => 'app-frontend',
     'name'=>Yii::t('app','House 2 House'),
     'timezone' => 'UTC',
+    //in your own language change the following after using H2H's Google Translate Module.
+    //or set the Company...Settings...Language...setting.
+    ///'language'=> 'en-GB',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
@@ -38,6 +40,21 @@ return [
     },
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                      'class' => 'yii\i18n\DbMessageSource',
+                      //the source_message table of english messages in this package was created with
+                      //yii message/extract @frontend/messages/template.php. Change the languages setting
+                      //to generate an empty messages table for that language. Use this packages Google Translate
+                      // facility tool to translate this.
+                      
+                      'sourceLanguage' => 'en-GB', 
+                ],
+                
+            ],
+            
+        ],
         'assetManager' => [
             'bundles' => [
                 'yii\bootstrap4\BootstrapAsset' => [
@@ -58,6 +75,8 @@ return [
                  ],
                  ],
             ],
+            //automatic cache busting ensured, if js files in particular changed, so that older js files not used by client
+            'appendTimestamp' => true,
         ], 
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -118,6 +137,7 @@ return [
 		        'daily-clean/<action:\w+>/<id:\d+>' => 'salesorderheader/<action>',
                         'your-staff/<action:\w+>/<id:\d+>' => 'employee/<action>',
                         'house/<action:\w+>/<id:\d+>' => 'product/<action>',
+                        'translated/<action:\w+>/<id:\d+>' => 'translated/<action>',
                         'specific-cost-main-category-code/<action:\w+>/<id:\d+>' => 'costcategory/<action>',
                         'specific-cost-secondary-category-code/<action:\w+>/<id:\d+>' => 'costsubcategory/<action>',
                         'individual-cost-under-secoondary-category-code/<action:\w+>/<id:\d+>' => 'cost/<action>',
@@ -165,7 +185,11 @@ return [
         'identityClass' => 'sjaakp\pluto\models\User',
         //prevent the external guest signing up of users until site is stable by setting fenceMode to true
 	//if fenceMode is set to true you can still signup users internally as the user with 'admin' rights.
-        'fenceMode' => true,
+        //Default: No user including Admin has this permission ie. site is open to signup for everyone
+        //Use: All users inherit the fencemode role. The fencemode role can switch between true and false 
+        //with this permission either being assigned or not assigned.
+        //ie. the site is open for signup or not.
+        'fenceMode' => !'User can Login but not Signup - Fence Mode On',
         'viewOptions' => [
            'row' => [ 'class' => 'row justify-content-center' ],
            'col' => [ 'class' => 'col-md-6 col-lg-5' ],

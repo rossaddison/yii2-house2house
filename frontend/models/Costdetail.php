@@ -6,6 +6,7 @@ use frontend\models\Costcategory;
 use frontend\models\Costsubcategory;
 use frontend\models\Carousal;
 use frontend\models\Cost;
+use Yii;
 
 class Costdetail extends \yii\db\ActiveRecord
 {

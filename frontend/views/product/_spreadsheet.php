@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'url'=>Url::to(['/site/subcat'])        
     ]
     ]); ?>
-    <?= Html::tag('label',Yii::t('app',Yii::t('app','Select your filename that you uploaded under import houses  '))) ?>
+    <?= Html::tag('label',Yii::t('app','Select your filename that you uploaded under import houses  ')) ?>
     <br>
     <?= $form->field($model, 'importfile')->widget(FileInput::classname(), [
     'options' => ['accept' => 'file/*'],

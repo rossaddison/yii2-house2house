@@ -182,7 +182,7 @@ public static function check_for_mandates_approved()
 {
     //query sessiondetails using the current user_id
     $db = Utilities::userdb_database_code();
-    $all = Sessiondetail::find()->where(['=','user_id',Yii::$app->user->id])
+    $all = SessionDetail::find()->where(['=','user_id',Yii::$app->user->id])
                                 ->Andwhere(['=','customer_approved',1])
                                 ->Andwhere(['=','db',$db])
                                 ->Andwhere(['=','administrator_acknowledged',0])
@@ -298,8 +298,7 @@ public static function subscription_exist()
         $status = displayRecursiveResults($agreement,'status');
         if ($status === 'verified') return true; else return false;
     }
-    else return false;
-    
+    else return false;    
 }
 
 public static function displayRecursiveResults($arrayObject,$searchkey) {

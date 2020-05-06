@@ -262,7 +262,7 @@ echo Slider::widget([
             ],    
             [
             'class' => 'kartik\grid\ActionColumn',
-            'template' => '{link}',// can be omitted, as it is the default
+            'template' => '{link}',
             'header'=>$tooltiphousenumbermobile,
             'visible'=> !Yii::$app->user->can('Update Daily Job Sheet') ? false : true,
             'buttons' => ['link' => function ($url, $dataProvider,$key) {

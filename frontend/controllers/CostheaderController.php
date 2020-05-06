@@ -245,7 +245,7 @@ class CostheaderController extends Controller
            $model3->save();
        }       
      };
-     Yii::$app->session->setFlash('success',Yii::t('app','Those costs that were checked or ticked have been copied to Costs:  '. $addeddate));
+     Yii::$app->session->setFlash('success',Yii::t('app','Those costs that were checked or ticked have been copied to Costs: {0}',$addeddate));
      //return $this->render('index');
    }
     
@@ -371,7 +371,7 @@ class CostheaderController extends Controller
                         $totalamount = $totalamount + $result[$key]['unit_price'];
                     }
       }
-      Yii::$app->session->setFlash('success', Yii::t('app',"Expenditure: $costmonth/$costyear: Amount:").number_format($totalamount,2). Yii::t('app',' Paid: ').number_format($totalpaid,2));
+      Yii::$app->session->setFlash('success', Yii::t('app',"Expenditure: {0}/{1}: Amount:", [$costmonth,$costyear]).number_format($totalamount,2). Yii::t('app',' Paid: ').number_format($totalpaid,2));
       
     }
     

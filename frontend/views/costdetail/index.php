@@ -5,8 +5,9 @@ use \kartik\grid\GridView;
 use frontend\models\Costheader;
 use frontend\models\Company;
 use kartik\icons\FontAwesomeAsset;
+use Yii;
 FontAwesomeAsset::register($this);
-$this->title = Yii::t('app','Costs to include');
+$this->title = Yii::t('app','app','Costs to include');
 $cost_date = DateTime::createFromFormat("Y-m-d", Costheader::findOne($id=Yii::$app->session['cost_header_id'])->cost_date)->format("l, d F Y");
 $pdfHeader = [
   'L' => [
@@ -103,7 +104,7 @@ echo Slider::widget([
         'step' => 1,
         'tooltip'=>Yii::t('app','app','Adjust to change the font size.'),
     ],
-]). '<button id="w991" class = "btn btn-info btn-lg" onclick="js:getSlidercostdetail()" title='.Yii::t('Adjust to the required font.').' data-toggle="tooltip">Adjust font</button><br><br>';
+]). '<button id="w991" class = "btn btn-info btn-lg" onclick="js:getSlidercostdetail()" title='.Yii::t('app','Adjust to the required font.').' data-toggle="tooltip">Adjust font</button><br><br>';
    
 ?> 
 <?php
@@ -147,7 +148,7 @@ echo Slider::widget([
     },
     ],
     [
-            'class' => 'kartik\grid\EditableColumn', // can be omitted, as it is the default
+            'class' => 'kartik\grid\EditableColumn', 
             'header'=>Yii::t('app','Payment Type'),
             'filterType'=>GridView::FILTER_SELECT2,
             'filter'=>[Yii::t('app','Cash') =>Yii::t('app','Cash'),Yii::t('app','Cheque')=>Yii::t('app','Cheque'),Yii::t('app','Paypal')=>Yii::t('app','Paypal'),Yii::t('app','Debitcard')=>Yii::t('app','Debitcard'),Yii::t('app','Creditcard')=>Yii::t('app','Creditcard'),Yii::t('app','Other')=>Yii::t('app','Other')],
@@ -183,7 +184,7 @@ echo Slider::widget([
              'width' => '7%',
              'refreshGrid'=>true,
              'readonly' => false,               
-    ],                    
+   ],                    
    ['class' => '\kartik\grid\EditableColumn',
                 'attribute' =>'paymentreference',
                 'filterInputOptions' => [

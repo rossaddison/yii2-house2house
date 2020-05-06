@@ -11,6 +11,7 @@ return [
     'name'=> 'multi-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log','libra'],
+    'language'=> 'af-AFR',
     'timezone' => 'UTC',
     'controllerNamespace' => 'console\controllers',
     'aliases' => [

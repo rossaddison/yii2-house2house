@@ -2,6 +2,8 @@
 
 namespace frontend\models;
 
+use frontend\models\Salesorderheader;
+
 use Yii;
 
 class Employee extends \yii\db\ActiveRecord
@@ -67,8 +69,8 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getWorksSalesorderheaders()
+    public function getSalesorderheaders()
     {
-        return $this->hasMany(WorksSalesorderheader::className(), ['employee_id' => 'id']);
+        return $this->hasMany(Salesorderheader::className(), ['employee_id' => 'id']);
     }
 }

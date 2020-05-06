@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use Yii;
-use yii\helpers\Url;
 use frontend\models\Carousal;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;

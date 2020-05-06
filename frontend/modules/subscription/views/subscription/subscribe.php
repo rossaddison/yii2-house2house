@@ -1,16 +1,12 @@
 <?php
 
 use \kartik\icons\Icon;
-use yii\helpers\Url;
 use yii\helpers\Html;
 use \kartik\form\ActiveForm;
-use yii\helpers\Arrayhelper;
-use frontend\modules\subscription\components\SessionHelper;
 if ($mode === 'sandbox') {$this->title = Yii::t('app', 'Subscription - Part 1 - subscribe.php');}
 if ($mode === 'live') {$this->title = Yii::t('app', 'Subscription');}
 $this->params['breadcrumbs'][] = ['label' => 'Subscribe', 'url' => ['subscription/subscription/subscribe.php']];
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 
 <h1>
@@ -132,7 +128,7 @@ $form = ActiveForm::begin([
          <h5>
           <div class="alert alert-primary" role="alert">
                <div class="alert alert-success" role="alert">     
-                   <h3>ApiContext Settings: (Manually editable in modules\subscription\components\Configpaypal.php)</h3>
+                   <h3><?php Yii::t('app','ApiContext Settings: (Manually editable in modules\subscription\components\Configpaypal.php') ?></h3>
                </div> 
                <div class="alert alert-info" role="alert">     
                      <?= Yii::t('app', 'Access token will be null on first run.') ?> 
@@ -145,18 +141,17 @@ $form = ActiveForm::begin([
         <h5>
           <div class="alert alert-primary" role="alert">
               <br><br><br><br>
-               <b class="alert alert-danger">Complete Config from components/configpaypal.php </b>
+               <b class="alert alert-danger"><?php Yii::t('app','Complete Config from components/configpaypal.php'); ?> </b>
                <br><br><br><br>
-               <b class="alert alert-warning">log.LogLevel can be changed to INFO when going live.</b>
+               <b class="alert alert-warning">log.LogLevel <?php Yii::t('app','can be changed to INFO when going live.'); ?></b>
                <br><br><br><br>
-               <p class="alert alert-success">When validation level is on strict it gives a more detailed breakdown in frontend/runtime/logs/paypal.log file.</p>
-               <div><br><br><?php var_dump($config); ?></div>
+               <p class="alert alert-success"><?php Yii::t('app','When validation level is on strict it gives a more detailed breakdown in frontend/runtime/logs/paypal.log file.'); ?></p>
           </div>    
         </h5>
         
         <h5>
           <div class="alert alert-primary" role="alert">
-                  Payment Method used by the Payer/Subscriber: Paypal
+                  <?php Yii::t('app','Payment Method used by the Payer/Subscriber: Paypal.');?>
           </div>    
         </h5>
     </div>
@@ -204,32 +199,41 @@ $form = ActiveForm::begin([
    <div class="row">
        <div class="col-md-8 col-md-offset-2">
            <div class="alert alert-primary" role="alert">
-               <h2>Paypal Monthly Subscription Plan of &pound; 5 per month commencing from <?php echo $yearOnly; ?> </h2>
+               <h2><?php Yii::t('app','Paypal Monthly Subscription Plan of '); ?><?php echo 
+                        NumberControl::widget([
+                                    'name' => 'currency-num',
+                                    'value' => $model->payment_definition_amount_value,
+                                    'maskedInputOptions' => ['prefix' => Company::findOne(1)->currency_prefix, 'suffix' => Company::findOne(1)->currency_suffix],
+                         ]) ?><?php 'per month commencing from '; ?><?php $yearOnly; ?> </h2>
                <br>
                <div class="alert alert-info" role="alert">  
-               Click on the "I Agree" Button to agree to the terms and proceed to Paypal.
+                   <?php Yii::t('app','Click on the "I Agree" Button to agree to the terms and proceed to Paypal.'); ?>
                </div>
                <br>
                <div class="alert alert-info" role="alert">  
-               You may cancel your Monthly Subscription at any stage by accessing the Subscription submenu on this site.
+                 <?php Yii::t('app','You may cancel your Monthly Subscription at any stage by accessing the Subscription submenu on this site.'); ?>
                </div>
                <br>
                <div class="alert alert-info" role="alert">  
-               You will be redirected back to this site after successful completion of the Agreement with Paypal.
+                  <?php Yii::t('app','You will be redirected back to this site after successful completion of the Agreement with Paypal.');?>
                </div>
                <br>
                <div class="alert alert-info" role="alert">   
-                   <br>Please agree to the following terms by clicking on the "I Agree" button.
+                   <br><?php Yii::t('app','Please agree to the following terms by clicking on the "I Agree" button.'); ?>
                <br>
                </div>
                <br>
                <div class="alert alert-success" role="alert">   
-               "I agree to pay &pound; 5 per month for the next 12 months for the software "as is". This includes improvements,
+               <?php echo Yii::t('app','I agree to pay '). NumberControl::widget([
+                                    'name' => 'currency-num',
+                                    'value' => $model->payment_definition_amount_value,
+                                    'maskedInputOptions' => ['prefix' => Company::findOne(1)->currency_prefix, 'suffix' => Company::findOne(1)->currency_suffix],
+                         ]) . Yii::t('app',' per month for the next 12 months for the software "as is". This includes improvements,
                bug fixes, delays, and inconveniance due to downtime.  I am also aware that as a result of Data Protection Policy
                Administrators of this site are entitled to keep data belonging to myself, active and undeleted for a period of 30 days after the termination date. 
                <br>
                <br> 
-               I have read the Data Protection Policy and Terms and Conditions and am in agreement with the Policy and Terms.  I also agree not to post any material that is degrading and irrelevant to conduct regarded as normal and legal for this site."  
+               I have read the Data Protection Policy and Terms and Conditions and am in agreement with the Policy and Terms.  I also agree not to post any material that is degrading and irrelevant to conduct regarded as normal and legal for this site.');?> 
                </div>
            </div>   
        </div>

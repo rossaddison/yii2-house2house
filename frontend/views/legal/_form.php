@@ -8,7 +8,7 @@ use dosamigos\ckeditor\CKEditor;
     <?= $form->field($model, 'privacy_policy')->widget(CKEditor::className(),['options' => ['rows' => 40],'preset' => 'full']) ?>
     <?= $form->field($model, 'terms_conditions')->widget(CKEditor::className(),['options' => ['rows' => 40],'preset' => 'full']) ?>
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-success']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
