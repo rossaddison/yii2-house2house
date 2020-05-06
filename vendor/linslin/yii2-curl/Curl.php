@@ -218,6 +218,21 @@ class Curl
         return $this->_httpRequest('DELETE', $raw);
     }
 
+    /**
+     * Start performing OPTIONS-HTTP-Request
+     *
+     * @param string $url
+     * @param bool $raw if response body contains JSON and should be decoded
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function options($url, $raw = true)
+    {
+        $this->_baseUrl = $url;
+        return $this->_httpRequest('OPTIONS', $raw);
+    }
+
 
     /**
      * Set curl option
@@ -616,8 +631,8 @@ class Curl
         }
 
         //setup error reporting and profiling
-        if (YII_DEBUG) {
-            Yii::trace('Start sending cURL-Request: '.$this->getUrl().'\n', __METHOD__);
+        if (defined('YII_DEBUG') && YII_DEBUG) {
+            Yii::debug('Start sending cURL-Request: '.$this->getUrl().'\n', __METHOD__);
             Yii::beginProfile($method.' '.$this->_baseUrl.'#'.md5(serialize($this->getOption(CURLOPT_POSTFIELDS))), __METHOD__);
         }
 
@@ -662,7 +677,8 @@ class Curl
         $this->_extractAdditionalCurlParameter();
 
         //end yii debug profile
-        if (YII_DEBUG) {
+        if (defined('YII_DEBUG') && YII_DEBUG) {
+            Yii::debug('End cURL-Request: '.$this->response, __METHOD__);
             Yii::endProfile($method.' '.$this->getUrl().'#'.md5(serialize($this->getOption(CURLOPT_POSTFIELDS))), __METHOD__);
         }
 

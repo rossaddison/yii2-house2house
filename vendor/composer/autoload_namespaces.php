@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'SEOstats\\' => array($vendorDir . '/seostats/seostats'),
+    'Rize\\UriTemplate' => array($vendorDir . '/rize/uri-template/src'),
     'PayPal' => array($vendorDir . '/paypal/rest-api-sdk-php/lib'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
