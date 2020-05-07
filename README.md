@@ -8,6 +8,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 **House to House Management Software eg. Cleaning Services, Delivery Services**
 
+[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](https://www.yiiframework.com/)
+
 **Composer - add to require section**
 
     "rossaddison\yii2-house2house": "*", 
