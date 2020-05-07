@@ -25,6 +25,7 @@ $(function () {
 SCRIPT;
 // Register tooltip/popover initialization javascript
 $this->registerJs($js);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -201,7 +202,7 @@ $this->registerJs($js);
            Alert::widget()
         ?>
         </div>
-        <?= $content ?>
+           <?= $content ?>
     </div>
 </div>
  

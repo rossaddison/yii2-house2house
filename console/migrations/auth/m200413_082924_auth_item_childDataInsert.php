@@ -22,10 +22,12 @@ class m200413_082924_auth_item_childDataInsert extends Migration
         'parent' => 'admin',
         'child' => 'Access db',
     ],
-    [
-        'parent' => 'fencemode',
-        'child'=>'User can Login but not Signup - Fence Mode On',    
-    ],
+    ///allow the signing up of the first user ie. admin                            
+    ///[
+    ///    'parent' => 'fencemode',
+    ///    'child'=>'User can Login but not Signup - Fence Mode On',    
+    ///],
+    
     [
         'parent' => 'Mdb0',
         'child' => 'Access db',

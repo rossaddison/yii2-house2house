@@ -449,6 +449,15 @@ class m200413_082835_auth_itemDataInsert extends Migration
         'data' => null,
         'created_at' => '1584405564',
         'updated_at' => '1584889800',
+    ],
+    [
+        'name' => 'Google Translate',
+        'type' => '2',
+        'description' => 'Translate this package from English into a language of your choice. If you can use Google Translate already your language will be 1 of 109 provided by Google. Create a service account with Google and download the Json file. Provide this path under Company. ',
+        'rule_name' => null,
+        'data' => null,
+        'created_at' => '1584405564',
+        'updated_at' => '1584889800',
     ],                            
     [
         'name' => 'Import Houses',
@@ -602,6 +611,15 @@ class m200413_082835_auth_itemDataInsert extends Migration
         'created_at' => '1579035344',
         'updated_at' => '1584471378',
     ],
+    [
+        'name' => 'Migrate Works Database',
+        'type' => '2',
+        'description' => 'Migrate Works Database for databases db1 to db10. Not for admins database db.',
+        'rule_name' => null,
+        'data' => null,
+        'created_at' => '1579035344',
+        'updated_at' => '1584471378',
+    ],                            
     [
         'name' => 'See Prices',
         'type' => '2',

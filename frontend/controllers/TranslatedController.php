@@ -185,11 +185,6 @@ class TranslatedController extends \yii\web\Controller
        $translationServiceClient->close();//
     } //public function actionTranslated()
     
-    public function actionCurrent($id)
-    {
-        \Yii::$app->language = $id;
-    }        
-    
     public function actionView($id) {
         $model=$this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

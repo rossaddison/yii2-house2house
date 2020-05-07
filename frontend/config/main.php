@@ -23,6 +23,14 @@ return [
       '@bower'=>'@vendor/bower-asset',
       '@npm'=>'@vendor/npm-asset',
     ],
+    'container' => [
+        'definitions' => [
+            'yii\widgets\LinkPager' => ['maxButtonCount' => 5]
+        ],
+        'singletons' => [
+            // Dependency Injection Container singletons configuration
+        ]
+    ],
     //adjust the portalMode param when the site is under maintenance
     'on beforeRequest' => function ($event) {
 	//change frontend/config/params.php file 'portalMode' setting.    

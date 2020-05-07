@@ -41,7 +41,6 @@ class Translated extends \yii\db\ActiveRecord
     }
 
     //searching with message relation: line 1
-    //https://stackoverflow.com/questions/34894966/yii2-sort-and-filter-in-gridview-with-viatable-relation//
     public function getExtracted()
     {
         return $this->hasOne(Sourced::className(), ['id' => 'id']);
