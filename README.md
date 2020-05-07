@@ -275,7 +275,7 @@ This command will use the migration paths contained in **console**/config/main.p
         'class' => 'sjaakp\pluto\Module',
         'fenceMode' => true,
         
- and that your mailer component under frontend\config\main.php is correctly set so that your user can respond to your email. Testing on your **localhost** and wampserver, the port will normally be **port 25** since you will be going through your service provider, such as BT. 
+1. Ensure that your mailer component under frontend\config\main.php is correctly set so that your user can respond to your email. Testing on your **localhost** and wampserver, the port will normally be **port 25** since you will be going through your service provider, such as BT. 
  
  **Troubleshooting**
  
@@ -329,7 +329,7 @@ Make sure that you put the **Namespace** command at the top of each migration ph
 
 **Installation of roles and permissions by migrations**
 
-To install the above auth tables through a migration instead of through the auth.sql file, the namespace or path has now been included in the  **console/config/main.php controllerMap** command migrate-db-namespaced. The migration files have been generated from the auth.sql files. The auth migrations necessary for filling the rbac auth tables are in:
+To install the above auth tables through a migration instead of through the auth.sql file, the namespace or path has now been included in the  **console/config/main.php's controllerMap** command **migrate-db-namespaced**. So if you have run this command already, the auth tables will already be setup with all the roles and permissions. The auth migrations necessary for filling the rbac auth tables are in:
 
     console/migrations/auth
 
