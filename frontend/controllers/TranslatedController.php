@@ -78,6 +78,7 @@ class TranslatedController extends \yii\web\Controller
             throw new \yii\web\ForbiddenHttpException(Yii::t('app', 'Your SSL certificate cacert.pem for this version of PHP {0} does not exist under the server php directory  ...bin/php/{0}', [PHP_VERSION]).Html::a(Yii::t(' .Download here '),['url'=>$ssl_get_cacert_pem_url]));        
         }
         
+        
         $searchModel = new TranslatedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination->pageSize=100;

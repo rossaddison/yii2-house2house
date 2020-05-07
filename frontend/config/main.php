@@ -23,14 +23,6 @@ return [
       '@bower'=>'@vendor/bower-asset',
       '@npm'=>'@vendor/npm-asset',
     ],
-    'container' => [
-        'definitions' => [
-            'yii\widgets\LinkPager' => ['maxButtonCount' => 5]
-        ],
-        'singletons' => [
-            // Dependency Injection Container singletons configuration
-        ]
-    ],
     //adjust the portalMode param when the site is under maintenance
     'on beforeRequest' => function ($event) {
 	//change frontend/config/params.php file 'portalMode' setting.    
@@ -63,8 +55,13 @@ return [
             ],
             
         ],
+        //http://webtips.krajee.com/override-bootstrap-css-js-yii-2-0-widgets/
         'assetManager' => [
             'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                 'sourcePath' => 'your-path',
+                 'css' => ['css/bootstrap.css', 'path/to/custom.css']
+                ],   
                 'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@npm/bootstrap/dist'
                 ],
@@ -264,4 +261,4 @@ return [
         'autoWidget' => true,      
      ],
    ],
-];  
+];

@@ -33,10 +33,10 @@ $config = yii\helpers\ArrayHelper::merge(
     //filecache and dbmanager
     require(__DIR__ . '/common/config/main.php'),
     
-    //db component,  swiftmailer
+    //db component
     require(__DIR__ . '/common/config/main-local.php'),
     
-    //etc... UrlManager
+    //etc... UrlManager ,  swiftmailer
     require(__DIR__ . '/frontend/config/main.php'),
     
     //cookie validation key
@@ -48,5 +48,7 @@ if (!Yii::$app->user->isGuest) {
     Yii::$app->session['currentdatabase'] = \frontend\components\Utilities::userLogin_set_database(); 
     \frontend\components\Utilities::setLanguage();
 }
+
+Yii::$container->set('yii\widgets\LinkPager', 'yii\bootstrap4\LinkPager');
 
 Yii::$app->run(); 

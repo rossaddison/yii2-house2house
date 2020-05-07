@@ -86,7 +86,7 @@ class Company extends \yii\db\ActiveRecord
             'smtp_transport_port' => Yii::t('app','Smtp Transport Port'),
             'smtp_transport_encryption' => Yii::t('app','Smtp Transport Encryption'),
             'google_translate_json_filename_and_path' => 'Google Translate JSON '. Yii::t('app','filename and path with the quotes and with forward slashes eg. "c:/path/filename.json"'),
-            'language'=>Yii::t('app','Language'),
+            'language'=>Yii::t('app','Language eg. af (Use the code that you used in Google Translate grid.)'),
             'currency_prefix'=>Yii::t('app','Currency prefix eg. $'),
             'currency_suffix'=>Yii::t('app','Currency suffix eg. c'),
         ];
