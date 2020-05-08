@@ -12,4 +12,4 @@ Every individual manager shares the db database. Each manager builds the db data
 
         yii message/extract @frontend/messages/template.php
 
-is populated with English when you work with the Google Translate function. The package uses the Company...Settings...Language setting that the Manager elects to use if set. Otherwise it will use the default English.
+is populated with English when you work with the Google Translate function. The package uses the Company...Settings...Language setting that the Manager elects to use if set. Otherwise it will use the default English.  [Back](/md/faq/faqs.md)
