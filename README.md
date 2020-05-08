@@ -14,7 +14,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 **Frequently Asked Questions ?**
 
-[**What has this software been used for mostly in the past?**](/faq/mostly.md)
+[**What has this software been used for mostly in the past?**](/md/faq/mostly.md)
 
 **Demo?**
 This repository is sometimes a month ahead of the demo at **roundrunner.co.uk** 
