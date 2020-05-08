@@ -20,7 +20,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
          composer update
 
 1. Create databases 1 to 10 adapting [common/config/main-local.php.](/common/config/main-local.php) Use utf8mb4_unicode_ci.
-1. Identify the following commands in [console/config/main.php] (/console/config/main.php)
+1. Identify the following commands in [console/config/main.php](/console/config/main.php)
 1. Console/command prompt command setting up admininstrator's database db ie. database **0**. 
 
         yii migrate-db-namespaced
