@@ -40,10 +40,6 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**Paypal Subscription Feature Know How?**](/md/faq/subscription.md)
 
-**Can I import houses into the system?**
-
-Yes there is an import facility although you will probably find it quicker to use the **Quick Build tool** depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the **Database** menu using Admin rights.
-
 **Javascript is used to link the grids to the Yii2 Controllers. Where can I find this file?** scripts2.js is located under the Frontend /Assets/App folder.
 
 **How does House2house incorporate the security features of Yii2 according to https://www.yiiframework.com/doc/guide/2.0/en/security-overview ?**
