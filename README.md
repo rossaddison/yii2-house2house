@@ -15,9 +15,9 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 [**Frequently Asked Questions ?**](/md/faq/faqs.md)
 
 **Installation**
-1. Clone repository
+1. Clone repository, install composer from composer.org and run the following command at the command prompt: 
 
-1.         composer update
+         composer update
 
 1. Create databases 1 to 10 adapting common/config.main-local.php. Use utf8mb4_unicode_ci.
 1. Identify the following commands in console/config/main.php
