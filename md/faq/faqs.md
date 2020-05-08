@@ -1,8 +1,8 @@
-[1.**What has this software been used for mostly in the past?**](/md/faq/mostly.md)
+[**What has this software been used for mostly in the past?**](/md/faq/mostly.md)
 
-[1.**Demo?**](/md/faq/demo.md)
+[**Demo?**](/md/faq/demo.md)
 
-[1.**What is the structure of the database?** ](/md/faq/structure.md)
+[**What is the structure of the database?** ](/md/faq/structure.md)
 
 [**Can I use this package on a mobile phone?**](/md/faq/mobile.md)
 
