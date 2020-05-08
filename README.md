@@ -40,8 +40,6 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**Paypal Subscription Feature Know How?**](/md/faq/subscription.md)
 
-**Javascript is used to link the grids to the Yii2 Controllers. Where can I find this file?** scripts2.js is located under the Frontend /Assets/App folder.
-
 [**Security Features Know How?**](/md/faq/security.md)
 
 [**Detailed Installation Steps Know How?**](/md/faq/detailedinstallation.md)
