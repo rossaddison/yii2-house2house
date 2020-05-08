@@ -1,4 +1,4 @@
-The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing **sjaakp/pluto** security login. There is no need to use the **Mdb0** or manager roles because the administrator is the manager. 
+The first user to signup is automatically assigned the administrator or 'admin' role. This is as a result of employing **sjaakp/pluto** security login. There is no need to use the **Mdb0** or manager roles because the administrator is the manager.  [Back](/md/faq/faqs.md)
 
 The admin role by default accesses the default db database because it is assigned the 'Access db' permission.  The subscription module works via the db database so ter.md)he first user to signup must use the db database so as to administer individual subscriptions. 
 
@@ -18,4 +18,4 @@ managers (Mdb0 to 10) under each separate company under each separate database u
 All **Udb roles** are linked to the **'employee' role** so change the employee role 'makeup' if you want this to be applicable to all
 employees (Udb0 to 10) under each separate company under each separate database using this software. ie. all users that are employees. Caution should be exercised here since a change here applies universally to all the companies/divisions that are using the software.
 
-There are two permissions called **Manage Basic** and **Manage Admin**. **Mdb roles** have both the **Manage Basic** and the **Manage Admin** permission. **Udb roles** have only the **Manage Basic** permission. These two permissions are used in **frontend/views/layouts/main.ph**p which is the main menu interface.
+There are two permissions called **Manage Basic** and **Manage Admin**. **Mdb roles** have both the **Manage Basic** and the **Manage Admin** permission. **Udb roles** have only the **Manage Basic** permission. These two permissions are used in **frontend/views/layouts/main.ph**p which is the main menu interface.   [Back](/md/faq/faqs.md)
