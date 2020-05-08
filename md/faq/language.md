@@ -14,4 +14,4 @@ To generate a **Db**MessageSource. Go a little further down the template.php fil
  
         yii message/extract @frontend/messages/template.php
         
-This fills the **source_message table** with English extracts, and you will be able to use the **Google Translate** grid to translate the English extracts to whatever languages are in the **languages array** under template.php. 
+This fills the **source_message table** with English extracts, and you will be able to use the **Google Translate** grid to translate the English extracts to whatever languages are in the **languages array** under template.php.   [Back](/md/faq/faqs.md)
