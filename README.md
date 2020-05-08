@@ -27,8 +27,7 @@ This repository is sometimes a month ahead of the demo at **roundrunner.co.uk**
 
 [**How can the package be adapted?**](/md/faq/adapted.md)
 
-**Where do I setup the Swiftmailer SMTP connection settings of my host?**
-Frontend/config/main.php
+[**Where do I setup the Swiftmailer SMTP connection settings of my host?**](md/faq/swiftmailer.md)
 
 **Where do individual companies signing up setup their SMTP settings?**
 Login...Settings...Company. If set their personal email host overrides the host's email facility.
