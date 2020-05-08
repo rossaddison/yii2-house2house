@@ -11,4 +11,4 @@ The Default is **shared hosting** with a subscription through **paypal's rest-ap
 
 Each database works separately from the others. Each database shares the frontend code. How does this happen? Each model has the userDb() function. This function gives a database to  a user at login by using the function **frontend/components/ Utiilites::userLogin_set_database**. When the user registers, the administrator must match a role to the user . Each database has 2 roles. **eg. Mdb1 and Udb1 for db1** . Both have the permission **Access db1**. So when the administrator matches the user to a role eg. Udb1, and makes this connection 'active', the user can access db1.  
 
-The first user to sign up gets the admin role. Admin matches all users of companies or divisions to role.
+The first user to sign up gets the admin role. Admin matches all users of companies or divisions to role.   [Back](/md/faq/faqs.md)
