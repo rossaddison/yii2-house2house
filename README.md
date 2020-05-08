@@ -16,9 +16,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 **Frequently Asked Questions ?**
 
-[comment]: <> (This is a comment, it will not be included)
-[comment]: <> (in  the output file unless you use it in)
-[comment]: <> (a reference style link.)
+[](comment  This is a comment)
 
 
 
