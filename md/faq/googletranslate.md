@@ -8,8 +8,10 @@
 1. Download the Json file (Not the P12) and save it to your local drive. 
 1. Include the path of this file into your Company...Settings...Google Translate Json Filename and Path including forward slashes and double quotes.
 
+This packages Google Translate section uses the phpdatasource as seen here in [frontend/messages/template.php](/frontend/messages/template.php)
 Every individual manager shares the db database. Each manager builds the db database by assisting in translating the source_message table into the message table. The source_message table is the table that you created with the
 
         yii message/extract @frontend/messages/template.php
 
-is populated with English when you work with the Google Translate function. The package uses the Company...Settings...Language setting that the Manager elects to use if set. Otherwise it will use the default English.  [Back](/md/faq/faqs.md)
+
+The source_message table is populated with English when you work with the Google Translate function. The package uses the Company...Settings...Language setting that the Manager elects to use if set. Otherwise it will use the default English.  [Back](/md/faq/faqs.md)
