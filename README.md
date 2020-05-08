@@ -30,9 +30,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**Where do individual companies signing up setup their SMTP settings?**](md/faq/smtp.md)
 
-**Php version?**
-
-php **7.4.1** (3rd April 2020). Testing on php 7.4.4.  The composer.json is a **stable release**. Included is composer_dev_version.json. 
+[**Php version?**](md/faq/php.md)
 
 **Demo version?**
 
