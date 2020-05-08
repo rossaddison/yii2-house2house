@@ -2,7 +2,7 @@
 
 **Licence**
 
-Copyright 2020  House2House  BSD-3-Clause
+Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 **House to House Management Software eg. Cleaning Services, Delivery Services**
 
