@@ -31,3 +31,5 @@
 [**Detailed Installation Steps Know How?**](/md/faq/detailedinstallation.md)
 
 [**How do I setup the Google Translate section of this package?**](/md/faq/googletranslate.md)
+
+[**Which countries can accept Gocardless and how do I adjust my code?**](/md/faq/gocardless.md)
