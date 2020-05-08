@@ -19,9 +19,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 **Demo?**
 This repository is sometimes a month ahead of the demo at **roundrunner.co.uk** 
 
-**What is the structure of the database?** 
-
-**InnoDB** using collation utf8mb4_unicode_ci running on mySQL. The tables **works_salesorderheader** and **works_salesorderdetails** for instance have been built similar to **Microsoft's Adventure Works** making use of foreign keys. Yii2 is strong in this regard. Therefore Yii2's relations in models are used in many places to help **Eager loading and Lazy loading**.
+[**What is the structure of the database?** ](/md/faq/structure.md)
 
 **Can I use this package on a mobile phone?**
 The package is **bootstrapped.** So it is viewable by means of desktop, mobile, and tablet, amongst others, provided you have an internet connection. 
