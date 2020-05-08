@@ -28,8 +28,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**Where do I setup the Swiftmailer SMTP connection settings of my host?**](md/faq/swiftmailer.md)
 
-**Where do individual companies signing up setup their SMTP settings?**
-Login...Settings...Company. If set their personal email host overrides the host's email facility.
+[**Where do individual companies signing up setup their SMTP settings?**](md/faq/smtp.md)
 
 **Php version?**
 
