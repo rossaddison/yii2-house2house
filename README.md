@@ -32,11 +32,6 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**Php version?**](md/faq/php.md)
 
-**Demo version?**
-
-https://roundrunner.co.uk/libra/login. You will **not** get the Role Based Access Control Graphical User Interface. 
-Use username: **demo**, password: **Demo1234**. All data is deleted on exit. See frontend/config/main.php. Bootstrap 4 - buttons, mobile layout, font adjuster - is used for the graphical interface.
-
 **How do I create a Daily Clean?**
 
 Go to **Daily Clean** and click the create button. A **Daily Clean** appears on the Grid. Having setup your Postcodes, Streets, and Houses, **under Houses**, select your houses by means of ticking them in the grid and copying them to the selected Daily Clean. Postcodes and Streets have to be manually entered. An optional SQL update/migration in the future is proposed to update the UK's postcodes and streets. 
