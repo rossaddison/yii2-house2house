@@ -1,6 +1,6 @@
 **How does House2house incorporate the security features of Yii2 according to https://www.yiiframework.com/doc/guide/2.0/en/security-overview ?**
 
-   1. **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.
+   1. **Authentication:** H2H uses sjaakp/pluto's yii\web\IdentityInterface.  [Back](/md/faq/faqs.md)
 
    1. **Authorization:** All data-input is regulated by the Model View Controller regime providing Access Control Filters to all data-input.
 The database has been normalized ensuring efficiency and appropriate integrity constraint provisions filter through to the Controllers.
@@ -15,7 +15,7 @@ The package adopts a very cautious approach of **NO ACTION** where relations bet
           $this->password_hash = Yii::$app->security->generatePasswordHash($this->$attribute);
           } 
       
-      This function incorporates the **Blowfish hash algorithm** by default through Yii2.  The **$cost** parameter can be added to the above GeneratePasswordHash parameters.  
+      This function incorporates the **Blowfish hash algorithm** by default through Yii2.  The **$cost** parameter can be added to the above GeneratePasswordHash parameters.   [Back](/md/faq/faqs.md)
       
       For further reading  https://www.yiiframework.com/doc/api/2.0/yii-base-security#generatePasswordHash()-detail  [Back](/md/faq/faqs.md)
    
