@@ -51,3 +51,7 @@ Multiple text message reminders can be sent by Twilio. You can set this under Co
 **How do I use Alternative text messaging**
 
 If your householder has consented to using their mobile number you can list this under Houses and you will have access to this under the Daily Cleans. Simply press their mobile number while online and **Android** will present its options. Your company will not be able to use the multiple text messaging that is available through Twilio.
+
+**Can I import houses into the system?**
+
+Yes there is an import facility although you will probably find it quicker to use the **Quick Build tool** depending on the number of houses you will use per street. The import facility requires you to download a template file and then to upload it once completed. The Import Houses tool is located at the bottom of the **Database** menu using Admin rights.
