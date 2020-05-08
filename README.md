@@ -15,7 +15,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 [**Frequently Asked Questions ?**](/md/faq/faqs.md)
 
 **Installation**
-1. Create databases 1 to 10 adapting common/config.main-local.php. Use utf8_unicode_ci.
+1. Create databases 1 to 10 adapting common/config.main-local.php. Use utf8mb4_unicode_ci.
 1. Identify the following commands in console/config/main.php
 1. Console/command prompt command setting up admininstrator's database db ie. database **0**. 
 
