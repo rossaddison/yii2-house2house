@@ -8,7 +8,7 @@
 1. Download the Json file (Not the P12) and save it to your local drive. 
 1. Include the path of this file into your Company...Settings...Google Translate Json Filename and Path including forward slashes and double quotes.
 
-Every individual manager shares the db database. Each manager builds the db database by assisting in translating the source_message table into the message table. The source_message table that you created with the
+Every individual manager shares the db database. Each manager builds the db database by assisting in translating the source_message table into the message table. The source_message table is the table that you created with the
 
         yii message/extract @frontend/messages/template.php
 
