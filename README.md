@@ -14,6 +14,24 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**Frequently Asked Questions ?**](/md/faq/faqs.md)
 
+**Installation**
+1. Create databases 1 to 10 adapting common/config.main-local.php. Use utf8_unicode_ci.
+1. Identify the following commands in console/config/main.php
+1. Console/command prompt command setting up admininstrator's database db ie. database **0**. 
+
+        yii migrate-db-namespaced
+
+1. Console/command prompt command **populate** databases 1 to 10 
+
+        yii migrate-db1
+        yii migrate-db2  
+
+1. Insert frontend/config/main.php Swiftmailer settings to signup first user.
+1. Signup first user who will automatically be made active as administrator.
+1. Signup addtional users. The administrator will have to be make them active.
+
+                
+
 
 
 
