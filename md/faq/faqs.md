@@ -1,5 +1,3 @@
-[Back](/md/faq/faqs.md)
-
 [**What has this software been used for mostly in the past?**](/md/faq/mostly.md)
 
 [**Demo?**](/md/faq/demo.md)
