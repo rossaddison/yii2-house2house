@@ -15,7 +15,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 [**Frequently Asked Questions ?**](/md/faq/faqs.md)
 
 **Installation**
-1. Clone repository, install composer from composer.org and run the following command at the web root command prompt: 
+1. Clone repository, install composer from composer.org and run the following command at the web root command prompt or click on up8.bat in the web root: 
 
          composer update
 
