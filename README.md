@@ -21,8 +21,7 @@ This repository is sometimes a month ahead of the demo at **roundrunner.co.uk**
 
 [**What is the structure of the database?** ](/md/faq/structure.md)
 
-**Can I use this package on a mobile phone?**
-The package is **bootstrapped.** So it is viewable by means of desktop, mobile, and tablet, amongst others, provided you have an internet connection. 
+[**Can I use this package on a mobile phone?**](/md/faq/mobile.md)
 
 **Is the package available in more than one language?**
 
