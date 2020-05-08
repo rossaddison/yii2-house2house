@@ -38,9 +38,6 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 [**I have adapted the roles and permissions using the RBAC GUI that admin has access to on one site and want to include these in my next migration. How do I transfer these roles and permissions from one site to another?**](/md/faq/transfer.md)
 
-**An employee of company/division/unit 5 must have additional rights?** 
-Contact the administrator having admin rights for this website. The manager of company 5 will **NOT** be able to set these rights. 
-
 [**Paypal Subscription Feature Know How?**](/md/faq/subscription.md)
 
 **Can I import houses into the system?**
