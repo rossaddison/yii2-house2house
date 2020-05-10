@@ -8,6 +8,7 @@ $this->title=Yii::t('app','View House');
 $this->params['breadcrumbs'][]=['label'=>Yii::t('app','Houses'), 'url'=>['index']];
 $this->params['breadcrumbs'][]=['label'=>Yii::t('app','Create House'), 'url'=>['create']];
 $this->params['breadcrumbs'][]=$this->title;
+Yii::$app->formatter->nullDisplay = ''; 
 $attributes=[
     [
         'attribute'=>'id', 

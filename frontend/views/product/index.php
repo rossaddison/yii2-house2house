@@ -124,7 +124,6 @@ echo Slider::widget([
    
 ?> 
 <?php
-    Yii::$app->formatter->nullDisplay = ''; 
     $gridColumns = [
     [
      'class'=> 'kartik\grid\DataColumn',
@@ -211,7 +210,8 @@ echo Slider::widget([
              }                
      ],
      [  'class' => '\kartik\grid\EditableColumn',
-        'attribute' =>'specialrequest',
+        'attribute' =>'specialrequest', 
+        'value'=> function ($dataProvider){if (empty($dataProvider->specialrequest)) return '?????';},
         'hAlign' => 'left', 
         'vAlign' => 'middle',
         'filterInputOptions' => [
@@ -404,8 +404,8 @@ echo Slider::widget([
             'class'=>'kartik\grid\DataColumn',
             'header'=>$tooltipgocardlesscustomer,
             'attribute'=>'gc_number',
-            'value' => function ($dataProvider) {
-                    return $dataProvider->gc_number; 
+            'value'=> function ($dataProvider){if (empty($dataProvider->gc_number)){return '';}
+                  else  {return $dataProvider->gc_number;} 
             },
             'filter'=> Html::activeDropDownList($searchModel,'gc_number',ArrayHelper::map(Product::find()->orderBy('gc_number')->asArray()->all(),'gc_number','gc_number'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Gocardless Number...']), 
      ],    
