@@ -1,6 +1,0 @@
-composer.phar
-vendor
-coverage
-tests/runtime
-coverage.xml
-.vagrant
