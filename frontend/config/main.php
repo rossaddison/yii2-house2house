@@ -151,7 +151,6 @@ return [
 		        'daily-clean/<action:\w+>/<id:\d+>' => 'salesorderheader/<action>',
                         'your-staff/<action:\w+>/<id:\d+>' => 'employee/<action>',
                         'house/<action:\w+>/<id:\d+>' => 'product/<action>',
-                        'translated/<action:\w+>/<id:\d+>' => 'translated/<action>',
                         'specific-cost-main-category-code/<action:\w+>/<id:\d+>' => 'costcategory/<action>',
                         'specific-cost-secondary-category-code/<action:\w+>/<id:\d+>' => 'costsubcategory/<action>',
                         'individual-cost-under-secoondary-category-code/<action:\w+>/<id:\d+>' => 'cost/<action>',
