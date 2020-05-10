@@ -500,7 +500,8 @@ class ProductController extends Controller
                                    //convert to pound
                                    //amount is in pence
                                    "amount" =>  $minitotal * 100,
-                                   "currency" => "GBP",
+                                   //change the currency code in frontend/config/main.php
+                                   "currency" => \Yii::$formatter->currencyCode,
                                    "metadata" => [
                                      "order_dispatch_date" => date('Y-m-d'), 
                                    ],
@@ -564,7 +565,7 @@ class ProductController extends Controller
                     . $print
                     . '<br>'
                     . '<br>'
-                    . Yii::t('app','Total:     &pound') . $minitotal
+                    . Yii::t('app','Total:     '). Company::findOne(1)->currency_prefix . $minitotal
                     . '<br>'
                     . Yii::t('app','Gocardless will be emailing you shortly with a 3 day Direct Debit Advance Notice in order for you to arrange for any cancellation if you are not happy with the above amount. ')
                     . Yii::t('app','Please contact us on '). Company::findOne(1)->telephone . Yii::t('app','should you wish to cancel within the next 3 days.  ')
@@ -579,7 +580,7 @@ class ProductController extends Controller
                     . Yii::t('app','to object, is available at '). Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/'))) 
                 ->send();
                 $model->save();
-                $message = Yii::t('app','Payment Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])) . Yii::t('app',' Firstname: ') . $model->name . Yii::t('app',' Surname: ') . $model->surname . Yii::t('app',' Customer Gocardless Mandate Number: ') .$model->gc_number . Yii::t('app',' Amount: &pound') . (int)$minitotal;
+                $message = Yii::t('app','Payment Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])) . Yii::t('app',' Firstname: ') . $model->name . Yii::t('app',' Surname: ') . $model->surname . Yii::t('app',' Customer Gocardless Mandate Number: ') .$model->gc_number . Yii::t('app',' Amount: '). Company::findOne(1)->currency_prefix . (int)$minitotal;
                 $message_all = $message_all ."  ".$message . "<br><br>";
        } //!empty(Company::findOne(1)
        else 
@@ -598,7 +599,7 @@ class ProductController extends Controller
                     . $print
                     . '<br>'
                     . '<br>'
-                    . Yii::t('app','Total: &pound') . $minitotal
+                    . Yii::t('app','Total: ').Company::findOne(1)->currency_prefix . $minitotal
                     . '<br>'
                     . Yii::t('app','Gocardless will be emailing you shortly with a 3 day Direct Debit Advance Notice in order for you to arrange for any cancellation if you are not happy with the above amount. ')
                     . Yii::t('app','Please contact us on '). Company::findOne(1)->telephone . Yii::t('app','should you wish to cancel within the next 3 days.  ')
@@ -612,7 +613,7 @@ class ProductController extends Controller
                     . Yii::t('app','We use GoCardless to process your Direct Debit payments. More information on how GoCardless processes your personal data and your data protection rights, including your right to object, is available at '). Html::a('Gocardless',Url::to('https://www.gocardless.com/legal/privacy/'))) 
                 ->send();
                 $model->save();
-                $message = Yii::t('app','Payment Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])) . Yii::t('app',' Firstname: ') . $model->name . Yii::t('app',' Surname: ') . $model->surname . Yii::t('app',' Customer Gocardless Mandate Number: ') .$model->gc_number . Yii::t('app',' Amount: &pound') . (int)$minitotal;
+                $message = Yii::t('app','Payment Request sent from ') .Company::findOne(1)->email . Yii::t('app',' to ').  $model->email . Yii::t('app',' for customer ID: '). Html::a($model->id,Url::to(['Product/View/'.$model->id])) . Yii::t('app',' Firstname: ') . $model->name . Yii::t('app',' Surname: ') . $model->surname . Yii::t('app',' Customer Gocardless Mandate Number: ') .$model->gc_number . Yii::t('app',' Amount: ').Company::findOne(1)->currency_prefix . (int)$minitotal;
                 $message_all = $message_all ."  ".$message . "<br><br>";
        } //else
               
@@ -659,24 +660,24 @@ class ProductController extends Controller
                         $value['redirect_flow_id'], 
                         ["params" => ["session_token" => $value['session_id']]]
                         );
-                        $foundit = Product::find()->where(['=','id',$value['product_id']])->one();
+                        $foundit = Product::find()->where('id=:id',['=',':id',$value['product_id']])->one();
                         $foundit->mandate = $redirectFlow->links->mandate;
                         $foundit->gc_number = $redirectFlow->links->customer; 
                         $foundit->save();
                         $accept_mandate = New Sessiondetail();
-                        $accept_mandate = Sessiondetail::find()->where(['=','redirect_flow_id',$value['redirect_flow_id']])->one();
+                        $accept_mandate = Sessiondetail::find()->where('redirect_flow_id=:redirect_flow_id',['=',':redirect_flow_id',$value['redirect_flow_id']])->one();
                         $accept_mandate->administrator_acknowledged = 1;
                         $accept_mandate->save();
                         //$message = "The following customer's mandates have been acknowledged. sent from " .Company::findOne(1)->email . ' to '.  $model->email . ' for customer ID: '. Html::a($model->id,Url::toRoute(['product/view','id'=>$model->id])). ' The customer will be redirected to this site once they have approved the Mandate and will be encouraged to reply to your original email stating that they have approved the Mandate. Access the Gocardless site to update the fields below.';
                         $message = Yii::t('app','Acknowledged Customer Mandate: ID ') . $foundit->id;
                         $message_all = $message_all ."  ".$message. "<br><br>";
                 } catch (InvalidStateException $e){
-                        $foundit = Product::find()->where(['=','id',$value['product_id']])->one();
+                        $foundit = Product::find()->where('id=:id',['=',':id',$value['product_id']])->one();
                         $foundit->mandate = Yii::t('app','System message: Mandate has expired after 30 minutes. Send an automatic new mandate again. Customer must approve and confirm email link to Gocardless within 30 minutes. '). Date('Y-m-d H:i:s');
                         $foundit->gc_number = ''; 
                         $foundit->save();
                         $cancel_mandate = New Sessiondetail();
-                        $cancel_mandate = Sessiondetail::find()->where(['=','redirect_flow_id',$value['redirect_flow_id']])->one();
+                        $cancel_mandate = Sessiondetail::find()->where('redirectflow_flow_id=:redirect_flow_id',['=',':redirect_flow_id',$value['redirect_flow_id']])->one();
                         $cancel_mandate->customer_approved = 0;
                         $cancel_mandate->administrator_acknowledged = 0;
                         $cancel_mandate->redirect_flow_id = $cancel_mandate->redirect_flow_id . "XX";

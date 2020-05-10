@@ -383,7 +383,7 @@ class SalesorderdetailController extends Controller
                             $q = new Query;
                             $rows = $q->select('*')
                             ->from('works_salesorderdetail')
-                            ->where(['and','product_id='.$model->product_id,'paid=0.00'])
+                            ->where('product_id=:product_id',['and',':product_id='.$model->product_id,'paid=0.00'])
                             ->andWhere('cleaned="Cleaned"')
                             ->andWhere('sales_order_detail_id<='.$model->sales_order_detail_id)
                             ->all();
@@ -456,7 +456,7 @@ class SalesorderdetailController extends Controller
                     $q = new Query;
                     $rows = $q->select('*')
                     ->from('works_salesorderdetail')
-                    ->where(['and','product_id='.$model->product_id,'paid=0.00'])
+                    ->where('product_id=:product_id',['and',':product_id='.$model->product_id,'paid=0.00'])
                     ->andWhere('cleaned="Cleaned"')
                     ->andWhere('sales_order_detail_id<='.$model->sales_order_detail_id)
                     ->all();
@@ -474,7 +474,7 @@ class SalesorderdetailController extends Controller
                     $payment = $client->payments()->create([
                     "params" => [
                         "amount" => $totalcleanamount*100, // 10 GBP in pence
-                        "currency" => "GBP",
+                        "currency" => Yii::$formatter->currencyCode,
                         "links" => [
                             "mandate" => $model->product->mandate,
                         ],

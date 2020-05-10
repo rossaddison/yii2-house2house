@@ -5,7 +5,6 @@ use yii\helpers\ArrayHelper;
 
 class InstallerHelper
 {
-   
     public static function unlimitTime()
     {
         return set_time_limit(0);

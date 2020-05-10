@@ -1,17 +1,12 @@
 <?php
-
 namespace frontend\modules\backup\components;
 
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
-use Symfony\Component\Process\Exception\ProcessTimedOutException;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Yii;
 use yii\base\Component;
 
 class BackupHelper extends Component
 {
-    
     public $backupCronTimeout = 36000;
     public $backupCronIdleTimeout = 600;
     
@@ -41,15 +36,15 @@ class BackupHelper extends Component
                 'backup/create/cron',
                 "Cron-Job - Daily Backup",
             ]);
-        
         return $backup;
     }
     
     private function getPhpExecutable()
     {
-        //return PHP_BINDIR . '/php';
-        return 'd:\wamp32\bin\php\php7.3.5\php';
-        //return 'd:\wamp31\www\multi2\web\yii ';
-    }
-    
+        $str=ini_get("extension_dir");
+        $search='ext/';
+        $replace='php';
+        $php_path =  str_replace($search,$replace,$str);
+        return $php_path;
+    }  
 }

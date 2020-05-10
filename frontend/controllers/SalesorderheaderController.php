@@ -311,21 +311,14 @@ class SalesorderheaderController extends Controller
                    ->andFilterWhere(['>=','clean_date',"$sorderyear"."-".$j."-"."01"])
                    ->orderBy('clean_date')
                    ->all();
-                   $totalamount = 0.00;
-                   $totalpaid = 0.00;
-                   $totaltips = 0.00;
-                   $totaladvpyts = 0.00;
-                   $totalprepyts = 0.00;
-                   $totalall = 0.00;
-                   $totalamount = number_format($totalamount,2);
-                   $totalpaid = number_format($totalpaid,2);
-                   $totaltips = number_format($totaltips,2);
-                   $totaladvpyts = number_format($totaladvpyts,2);
-                   $totalprepyts = number_format($totalprepyts,2);
-                   $totalall = number_format($totalall,2);
+                   $totalamount = number_format(0.00,2);
+                   $totalpaid = number_format(0.00,2);
+                   $totaltips = number_format(0.00,2);
+                   $totaladvpyts = number_format(0.00,2);
+                   $totalprepyts = number_format(0.00,2);
+                   $totalall = number_format(0.00,2);
                    foreach ($monthlycleans as $key)
                   {
-                                $result = [];
                                 $result = Salesorderdetail::find()->where(['sales_order_id'=>$key['sales_order_id']])->all();
                                 foreach ($result as $key => $value)
                                 {

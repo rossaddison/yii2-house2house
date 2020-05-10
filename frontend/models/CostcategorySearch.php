@@ -10,8 +10,6 @@ use frontend\models\Costcategory;
 class CostcategorySearch extends Costcategory
 {
     
-   
-    
     public function rules()
     {
         return [

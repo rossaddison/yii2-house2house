@@ -40,28 +40,37 @@ return [
     },
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'i18n' => [
-            'translations' => [
-                'app' => [
+          'i18n' => [
+                'translations' => [
+                      'app' => [
                       'class' => 'yii\i18n\DbMessageSource',
                       //the source_message table of english messages in this package was created with
                       //yii message/extract @frontend/messages/template.php. Change the languages setting
                       //to generate an empty messages table for that language. Use this packages Google Translate
-                      // facility tool to translate this.
-                      
+                      // facility tool to translate this.                      
                       'sourceLanguage' => 'en-GB', 
-                ],
+                       ],
                 
-            ],
+                       ],
             
+        ],
+        //Gocardless is dependent on the following currencyCode,
+        //Countries using Gocardless         
+        //https://developer.gocardless.com/getting-started/api/taking-your-first-payment/
+       'formatter' => [
+                'class' => 'yii\i18n\Formatter',
+                'locale' => 'en-GB', 
+                'thousandSeparator' => ',',
+                'decimalSeparator' => '.',
+                'currencyCode' => 'GBP',
         ],
         //http://webtips.krajee.com/override-bootstrap-css-js-yii-2-0-widgets/
         'assetManager' => [
             'bundles' => [
-                'yii\bootstrap\BootstrapAsset' => [
-                 'sourcePath' => 'your-path',
-                 'css' => ['css/bootstrap.css', 'path/to/custom.css']
-                ],   
+                //'yii\bootstrap\BootstrapAsset' => [
+                // 'sourcePath' => 'your-path',
+                // 'css' => ['css/bootstrap.css', 'path/to/custom.css']
+                //],   
                 'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@npm/bootstrap/dist'
                 ],
@@ -152,9 +161,6 @@ return [
                         '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			'gii'=>'gii','gii/<controller:\w+>'=>'gii/<controller>',
                         'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>', 
-                        '<module:\w+>/backup/<controller:\w+><action:\w+>,' => '<module>/backup/<controller>/<action>',
-                        '<module:\w+>/subscription/<controller:\w+><action:\w+>/<redirecturl:\d+>,' => '<module>/subscription/<controller>/<action>',
-                        '<module:\w+>/installer/<controller:\w+><action:\w+>,' => '<module>/installer/<controller>/<action>',                       
 	    ],
        ],
         'authManager' => [
@@ -202,7 +208,9 @@ return [
            'link' => [ 'class' => 'btn btn-sm btn-secondary' ],
         ],        
        ],
-      //use this module for timed backups 	    
+      'google3translateclient'=> [
+             'class'=> 'frontend\modules\google3translateclient\Module',  
+      ],
       'subscription' => [
             'class' => 'frontend\modules\subscription\Module',
       ],

@@ -77,9 +77,8 @@ public static function SubCatListb($postalcode_id) {
        
 }
 	
-public static function Street_map($map,$array,$key,$value)
+public static function Street_map($map,$array,$key)
 {
-        
         $start = new LatLng(['lat' => $array[$key]['lat_start'], 'lng' => $array[$key]['lng_start']]);
         $finish = new LatLng(['lat' => $array[$key]['lat_finish'], 'lng' => $array[$key]['lng_finish']]);
         $directionsRequest = new DirectionsRequest([
@@ -87,6 +86,10 @@ public static function Street_map($map,$array,$key,$value)
               'destination' => $finish,
               //'waypoints' => $waypoints,
               'travelMode' => TravelMode::DRIVING
+        ]);
+        $polylineOptions = new PolylineOptions([
+            'strokeColor' => '#FFAA00',
+            'draggable' => true
         ]);
         $directionsRenderer = new DirectionsRenderer([
                 'map' => $map->getName(),
@@ -107,7 +110,6 @@ public static function Street_map($map,$array,$key,$value)
 
 public static function ProdListc($cat_id, $subcat_id) {
         //find all the houses in the street
-        $data = 0;
         $data=\frontend\models\Product::find()
        ->where(['productcategory_id'=>$cat_id])
        ->andWhere(['productsubcategory_id'=>$subcat_id])      
@@ -159,7 +161,7 @@ public static function weeklycleansoverdueexample()
      ->andFilterWhere(['works_product.frequency'=>'Weekly'])
      ->andFilterWhere(['<','works_salesorderheader.clean_date',$comparedate])
      ->all();
-     return var_dump($weekly); 
+     return $weekly;
    }
 
 //$transid is value passed from dropdownbox on salesorderdetail/index 'transadv'
@@ -167,7 +169,8 @@ public static function soi2soi($prodid,$transid,$amounttotransfer)
 {
    $arr = Product::find()->where(['id'=>$prodid])->one();
    $allsales = $arr->salesorderdetails;
-   foreach ($allsales as $key => $value)
+   ##foreach ($allsales as $key => $value)
+   foreach ($allsales as $value)
    {
        if (($value['sales_order_id']) == $transid)
        {
@@ -183,10 +186,10 @@ public static function check_for_mandates_approved()
 {
     //query sessiondetails using the current user_id
     $db = Utilities::userdb_database_code();
-    $all = SessionDetail::find()->where(['=','user_id',Yii::$app->user->id])
-                                ->Andwhere(['=','customer_approved',1])
-                                ->Andwhere(['=','db',$db])
-                                ->Andwhere(['=','administrator_acknowledged',0])
+    $all = SessionDetail::find()->where(['user_id'=>Yii::$app->user->id])
+                                ->Andwhere(['customer_approved'=>1])
+                                ->Andwhere(['db'=>$db])
+                                ->Andwhere(['administrator_acknowledged'=>0])
                                 ->count();
     return $all;    
 }
@@ -195,10 +198,10 @@ public static function check_for_mandates_to_acknowledge()
 {
     //query sessiondetails using the current user_id
     $db = Utilities::userdb_database_code();
-    $all = Sessiondetail::find()->where(['=','user_id',Yii::$app->user->id])
-                                ->Andwhere(['=','customer_approved',1])
-                                ->Andwhere(['=','db',$db])
-                                ->Andwhere(['=','administrator_acknowledged',0])
+    $all = Sessiondetail::find()->where(['user_id'=>Yii::$app->user->id])
+                                 ->Andwhere(['customer_approved'=>1])
+                                ->Andwhere(['db'=>$db])
+                                ->Andwhere(['administrator_acknowledged'=>0])
                                 ->all();
     return $all;    
 }
@@ -207,51 +210,39 @@ public static function userLogin_set_database()
 {
                 if ( \Yii::$app->user->can('Access demo')){
                     return \Yii::$app->demo;
-                    exit;
                 }
 	        else if (\Yii::$app->user->can('Access db')) {
                     return \Yii::$app->db;
-                    exit;
                 }
                 else if (\Yii::$app->user->can('Access db1')) {
                     return \Yii::$app->db1; 
-                    exit;
                 }
                 else if (\Yii::$app->user->can('Access db2')) {
                     return \Yii::$app->db2; 
-                    exit;
                 }
                 else if (\Yii::$app->user->can('Access db3')) {
                     return \Yii::$app->db3;
-                    exit;
                 }
                 else if (\Yii::$app->user->can('Access db4')) {
                     return \Yii::$app->db4; 
-                    exit;
                 }
                 else if ( \Yii::$app->user->can('Access db5')){
-                    return \Yii::$app->db5; 
-                    exit;
+                    return \Yii::$app->db5;
                 }
                 else if ( \Yii::$app->user->can('Access db6')){
                     return \Yii::$app->db6; 
-                    exit;
                 }
                 else if ( \Yii::$app->user->can('Access db7')){
-                    return \Yii::$app->db7; 
-                    exit;
+                    return \Yii::$app->db7;
                 }
                 else if ( \Yii::$app->user->can('Access db8')){
                     return \Yii::$app->db8; 
-                    exit;
                 }
                 else if ( \Yii::$app->user->can('Access db9')){
-                    return \Yii::$app->db9; 
-                    exit;
+                    return \Yii::$app->db9;
                 }
                 else if ( \Yii::$app->user->can('Access db10')){
                     return \Yii::$app->db10; 
-                    exit;
                 }
 }
 
@@ -297,9 +288,9 @@ public static function subscription_exist()
         $apiContext = $newapicontext->paypalconfig(); 
         $agreement = \PayPal\Api\Agreement::get($agreement_id, $apiContext);
         $status = displayRecursiveResults($agreement,'status');
-        if ($status === 'verified') return true; else return false;
+        if ($status === 'verified') {return true;} else {return false;}
     }
-    else return false;    
+    else {return false;}    
 }
 
 public static function displayRecursiveResults($arrayObject,$searchkey) {
@@ -308,9 +299,7 @@ public static function displayRecursiveResults($arrayObject,$searchkey) {
             \frontend\components\Utilities::displayRecursiveResults($data,$searchkey);
         } elseif(is_object($data)) {
             \frontend\components\Utilities::displayRecursiveResults($data,$searchkey);
-        } else {
-            if ($key === $searchkey) return $data;
-        }
+        } else if ($key === $searchkey) {return $data;}
     }
 }
 

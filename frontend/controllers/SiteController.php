@@ -80,7 +80,7 @@ class SiteController extends Controller
     public function actionGocardlesscustomercreated($redirect_flow_id)
     {
         //customer passback retrieve details
-        $redirectflowid = Sessiondetail::find()->where(['=','redirect_flow_id',$redirect_flow_id])->one();
+        $redirectflowid = Sessiondetail::find()->where('redirect_flow_id=:redirect_flow_id',['=',':redirect_flow_id',$redirect_flow_id])->one();
         $redirectflowid->customer_approved = 1;
         $redirectflowid->save();
         return $this->render('gocardlesscustomercreated');
@@ -100,8 +100,7 @@ class SiteController extends Controller
         $data=\frontend\models\Costsubcategory::find()
        ->where(['costcategory_id'=>$postalcode_id])
        ->select(['id','name AS name'])->asArray()->orderBy('name')->all();
-       return $data;
-       
+       return $data;       
     }
     
     public static function getSubCatListb($postalcode_id) {

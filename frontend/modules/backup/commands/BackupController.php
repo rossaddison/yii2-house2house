@@ -1,11 +1,8 @@
 <?php
-
 namespace frontend\modules\backuper\commands;
 
 use frontend\modules\backuper\components\BackupHelper;
-use frontend\modules\backuper\components\SessionHelper;
 use frontend\modules\backuper\components\BackuperFilter;
-use frontend\modules\backuper\components\BackuperHelper;
 use frontend\modules\backuper\models\FinalStep;
 use Yii;
 use yii\console\Controller;
@@ -36,7 +33,7 @@ class BackupController extends Controller
 
     private function backup()
     {
-       
+     
         $this->stdout("Running backups...\n", Console::FG_YELLOW);
         /** @var UpdateHelper $helper */
         $helper = Yii::createObject([
@@ -48,7 +45,7 @@ class BackupController extends Controller
 
         $process->run();
 
-        if (!$this->interactive && getenv("DP2_SKIP_ADMIN")) {
+        if (!$this->interactive && getenv("BACKUP_ADMIN")) {
             return $this->finalStep();
         } else {
             return $this->adminUser();
@@ -72,13 +69,12 @@ class BackupController extends Controller
             } else {
                 $model->useMemcached = $this->confirm("Use memcached extension?", false);
             }
-
         }
-        if (getenv('DP2_SERVER_NAME')) {
-            $model->serverName = getenv('DP2_SERVER_NAME');
+        if (getenv('H2H_SERVER_NAME')) {
+            $model->serverName = getenv('H2H_SERVER_NAME');
         }
-        if (getenv('DP2_SERVER_PORT')) {
-            $model->serverPort = intval(getenv('DP2_SERVER_PORT'));
+        if (getenv('H2H_SERVER_PORT')) {
+            $model->serverPort = intval(getenv('H2H_SERVER_PORT'));
         }
             $this->stdout("Backup complete!\n", Console::FG_GREEN);
         return 0;
