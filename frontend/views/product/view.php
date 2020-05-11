@@ -25,9 +25,9 @@ $attributes=[
     [
      'attribute'=>'productcategory_id',
      'type'=>  DetailView::INPUT_DROPDOWN_LIST,
-      'items'=>ArrayHelper::map(Productcategory::find()->orderBy('name')->asArray()->all(),'id','name'), 
-      'options'=> ['id'=>'cat_id'],
-      'value'=>$model->productcategory->name, 
+     'items'=>ArrayHelper::map(Productcategory::find()->orderBy('name')->all(),'id','name'), 
+     'options'=> ['id'=>'cat_id'],
+     'value'=>$model->productcategory->name, 
       
     ],
     [ 
