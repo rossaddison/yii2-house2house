@@ -49,6 +49,7 @@ if (!Yii::$app->user->isGuest) {
     \frontend\components\Utilities::setLanguage();
 }
 
+//https://github.com/sjaakp/yii2-pluto/issues/18  Closed.
 Yii::$container->set('yii\widgets\LinkPager', 'yii\bootstrap4\LinkPager');
 
 Yii::$app->run(); 
