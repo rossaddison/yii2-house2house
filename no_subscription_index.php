@@ -45,6 +45,7 @@ $config = yii\helpers\ArrayHelper::merge(
 
 (new yii\web\Application($config));
 
+//https://github.com/sjaakp/yii2-pluto/issues/18
 Yii::$container->set('yii\widgets\LinkPager', 'yii\bootstrap4\LinkPager');
 
 Yii::$app->run(); 
