@@ -1,7 +1,7 @@
 {
     "name": "rossaddison/yii2-house2house",
     "description": "House to House Management Software eg. Cleaning Services",
-    "keywords": ["yii2", "shared-hosting","house","paypal","gocardless","twilio","sms"],
+    "keywords": ["yii2", "shared-hosting","house","paypal","gocardless","twilio","sms","google-translate"],
     "homepage": "https://www.roundrunner.co.uk/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -49,7 +49,6 @@
         "linslin/yii2-curl":"*",
         "filipajdacic/yii2-twilio": "master@dev",
         "gocardless/gocardless-pro": "~3.1",
-        "paypal/rest-api-sdk-php": "*",
         "monolog/monolog":"*",
         "ruskid/yii2-csv-importer": "dev-master",
         "phpoffice/phpspreadsheet":"*", 
