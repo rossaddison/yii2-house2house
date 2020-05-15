@@ -172,7 +172,7 @@ class Google3translateclientController extends \yii\web\Controller
             $response = $translationServiceClient->translateText(
                     $contents, 
                     $targetLanguageCode, 
-                    $formattedParent,
+                    $formattedParent
                    // ['model' => null, 'sourceLanguageCode' => 'en', 'mimeType' => 'text/plain']
             );
             //$response_getTranslations = $response->getTranslations();
