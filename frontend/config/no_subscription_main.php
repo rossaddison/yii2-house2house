@@ -1,26 +1,35 @@
 <?php
 $params = array_merge(
-    require(__DIR__ . '/params.php')    
+    //admin email, support email, bootstrap versioning located under params.php
+    require(__DIR__ . '/params.php')
  );
+Use frontend\modules\subscription\components\SessionHelper;
 
 return [
     'id' => 'app-frontend',
-    'name'=>Yii::t('app','Hosue 2 house'),
+    'name'=>Yii::t('app','House 2 House'),
     'timezone' => 'UTC',
-    //'defaultRoute'=>'/libra/login',
+    //in your own language change the following after using H2H's Google Translate Module.
+    //or set the Company...Settings...Language...setting.
+    ///'language'=> 'en-GB',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
+         // The sjaak/pluto user module facility setup in frontend/config/main.php and originating in composer.json uses this pseudonym. Set it here:
+	 // This will appear next to your domain name eg. yoursite.co.uk/libra 
         'libra'
     ],
     'aliases'=>[
       '@bower'=>'@vendor/bower-asset',
       '@npm'=>'@vendor/npm-asset',
     ],
+    //adjust the portalMode param when the site is under maintenance
     'on beforeRequest' => function ($event) {
+	//change frontend/config/params.php file 'portalMode' setting.    
         if (Yii::$app->params['portalMode'] == 'maintenance') {
             $letMeIn = Yii::$app->session['letMeIn'] || isset($_GET['letMeIn']);
             if (!$letMeIn) {
+		//modify the maintenance.php file under frontend/views/site/maintenance for a different graphical interface    
                 Yii::$app->catchAll = [
                     'site/maintenance',
                 ];
@@ -31,48 +40,72 @@ return [
     },
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+          'i18n' => [
+                'translations' => [
+                      'app' => [
+                      'class' => 'yii\i18n\DbMessageSource',
+                      //the source_message table of english messages in this package was created with
+                      //yii message/extract @frontend/messages/template.php. Change the languages setting
+                      //to generate an empty messages table for that language. Use this packages Google Translate
+                      // facility tool to translate this.                      
+                      'sourceLanguage' => 'en-GB', 
+                       ],
+                
+                       ],
+            
+        ],
+        //Gocardless is dependent on the following currencyCode,
+        //Countries using Gocardless         
+        //https://developer.gocardless.com/getting-started/api/taking-your-first-payment/
+       'formatter' => [
+                'class' => 'yii\i18n\Formatter',
+                'locale' => 'en-GB', 
+                'thousandSeparator' => ',',
+                'decimalSeparator' => '.',
+                'currencyCode' => 'GBP',
+        ],
+        //http://webtips.krajee.com/override-bootstrap-css-js-yii-2-0-widgets/
         'assetManager' => [
             'bundles' => [
+                //'yii\bootstrap\BootstrapAsset' => [
+                // 'sourcePath' => 'your-path',
+                // 'css' => ['css/bootstrap.css', 'path/to/custom.css']
+                //],   
                 'yii\bootstrap4\BootstrapAsset' => [
                     'sourcePath' => '@npm/bootstrap/dist'
                 ],
                 'yii\bootstrap4\BootstrapPluginAsset' => [
                     'sourcePath' => '@npm/bootstrap/dist'
                 ],
+                //
                 'dosamigos\google\maps\MapAsset' => [
                  'options' => [
-                        'key' => 'XXXXXXXXXXXXXXXXXXX',
-                     'language' => 'en',
+                         //insert your Google Maps API key. Free from Google
+                        //by creating an account with them.
+                        //Houses will be visible on Google Maps
+                        'key' => 'xxxxxxxxxxxxxxx',
+                        'language' => 'en',
                         'version' => '3.1.18'
                  ],
                  ],
             ],
-        ],
+            //automatic cache busting ensured, if js files in particular changed, so that older js files not used by client
+            'appendTimestamp' => true,
+        ], 
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'parsers' => [
-                            'application/json' => 'yii\web\JsonParser',
-                            'asArray'=> true,
-                            'throwException'=> true,
-                         ],
+            'application/json' => 'yii\web\JsonParser'],
             'enableCsrfValidation' => true,
-           
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 6 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning','info'],
-                ],
-            ],
-        ],
+        //sjaak/pluto User model uses the reCaptcha. Get these settings from https://www.google.com/recaptcha/admin/create
+	//demo https://www.google.com/recaptcha/api2/demo
         'reCaptcha' => [
                 'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-                'siteKeyV2' => 'xxxxxxxxxxxxxxxxxxxxx',
-                'secretV2' => 'xxxxxxxxxxxxxxxxxxxxxx',
-                'siteKeyV3' => 'xxxxxxxxxxxxxxxxxxxxx',
-                'secretV3' => 'xxxxxxxxxxxxxxxxxxxxxx',
+                'siteKeyV2' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'secretV2' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'siteKeyV3' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'secretV3' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -91,19 +124,21 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'user' => [
+	'user' => [
+		//create an image upload directory for the carousal for timestamped demo user
                'on afterLogin' => function ($e) {
                     if (Yii::$app->user->identity->attributes['name'] === 'demo') {
                               \frontend\components\Utilities::create_demotimestamp_directory();
                     }    
-               },  
+               },
+	       //delete the image upload directory for the carousal for timestamped demo user on exit
                'on beforeLogout' => function ($e) {
                     if (Yii::$app->user->identity->attributes['name'] === 'demo') {
                               \frontend\components\Utilities::delete_demotimestamp_directory();
                               \frontend\components\Utilities::delete_records();
                     }    
                }   
-        ],
+        ],    
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
@@ -113,9 +148,9 @@ return [
                         'your-settings/<action:\w+>/<id:\d+>'=>'company/<action>',
                         'work-area/<action:\w+>/<id:\d+>' => 'productcategory/<action>',
                         'street/<action:\w+>/<id:\d+>' => 'productsubcategory/<action>',
-                        'daily-clean/<action:\w+>/<id:\d+>' => 'salesorderheader/<action>',
+		        'daily-clean/<action:\w+>/<id:\d+>' => 'salesorderheader/<action>',
                         'your-staff/<action:\w+>/<id:\d+>' => 'employee/<action>',
-                       // 'house/<action:\w+>/<id:\d+>' => 'product/<action>',
+                        'house/<action:\w+>/<id:\d+>' => 'product/<action>',
                         'specific-cost-main-category-code/<action:\w+>/<id:\d+>' => 'costcategory/<action>',
                         'specific-cost-secondary-category-code/<action:\w+>/<id:\d+>' => 'costsubcategory/<action>',
                         'individual-cost-under-secoondary-category-code/<action:\w+>/<id:\d+>' => 'cost/<action>',
@@ -125,8 +160,7 @@ return [
                         '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			'gii'=>'gii','gii/<controller:\w+>'=>'gii/<controller>',
                         'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>', 
-                        '<module:\w+>/backuper/<controller:\w+><action:\w+>,' => '<module>/backuper/<controller>/<action>',
-            ],          '<module:\w+>/backup/<controller:\w+><action:\w+>,' => '<module>/backup/<controller>/<action>',
+	    ],
        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager'
@@ -134,14 +168,16 @@ return [
         'sessionHelper' => [
             'class' => SessionHelper::class
         ],
-        'mailer' => [
+	'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'enableSwiftMailerLogging' =>false,
             'useFileTransport' => false,
             'transport' => ['class' => 'Swift_SmtpTransport',
-                            'host' => 'mailout.one.com',
-                            'username' => 'myname@domain.co.uk',
-                            'password' => 'mypassword',
+                            'host' => 'mail.btinternet.com',
+			    //get an email address through your service provider to test on localhost
+			    //get an email address through your host to test on your host
+                            'username' => 'myname@btinternet.com',
+                            'password' => '7436hkdkdkdksaaaal@',
                             'port' => '25',
                             // 'encryption' => 'none',                            
                            ], 
@@ -157,44 +193,39 @@ return [
         'passwordHint' => Yii::t('app','At least eight characters, one uppercase, one digit'),
         'passwordRegexp' => '/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
         'identityClass' => 'sjaakp\pluto\models\User',
-        'fenceMode' => true,
+        //prevent the external guest signing up of users until site is stable by setting fenceMode to true
+	//if fenceMode is set to true you can still signup users internally as the user with 'admin' rights.
+        //Default: No user including Admin has this permission ie. site is open to signup for everyone
+        //Use: All users inherit the fencemode role. The fencemode role can switch between true and false 
+        //with this permission either being assigned or not assigned.
+        //ie. the site is open for signup or not.
+        'fenceMode' => !'User can Login but not Signup - Fence Mode On',
         'viewOptions' => [
            'row' => [ 'class' => 'row justify-content-center' ],
            'col' => [ 'class' => 'col-md-6 col-lg-5' ],
            'button' => [ 'class' => 'btn btn-success' ],
            'link' => [ 'class' => 'btn btn-sm btn-secondary' ],
-        ],
-        
+        ],        
        ],
+      'google3translateclient'=> [
+             'class'=> 'frontend\modules\google3translateclient\Module',  
+      ],
+      // the paypal/rest-api-sdk-php has been abandoned. You can still use it if you wish.
+      // by default h2h runs without it because of 
+      // the default Subscription Free Privilege assigned to all users.
+      // Include  "paypal/rest-api-sdk-php": "*", in your composer.json  
+      //'subscription' => [
+      //      'class' => 'frontend\modules\subscription\Module',
+      //],
+      'installer' => [
+            'class' => 'frontend\modules\installer\Module',
+      ],
       'backuper'=> [
              'class' => 'frontend\modules\backup\Module',
-      ],
-      'backup' => [
-        'class' => 'ellera\backup\Module',
-        'automated_cleanup' => [
-            'daily' => true,
-            'weekly' => true,
-            'monthly' => true,
-            'yearly' => true
-        ],
-        'databases' => [
-            'db',
-            'db1',
-            'db2',
-            'db3',
-            'db4',
-            'db5',
-            'db6',
-            'db7',
-            'db8',
-            'db9',
-            'db10',
-        ],
-        'path' => '@frontend/_backup'
-      ], 
+      ],    
       'gii' => [
       'class' => 'yii\gii\Module', //adding gii module
-      //  'allowedIPs' => ['127.0.0.1','localhost', '::1'],
+        'allowedIPs' => ['127.0.0.1','localhost', '::1'],
                      'generators' => [
                         'migrik' => [
                             'class' => \insolita\migrik\gii\StructureGenerator::class,
@@ -213,12 +244,24 @@ return [
       'gridview' =>  [
         'class' => '\kartik\grid\Module'
        ],
+       'social' => [
+         'class' => 'kartik\social\Module',
+         'googleAnalytics' => [
+            //insert your Google Analytics code here under id.
+            //'id' => 'UA-1111111-1',
+            'domain' => 'localhost',
+            'testMode'=>false,
+         ],
+        ],
+      'treemanager' =>  [
+        'class' => 'kartik\tree\Module',
+      ],
        'datecontrol' => [
         'class' => 'kartik\datecontrol\Module',
         'displaySettings' => [
-            'date' =>'php:Y-m-d', 
+            'date' => 'php:d-M-Y',
             'time' => 'php:H:i:s A',
-            'datetime' =>'php:Y-m-d H:i:s',
+            'datetime' => 'php:d-m-Y H:i:s A',
         ],
         'saveSettings' => [
             'date' => 'php:Y-m-d', 
@@ -229,4 +272,4 @@ return [
         'autoWidget' => true,      
      ],
    ],
-];  
+];

@@ -60,11 +60,11 @@ $this->registerJs($js);
     $check_howmany_mandates = 0;
     $mandates_available = [];
     //paypal subscription is inactive === 2
-    if (!Yii::$app->user->isGuest && Yii::$app->user->can('Subscription Free Privilege')){
+    if (((!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] < 2)) || (!Yii::$app->user->isGuest && Yii::$app->user->can('Subscription Free Privilege'))){
          if (Yii::$app->user->can('Manage Basic')){
              $check_howmany_mandates = Utilities::check_for_mandates_approved();             
          } // Yii::$app->user->can('Manage Admin'))
-         if (Yii::$app->user->can('Subscription Free Privilege'))
+         if ((Yii::$app->session['sub'] === 1) || (Yii::$app->user->can('Subscription Free Privilege')))
          {
          $menuItems = [    
                 ['label' => Html::button(Yii::t('app','Settings'),['class'=>'btn btn-info btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
@@ -129,7 +129,41 @@ $this->registerJs($js);
                 ],
                 ],
              ];
-          } 
+          } // (Yii::$app->session['sub'] === 1)
+    } //!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] < 2))
+    //user is signed up and user is subscribed and user has no free privilege    
+    if ((!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] === 1) && (!Yii::$app->user->can('Subscription Free Privilege'))) {
+                $menuItems[] = ['label' => Html::button(Yii::t('app','Monthly').' Paypal'.Yii::t('app',' Subscription Active'),['class'=>'btn btn-success btn-lg','title'=>'Watch this button change when your subscription is overdue.','data-toggle'=>'tooltip']),
+                            'items' => [
+                                   ['label' => Html::button('Paypal'. Yii::t('app',' Subscription Details'),
+                                   ['class'=>'btn btn-info btn-lg',
+                                    'title'=>Yii::t('app','Details of your Agreement including cycles, left, balance.'),
+                                    'data-toggle'=>'tooltip',
+                                   ]),
+                                   'url' => ['/subscription/subscription/agreementdetails']],
+                            ],
+                       ];
+    }//((!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] === 1))
+    //subscribed but not assigned a database role
+    if ((!Yii::$app->user->isGuest) && (empty(Yii::$app->session['currentdatabase'])) && ((Yii::$app->session['sub'] === 1)||(Yii::$app->session['sub'] === 0))) 
+         {
+            $menuItems[] = ['label' => Html::button(Yii::t('app','Contact Support to setup an account either Manager eg. Mdb Role (All Mdb Roles inherit the support role) or Employee eg. Udb Role. (All Udb roles inherit the employee role)'),['class'=>'btn btn-success btn-lg','title'=>Yii::t('app','Support will assign a role and database to you.'),'data-toggle'=>'tooltip']), 'url' => "tel:/07777777777",
+                            'items' => [
+                           ],
+                       ]; 
+    }
+    //subscription suspended
+    if ((!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] === 0))
+         {
+            $menuItems[] = ['label' => Html::button(Yii::t('app','Monthly'). 'Paypal' .Yii::t('app',' Subscription Suspended'),['class'=>'btn btn-success btn-lg','title'=>Yii::t('app','Re-activate your subscription by clicking the button below.'),'data-toggle'=>'tooltip']),
+                            'items' => [
+                                   ['label' => Html::button(Yii::t('app','Reactivate Paypal Subscription'),['class'=>'btn btn-info btn-lg','title'=>Yii::t('app','Reactivating your subscription with ').'Paypal'. Yii::t('app', ' will allow you access to your data again.'),'data-toggle'=>'tooltip']), 'url' => ['/subscription/subscription/reactivate']],
+                           ],
+                       ];
+    }// ((!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] === 0))
+    //signed up and not subscribed yet and no free privilege therefore no roles assigned yet    
+    if ((!Yii::$app->user->isGuest) && (Yii::$app->session['sub'] === 2) && (!Yii::$app->user->can('Subscription Free Privilege')))  {
+          $menuItems[] = ['label' => Html::button('<img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_subscribeCC_LG.gif">',['class'=>'btn btn-success btn-lg','title'=>'Activate Monthly Paypal Subscription for 12 months paying 5 GBP per month. Must be reactivated after 12 months. You can cancel at any stage. ','data-toggle'=>'tooltip']), 'url' => ['/subscription/subscription/subscribe'],];
     }
     
     if (Yii::$app->user->isGuest) {
@@ -146,7 +180,6 @@ $this->registerJs($js);
             . Html::endForm()
             . '</li>';
     }
-    
     echo Nav::widget([
         //'options' => ['class' => 'navbar-nav navbar-right'],
         'encodeLabels'=> false,

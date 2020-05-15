@@ -210,9 +210,13 @@ return [
       'google3translateclient'=> [
              'class'=> 'frontend\modules\google3translateclient\Module',  
       ],
-      'subscription' => [
-            'class' => 'frontend\modules\subscription\Module',
-      ],
+      // the paypal/rest-api-sdk-php has been abandoned. You can still use it if you wish.
+      // by default h2h runs without it because of 
+      // the default Subscription Free Privilege assigned to all users.
+      // Include  "paypal/rest-api-sdk-php": "*", in your composer.json  
+      //'subscription' => [
+      //      'class' => 'frontend\modules\subscription\Module',
+      //],
       'installer' => [
             'class' => 'frontend\modules\installer\Module',
       ],
