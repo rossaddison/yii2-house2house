@@ -150,6 +150,7 @@ return [
                         'street/<action:\w+>/<id:\d+>' => 'productsubcategory/<action>',
 		        'daily-clean/<action:\w+>/<id:\d+>' => 'salesorderheader/<action>',
                         'your-staff/<action:\w+>/<id:\d+>' => 'employee/<action>',
+                        'dateline/<action:\w+>/<id:\d+>' => 'historyline/<action>',
                         'house/<action:\w+>/<id:\d+>' => 'product/<action>',
                         'specific-cost-main-category-code/<action:\w+>/<id:\d+>' => 'costcategory/<action>',
                         'specific-cost-secondary-category-code/<action:\w+>/<id:\d+>' => 'costsubcategory/<action>',

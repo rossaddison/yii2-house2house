@@ -22,9 +22,6 @@ class Employee extends \yii\db\ActiveRecord
         return 'works_employee';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [

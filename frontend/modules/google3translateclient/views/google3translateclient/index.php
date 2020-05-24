@@ -42,20 +42,20 @@ $form = ActiveForm::begin([
 <?php endif; ?>
 <?php if (!empty($google_credential_file) && file_exists($google_credential_file)): ?>
     <div class="alert alert-success">
-        <strong><?= Yii::t('app', 'Your google translate JSON file is set under Settings...Company and exists at '. $google_credential_file); ?></strong>
+        <strong><?= Yii::t('app', 'Your google translate JSON file is set under Other...Company and exists at '. $google_credential_file); ?></strong>
         <br>
         <strong><?= Yii::t('app', 'GOOGLE APPLICATION CREDENTIALS ' . getenv('GOOGLE_APPLICATION_CREDENTIALS')) ?></strong>
     </div>
 <?php endif; ?>
 <?php if (empty($google_credential_file)): ?>
     <div class="alert alert-danger">
-        <strong><?= Yii::t('app', 'Your Google Credential setting under Settings...Company has not been set.') ?><?= Html::a('Further reading: ',['url'=>'https://cloud.google.com/docs/authentication/production#windows']) ?></strong>
+        <strong><?= Yii::t('app', 'Your Google Credential setting under Other...Company has not been set.') ?><?= Html::a('Further reading: ',['url'=>'https://cloud.google.com/docs/authentication/production#windows']) ?></strong>
     </div>
 <?php endif; ?>
 
 <?php if (!file_exists($google_credential_file) && !empty($google_credential_file)): ?>
     <div class="alert alert-danger">
-        <strong><?= Yii::t('app', 'Your Google Credential Filename and path has been set under Settings...Company  but the file itself does not exist. Include quotes and forward slashes.') ?></strong>
+        <strong><?= Yii::t('app', 'Your Google Credential Filename and path has been set under Other...Company  but the file itself does not exist. Include quotes and forward slashes.') ?></strong>
     </div>
 <?php endif; ?> 
 <?php
