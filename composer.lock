@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6120493195e80a0f0a18d513cf21374b",
+    "content-hash": "be481caf8d150b871553546628f99ca9",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -171,7 +171,7 @@
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -210,7 +210,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -231,7 +231,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -876,16 +876,16 @@
         },
         {
             "name": "google/auth",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "c7b295feb248f138f462a1e6b7d635e4244204c5"
+                "reference": "af4abf63988b8c74f589bee1e69ba310d3e43c6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/c7b295feb248f138f462a1e6b7d635e4244204c5",
-                "reference": "c7b295feb248f138f462a1e6b7d635e4244204c5",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/af4abf63988b8c74f589bee1e69ba310d3e43c6c",
+                "reference": "af4abf63988b8c74f589bee1e69ba310d3e43c6c",
                 "shasum": ""
             },
             "require": {
@@ -897,12 +897,12 @@
                 "psr/http-message": "^1.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.11",
                 "guzzlehttp/promises": "0.1.1|^1.3",
                 "kelvinmo/simplejwt": "^0.2.5",
                 "phpseclib/phpseclib": "^2",
                 "phpunit/phpunit": "^4.8.36|^5.7",
-                "sebastian/comparator": ">=1.2.3"
+                "sebastian/comparator": ">=1.2.3",
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "suggest": {
                 "phpseclib/phpseclib": "May be used in place of OpenSSL for signing strings or for token management. Please require version ^2."
@@ -924,7 +924,7 @@
                 "google",
                 "oauth2"
             ],
-            "time": "2020-03-26T19:47:36+00:00"
+            "time": "2020-05-18T17:02:59+00:00"
         },
         {
             "name": "google/cloud-core",
@@ -1167,16 +1167,16 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v3.11.4",
+            "version": "v3.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "a5001eb559dcaac0bf6d8c7edc52b3828c618185"
+                "reference": "60f57530e64537a1fbec50e1ad47d87befd2d0fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/a5001eb559dcaac0bf6d8c7edc52b3828c618185",
-                "reference": "a5001eb559dcaac0bf6d8c7edc52b3828c618185",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/60f57530e64537a1fbec50e1ad47d87befd2d0fd",
+                "reference": "60f57530e64537a1fbec50e1ad47d87befd2d0fd",
                 "shasum": ""
             },
             "require": {
@@ -1204,7 +1204,7 @@
             "keywords": [
                 "proto"
             ],
-            "time": "2020-02-14T22:17:05+00:00"
+            "time": "2020-05-21T01:33:38+00:00"
         },
         {
             "name": "grpc/grpc",
@@ -2085,16 +2085,16 @@
         },
         {
             "name": "kartik-v/yii2-detail-view",
-            "version": "v1.8.2",
+            "version": "v1.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "e36b0db146a25528f9eb0470d2fc4ced1f009d99"
+                "reference": "071983e7618c50d108be1753dac218bb893ba569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/e36b0db146a25528f9eb0470d2fc4ced1f009d99",
-                "reference": "e36b0db146a25528f9eb0470d2fc4ced1f009d99",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/071983e7618c50d108be1753dac218bb893ba569",
+                "reference": "071983e7618c50d108be1753dac218bb893ba569",
                 "shasum": ""
             },
             "require": {
@@ -2134,7 +2134,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-10-10T08:20:20+00:00"
+            "time": "2020-05-15T04:49:27+00:00"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -2306,12 +2306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "e4ba0c68ecb864e1a158f16cc73a5e73a6cdf7c7"
+                "reference": "7b7199cd40caa347604b27a895450a0c1f01966e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/e4ba0c68ecb864e1a158f16cc73a5e73a6cdf7c7",
-                "reference": "e4ba0c68ecb864e1a158f16cc73a5e73a6cdf7c7",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/7b7199cd40caa347604b27a895450a0c1f01966e",
+                "reference": "7b7199cd40caa347604b27a895450a0c1f01966e",
                 "shasum": ""
             },
             "require": {
@@ -2357,7 +2357,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-03-27T11:31:59+00:00"
+            "time": "2020-05-21T06:21:06+00:00"
         },
         {
             "name": "kartik-v/yii2-helpers",
@@ -2563,6 +2563,12 @@
                 "pdf",
                 "utf8",
                 "yii2"
+            ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/yii2-mpdf",
+                    "type": "open_collective"
+                }
             ],
             "time": "2020-04-14T08:55:18+00:00"
         },
@@ -4256,20 +4262,20 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.0.2",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c861fcba2ca29404dc9e617eedd9eff4616986b8"
+                "reference": "38914429aac460e8e4616c8cb486ecb40ec90bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c861fcba2ca29404dc9e617eedd9eff4616986b8",
-                "reference": "c861fcba2ca29404dc9e617eedd9eff4616986b8",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/38914429aac460e8e4616c8cb486ecb40ec90bb1",
+                "reference": "38914429aac460e8e4616c8cb486ecb40ec90bb1",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
+                "php": ">=7.2",
                 "psr/log": "^1.0.1"
             },
             "provide": {
@@ -4280,11 +4286,11 @@
                 "doctrine/couchdb": "~1.0@dev",
                 "elasticsearch/elasticsearch": "^6.0",
                 "graylog2/gelf-php": "^1.4.2",
-                "jakub-onderka/php-parallel-lint": "^0.9",
                 "php-amqplib/php-amqplib": "~2.4",
                 "php-console/php-console": "^3.1.3",
+                "php-parallel-lint/php-parallel-lint": "^1.0",
                 "phpspec/prophecy": "^1.6.1",
-                "phpunit/phpunit": "^8.3",
+                "phpunit/phpunit": "^8.5",
                 "predis/predis": "^1.1",
                 "rollbar/rollbar": "^1.3",
                 "ruflin/elastica": ">=0.90 <3.0",
@@ -4333,7 +4339,17 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2019-12-20T14:22:59+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-05-22T08:12:19+00:00"
         },
         {
             "name": "mpdf/mpdf",
@@ -4454,10 +4470,10 @@
         },
         {
             "name": "npm-asset/bootstrap",
-            "version": "4.4.1",
+            "version": "4.5.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.4.1.tgz"
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.5.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4602,55 +4618,6 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
-        },
-        {
-            "name": "paypal/rest-api-sdk-php",
-            "version": "1.14.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
-                "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.3.0",
-                "psr/log": "^1.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PayPal": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "PayPal",
-                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
-                }
-            ],
-            "description": "PayPal's PHP SDK for REST APIs",
-            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
-            "keywords": [
-                "payments",
-                "paypal",
-                "rest",
-                "sdk"
-            ],
-            "time": "2019-01-04T20:04:25+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -5704,6 +5671,52 @@
             "time": "2020-04-28T12:40:35+00:00"
         },
         {
+            "name": "sjaakp/yii2-dateline",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sjaakp/yii2-dateline.git",
+                "reference": "4c9868535ab7202252a8161eb25fbde0a4ed19d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sjaakp/yii2-dateline/zipball/4c9868535ab7202252a8161eb25fbde0a4ed19d5",
+                "reference": "4c9868535ab7202252a8161eb25fbde0a4ed19d5",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "sjaakp\\dateline\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjaak Priester",
+                    "email": "sjaak@sjaakpriester.nl",
+                    "homepage": "https://sjaakpriester.nl"
+                }
+            ],
+            "description": "Widget to handle dates",
+            "keywords": [
+                "date",
+                "datetime",
+                "extension",
+                "timeline",
+                "widget",
+                "yii",
+                "yii2"
+            ],
+            "time": "2019-08-15T13:29:49+00:00"
+        },
+        {
             "name": "sjaakp/yii2-pluto",
             "version": "1.0.11",
             "source": {
@@ -6034,16 +6047,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.15.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "4719fa9c18b0464d399f1a63bf624b42b6fa8d14"
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/4719fa9c18b0464d399f1a63bf624b42b6fa8d14",
-                "reference": "4719fa9c18b0464d399f1a63bf624b42b6fa8d14",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
                 "shasum": ""
             },
             "require": {
@@ -6055,7 +6068,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -6102,20 +6115,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-02-27T09:26:54+00:00"
+            "time": "2020-05-12T16:14:59+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.15.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf"
+                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
-                "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/3bff59ea7047e925be6b7f2059d60af31bb46d6a",
+                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a",
                 "shasum": ""
             },
             "require": {
@@ -6129,7 +6142,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -6178,20 +6191,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-03-09T19:04:49+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.15.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac"
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
-                "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fa79b11539418b02fc5e1897267673ba2c19419c",
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
                 "shasum": ""
             },
             "require": {
@@ -6203,7 +6216,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -6251,20 +6264,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-03-09T19:04:49+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.15.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "37b0976c78b94856543260ce09b460a7bc852747"
+                "reference": "f048e612a3905f34931127360bdd2def19a5e582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/37b0976c78b94856543260ce09b460a7bc852747",
-                "reference": "37b0976c78b94856543260ce09b460a7bc852747",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/f048e612a3905f34931127360bdd2def19a5e582",
+                "reference": "f048e612a3905f34931127360bdd2def19a5e582",
                 "shasum": ""
             },
             "require": {
@@ -6273,7 +6286,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -6320,7 +6333,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-02-27T09:26:54+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/process",
@@ -6373,16 +6386,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "6.4.0",
+            "version": "6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twilio/twilio-php.git",
-                "reference": "50f51c445684b81d1b67ecdaaaf1d59a1654bac9"
+                "reference": "c111b87479eaf77a9372650105902f43fb321944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/50f51c445684b81d1b67ecdaaaf1d59a1654bac9",
-                "reference": "50f51c445684b81d1b67ecdaaaf1d59a1654bac9",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/c111b87479eaf77a9372650105902f43fb321944",
+                "reference": "c111b87479eaf77a9372650105902f43fb321944",
                 "shasum": ""
             },
             "require": {
@@ -6419,7 +6432,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2020-04-29T20:03:50+00:00"
+            "time": "2020-05-20T20:14:06+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -7457,16 +7470,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.5.1",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "93ebc5712cdad8d5f489b500c59d122df2e53969"
+                "reference": "2e3299cea6f485ca64d19c540f46d7896c512ace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/93ebc5712cdad8d5f489b500c59d122df2e53969",
-                "reference": "93ebc5712cdad8d5f489b500c59d122df2e53969",
+                "url": "https://api.github.com/repos/opis/closure/zipball/2e3299cea6f485ca64d19c540f46d7896c512ace",
+                "reference": "2e3299cea6f485ca64d19c540f46d7896c512ace",
                 "shasum": ""
             },
             "require": {
@@ -7514,7 +7527,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2019-11-29T22:36:02+00:00"
+            "time": "2020-05-21T20:09:36+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -8121,16 +8134,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.4",
+            "version": "8.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23"
+                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8474e22d7d642f665084ba5ec780626cbd1efd23",
-                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/63dda3b212a0025d380a745f91bdb4d8c985adb7",
+                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7",
                 "shasum": ""
             },
             "require": {
@@ -8210,7 +8223,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-04-23T04:39:42+00:00"
+            "time": "2020-05-22T13:51:52+00:00"
         },
         {
             "name": "psr/event-dispatcher",

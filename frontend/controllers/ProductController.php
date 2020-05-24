@@ -132,6 +132,48 @@ class ProductController extends Controller
         ]);
     }
     
+    public function actionSearch()
+    {   
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize=10;
+        $dataProvider->sort->sortParam = false;
+        $dataProvider->setSort([
+            'attributes' => [
+                'productcategory_id' => [
+                    'asc' => ['productcategory_id' => SORT_ASC],
+                    'desc' => ['productcategory_id' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+            ],
+            'defaultOrder' => [
+              'productcategory_id' => SORT_ASC,
+            ]
+          ]); 
+        
+        if (Yii::$app->request->post('hasEditable')) {
+        $editablekey = Yii::$app->request->post('editableKey');
+        $model = Product::findOne($editablekey);
+        $out = Json::encode(['output'=>'', 'message'=>'']);
+        $post = [];
+        $posted = current($_POST['Product']);
+        $post = ['Product' => $posted];
+        if ($model->load($post)) {
+            $model->save();
+        }
+        $output = '';
+        if (isset($posted['listprice'])) {
+           $output = Yii::$app->formatter->asDecimal($model->listprice, 2);
+        }
+        return Json::encode(['output'=> $output, 'message'=>'']);
+       }
+        
+        return $this->render('search_for_customer', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
     public function actionCreate()
     {
         if (!\Yii::$app->user->can('Create House')) {
@@ -690,8 +732,31 @@ class ProductController extends Controller
         }
         Yii::$app->session->setFlash('kv-detail-success',$message_all );
         return $this->redirect(['view', 'id' => $foundit->id]);
-        
-    }
+   }
+   
+   public function actionCustomer() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $ids = $_POST['depdrop_parents'];
+            $cat_id = empty($ids[0]) ? null : $ids[0];
+            $subcat_id = empty($ids[1]) ? null : $ids[1];
+            if ($cat_id != null) {
+                $out = self::getCustomerList($cat_id,$subcat_id); 
+                return Json::encode(['output'=>$out, 'selected'=>'']);                      
+            }
+        }
+        return Json::encode(['output'=>'', 'selected'=>'']);
+   }
+    
+   public static function getCustomerList($cat_id, $subcat_id) {
+        //find all the houses in the street
+        $data = [];
+        $data=\frontend\models\Product::find()
+       ->where(['productcategory_id'=>$cat_id])
+       ->andWhere(['productsubcategory_id'=>$subcat_id])      
+       ->select(['id', 'productnumber AS name'])->asArray()->orderBy('name')->all();
+       return $data;
+    } 
     
    public function actionSlider()
    {

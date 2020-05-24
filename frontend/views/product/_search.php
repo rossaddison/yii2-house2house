@@ -30,7 +30,7 @@ use Yii;
         'depends'=>['cat_id', 'subcat_id'],
         'loading'=>true,
         'placeholder'=>Yii::t('app','Select ...'),
-        'url'=>Url::to(['/site/produc']),
+        'url'=>Url::to(['/product/customer']),
         'initialize'=>true,
     ]
     ]); ?>

@@ -59,3 +59,13 @@ function getSlidercost (){
         success: $.pjax.reload({container:'#kv-unique-id-47'})    
     });
 }
+
+function getSliderhistoryline (){
+    var sf = document.getElementById("w328").value;
+    $.post({ type: "GET",
+             url: '/historyline/slider/',
+        dataType: "json",
+        data: {sliderfonthistoryline: sf},
+        success: $.pjax.reload({container:'#kv-unique-id-75'})    
+    });
+}

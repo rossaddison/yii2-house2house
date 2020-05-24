@@ -58,7 +58,7 @@ use Yii;
                      'tag' => 'button',
                  ])  
                  ."</td><td>".
-                 Html::a(preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone),$url4,['class' => 'btn btn-warning btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','Telephone number of Boss obtained from Company settings...telephone.')])                 
+                 Html::a(preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone),$url4,['class' => 'btn btn-warning btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','Telephone number of Boss obtained from Other ... Company settings...telephone.')])                 
                  ."</td><td>".
                  $value['unit_price']
                  ."</td><td>".
@@ -85,7 +85,7 @@ use Yii;
                      'tag' => 'button',
                  ])  
                  ."</td><td>".
-                 Html::a(preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone),$url4,['class' => 'btn btn-warning btn-lg','data-toggle'=>'tooltip','title'=>'Telephone number of Boss obtained from Company settings...telephone.']) 
+                 Html::a(preg_replace("/[^0-9]/", "",Company::findOne(1)->telephone),$url4,['class' => 'btn btn-warning btn-lg','data-toggle'=>'tooltip','title'=>'Telephone number of Boss obtained from Other ... Company ...telephone.']) 
               ) //html tag tr
             ); //html tag div 
         } //else

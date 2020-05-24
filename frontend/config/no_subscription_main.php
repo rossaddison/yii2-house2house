@@ -10,7 +10,7 @@ return [
     'name'=>Yii::t('app','House 2 House'),
     'timezone' => 'UTC',
     //in your own language change the following after using H2H's Google Translate Module.
-    //or set the Company...Settings...Language...setting.
+    //or set the Other...Company...Language...setting.
     ///'language'=> 'en-GB',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [

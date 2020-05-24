@@ -33,11 +33,6 @@ $this->registerJs($js);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"> 
-    <script src="https://kit.fontawesome.com/85ba10e8d4.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -64,7 +59,7 @@ $this->registerJs($js);
          } // Yii::$app->user->can('Manage Admin'))
          
         $menuItems = [    
-                ['label' => Html::button(Yii::t('app','Settings'),['class'=>'btn btn-info btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
+                ['label' => Html::button(Yii::t('app','Other'),['class'=>'btn btn-info btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
                          ['label' => Html::button(Yii::t('app','Company'),['class'=>'btn btn-info btn-lg']), 'url' => ['/company/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Texting - Messages'),['class'=>'btn btn-info btn-lg']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
@@ -144,10 +139,6 @@ $this->registerJs($js);
             . Html::endForm()
             . '</li>';
     }
-    
-   
-    
-    
     
     echo Nav::widget([
         'encodeLabels'=> false,

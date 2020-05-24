@@ -67,7 +67,7 @@ $this->registerJs($js);
          if ((Yii::$app->session['sub'] === 1) || (Yii::$app->user->can('Subscription Free Privilege')))
          {
          $menuItems = [    
-                ['label' => Html::button(Yii::t('app','Settings'),['class'=>'btn btn-info btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
+                ['label' => Html::button(Yii::t('app','Other'),['class'=>'btn btn-info btn-lg']),'url'=> '','visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [
                          ['label' => Html::button(Yii::t('app','Company'),['class'=>'btn btn-info btn-lg']), 'url' => ['/company/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Texting - Messages'),['class'=>'btn btn-info btn-lg']), 'url' => ['/messaging/index'],'visible'=>Yii::$app->user->can('Manage Admin')],

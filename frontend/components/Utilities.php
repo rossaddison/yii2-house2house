@@ -18,7 +18,12 @@ use frontend\models\Quicknote;
 use frontend\models\Messaging;
 use frontend\models\Carousal;
 use frontend\models\SessionDetail;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\bootstrap4\Tabs;
 use frontend\models\Company;
+use dosamigos\google\maps\Map;
+use dosamigos\google\maps\overlays\PolylineOptions;
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\TravelMode;
 use dosamigos\google\maps\services\DirectionsRenderer;
@@ -26,7 +31,7 @@ use dosamigos\google\maps\services\DirectionsService;
 use dosamigos\google\maps\services\DirectionsRequest;
 use frontend\modules\subscription\models\paypalagreement;
 use frontend\modules\subscription\components\Configpaypal;
-    
+  
 class Utilities extends Component
 {
 
@@ -307,6 +312,272 @@ public static function setLanguage()
 {
   //if (!empty(Company::findOne(1)->language->one())) (Yii::$app->language = Company::findOne(1)->language;) 
   if  (!empty(Company::findOne(1)->language)){Yii::$app->language = Company::findOne(1)->language;} 
-}     
+} 
+
+public static function returnLastSignup()
+{
+    $array4 = Product::find()->all();
+    foreach ($array4 as $key4 => $value4)
+    {
+        $last_cust = $array4[$key4]['id'];
+    }
+    return $lastcustomer = Product::findOne($last_cust);
+}
+
+public static function home_tab1_content_a()
+{
+    $tab1_content_a = Html::tag('tr',
+                  "<td>".
+                  "Last modified"
+                  ."</td><td>". 
+                  "Customer name "
+                  ."</td><td>". 
+                  "Postcode"
+                  ."</td><td>".
+                  "Listprice"
+                  ."</td>" 
+              ); //html tag tr   
     
+    return $tab1_content_a;
+}
+
+public static function home_tab1_content_b()
+{
+    $lastcustomer = Utilities::returnLastSignup();
+    $name = $lastcustomer->name;
+    $url=  Url::toRoute(['product/view', 'id' => $lastcustomer->id]);
+    $url_postcode =  Url::toRoute(['productcategory/view', 'id' => $lastcustomer->productcategory->id]);
+    $buttonclass = ['class' => 'btn btn-info btn-lg'];
+    $tab1_content_b = 
+             Html::tag('tr',
+                  "<td>".
+                 $lastcustomer->modifieddate
+                 ."</td><td>".
+                 Html::a($name,$url,$buttonclass)
+                 ."</td><td>". 
+                 Html::a($lastcustomer->productcategory->name,$url_postcode,$buttonclass)
+                 ."</td><td>".
+                $lastcustomer->listprice
+                 ."</td>"
+              ); //html tag tr
+    return $tab1_content_b;
+}
+
+public static function home_tab2_content()
+{
+   $tab2_content =  '';
+   $todaydate = date("Y-m-d");
+   $dateminus = strtotime("-33 day");
+   $bottomdate = date("Y-m-d", $dateminus);
+   //next clean date retrieved from product
+   $duecleans = Salesorderdetail::find()->joinWith(['product'])
+                               ->where(['<=','nextclean_date',$todaydate])
+                               ->andFilterWhere(['>=','nextclean_date',$bottomdate])
+                               //remove the bi-weekly cleans
+                               ->andWhere(['<>','frequency','Not applicable'])
+                               ->groupBy('sales_order_id')
+                               ->all();
+                               $i = 1;
+                               //groupby sales order header id
+    foreach ($duecleans as $key => $value)
+    {
+          $product_id = $duecleans[$key]['product_id'];
+          $salesorderdetail_id = $duecleans[$key]['sales_order_detail_id'];
+          $salesorder_id = $duecleans[$key]['sales_order_id'];
+          $url=Url::toRoute(['salesorderdetail/view', 'id' => $salesorderdetail_id]);
+          if (!Yii::$app->user->isGuest){
+              $tab2_content .= Html::a($duecleans[$key]['product']['name']." ".$duecleans[$key]['product']['surname']. " " .$duecleans[$key]['productcategory']['name'] ." ". $duecleans[$key]['productsubcategory']['name'], $url). Html::tag('br');
+          }
+          $i = $i + 1;
+    } 
+    return $tab2_content;
+}        
+
+public static function home_tab3_content()
+{
+    $todayscleans = Salesorderheader::find()
+                     ->joinWith('salesorderdetails')
+                     ->where(['clean_date'=>Date('Y-m-d')])
+                     ->groupBy(['sales_order_id'])
+                     ->all();
+    $tab3_content = "";
+    $tab3_content .= Html::tag('tr',
+                      "<td>".
+                     "Date"
+                     ."</td><td>".
+                     "Job Code / Run"
+                     ."</td><td>"
+                     ."Map to Trigger House" 
+                     ."</td>"
+                  );
+    //html tag tr
+                     
+    foreach ($todayscleans as $key => $value) {
+        //get the first clean in the sub array relation 'salesorderdetails' as the trigger house
+        $get_productid = $todayscleans[$key]['salesorderdetails'][0]['product_id'];
+        $get_productsubcategoryid = $todayscleans[$key]['salesorderdetails'][0]['productsubcategory_id'];
+        $get_productcategoryid = $todayscleans[$key]['salesorderdetails'][0]['productcategory_id'];
+        $name = Product::find()->where(['id' => $get_productid])->one();
+        $streetname = Productsubcategory::find()->where(['id'=>$get_productsubcategoryid])->one();
+        $postalcodename = Productcategory::find()->where(['id'=>$get_productcategoryid])->one();
+        $url2 = "https://maps.google.com/maps?q=".ltrim($name['productnumber'], '0')." ".$streetname['name']." ".$postalcodename['name'];
+        $url3 = ltrim($name['productnumber'], '0')." ".$streetname['name']." ".$postalcodename['name'];
+        
+        $tab3_content .= Html::tag('tr',
+                          "<td>".
+                         $todayscleans[$key]['clean_date']
+                         ."</td><td>".
+                         Html::a($todayscleans[$key]['status'],Url::toRoute(['salesorderdetail/index', 'id' => $todayscleans[$key]['sales_order_id']]))
+                         ."</td><td>".
+                         Html::a($url3,$url2,['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','Goto Google maps using this address to the first house in this run.')])
+                         ."</td>"
+                         ); //html tag tr
+        } 
+    
+    return $tab3_content;
+}
+
+public static function home_tab4_content()
+{
+    $array = Productcategory::find()->all(); 
+                        $tab4_content = "";
+                        foreach ($array as $key => $value) {
+                            $strpcodename = $array[$key]['name'];
+                            $stripcodename = substr($strpcodename,6);
+                            //return Html::a(Html::encode($value), ['view', 'id' => $key]);
+                            $postalcode_id = $array[$key]['id'];
+                            //pass the id of the postcode into below to get all the streets
+                            $array3 = Utilities::SubCatListb($postalcode_id);
+                            //get a count of all the houses in each street
+                            $totalcount = 0;
+                            //go through all the streets associated with that postcode
+                           
+                       if (!empty($array3)) {
+                                $coord = new LatLng(['lat' => 55.8622341, 'lng' => -4.181051]);
+                                $map = new Map([
+                                'width'=> 256,
+                                'height'=>256,
+                                'center' => $coord,
+                                'zoom' => 4,
+                            ]);
+                            // Lets configure the polyline that renders the direction
+                            $polylineOptions = new PolylineOptions([
+                                'strokeColor' => '#FFAA00',
+                                'draggable' => true
+                            ]);
+                            //for all the streets within the postcode
+                            
+                            foreach ($array3 as $key3 => $value3)
+                            {
+                                //take each street 
+                                $street_id = $array3[$key3]['id'];
+                                //count the number of houses in each street
+                                $count = Utilities::ProdListc($postalcode_id,$street_id);
+                                //if the street has house coordinates
+                                $atleast1 = 0;
+                                if (($array3[$key3]['lat_start']<>0) & ($array3[$key3]['lng_start']<>0) & ($array3[$key3]['lat_finish']<>0) & ($array3[$key3]['lng_finish']<>0)) {
+                                        $start = new LatLng(['lat' => $array3[$key3]['lat_start'], 'lng' => $array3[$key3]['lng_start']]);
+                                        $finish = new LatLng(['lat' => $array3[$key3]['lat_finish'], 'lng' => $array3[$key3]['lng_finish']]);
+                                        $directionsRequest = new DirectionsRequest([
+                                            'origin' => $start,
+                                            'destination' => $finish,
+                                            //'waypoints' => $waypoints,
+                                            'travelMode' => TravelMode::DRIVING
+                                        ]);
+                                        $directionsRenderer = new DirectionsRenderer([
+                                                'map' => $map->getName(),
+                                                'polylineOptions' => $polylineOptions
+                                        ]);                
+                                        $directionsService = new DirectionsService([
+                                            'directionsRenderer' => $directionsRenderer,
+                                            'directionsRequest' => $directionsRequest
+                                        ]);
+                                        //overlay the street
+                                        $map->appendScript($directionsService->getJs());
+                                        
+                                        $atleast1 = $atleast1 + 1;
+                                } 
+                                
+                                $totalcount = $count + $totalcount;
+                            }
+                            //the map will not display 
+                            if ($atleast1>0) 
+                                {
+                                    $tab4_content .= $map->display();                                   
+                                }
+                            }//if (!empty($array3))
+                            $tab4_content .=  "<tr><td><h1>&nbsp&nbsp".$stripcodename." (".$totalcount.")"."</h1></td></tr>";
+                        }//
+                        $totcount = Product::find()->where(['>=','sellenddate',Date("Y-m-d")])->count();
+                        $tab4_content .= "<tr><td><h5>Total cleans: ".$totcount. "</h5><tr><td>";
+                        return $tab4_content;
+}//tab4 function  
+
+public static function  Home_tabs_service() 
+{
+        $font_size = 'font-size:20px ';
+        $header_options = ['style'=> $font_size];
+        $options = ['style'=> $font_size];
+        echo Tabs::widget([
+        'items' => [
+           [
+                'label' => 'Last Customer',
+                'headerOptions' => $header_options,
+                'options'=> $options,
+                //the admininstrator can only see the Last Customer
+                'visible' => Yii::$app->user->can('Manage Admin'),
+                'content' => '<table border="1" class="table striped bordered">'
+                             . Utilities::home_tab1_content_a() 
+                             . Utilities::home_tab1_content_b()
+                             .'</table>', 
+                'active' => true
+           ],
+           [
+               'label' => 'Cleans Due',
+               'headerOptions' => $header_options,               
+               'options'=> $options,
+               //the employee can see the Cleans Due
+               'visible' => Yii::$app->user->can('Manage Basic'),
+               'content' => '<table border="1" class="table striped bordered">'
+                            .'<tr><td>'
+                            . Utilities::home_tab2_content()
+                            .'</td></tr>'
+                            .'</table>',
+           ],
+           [
+               'label' => 'Todays Cleans',
+               'headerOptions'=> $header_options,               
+               'options'=> $options,
+                //the employee can see Todays Cleans
+               'visible' => Yii::$app->user->can('Manage Basic'),
+               'content' =>  '<table border="1" class="table striped bordered">'
+                              .Utilities::home_tab3_content()
+                              .'</table>',
+           ],
+           [
+               'label' => 'Postcode Maps',
+               'headerOptions'=> $header_options,
+                //the employee can see the Postcode Maps where he has to go to
+               'visible' => Yii::$app->user->can('Manage Basic'),
+               'options'=> $options,
+               'content' =>  '<table border="1" class="table striped bordered">'
+                              .Utilities::home_tab4_content()
+                              .'</table>',
+           ], 
+           [
+               'label' => 'Customer Search',
+               'headerOptions'=> $header_options,
+               'visible' => Yii::$app->user->can('Manage Basic'),
+               'options'=> $options,
+               'url'=> Url::toRoute(['product/search']),
+           ],  
+           [
+               'label' => 'Postcode Finder',
+               'headerOptions'=> $header_options,
+               'options'=> $options,
+               'url'=> "http://pcf.raggedred.net/",
+           ],  
+        ],
+        ]);       
+}
 }// class

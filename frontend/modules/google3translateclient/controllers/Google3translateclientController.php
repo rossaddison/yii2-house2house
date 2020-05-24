@@ -66,11 +66,11 @@ class Google3translateclientController extends \yii\web\Controller
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$path_and_filename");
                 
         if (empty($path_and_filename)){
-            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have not setup the filename and path of your JSON file that you downloaded from Google Translate (under your service account) in Company...Setting. Download the JSON file and put its path/filename under Company...Settings including double quotes and forward slashes. If you have not setup a service account setup key ').$this->google_get_service_account_url); 
+            throw new \yii\web\ForbiddenHttpException(Yii::t('app','You have not setup the filename and path of your JSON file that you downloaded from Google Translate (under your service account) in Company...Setting. Download the JSON file and put its path/filename under Other...Company including double quotes and forward slashes. If you have not setup a service account setup key ').$this->google_get_service_account_url); 
         }
             
         if (!file_exists($path_and_filename)){
-            throw new\yii\web\ForbiddenHttpException(Yii::t('app', 'Your Google Translate Credential Json file that you downloaded from your Google Translate Service Account does not exist at the path that you specified under Company ... Settings. Ensure that you have double quotes and forward slashes.'));
+            throw new\yii\web\ForbiddenHttpException(Yii::t('app', 'Your Google Translate Credential Json file that you downloaded from your Google Translate Service Account does not exist at the path that you specified under Other ... Settings. Ensure that you have double quotes and forward slashes.'));
         }
         
         !empty(\ini_get('curl.cainfo')) ?  $curlcertificate = true : false;
