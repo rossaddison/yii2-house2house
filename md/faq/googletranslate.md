@@ -14,4 +14,4 @@ Every individual manager shares the db database. Each manager builds the db data
         yii message/extract @frontend/messages/template.php
 
 
-This command populates the source_message table with English. When you work with the Google Translate function the package uses the integrated Google Translate API to translate the English messages in the source_message table into the message table.  The Company...Settings...Language setting that the Manager elects to use, must be set in order to see your translations from the message table otherwise it will use the default English.  [Back](/md/faq/faqs.md)
+This command populates the source_message table with English. When you work with the Google Translate function the package uses the integrated Google Translate API to translate the English messages in the source_message table into the message table.  The Other ...Company...Settings...Language setting that the Manager elects to use, must be set in order to see your translations from the message table otherwise it will use the default English.  [Back](/md/faq/faqs.md)
