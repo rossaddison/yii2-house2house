@@ -317,6 +317,7 @@ class SalesorderheaderController extends Controller
                    $totaladvpyts = number_format(0.00,2);
                    $totalprepyts = number_format(0.00,2);
                    $totalall = number_format(0.00,2);
+                   $due_array = [];
                    foreach ($monthlycleans as $key)
                   {
                                 $result = Salesorderdetail::find()->where(['sales_order_id'=>$key['sales_order_id']])->all();
@@ -340,9 +341,10 @@ class SalesorderheaderController extends Controller
                     $months[$i][4] = number_format($totaladvpyts,2);
                     //total pre payment row
                     $months[$i][5] = number_format($totalprepyts,2);
-                    
                     //fill last row 6 at bottom of table with monthly totals
                     $months[$i][6] = number_format($totalall,2);
+                    //create an array for the individual due amounts
+                    $months[$i][7] = $due_array;
                     $i++;
                     $j=$i+1;
                     $grandduetotal = $grandduetotal + $totalamount;
@@ -360,6 +362,7 @@ class SalesorderheaderController extends Controller
         $months[12][4] = number_format($grandadvtotal,2);
         $months[12][5] = number_format($grandpretotal,2);
         $months[12][6] = number_format($grandtotal,2);
+        $months[12][7] = $due_array;
         return $this->render('totalannualrevenue',['months'=>$months,'year'=>$sorderyear]);
     }
     

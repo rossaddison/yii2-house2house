@@ -14,11 +14,12 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.4.1",
-        "yiisoft/yii2": "~2.0.33",
+        "yiisoft/yii2": "~2.0.35",
         "yiisoft/yii2-bootstrap": "~2.0.9",
         "bower-asset/bootstrap": "~3.4.1",
         "npm-asset/jquery": "^2.2",
         "bower-asset/ladda": "0.9.8",
+        "braintree/braintree_php": "*",
         "yiisoft/yii2-bootstrap4": "^2.0.8",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "sjaakp/yii2-pluto": "*",

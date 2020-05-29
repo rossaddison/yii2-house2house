@@ -28,7 +28,6 @@ function getKeyscost (){
         },
         success: alert("The following records were copied: " + keys)
     });
-
 }
 
 

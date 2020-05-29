@@ -45,6 +45,7 @@ $this->registerJs($js);
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap">
+  <div class="content">  
     <?php
     $brandlabel = Yii::t('app','House 2 house'). '<i class="fas fa-chevron-right fa-1x"></i>'.'<i class="fas fa-chevron-right fa-1x"></i>'.'<i class="fas fa-chevron-right fa-1x"></i>';
     NavBar::begin([
@@ -150,24 +151,26 @@ $this->registerJs($js);
     NavBar::end();
 
     ?>
-    <div class="container-fluid" >
+        <div class="content-wrapper">
         
-        <?= Breadcrumbs::widget([
-            //an individual breadcrumb per page
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [], 'activeItemTemplate' => "<li class=\"breadcrumb-item active\" aria-current=\"page\">{link}</li>\n"
-        ]) 
-            ;
-        ?>
-        <div class="info">
-        <?=          
-           Alert::widget()
-        ?>
+            <?= Breadcrumbs::widget([
+                //an individual breadcrumb per page
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [], 'activeItemTemplate' => "<li class=\"breadcrumb-item active\" aria-current=\"page\">{link}</li>\n"
+            ]) 
+                ;
+            ?>
+            <div class="container container-alert">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <?= Alert::widget() ?>
+                            </div>
+                        </div>
+            </div>
+            <?= $content ?>
         </div>
-           <?= $content ?>
-        </div>
-        
+    </div>    
  
- 
+    <footer>
             <div class="container-fluid">    
                 <div align="center">
                        <p class="center">&copy; <?php echo date('Y');?><?php echo Yii::t('app','House 2 house  - All rights reserved') ?> </p>
@@ -176,6 +179,7 @@ $this->registerJs($js);
                       <p class="center"><?= Yii::powered() ?></p>
                 </div> 
             </div>
+    </footer>    
 </div>
 <?= \bizley\cookiemonster\CookieMonster::widget([
         'content' => [
