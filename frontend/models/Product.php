@@ -41,7 +41,7 @@ class Product extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 60],
             [['surname'], 'string', 'max' => 60],
             [['contactmobile'], 'default', 'value'=>'09999999999'],
-            [['contactmobile'], 'string', 'max' => 11,'min'=>11],
+            [['contactmobile'], 'string', 'max' => 11],
             [['email'],'email'],
             [['email'],'default','value'=>'email@email.com'],
             [['specialrequest'], 'string', 'max' => 100],
@@ -51,6 +51,7 @@ class Product extends \yii\db\ActiveRecord
             [['jobcode'],'default','value'=>null],
             [['mandate'],'default','value'=>null],
             [['gc_number'],'default','value'=>null],
+            [['isactive'],'boolean'],
         ];
     }
     
@@ -73,7 +74,7 @@ class Product extends \yii\db\ActiveRecord
             'sellstartdate' => Yii::t('app','First captured date'),
             'sellenddate' => Yii::t('app','Termination date (default: 2099/12/31) . Set to remove from round.'),
             'discontinueddate' => Yii::t('app','Modified Date (ignore)'),
-            'isactive'=>Yii::t('app','Is this active?'),
+            'isactive'=>Yii::t('app','Active'),
             'jobcode' => Yii::t('app','Latest daily clean job code to link house to.'),
             'mandate'=> Yii::t('app','Gocardless customer mandate link sent to customer in email (not approved yet) / Mandate Number eg. MD1234AA123BB (approved) '),
             'gc_number'=> Yii::t('app','Gocardless customer number in Gocardless Website indicating that direct debit mandate has been approved.'),

@@ -13,6 +13,8 @@ use kartik\icons\Icon;
 use kartik\icons\FontAwesomeAsset;
 use Yii;
 FontAwesomeAsset::register($this);
+$trueLabel=GridView::ICON_ACTIVE_BS4;
+$falseLabel=GridView::ICON_INACTIVE_BS4;
 $this->title = Yii::t('app','Houses');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Houses'), 'url' => ['product/index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -130,8 +132,8 @@ echo Slider::widget([
       'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
       'attribute'=>'id',
       'hAlign' => 'left', 
-        'vAlign' => 'middle',
-        'filterInputOptions' => [
+      'vAlign' => 'middle',
+      'filterInputOptions' => [
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
                   'placeholder' => Yii::t('app','Id ...')
                 ],
@@ -153,6 +155,23 @@ echo Slider::widget([
      'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
      'template'=> '{view}',
     ],
+    [
+     'class' => 'kartik\grid\BooleanColumn',
+     'attribute'=>'isactive',
+     'value' => function ($dataProvider) {
+                    return $dataProvider->isactive; 
+            },
+     'filter'=>Html::activeCheckbox($searchModel,'isactive',ArrayHelper::map(Product::find()->indexBy('isactive')->asArray()->all(),'isactive','isactive'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px']]),
+     'filterType'=>GridView::FILTER_CHECKBOX,
+     'filterInputOptions' => [
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'label'=>'',
+     ],
+     'filterWidgetOptions'=>[
+                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'type'=>\kartik\switchinput\Switchinput::CHECKBOX
+     ],               
+    ],        
     ['class' => '\kartik\grid\EditableColumn',
                 'attribute' =>'productnumber',
                 'hAlign' => 'right', 
@@ -417,6 +436,7 @@ echo kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => $gridColumns,
+    'bootstrap'=>true,
     'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
     'containerOptions' => ['style'=>'overflow: auto'], 
     'pjax' => true,
