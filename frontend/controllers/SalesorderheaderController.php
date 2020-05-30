@@ -362,7 +362,6 @@ class SalesorderheaderController extends Controller
         $months[12][4] = number_format($grandadvtotal,2);
         $months[12][5] = number_format($grandpretotal,2);
         $months[12][6] = number_format($grandtotal,2);
-        $months[12][7] = $due_array;
         return $this->render('totalannualrevenue',['months'=>$months,'year'=>$sorderyear]);
     }
     
