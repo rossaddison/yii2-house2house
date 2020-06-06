@@ -169,7 +169,7 @@ echo Slider::widget([
      ],
      'filterWidgetOptions'=>[
                   'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
-                  'type'=>\kartik\switchinput\Switchinput::CHECKBOX
+                  'type'=>\kartik\switchinput\SwitchInput::CHECKBOX
      ],               
     ],        
     ['class' => '\kartik\grid\EditableColumn',
@@ -466,6 +466,4 @@ echo kartik\grid\GridView::widget([
 ]);
 ?>
 </div>
-
-
 

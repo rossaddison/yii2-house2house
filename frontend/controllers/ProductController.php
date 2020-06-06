@@ -125,7 +125,6 @@ class ProductController extends Controller
         }
         return Json::encode(['output'=> $output, 'message'=>'']);
        }
-        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

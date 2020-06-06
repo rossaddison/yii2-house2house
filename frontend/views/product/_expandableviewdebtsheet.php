@@ -24,7 +24,7 @@ $tooltipsalesorderdetail = Html::tag('span', 'SOD', ['title'=>Yii::t('app','Sale
         ->andWhere('paid=0.00')    
         //->andWhere('sales_order_detail_id<'.$model->sales_order_detail_id)
         ->all($db);
-    ?>  
+?>  
 <?php
 $data = $rows;
 $provider = new ArrayDataProvider([
