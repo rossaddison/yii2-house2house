@@ -83,9 +83,9 @@ return [
                          //insert your Google Maps API key. Free from Google
                         //by creating an account with them.
                         //Houses will be visible on Google Maps
-                        'key' => 'xxxxxxxxxxxxxxx',
-                        'language' => 'en',
-                        'version' => '3.1.18'
+                        //'key' => 'xxxxxxxxxxxxxxx',
+                        //'language' => 'en',
+                        //'version' => '3.1.18'
                  ],
                  ],
             ],

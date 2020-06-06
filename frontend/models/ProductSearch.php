@@ -46,6 +46,8 @@ class ProductSearch extends Product
         'desc' => ['productsubcategory_id' => SORT_DESC],
         ];
         
+        if (!isset($this->isactive)) {$this->isactive = 1;}
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'listprice' => $this->listprice,

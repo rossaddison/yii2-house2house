@@ -4,6 +4,7 @@ Namespace frontend\components;
 use Yii;
 use yii\base\Component;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use frontend\models\Productcategory;
 use frontend\models\Productsubcategory;
 use frontend\models\Product;
@@ -24,6 +25,9 @@ use yii\bootstrap4\Tabs;
 use frontend\models\Company;
 use dosamigos\google\maps\Map;
 use dosamigos\google\maps\overlays\PolylineOptions;
+use dosamigos\google\maps\overlays\InfoWindowOptions;
+use dosamigos\google\maps\overlays\InfoWindow;
+use dosamigos\google\maps\overlays\Marker;
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\TravelMode;
 use dosamigos\google\maps\services\DirectionsRenderer;
@@ -121,6 +125,17 @@ public static function ProdListc($cat_id, $subcat_id) {
        ->select(['id'])->count();
        return $data;
        
+}
+
+public static function ProdListd($cat_id, $subcat_id) {
+        //find all the houses in the street and put the house id into the data array
+        $data=\frontend\models\Product::find()
+        //use the postcode ie. productcategory
+       ->where(['productcategory_id'=>$cat_id])
+        //use the street ie. productsubcategory
+       ->andWhere(['productsubcategory_id'=>$subcat_id])      
+       ->all();
+       return $data;
 }
 
 public static function productsubcategoryarray()
@@ -458,7 +473,7 @@ public static function home_tab4_content()
                                 'width'=> 256,
                                 'height'=>256,
                                 'center' => $coord,
-                                'zoom' => 4,
+                                'zoom' => 1,
                             ]);
                             // Lets configure the polyline that renders the direction
                             $polylineOptions = new PolylineOptions([
@@ -466,13 +481,15 @@ public static function home_tab4_content()
                                 'draggable' => true
                             ]);
                             //for all the streets within the postcode
-                            
                             foreach ($array3 as $key3 => $value3)
                             {
-                                //take each street 
+                                //take each street
                                 $street_id = $array3[$key3]['id'];
+                                $street_name = $array3[$key3]['name'];
                                 //count the number of houses in each street
                                 $count = Utilities::ProdListc($postalcode_id,$street_id);
+                                //get all the houses numbers in the street
+                                $all_houses_in_street = Utilities::ProdListd($postalcode_id,$street_id);
                                 //if the street has house coordinates
                                 $atleast1 = 0;
                                 if (($array3[$key3]['lat_start']<>0) & ($array3[$key3]['lng_start']<>0) & ($array3[$key3]['lat_finish']<>0) & ($array3[$key3]['lng_finish']<>0)) {
@@ -492,18 +509,46 @@ public static function home_tab4_content()
                                             'directionsRenderer' => $directionsRenderer,
                                             'directionsRequest' => $directionsRequest
                                         ]);
-                                        //overlay the street
+                                        //get all the house numbers in the street and concatenate
+                                        $my_content = "<b>" . $street_name ."</b>" . "<br>";
+                                        $url =  "https://maps.google.com/maps?q=".$street_name;
+                                        foreach ($all_houses_in_street as $key =>$value){
+                                            $my_content = $my_content 
+                                            . " "
+                                            ."<b>"
+                        . Html::a($all_houses_in_street[$key]['productnumber'],Url::toRoute(['product/view/','id'=>$all_houses_in_street[$key]['id']]))
+                                            ."</b>"
+                                            ." " 
+                                            .$all_houses_in_street[$key]['listprice']
+                                            . " "
+                                            . $all_houses_in_street[$key]['specialrequest']
+                                            . " "
+                                            . "<br>";
+                                        }
+                                       $final_content = $my_content
+                                        .Html::a(Html::img(Url::to('@web/images/directions.png')).'  Directions',$url,['class'=>'container pt-20 rounded-square btn','style'=>['background'=>'lightblue']])
+                                        ;
+                                        $informationWindow = new InfoWindow([
+                                           'content'=>$final_content,
+                                           'position'=>$start,
+                                        ]);
+                                        $marker = new Marker([
+                                           'position' => $start,
+                                           'zIndex'=>999,
+                                           'title' => $street_name,
+                                        ]);
+                                        $marker->attachInfoWindow($informationWindow);
+                                        // Add marker to the map       
+                                        $map->addOverlay($marker);
                                         $map->appendScript($directionsService->getJs());
-                                        
                                         $atleast1 = $atleast1 + 1;
                                 } 
-                                
                                 $totalcount = $count + $totalcount;
                             }
                             //the map will not display 
                             if ($atleast1>0) 
                                 {
-                                    $tab4_content .= $map->display();                                   
+                                   $tab4_content .= $map->display();                                   
                                 }
                             }//if (!empty($array3))
                             $tab4_content .=  "<tr><td><h1>&nbsp&nbsp".$stripcodename." (".$totalcount.")"."</h1></td></tr>";
@@ -511,7 +556,7 @@ public static function home_tab4_content()
                         $totcount = Product::find()->where(['>=','sellenddate',Date("Y-m-d")])->count();
                         $tab4_content .= "<tr><td><h5>Total cleans: ".$totcount. "</h5><tr><td>";
                         return $tab4_content;
-}//tab4 function  
+}//tab4 function//tab4 function  
 
 public static function  Home_tabs_service() 
 {
