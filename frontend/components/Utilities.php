@@ -513,13 +513,16 @@ public static function home_tab4_content()
                                         $my_content = "<b>" . $street_name ."</b>" . "<br>";
                                         $url =  "https://maps.google.com/maps?q=".$street_name;
                                         foreach ($all_houses_in_street as $key =>$value){
+                                            if (Yii::$app->user->can('See Prices')){
+                                                $seeprices = $all_houses_in_street[$key]['listprice'];
+                                            } else { $seeprices = 0;}
                                             $my_content = $my_content 
                                             . " "
                                             ."<b>"
                         . Html::a($all_houses_in_street[$key]['productnumber'],Url::toRoute(['product/view/','id'=>$all_houses_in_street[$key]['id']]))
                                             ."</b>"
                                             ." " 
-                                            .$all_houses_in_street[$key]['listprice']
+                                            .$seeprices
                                             . " "
                                             . $all_houses_in_street[$key]['specialrequest']
                                             . " "
