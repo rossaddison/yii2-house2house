@@ -548,7 +548,7 @@ public static function home_tab4_content()
                             //the map will not display 
                             if ($atleast1>0) 
                                 {
-                                   $tab4_content .= $map->display();                                   
+                                   $tab4_content .= "<tr><td><h1>&nbsp&nbsp".$map->display()."</h1></td></tr>";                                   
                                 }
                             }//if (!empty($array3))
                             $tab4_content .=  "<tr><td><h1>&nbsp&nbsp".$stripcodename." (".$totalcount.")"."</h1></td></tr>";
