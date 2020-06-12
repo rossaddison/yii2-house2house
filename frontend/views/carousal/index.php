@@ -5,6 +5,9 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app','Slider/Carousal Images');
 $this->params['breadcrumbs'][] = $this->title;
+$viewMsg = Yii::t('app','View');
+$deleteMsg = Yii::t('app','Delete');
+$updateMsg = Yii::t('app','Update');
 ?>
 <div class="carousal-index">
 
@@ -16,8 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'kartik\grid\ActionColumn'],
-            ['class' => 'kartik\grid\SerialColumn'],
+            [
+                    'class' => 'kartik\grid\ActionColumn',
+                    'dropdown' => true,
+                    'visible' => Yii::$app->user->can('Manage Admin'),
+                    'dropdownOptions' => ['class' => 'pull-right'],
+                    'template'=> '{view} {update} {delete}',
+                    'viewOptions' => ['title' => $viewMsg, 'data-toggle' => 'tooltip'],
+                    'updateOptions' => ['title' => $updateMsg, 'data-toggle' => 'tooltip'],
+                    'headerOptions' => ['class' => 'kartik-sheet-style'],
+            ], 
+            [
+                'class' => 'yii\grid\SerialColumn'
+            ],
             'id',
             [
                      'attribute' => 'Image',
@@ -25,14 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
                      'value' => function ($model) {
                           if (Yii::$app->user->identity->attributes['name'] === 'demo') {
                               if ($model->image_web_filename!='') {
-                                    return '<br /><p><img src="'.Url::to('@web/images/demo/'.Yii::$app->session['demo_image_timestamp_directory'].'/'.$model->image_web_filename.'" width=50px" height = "auto"></p>', true); } else 
+                                    return '<img src="'.Url::to('@web/images/demo/'.Yii::$app->session['demo_image_timestamp_directory'].'/'.$model->image_web_filename.'" width=50px">', true); } else 
                                {
                                    return Yii::t('app','no image');
                                }           
                           } else
                           {
                               if ($model->image_web_filename!='') {
-                                    return '<br /><p><img src="'.Url::to('@web/images/'.$model->image_web_filename.'" width=50px" height = "auto"></p>', true); 
+                                    return '<img src="'.Url::to('@web/images/'.$model->image_web_filename.'" width=50px">', true); 
                               } else 
                               { 
                                  return Yii::t('app','no image');

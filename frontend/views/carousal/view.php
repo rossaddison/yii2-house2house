@@ -40,10 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
             if ($model->image_web_filename!='') {
                if (Yii::$app->user->identity->attributes['name'] === 'demo')
                {    
-                    echo '<br /><p><img src="'.Url::to('@web/images/demo/'.Yii::$app->session['demo_image_timestamp_directory']."/".$model->image_web_filename.'" width=250px" height = "auto"></p>', true);
+                    echo '<img src="'.Url::to('@web/images/demo/'.Yii::$app->session['demo_image_timestamp_directory']."/".$model->image_web_filename.'" width=250px" height = "auto"></p>', true);
                } else
                {
-                    echo '<br /><p><img src="'.Url::to('@web/images/'.$model->image_web_filename.'" width=250px" height = "auto"></p>', true);
+                    echo '<img src="'.Url::to('@web/images/'.$model->image_web_filename.'" width=250px" height = "auto">', true);
                }
             }  
     ?>

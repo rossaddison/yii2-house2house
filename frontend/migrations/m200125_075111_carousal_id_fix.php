@@ -4,7 +4,7 @@ Namespace frontend\migrations;
 use frontend\models\Salesorderheader;
 use yii\db\Migration;
 
-class m200125_075111__carousal_id_fix extends Migration
+class m200125_075111_carousal_id_fix extends Migration
 {
     public function safeUp()
     {

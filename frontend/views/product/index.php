@@ -18,6 +18,7 @@ $falseLabel=GridView::ICON_INACTIVE_BS4;
 $this->title = Yii::t('app','Houses');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Houses'), 'url' => ['product/index']];
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Goto the Daily Cleans Page'), 'url' => ['salesorderheader/index']];
 if (Company::find()->count() == 0) {$comptel = Yii::t('app','Company Name and Mobile Number');} else {$comptel = Company::findOne(1)->name . " - " . Company::findOne(1)->telephone;};
 $pdfHeader = [
   'L' => [
@@ -82,7 +83,6 @@ $tooltipgocardlesscustomer = Html::tag('span', 'Gocardless'. Yii::t('app','Manda
    <button id="w5" class = "btn btn-success btn-lg" onclick="js:getKeys()" title="<?php Yii::t('app','Have you created your Daily Clean?') ?>" data-toggle="tooltip"><?php echo Yii::t('app','Copy Ticked to: ') ?></button>
    <?= Html::label(Yii::t('app','Daily Cleans Date: ')) ?>
    <?= Html::dropDownList('sorder','', ArrayHelper::map(Salesorderheader::find()->orderBy(['clean_date'=>SORT_DESC])->all(),'sales_order_id','status','clean_date'),['prompt' => '--- select ---','id'=>'w9']) ?>
-   <?= Html::a(Yii::t('app','Goto Daily Cleans'), ['salesorderheader/index'], ['class' => 'btn btn-success btn-lg','data-toggle'=>'tooltip','title'=>Yii::t('app','This will take you back to your Daily Cleans.')]) ?>
    <Hr style = "border-top: 3px double #8c8b8b">
    <?= Html::a(Yii::t('app','Back'), Url::previous(), ['class' => 'btn btn-success btn-lg']) ?>    
         <Hr style = "border-top: 3px double #8c8b8b">
@@ -278,7 +278,7 @@ echo Slider::widget([
             'value' => function ($dataProvider) {
                        return $dataProvider->productsubcategory->name; 
              },
-            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['productcategory_id'=>$searchModel])->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Street...']),            
+            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['productcategory_id'=>$searchModel->productcategory_id])->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Street...']),            
     ],
     [
     'class' => 'kartik\grid\EditableColumn',
@@ -427,7 +427,7 @@ echo Slider::widget([
                   else  {return $dataProvider->gc_number;} 
             },
             'filter'=> Html::activeDropDownList($searchModel,'gc_number',ArrayHelper::map(Product::find()->orderBy('gc_number')->asArray()->all(),'gc_number','gc_number'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Gocardless Number...']), 
-     ],    
+     ],
 ];
 
 if ((empty(Yii::$app->session['sliderfontproduct'])) && (!isset(Yii::$app->session['sliderfontproduct']))){Yii::$app->session['sliderfontproduct'] = 18;}

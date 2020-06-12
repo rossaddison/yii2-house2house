@@ -21,7 +21,7 @@ class Product extends \yii\db\ActiveRecord
    {
         return 'works_product';
    }
-
+    
     public function rules()
     {
         return [
@@ -48,9 +48,7 @@ class Product extends \yii\db\ActiveRecord
             [['productsubcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Productsubcategory::className(), 'targetAttribute' => ['productsubcategory_id' => 'id']],
             [['productcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Productcategory::className(), 'targetAttribute' => ['productcategory_id' => 'id']],
             [['isactive'],'default','value'=>1],
-            [['jobcode'],'default','value'=>null],
-            [['mandate'],'default','value'=>null],
-            [['gc_number'],'default','value'=>null],
+            [['jobcode','mandate','gc_number','image_source_filename','image_web_filename'],'default','value'=>null],            
             [['isactive'],'boolean'],
         ];
     }
@@ -95,11 +93,4 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Salesorderdetail::className(), ['product_id' => 'id']);
     }
-    
-    
-    
-    
-    
-    
-    
 }

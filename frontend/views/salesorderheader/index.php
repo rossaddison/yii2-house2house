@@ -140,7 +140,25 @@ echo Slider::widget([
                              return $url;
                          }
              }                
-    ],        
+    ],
+    [
+            'class' => 'kartik\grid\ActionColumn',
+            'template' => '{link}',// can be omitted, as it is the default
+            'header'=>Yii::t('app','File/image'),
+            'visible'=> !Yii::$app->user->can('Manage Admin') ? false : true,
+            'buttons' => ['link' => function ($url, $data,$key) {
+                           if (!empty($data->carousal_id)){
+                           return Html::a('File/Image',$url);}
+                           else return "None";
+                }
+             ],
+            'urlCreator' => function ($action, $data, $key, $index) {
+                         if (($action === 'link') ) {
+                             $url = "/carousal/".$data->carousal_id;
+                             return $url;
+                         }
+             }                
+    ],           
     [
     'class' => 'kartik\grid\EditableColumn',
     'header' => Yii::t('app','Clean Date'),
