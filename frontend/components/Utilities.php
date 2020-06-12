@@ -25,7 +25,6 @@ use yii\bootstrap4\Tabs;
 use frontend\models\Company;
 use dosamigos\google\maps\Map;
 use dosamigos\google\maps\overlays\PolylineOptions;
-use dosamigos\google\maps\overlays\InfoWindowOptions;
 use dosamigos\google\maps\overlays\InfoWindow;
 use dosamigos\google\maps\overlays\Marker;
 use dosamigos\google\maps\LatLng;
@@ -133,7 +132,8 @@ public static function ProdListd($cat_id, $subcat_id) {
         //use the postcode ie. productcategory
        ->where(['productcategory_id'=>$cat_id])
         //use the street ie. productsubcategory
-       ->andWhere(['productsubcategory_id'=>$subcat_id])      
+       ->andWhere(['productsubcategory_id'=>$subcat_id])
+       ->andWhere(['isactive'=>1])
        ->all();
        return $data;
 }

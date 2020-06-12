@@ -10,7 +10,7 @@ class Carousal extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     
-    public $image;
+   public $image;
 
     
    public static function getDb()

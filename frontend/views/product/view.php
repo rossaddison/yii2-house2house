@@ -74,7 +74,6 @@ $attributes=[
         'attribute'=>'isactive', 
         'type'=>DetailView::INPUT_CHECKBOX,
         'format'=>'boolean',
-        'type'=>DetailView::INPUT_CHECKBOX,
         'inputWidth'=>'40%'
     ],
     'jobcode',
@@ -86,7 +85,7 @@ $attributes=[
     'model'=>$model,
     'condensed'=>true,
     'attributes'=>$attributes,
-    'hover'=>true,
+    'hover'=>true,    
     'mode'=>DetailView::MODE_VIEW,
     'panel'=>[
         'heading'=>Yii::t('app','House No ') . $model->id,

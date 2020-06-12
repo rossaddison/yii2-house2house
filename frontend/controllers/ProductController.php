@@ -184,19 +184,16 @@ class ProductController extends Controller
             if ($model->jobcode <> null){
                 //find the latest jobcode
                 $rows = Salesorderheader::find()->where(['status'=>$model->jobcode])->all();
-                $i = 0;
                 $latest_salesorder_id = 0;
                 foreach ($rows as $key => $value)
                 {
                   $latest_salesorder_id = $rows[$key]['sales_order_id'];
                   $latest_cleandate = $rows[$key]['clean_date'];
-                  $i = $i+1;
                 }
                 if ($latest_salesorder_id > 0){
                     $model3 = new Salesorderdetail();
                     $model3->sales_order_id = $latest_salesorder_id;
                     $model3->cleaned = "Not Cleaned";
-                 
                     if ($model->frequency == "Weekly")
                      {
                              $date = strtotime("+7 day");
@@ -241,12 +238,12 @@ class ProductController extends Controller
                 }
                 
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+                         return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+        return $this->render('create', [
                 'model' => $model,
-            ]);
-        }
+        ]);        
+    }
     }
     
     public function actionView($id) {

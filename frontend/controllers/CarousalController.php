@@ -127,7 +127,7 @@ class CarousalController extends Controller
                            $path = $basepath . "/images/demo/".Yii::$app->session['demo_image_timestamp_directory']."/". $model->image_web_filename;
                         }
                         else {
-                        $path = $basepath . "/images/" . $model->image_web_filename;   
+                           $path = $basepath . "/images/" . $model->image_web_filename;   
                         }
                         $uploadedFile->saveAs($path); 
                     }                   
@@ -138,7 +138,7 @@ class CarousalController extends Controller
                     }
                     
       }
-      return $this->render('create', ['model' => $model,
+      return $this->render('update', ['model' => $model,
         ]);
     }
     

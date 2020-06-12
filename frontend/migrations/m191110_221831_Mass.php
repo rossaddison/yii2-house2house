@@ -227,7 +227,7 @@ class m191110_221831_Mass extends Migration
             'contactmobile'=> $this->string(11)->notNull(),
             'specialrequest'=> $this->string(100)->notNull(),
             'frequency'=> "enum('Weekly', 'Fortnightly', 'Monthly', 'Every two months', 'Not applicable') NOT NULL",
-            'listprice'=> $this->decimal(4, 2)->notNull(),
+            'listprice'=> $this->decimal(7, 2)->notNull(),
             'productcategory_id'=> $this->integer(11)->notNull(),
             'productsubcategory_id'=> $this->integer(11)->notNull(),
             'postcodefirsthalf'=> $this->string(4)->notNull(),
