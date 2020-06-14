@@ -127,17 +127,6 @@ echo Slider::widget([
 ?> 
 <?php
     $gridColumns = [
-    [
-     'class'=> 'kartik\grid\DataColumn',
-      'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
-      'attribute'=>'id',
-      'hAlign' => 'left', 
-      'vAlign' => 'middle',
-      'filterInputOptions' => [
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
-                  'placeholder' => Yii::t('app','Id ...')
-                ],
-    ],
     ['class' => 'kartik\grid\SerialColumn'],
     [
       'class' => 'kartik\grid\CheckboxColumn',
@@ -176,7 +165,6 @@ echo Slider::widget([
                 'attribute' =>'productnumber',
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
-                'width' => '7%',
                 'refreshGrid'=>true,
                 'headerOptions' => ['class' => 'kv-sticky-column'],
                 'contentOptions' => ['class' => 'kv-sticky-column'],
@@ -192,7 +180,8 @@ echo Slider::widget([
     ['class' => '\kartik\grid\EditableColumn',
                 'attribute' =>'contactmobile',
                 'filterInputOptions' => [
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'class'=> 'form-control',
+                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
                   'placeholder' => 'Contact Mobile...'
                 ],
                 'hAlign' => 'right', 
@@ -234,7 +223,8 @@ echo Slider::widget([
         'hAlign' => 'left', 
         'vAlign' => 'middle',
         'filterInputOptions' => [
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'class'=> 'form-control',
+                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
                   'placeholder' => Yii::t('app','Special Request ...'),
                 ],
         'width' => '7%',
@@ -285,9 +275,8 @@ echo Slider::widget([
     'header' => Yii::t('app','First Clean Date'),
     'attribute' =>  'sellstartdate',
     'filter'=> Html::activeDropDownList($searchModel,'sellstartdate',ArrayHelper::map(Product::find()->orderBy('sellstartdate')->asArray()->all(),'sellstartdate','sellstartdate'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'From Date...']),      
-    'hAlign' => 'center',
+    'hAlign' => 'right',
     'vAlign' => 'middle',
-    'width' => '9%',
     'format' => ['date', 'php:Y-m-d'],
     'refreshGrid'=>true,
     'headerOptions' => ['class' => 'kv-sticky-column'],
@@ -313,26 +302,28 @@ echo Slider::widget([
     ['class'=>'kartik\grid\DataColumn',
      'attribute'=>'name',
      'filterInputOptions' => [
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'class'=> 'form-control',
+                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
                   'placeholder' => 'Firstname...'
                 ],
     ],
     ['class'=>'kartik\grid\DataColumn',
      'attribute'=>'surname',
      'filterInputOptions' => [
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'class'=> 'form-control',
+                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
                   'placeholder' => 'Surname...'
                 ],
     ],
     ['class' => '\kartik\grid\EditableColumn',
                 'attribute' => 'listprice',
                 'filterInputOptions' => [
-                  'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],
+                  'class'=> 'form-control',  
+                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
                   'placeholder' => 'Price...',
                 ],
-                'hAlign' => 'right', 
                 'vAlign' => 'middle',
-                'width' => '7%',
+                'hAlign'=>'right',
                 'format' => ['decimal', 2],
                 'pageSummary' => true,
                 'refreshGrid'=>true,
@@ -350,7 +341,6 @@ echo Slider::widget([
     'class' => 'kartik\grid\ExpandRowColumn',
     'header'=>'Debt',
     'expandTitle'=> 'Debt',
-    'width' => '300px',
     'expandIcon' => Icon::show('balance-scale', ['framework' => Icon::FAS]),
     'value' => function ($dataProvider, $key, $index, $column) {
          return GridView::ROW_COLLAPSED;
@@ -372,14 +362,14 @@ echo Slider::widget([
     'detail' => function ($dataProvider, $key, $index, $column) {
         return Yii::$app->controller->renderPartial('_expandableviewdebtsheet', ['model' => $dataProvider]);
     },
-    'headerOptions' => ['class' => 'kartik-sheet-style'], 
+    'headerOptions' => ['class' => 'kv-sticky-column'],
+    'contentOptions' => ['class' => 'kv-sticky-column'],
     'expandOneOnly' => true,
     ],
     [
     'class' => 'kartik\grid\ExpandRowColumn',
     'header'=>Yii::t('app','History'),
     'expandTitle'=> 'History',
-    'width' => '300px',
     'expandIcon' => Icon::show('book', ['framework' => Icon::FAS]), 
     'value' => function ($dataProvider, $key, $index, $column) {
          return GridView::ROW_COLLAPSED;
@@ -403,6 +393,9 @@ echo Slider::widget([
     [
     'class' => 'kartik\grid\DataColumn', 
     'format'=>'raw',
+    'headerOptions' => ['class' => 'kv-sticky-column'],
+    'contentOptions' => ['class' => 'kv-sticky-column'],
+    'hAlign'=>'right',    
     'value' => function ($dataProvider, $key, $index, $column) {
                     $rows  = $dataProvider->salesorderdetails;
                     $subtotal = 0.00;

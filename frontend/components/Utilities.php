@@ -618,6 +618,13 @@ public static function  Home_tabs_service()
                'visible' => Yii::$app->user->can('Manage Basic'),
                'options'=> $options,
                'url'=> Url::toRoute(['product/search']),
+           ],
+           [
+               'label' => 'Tree',
+               'headerOptions'=> $header_options,
+               'visible' => Yii::$app->user->can('Manage Basic'),
+               'options'=> $options,
+               'url'=> Url::toRoute(['krajeeproducttree/index']),
            ],  
            [
                'label' => 'Postcode Finder',
