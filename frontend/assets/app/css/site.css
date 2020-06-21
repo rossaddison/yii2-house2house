@@ -118,3 +118,11 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.has-error .help-block {
+  color: red;   
+}
+
+.has-danger .help-block {
+  color: red;   
+}

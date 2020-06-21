@@ -2,16 +2,14 @@
 
 namespace frontend\controllers;
 
-use Yii;
 use frontend\models\KrajeeProductTree;
 use frontend\models\Productcategory;
 use frontend\models\Productsubcategory;
 use frontend\models\Product;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use kartik\tree\Controllers\NodeController;
 use yii\filters\VerbFilter;
 
-class KrajeeproducttreeController extends Controller
+class KrajeeproducttreeController extends NodeController
 {
     public function behaviors()
     {
@@ -25,7 +23,7 @@ class KrajeeproducttreeController extends Controller
            'access' => 
                             [
                             'class' => \yii\filters\AccessControl::className(),
-                            'only' => ['index','create', 'update','delete','view'],
+                            'only' => ['index','populate'],
                             'rules' => [
                             [
                               'allow' => true,
@@ -49,7 +47,7 @@ class KrajeeproducttreeController extends Controller
         return $this->render('index');      
     }
     
-    public function actionCreate()
+    public function actionPopulate()
     {
         //remove all data in the database
         KrajeeProductTree::deleteAll();
@@ -63,6 +61,7 @@ class KrajeeproducttreeController extends Controller
         foreach ($allpostcodes as $key => $value)
         {
             $newpostcodenode = new KrajeeProductTree(['name'=>$allpostcodes[$key]['name']]);
+            $newpostcodenode->productcategory_id = $allpostcodes[$key]['id']; 
             $newpostcodenode->prependTo($root);
             $allstreets = [];
             $allstreets = Productsubcategory::find()
@@ -73,6 +72,7 @@ class KrajeeproducttreeController extends Controller
             foreach ($allstreets as $key => $value)
             {
                 $newstreetnode = new KrajeeProductTree(['name'=>$allstreets[$key]['name']]);
+                $newstreetnode->productsubcategory_id = $allstreets[$key]['id'] ;
                 $newstreetnode->prependTo($newpostcodenode);
                 $allhouses = Product::find()
                         ->where(['productsubcategory_id'=>$allstreets[$key]['id']])
@@ -83,26 +83,11 @@ class KrajeeproducttreeController extends Controller
                 foreach ($allhouses as $key => $value)
                 {
                     $newhousenode = new KrajeeProductTree(['name'=>$allhouses[$key]['productnumber']]);
+                    $newhousenode->product_id = $allhouses[$key]['id'];
                     $newhousenode->prependTo($newstreetnode);
                 }  
             }  
         }      
         return $this->render('index'); 
-    }
-    
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-    
-    protected function findModel($id)
-    {
-        if (($model = KrajeeProductTree::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
-        }
-    }    
+    }     
 }

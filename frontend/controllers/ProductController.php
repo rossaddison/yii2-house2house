@@ -240,6 +240,7 @@ class ProductController extends Controller
             }
                          return $this->redirect(['view', 'id' => $model->id]);
         } else {
+        $model->sellstartdate = date('Y-m-d');
         return $this->render('create', [
                 'model' => $model,
         ]);        
