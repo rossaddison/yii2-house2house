@@ -256,7 +256,16 @@ return [
         ],
       'treemanager' =>  [
         'class' => 'kartik\tree\Module',
-      ],
+        'treeViewSettings'=> [
+            'nodeView' => '@kvtree/views/_form',    
+            'nodeAddlViews' => [
+                1 => '',
+                2 => '',
+                3 => '',
+                4 => '',
+                5 => '@app/views/krajeeproducttree/product',
+        ]]    
+       ],
        'datecontrol' => [
         'class' => 'kartik\datecontrol\Module',
         'displaySettings' => [

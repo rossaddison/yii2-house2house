@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
     
     public $css = [
         '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',        
+        'css/site.css'
     ];
     
     public $js = [ 'js/scripts2.js',
