@@ -12,7 +12,7 @@ use kartik\widgets\FileInput;
    <?= $form->field($model, 'image')->widget(FileInput::classname(), 
             [
                 'options'=>['accept'=>'image/*'],
-                'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png','pdf','xls','xlsx','ods','odt','docx','doc'],
+                 'pluginOptions'=>['allowedFileExtensions'=>['jpg', 'jpeg', 'gif','png','pdf','xls','xlsx','ods','odt','docx','doc'],
                   'showUpload'=>false,
                   'showRemove'=>false,
                   'multiple'=>false,
