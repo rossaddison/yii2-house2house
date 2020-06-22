@@ -6,7 +6,7 @@ use frontend\models\KrajeeProductTree;
 use frontend\models\Productcategory;
 use frontend\models\Productsubcategory;
 use frontend\models\Product;
-use kartik\tree\Controllers\NodeController;
+use kartik\tree\controllers\NodeController;
 use yii\filters\VerbFilter;
 
 class KrajeeproducttreeController extends NodeController
