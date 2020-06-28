@@ -21,7 +21,7 @@ class Company extends \yii\db\ActiveRecord
         return 'works_company';
     }
 
-    public function rules()
+     public function rules()
     {
         return [
             [['name'], 'required'],
