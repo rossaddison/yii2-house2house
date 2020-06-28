@@ -5,6 +5,7 @@ use Yii;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Street'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Create House'), 'url' => ['product/create']];
 ?>
 <div class="productsubcategory-view">
     <h1><?= Html::encode($this->title) ?></h1>

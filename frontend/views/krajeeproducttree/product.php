@@ -1,5 +1,4 @@
 <?php
-   use Yii;
    use yii\helpers\Url;
    use yii\helpers\Html;
 ?>
@@ -14,7 +13,7 @@
           }         
           if ($node->productcategory_id > 0){
             echo Html::a('<h4>View Postcode Details: ' .$node->name. '</h4>',Url::toRoute(['/productcategory/view','id'=>$node->productcategory_id]));
-          }         
+          }
         ?>
     <br>
 </div>

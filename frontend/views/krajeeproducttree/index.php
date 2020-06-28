@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Refresh Database with
             'enableCache' => true   // defaults to true
         ],
         'hideTopRoot'=>true,
-        'treeOptions' => ['style' => 'height:1000px width:900px' ],
+        //'treeOptions' => ['style' => 'height:1000px width:1900px' ],
         //more detail can be added to the node
         'nodeLabel' => function($node) {
                              return $node->name;
@@ -61,10 +61,10 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Refresh Database with
         'wrapperTemplate'=>'{tree}',
         //removing the detail below removes the second column of view(s) 1 - 5
         'mainTemplate'=>'<div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 {wrapper}
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-6">
                                 {detail}
                             </div>
                          </div>'                       
