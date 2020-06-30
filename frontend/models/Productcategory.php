@@ -23,7 +23,7 @@ class Productcategory extends \yii\db\ActiveRecord
             [['name', 'tax_id'], 'required'],
             [['tax_id'], 'integer'],
             [['description'],'default','value' =>'No description'],
-            [['name'], 'string', 'max' => 50],
+            [['name'], 'string', 'max' => 250],
             [['tax_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tax::className(), 'targetAttribute' => ['tax_id' => 'tax_id']],
         ];
     }

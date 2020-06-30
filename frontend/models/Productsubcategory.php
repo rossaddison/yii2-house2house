@@ -32,7 +32,7 @@ class Productsubcategory extends \yii\db\ActiveRecord
             [['productcategory_id','sort_order'], 'integer'],
             [['lat_start','lng_start','lat_finish','lng_finish'],'integer','integerOnly'=>false],
             [['lat_start','lng_start','lat_finish','lng_finish'],'default','value'=>0.00],
-            [['name'], 'string', 'max' => 50],
+            [['name'], 'string', 'max' => 250],
             [['sort_order'],'integer','min'=>0,'max'=>500],
             [['sort_order'],'default','value'=>99],
             [['productcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Productcategory::className(), 'targetAttribute' =>['productcategory_id' => 'id']],
