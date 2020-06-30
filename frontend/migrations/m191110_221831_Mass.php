@@ -248,7 +248,7 @@ class m191110_221831_Mass extends Migration
 
         $this->createTable('{{%works_productcategory}}',[
             'id'=> $this->primaryKey(11),
-            'name'=> $this->string(50)->notNull(),
+            'name'=> $this->string(250)->notNull(),
             'description'=> $this->string(50)->notNull(),
             'tax_id'=> $this->integer(2)->notNull(),
             'modifieddate'=> $this->timestamp()->notNull()->defaultExpression("CURRENT_TIMESTAMP"),
@@ -259,7 +259,7 @@ class m191110_221831_Mass extends Migration
         $this->createTable('{{%works_productsubcategory}}',[
             'id'=> $this->primaryKey(11),
             'productcategory_id'=> $this->integer(11)->notNull(),
-            'name'=> $this->string(50)->notNull(),
+            'name'=> $this->string(250)->notNull(),
             'lat_start'=> $this->double(10, 7)->notNull(),
             'lng_start'=> $this->double(10, 7)->notNull(),
             'lat_finish'=> $this->double(10, 7)->notNull(),

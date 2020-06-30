@@ -163,6 +163,11 @@ echo Slider::widget([
     ],        
     ['class' => '\kartik\grid\EditableColumn',
                 'attribute' =>'productnumber',
+                'filterInputOptions' => [
+                  'class'=> 'form-control',
+                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
+                  'placeholder' => 'No...'
+                ],
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
                 'refreshGrid'=>true,
@@ -182,7 +187,7 @@ echo Slider::widget([
                 'filterInputOptions' => [
                   'class'=> 'form-control',
                   'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
-                  'placeholder' => 'Contact Mobile...'
+                  'placeholder' => 'Mobile ...'
                 ],
                 'hAlign' => 'right', 
                 'vAlign' => 'middle',
@@ -225,14 +230,13 @@ echo Slider::widget([
         'filterInputOptions' => [
                   'class'=> 'form-control',
                   'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
-                  'placeholder' => Yii::t('app','Special Request ...'),
+                  'placeholder' => Yii::t('app','Special request...'),
                 ],
-        'width' => '7%',
         'refreshGrid'=>true,
         'headerOptions' => ['class' => 'kv-sticky-column'],
         'contentOptions' => [
                       'class' => 'kv-sticky-column',
-                      'style'=>'max-width: 200px; overflow: auto; word-wrap: break-word;'
+                      'style'=>'overflow: auto; word-wrap: break-word;'
         ],
         'readonly' => false,
         'editableOptions' => [
@@ -250,7 +254,7 @@ echo Slider::widget([
             'value' => function ($dataProvider) {
                     return $dataProvider->frequency; 
             },
-             'filter'=> Html::activeDropDownList($searchModel,'frequency',ArrayHelper::map(Product::find()->orderBy('frequency')->asArray()->all(),'frequency','frequency'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Frequency...']), 
+             'filter'=> Html::activeDropDownList($searchModel,'frequency',ArrayHelper::map(Product::find()->orderBy('frequency')->asArray()->all(),'frequency','frequency'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Monthly...']), 
     ],     
     [
             'class'=>'kartik\grid\DataColumn',
@@ -259,22 +263,25 @@ echo Slider::widget([
             'value' => function ($dataProvider) {
                     return $dataProvider->productcategory->name; 
             },
-            'filter'=> Html::activeDropDownList($searchModel,'productcategory_id',ArrayHelper::map(Productcategory::find()->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Post Code...']), 
+            'filter'=> Html::activeDropDownList($searchModel,'productcategory_id',ArrayHelper::map(Productcategory::find()->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Postcode...']), 
+            
     ],
     [
             'class'=>'kartik\grid\DataColumn',
-            'header'=>Yii::t('app','Street'),      
+            'header'=>Yii::t('app','Street'), 
+            'format'=>'html',
             'attribute'=>'productsubcategory_id', 
             'value' => function ($dataProvider) {
-                       return $dataProvider->productsubcategory->name; 
+                        $url2 = "https://maps.google.com/maps?q=".ltrim($dataProvider->productnumber, '0')." ".$dataProvider->productsubcategory->name." ".$dataProvider->productcategory->name;
+                       return Html::a($dataProvider->productsubcategory->name,$url2);
              },
-            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['productcategory_id'=>$searchModel->productcategory_id])->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Street...']),            
+            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['productcategory_id'=>$searchModel->productcategory_id])->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Street...']),
     ],
     [
     'class' => 'kartik\grid\EditableColumn',
     'header' => Yii::t('app','First Clean Date'),
     'attribute' =>  'sellstartdate',
-    'filter'=> Html::activeDropDownList($searchModel,'sellstartdate',ArrayHelper::map(Product::find()->orderBy('sellstartdate')->asArray()->all(),'sellstartdate','sellstartdate'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'From Date...']),      
+    'filter'=> Html::activeDropDownList($searchModel,'sellstartdate',ArrayHelper::map(Product::find()->orderBy('sellstartdate')->asArray()->all(),'sellstartdate','sellstartdate'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'From...']),      
     'hAlign' => 'right',
     'vAlign' => 'middle',
     'format' => ['date', 'php:Y-m-d'],
@@ -419,7 +426,7 @@ echo Slider::widget([
             'value'=> function ($dataProvider){if (empty($dataProvider->gc_number)){return '';}
                   else  {return $dataProvider->gc_number;} 
             },
-            'filter'=> Html::activeDropDownList($searchModel,'gc_number',ArrayHelper::map(Product::find()->orderBy('gc_number')->asArray()->all(),'gc_number','gc_number'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'prompt'=>'Gocardless Number...']), 
+            'filter'=> Html::activeDropDownList($searchModel,'gc_number',ArrayHelper::map(Product::find()->orderBy('gc_number')->asArray()->all(),'gc_number','gc_number'),['options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Gocardless Number...']), 
      ],
 ];
 
