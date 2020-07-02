@@ -53,28 +53,9 @@ class SalesorderdetailController extends Controller
     
     public function actionIndex($id)
     {
-            Yii::$app->session['sales_order_id'] = $id;
-            $searchModel = new SalesorderdetailSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProvider->sort->sortParam = false;
-            $dataProvider->setSort([
-            'attributes' => [
-                 'productsubcategory_id.name' => [
-                    'asc' => ['works_productsubcategory.name' => SORT_ASC],
-                    'desc' => ['works_productsubcategory.name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                ],  
-                'product_id.productnumber' => [
-                    'asc' => ['works_product.productnumber' => SORT_ASC],
-                    'desc' => ['works_product.productnumber' => SORT_DESC],
-                    'default' => SORT_ASC,
-                ],
-            ],
-            'defaultOrder' => [
-              'productsubcategory_id.name'=> SORT_ASC,  
-              'product_id.productnumber' => SORT_ASC,
-            ]
-          ]);
+     Yii::$app->session['sales_order_id'] = $id;
+     $searchModel = new SalesorderdetailSearch();
+     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             
      if (Yii::$app->request->post('hasEditable')) {
         $salesorderId = Yii::$app->request->post('editableKey');
@@ -97,11 +78,8 @@ class SalesorderdetailController extends Controller
         if (isset($posted['tip'])) {
           $output = Yii::$app->formatter->asDecimal($model->tip, 2);
         }
-        
         return Json::encode(['output'=>$output, 'message'=>'']);
-        
      }
-        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

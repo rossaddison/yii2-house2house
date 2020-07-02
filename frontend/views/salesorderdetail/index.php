@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use \kartik\grid\GridView;
 use frontend\models\Salesorderheader;
+use frontend\models\Productcategory;
+use frontend\models\Productsubcategory;
 use frontend\models\Company;
 use frontend\models\Instruction;
 use frontend\models\Messaging;
@@ -228,22 +230,26 @@ echo Slider::widget([
     'headerOptions' => ['class' => 'kartik-sheet-style'], 
     'expandOneOnly' => true,
     ],      
-            //[
-            //'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            //'header'=>Yii::t('app','Postcode'),
-            //'group'=>true,
-            //'value' => function ($data) {
-            //    return $data->productcategory->name; // $data['name'] for array data, e.g. using SqlDataProvider.
-            //},
-            //],
-            //[
-            //'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
-            //'header'=>Yii::t('app','Street'),
-            //'group'=>true,  
-            //'value' => function ($data) {
-            //    return $data->productsubcategory->name; // $data['name'] for array data, e.g. using SqlDataProvider.
-            //},
-            //],    
+            [
+            'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
+            'header'=>Yii::t('app','Postcode'),
+            'attribute'=>'productcategory_id',
+            'value' => function ($dataProvider) {
+                return $dataProvider->productcategory->name; // $data['name'] for array data, e.g. using SqlDataProvider.
+            },
+            'filter'=> Html::activeDropDownList($searchModel,'productcategory_id',ArrayHelper::map(Productcategory::find()->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],'class'=>'form-control','prompt'=>'Postcode...']), 
+            ],
+            [
+            'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
+            'header'=>Yii::t('app','Street'),
+            'format'=>'html',
+            'attribute'=>'productsubcategory_id',
+            'value' => function ($dataProvider) {
+                        $url2 = "https://maps.google.com/maps?q=".ltrim($dataProvider->product->productnumber, '0')." ".$dataProvider->productsubcategory->name." ".$dataProvider->productcategory->name;
+                       return Html::a($dataProvider->productsubcategory->name,$url2);
+            },
+            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['productcategory_id'=>$searchModel->productcategory_id])->orderBy('name')->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],'class'=>'form-control','prompt'=>'Street...']),        
+            ],    
             [
             'class' => 'kartik\grid\DataColumn', // can be omitted, as it is the default
             'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontsalesdetail'].'px'],    

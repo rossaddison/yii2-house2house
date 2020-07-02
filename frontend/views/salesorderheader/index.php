@@ -77,7 +77,7 @@ echo Slider::widget([
     ['class' => 'kartik\grid\DataColumn',
      'attribute'=> 'sales_order_id',
      'filterInputOptions' => [
-                  'class'       => 'form-control=lg',
+                  'class'       => 'form-control',
                   'placeholder' => Yii::t('app','Id ...'),
                 ],
     ],
@@ -120,8 +120,8 @@ echo Slider::widget([
             'class'=>'kartik\grid\DataColumn',
             'attribute' => 'status',
             'value' => 'status',
-            'options' => [ 'class'=> 'form=control-lg'],
-            'filter'=> Html::activeDropDownList($searchModel,'status',ArrayHelper::map(Salesorderheader::find()->orderBy('status')->asArray()->all(),'status','status'),[ 'options' => [ 'class'=> 'form=control-lg'],'prompt'=>Yii::t('app','Job Code ...')]),
+            'options' => [ 'class'=> 'form-control'],
+            'filter'=> Html::activeDropDownList($searchModel,'status',ArrayHelper::map(Salesorderheader::find()->orderBy('status')->asArray()->all(),'status','status'),[ 'class'=> 'form-control','prompt'=>Yii::t('app','Job Code ...')]),
     ],
     [
             'class' => 'kartik\grid\ActionColumn',
@@ -165,7 +165,7 @@ echo Slider::widget([
     'attribute' =>  'clean_date',
     'filter'=> Html::activeDropDownList($searchModel,'clean_date',ArrayHelper::map(Salesorderheader::find()->orderBy(['clean_date'=>SORT_DESC])->asArray()->all(),'clean_date','clean_date'),
     [
-        'class'=> 'form=control-lg',
+        'class'=> 'form-control',
         'prompt'=>Yii::t('app','From Date ...'),
     ]),
     'hAlign' => 'center',
