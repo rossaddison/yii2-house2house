@@ -57,8 +57,8 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Refresh Database with
                         'untitled'=>'Untitled'
                        ],
         //removing header below removes the search button and header                       
-        //'wrapperTemplate'=>'{header}{tree}{footer}',         
-        'wrapperTemplate'=>'{tree}',
+        'wrapperTemplate'=>'{header}{tree}{footer}',         
+        //'wrapperTemplate'=>'{tree}',
         //removing the detail below removes the second column of view(s) 1 - 5
         'mainTemplate'=>'<div class="row">
                             <div class="col-sm-6">
