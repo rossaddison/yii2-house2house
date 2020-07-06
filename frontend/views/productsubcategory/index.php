@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Arrayhelper;
 use kartik\grid\GridView;
 use frontend\models\Productcategory;
 use Yii;
@@ -84,8 +83,28 @@ $tooltipsortorder = Html::tag('span', 'Order', ['title'=>Yii::t('app','This is t
                              return $url;
                          }
              }                
-     ],
-     'sort_order',
+     ],      
+    ['class' => '\kartik\grid\EditableColumn',
+               // 'filter'=> Html::activeDropDownList($searchModel,'sort_order',ArrayHelper::map(Productsubcategory::find()->orderBy('sort_order')->asArray()->all(),'sort_order','sort_order'),['class'=>'form-control','prompt'=>'From']),      
+                'header'=>$tooltipsortorder,
+                'attribute' => 'sort_order',
+                'hAlign' => 'right', 
+                'vAlign' => 'middle',
+                'width' => '7%',
+                'format' => 'raw',
+                'refreshGrid'=>true,
+                'headerOptions' => ['class' => 'kv-sticky-column'],
+                'contentOptions' => ['class' => 'kv-sticky-column'],
+                'readonly' => false,
+                'editableOptions' => [
+                    'asPopover' => false,
+                    'header' => 'Sequence', 
+                    'inputType' => \kartik\editable\Editable::INPUT_TEXT,
+                    'options' => [
+                        'pluginOptions' => ['autoclose' => true],                        
+                     ]
+                ],                    
+     ],  
      'lat_start',
      'lat_finish',
      'lng_start',
