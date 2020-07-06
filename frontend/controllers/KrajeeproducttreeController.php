@@ -66,6 +66,7 @@ class KrajeeproducttreeController extends NodeController
             $allstreets = [];
             $allstreets = Productsubcategory::find()
                         ->where(['productcategory_id'=>$allpostcodes[$key]['id']])
+                        ->orderBy('sort_order')
                         ->all();
             //create the street nodes associated with this new node
             $allhouses = [];

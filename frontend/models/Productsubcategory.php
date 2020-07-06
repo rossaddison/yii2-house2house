@@ -11,12 +11,20 @@ class Productsubcategory extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-     public static function getDb()
-   {
-       return \frontend\components\Utilities::userdb();
-   }
+    public static function getDb()
+    {
+        return \frontend\components\Utilities::userdb();
+    }
     
-    
+    public function behaviors() {
+	    return [
+	        [
+	            'class' => 'sjaakp\sortable\Sortable',
+                    'orderAttribute'=>'sort_order',
+	        ],
+	    ];
+    }
+ 
     public static function tableName()
     {
         return 'works_productsubcategory';
@@ -44,6 +52,7 @@ class Productsubcategory extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
     public function attributeLabels()
     {
         return [
@@ -60,17 +69,11 @@ class Productsubcategory extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['productsubcategory_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getProductcategory()
     {
         return $this->hasOne(Productcategory::className(), ['id' => 'productcategory_id']);

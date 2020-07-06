@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use frontend\models\Productsubcategory;
 use frontend\models\ProductsubcategorySearch;
 use yii\web\Controller;
@@ -30,7 +31,7 @@ class ProductsubcategoryController extends Controller
             'access' => 
                             [
                             'class' => \yii\filters\AccessControl::className(),
-                            'only' => ['index','create','view', 'update','delete'],
+                            'only' => ['index','create','view', 'update','delete','dragdrop'],
                             'rules' => [
                             [
                               'allow' => true,
@@ -44,7 +45,6 @@ class ProductsubcategoryController extends Controller
 
     public function actionIndex()
     {
-        
             $searchModel = new ProductsubcategorySearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             $dataProvider->sort->sortParam = false;
@@ -131,7 +131,6 @@ class ProductsubcategoryController extends Controller
             ]);
         }
     }
-
     
     public function actionUpdate($id)
     {
@@ -169,6 +168,25 @@ class ProductsubcategoryController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException(Yii::t('app','The requested page does not exist.'));
+        }
+    }
+    
+    public function actionDragdrop()
+    {
+        $query = Productsubcategory::find()->orderBy('sort_order');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'db' => \frontend\components\Utilities::userdb(),
+            'sort'=>false,
+            'pagination'=>false,
+        ]);
+        return $this->render('sort', ['dataProvider' => $dataProvider]);
+    }
+    
+    public function actionOrder( )   {
+        $post = Yii::$app->request->post( );
+        if (isset( $post['key'], $post['pos'] ))   {
+            $this->findModel( $post['key'] )->order( $post['pos'] );
         }
     }
 }

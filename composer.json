@@ -23,6 +23,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "sjaakp/yii2-pluto": "*",
         "sjaakp/yii2-dateline": "*",
+        "sjaakp/yii2-sortable-behavior": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
         "bizley/cookiemonster": "*",
         "vlucas/phpdotenv": "*",
