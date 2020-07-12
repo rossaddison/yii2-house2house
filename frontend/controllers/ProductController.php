@@ -135,7 +135,7 @@ class ProductController extends Controller
     {   
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination->pageSize=10;
+        $dataProvider->pagination->pageSize=0;
         $dataProvider->sort->sortParam = false;
         $dataProvider->setSort([
             'attributes' => [
