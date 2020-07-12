@@ -11,7 +11,7 @@ class ProductSearch extends Product
     {
         return [
             [['id','productcategory_id', 'productsubcategory_id'], 'integer'],
-            [['name', 'surname','frequency','contactmobile', 'gc_number','specialrequest', 'sellstartdate', 'sellenddate', 'discontinueddate', 'modifieddate'], 'safe'],
+            [['name', 'surname','frequency','contactmobile', 'productnumber','gc_number','specialrequest', 'sellstartdate', 'sellenddate', 'discontinueddate', 'modifieddate'], 'safe'],
             [['listprice'], 'number'],
             [['isactive'],'boolean'],
         ];
@@ -24,7 +24,7 @@ class ProductSearch extends Product
     
     public function search($params)
     {
-        $query = Product::find();
+        $query = Product::find()->orderBy('productnumber ASC');
         
         $dataProvider = new ActiveDataProvider([
           'pagination' => ['pageSize' => 10],
@@ -36,7 +36,10 @@ class ProductSearch extends Product
         if (!$this->validate()) {
             return $dataProvider;
         }
-         
+        $dataProvider->sort->attributes['productnumber'] = [
+        'asc' => ['productnumber' => SORT_ASC],
+        'desc' => ['productnumber' => SORT_DESC],
+        ]; 
         $dataProvider->sort->attributes['productcategory_id'] = [
         'asc' => ['productcategory_id' => SORT_ASC],
         'desc' => ['productcategory_id' => SORT_DESC],
@@ -45,6 +48,7 @@ class ProductSearch extends Product
         'asc' => ['productsubcategory_id' => SORT_ASC],
         'desc' => ['productsubcategory_id' => SORT_DESC],
         ];
+       
         
         if (!isset($this->isactive)) {$this->isactive = 1;}
         
@@ -52,6 +56,7 @@ class ProductSearch extends Product
             'id' => $this->id,
             'listprice' => $this->listprice,
             'isactive'=>$this->isactive,
+            'productnumber'=>$this->productnumber,
             'productcategory_id' => $this->productcategory_id,
             'productsubcategory_id' => $this->productsubcategory_id,
             'frequency'=>$this->frequency,

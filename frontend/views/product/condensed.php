@@ -147,6 +147,7 @@ echo Slider::widget([
     [
      'class' => 'kartik\grid\BooleanColumn',
      'attribute'=>'isactive',
+     'visible'=>false,
      'value' => function ($dataProvider) {
                     return $dataProvider->isactive; 
             },
@@ -172,7 +173,9 @@ echo Slider::widget([
                 'vAlign' => 'middle',
                 'refreshGrid'=>true,
                 'headerOptions' => ['class' => 'kv-sticky-column'],
-                'contentOptions' => ['class' => 'kv-sticky-column'],
+                'contentOptions' => [
+                    'class' => 'kv-sticky-column',
+                ],
                 'readonly' => false,
                 'editableOptions' => [
                     'asPopover' => false,
@@ -180,52 +183,12 @@ echo Slider::widget([
                     'options' => [
                         'pluginOptions' => ['autoclose' => true],                        
                      ]
-                ],        
+                ], 
                 'format'=>'html',
                 'value'=>function ($dataProvider){
                    return "<span class = 'badge badge-pill badge-success '> $dataProvider->productnumber </span>";
                 }
-    ], 
-    ['class' => '\kartik\grid\EditableColumn',
-                'attribute' =>'contactmobile',
-                'filterInputOptions' => [
-                  'class'=> 'form-control',
-                  'style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px',
-                  'placeholder' => 'Mobile ...'
-                ],
-                'hAlign' => 'right', 
-                'vAlign' => 'middle',
-                'width' => '7%',
-                'refreshGrid'=>true,
-                'headerOptions' => ['class' => 'kv-sticky-column'],
-                'contentOptions' => ['class' => 'kv-sticky-column'],
-                'readonly' => false,
-                'editableOptions' => [
-                    'asPopover' => false,
-                    'inputType' => \kartik\editable\Editable::INPUT_TEXT,
-                    'options' => [
-                        'pluginOptions' => ['autoclose' => true],                        
-                     ]
-                ],                    
-     ],     
-    [
-            'class' => 'kartik\grid\ActionColumn',
-            'template' => '{link}',// can be omitted, as it is the default
-            'header'=>'Call',
-            'visible'=> Yii::$app->user->isGuest ? false : true,
-            'buttons' => ['link' => function ($url, $dataProvider,$key) {
-                           if (strlen($dataProvider->contactmobile)===11){
-                           return Html::a($dataProvider->contactmobile,$url);}
-                           else return '';
-                }
-             ],
-            'urlCreator' => function ($action, $dataProvider, $key, $index) {
-                         if (($action === 'link') ) {
-                             $url = "tel:/".$dataProvider->contactmobile;
-                             return $url;
-                         }
-             }                
-     ],
+    ],
      [  'class' => '\kartik\grid\EditableColumn',
         'attribute' =>'specialrequest', 
         'value'=> function ($dataProvider){if (empty($dataProvider->specialrequest)) return '?????';},
@@ -268,6 +231,7 @@ echo Slider::widget([
                     return $dataProvider->productcategory->name; 
             },
             'filter'=> Html::activeDropDownList($searchModel,'productcategory_id',ArrayHelper::map(Productcategory::find()->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Postcode...']), 
+            
     ],
     [
             'class'=>'kartik\grid\DataColumn',
@@ -278,10 +242,11 @@ echo Slider::widget([
                         $url2 = "https://maps.google.com/maps?q=".ltrim($dataProvider->productnumber, '0')." ".$dataProvider->productsubcategory->name." ".$dataProvider->productcategory->name;
                        return Html::a($dataProvider->productsubcategory->name,$url2);
              },
-            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['id'=>$searchModel->productcategory_id])->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Street...']),
+            'filter'=> Html::activeDropDownList($searchModel,'productsubcategory_id',ArrayHelper::map(Productsubcategory::find()->where(['productcategory_id'=>$searchModel->productcategory_id])->orderBy('name')->asArray()->all(),'id','name'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'Street...']),
     ],
     [
     'class' => 'kartik\grid\EditableColumn',
+    'visible'=>false,
     'header' => Yii::t('app','First Clean Date'),
     'attribute' =>  'sellstartdate',
     'filter'=> Html::activeDropDownList($searchModel,'sellstartdate',ArrayHelper::map(Product::find()->orderBy('sellstartdate')->asArray()->all(),'sellstartdate','sellstartdate'),[ 'options' => ['style'=> 'font-size:'.Yii::$app->session['sliderfontproduct'].'px'],'class'=>'form-control','prompt'=>'From...']),      
@@ -310,6 +275,7 @@ echo Slider::widget([
     ],
     ],  
     ['class'=>'kartik\grid\DataColumn',
+     'visible'=>false,
      'attribute'=>'name',
      'filterInputOptions' => [
                   'class'=> 'form-control',
@@ -318,6 +284,7 @@ echo Slider::widget([
                 ],
     ],
     ['class'=>'kartik\grid\DataColumn',
+     'visible'=>false,
      'attribute'=>'surname',
      'filterInputOptions' => [
                   'class'=> 'form-control',
@@ -325,8 +292,8 @@ echo Slider::widget([
                   'placeholder' => 'Surname...'
                 ],
     ],
-    [
-                'class' => '\kartik\grid\EditableColumn',
+    ['class' => '\kartik\grid\EditableColumn',
+                'visible'=>true,
                 'attribute' => 'listprice',
                 'filterInputOptions' => [
                   'class'=> 'form-control',  
@@ -344,17 +311,17 @@ echo Slider::widget([
                         'options' => [
                         'pluginOptions' => ['autoclose' => true],                        
                         ]
-                ],     
+                ],
                 'format'=>'html',
                 'value' => function ($dataProvider, $key, $index, $column) { 
                     $prepare = Yii::$app->formatter->asDecimal($dataProvider->listprice, 2);
                     $mystyle = Yii::$app->session['sliderfontproduct'].'px';
                     return  "<span class = 'badge badge-pill badge-info style = 'font-size:{$mystyle}'>$prepare</span>";
                 },
-                
      ], 
      [
     'class' => 'kartik\grid\ExpandRowColumn',
+    'visible'=>false,
     'header'=>'Debt',
     'expandTitle'=> 'Debt',
     'expandIcon' => Icon::show('balance-scale', ['framework' => Icon::FAS]),
@@ -384,6 +351,7 @@ echo Slider::widget([
     ],
     [
     'class' => 'kartik\grid\ExpandRowColumn',
+    'visible'=>false,
     'header'=>Yii::t('app','History'),
     'expandTitle'=> 'History',
     'expandIcon' => Icon::show('book', ['framework' => Icon::FAS]), 
@@ -408,6 +376,7 @@ echo Slider::widget([
     ],
     [
     'class' => 'kartik\grid\DataColumn', 
+    'visible'=>false,
     'format'=>'raw',
     'headerOptions' => ['class' => 'kv-sticky-column'],
     'contentOptions' => ['class' => 'kv-sticky-column'],
@@ -430,8 +399,8 @@ echo Slider::widget([
      ],
      [
             'class'=>'kartik\grid\DataColumn',
-            'visible'=>false,
             'header'=>$tooltipgocardlesscustomer,
+            'visible'=>false,
             'attribute'=>'gc_number',
             'value'=> function ($dataProvider){if (empty($dataProvider->gc_number)){return '';}
                   else  {return $dataProvider->gc_number;} 
@@ -476,4 +445,5 @@ echo kartik\grid\GridView::widget([
 ]);
 ?>
 </div>
+
 

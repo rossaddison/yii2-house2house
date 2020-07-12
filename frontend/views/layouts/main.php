@@ -1,4 +1,4 @@
-<?php
+ <?php
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
@@ -52,7 +52,7 @@ $this->registerJs($js);
         'brandLabel' => $brandlabel,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-              'class' => 'navbar navbar-dark bg-dark',
+              'class'=>'navbar mr-auto navbar-dark bg-dark navbar-expand-md',
         ],
     ]);
     $check_howmany_mandates = 0;
@@ -86,6 +86,7 @@ $this->registerJs($js);
                          ['label' => '&nbsp;' .'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Quick Build'),['class'=>'btn btn-danger btn-lg']), 'url' => ['/easy/initialize'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Drag Sort'),['class'=>'btn btn-danger btn-lg']), 'url' => ['/productsubcategory/dragdrop'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => '&nbsp;' .'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','House'),['class'=>'btn btn-success btn-lg']), 'url' => ['/product/index'],'visible'=>Yii::$app->user->can('Manage Admin')],
+                         ['label' => '&nbsp;' .'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.'&nbsp;'.Html::button(Yii::t('app','Condensed'),['class'=>'btn btn-danger btn-lg']), 'url' => ['/product/condensed'],'visible'=>Yii::$app->user->can('Manage Admin')],
                          ['label' => Html::button(Yii::t('app','Acknowledge Mandates (').$check_howmany_mandates.')',['class'=>'btn btn-danger btn-lg']), 'url' => ['/product/acknowledge_mandates'],'visible'=>($check_howmany_mandates > 0)],
                          ['label' => '&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.'&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Daily Cleans'),['class'=>'btn btn-success btn-lg']), 'url' => ['/salesorderheader/index'],'visible'=>Yii::$app->user->can('Manage Basic')],
                         
@@ -153,12 +154,10 @@ $this->registerJs($js);
 
     ?>
         <div class="content-wrapper">
-        
             <?= Breadcrumbs::widget([
                 //an individual breadcrumb per page
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [], 'activeItemTemplate' => "<li class=\"breadcrumb-item active\" aria-current=\"page\">{link}</li>\n"
-            ]) 
-                ;
+            ]);
             ?>
             <div class="container container-alert">
                         <div class="row">
