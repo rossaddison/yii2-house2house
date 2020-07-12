@@ -76,7 +76,7 @@ $tooltipfrequency = Html::tag('span', Yii::t('app','Frequency'), ['title'=>Yii::
 $tooltipgocardlesscustomer = Html::tag('span', 'Gocardless'. Yii::t('app','Mandate Approved Customers'), ['title'=>Yii::t('app','This customer number appears on'). 'Gocardless'. Yii::t('app','and indicates that the customer has approved the mandate that you sent to them.'),'data-toggle'=>'tooltip','style'=>'text-decoration: underline: cursor:pointer;']);
 ?>
 
-<div class="product-index">
+<div class="product-condensed">
 <h1><?= Html::encode($this->title) ?></h1>
 <?= Html::a(Yii::t('app','Create House'), ['create'], ['class' => 'btn btn-success btn-lg','title'=>Yii::t('app','Have you setup your Postcode and street?'),'data-toggle'=>'tooltip']) ?>
    <Hr style = "border-top: 3px double #8c8b8b">   
