@@ -131,6 +131,48 @@ class ProductController extends Controller
         ]);
     }
     
+    public function actionCondensed()
+    {   
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize=10;
+        $dataProvider->sort->sortParam = false;
+        $dataProvider->setSort([
+            'attributes' => [
+                'productcategory_id' => [
+                    'asc' => ['productcategory_id' => SORT_ASC],
+                    'desc' => ['productcategory_id' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ],
+            ],
+            'defaultOrder' => [
+              'productcategory_id' => SORT_ASC,
+            ]
+          ]); 
+        
+        if (Yii::$app->request->post('hasEditable')) {
+        $editablekey = Yii::$app->request->post('editableKey');
+        $model = Product::findOne($editablekey);
+        $out = Json::encode(['output'=>'', 'message'=>'']);
+        $post = [];
+        $posted = current($_POST['Product']);
+        $post = ['Product' => $posted];
+        if ($model->load($post)) {
+            $model->save();
+        }
+        $output = '';
+        if (isset($posted['listprice'])) {
+           $output = Yii::$app->formatter->asDecimal($model->listprice, 2);
+        }
+        return Json::encode(['output'=> $output, 'message'=>'']);
+       }
+        return $this->render('condensed', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    
     public function actionSearch()
     {   
         $searchModel = new ProductSearch();
