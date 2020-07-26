@@ -9,7 +9,13 @@
     use Yii;
 ?>
 <div class="product-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+                'options' => [
+                    //id for modal used in product/create action
+                    //essential for bootstrap modal to work.
+                    'id' => 'create-product-form'
+                ]
+    ]); ?>
     <?= $form->field($model, 'productcategory_id')->dropDownList(ArrayHelper::map(Productcategory::find()->orderBy('name')->all(),'id','name'),['prompt'=>'Select...','id'=>'cat_id']) ?>
     <?= $form->field($model, 'productsubcategory_id')->widget(DepDrop::classname(),
         ['options'=>['id'=>'subcat_id'],

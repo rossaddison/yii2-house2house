@@ -7,7 +7,13 @@
     use Yii;
 ?>
 <div class="productsubcategory-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+                'options' => [
+                    //id for modal used in productsubcategory/create action
+                    //essential for bootstrap modal to work.
+                    'id' => 'create-productsubcategory-form'
+                ]
+    ]); ?>
     <?= $form->field($model, 'productcategory_id')->dropDownList(ArrayHelper::map(Productcategory::find()->orderBy('name')->all(),'id','name'),['prompt'=>Yii::t('app','Postcodes')]) ?>
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'lat_start')->textInput(['maxlength' => true]) ?>

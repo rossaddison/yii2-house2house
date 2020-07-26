@@ -78,7 +78,13 @@ $tooltipgocardlesscustomer = Html::tag('span', 'Gocardless'. Yii::t('app','Manda
 
 <div class="product-index">
 <h1><?= Html::encode($this->title) ?></h1>
-<?= Html::a(Yii::t('app','Create House'), ['create'], ['class' => 'btn btn-success btn-lg','title'=>Yii::t('app','Have you setup your Postcode and street?'),'data-toggle'=>'tooltip']) ?>
+<?= 
+   //Modal link frontend/layouts/main.php and frontend/assets/AppAsset.php
+   Html::button(Yii::t('app','Create House'), ['value' => Url::to(['product/create']), 'title' => Yii::t('app','Creating New House'), 'class' => 'showModalButton btn btn-success btn-lg','title'=>Yii::t('app','Have you setup your Postcode and street?'),'data-toggle'=>'tooltip']); 
+?>
+<?php 
+   //Html::a(Yii::t('app','Create House'), ['create'], ['class' => 'btn btn-success btn-lg','title'=>Yii::t('app','Have you setup your Postcode and street?'),'data-toggle'=>'tooltip']) 
+?>
    <Hr style = "border-top: 3px double #8c8b8b">   
    <button id="w5" class = "btn btn-success btn-lg" onclick="js:getKeys()" title="<?php Yii::t('app','Have you created your Daily Clean?') ?>" data-toggle="tooltip"><?php echo Yii::t('app','Copy Ticked to: ') ?></button>
    <?= Html::label(Yii::t('app','Daily Cleans Date: ')) ?>

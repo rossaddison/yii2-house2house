@@ -18,13 +18,13 @@ $form = ActiveForm::begin([
 ?>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-    <?php if ($created_directory_successfully = true) {?>
+    <?php if ($created_directory_successfully === true) {?>
         <h2>
             <?= Html::a(Yii::t('app','Download'), Url::to($model->save_from_path_and_filename), ['class' => 'btn btn-success','data-toggle'=>'tooltip','title'=>Yii::t('app','Save your backup to your local drive in a safe place.')]) ?>
             <?php //var_dump($dumpit); ?>
         </h2>
     <?php } ?>
-    <?php if ($created_directory_successfully = false) {?>
+    <?php if ($created_directory_successfully === false) {?>
         <h2>
             <?php echo Yii::t('app','Your backup sql file could not be saved due to the following error:  '). $resultmessage; ?>
             <?php echo Yii::t('app','Your backup sql file would have been saved to: '). $path_and_filename; ?>

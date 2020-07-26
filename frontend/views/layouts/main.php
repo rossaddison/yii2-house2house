@@ -1,5 +1,7 @@
  <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\bootstrap4\Modal;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
@@ -125,7 +127,7 @@ $this->registerJs($js);
                             ['label' => '&nbsp;' .'&nbsp;'.Html::button(Yii::t('app','Signup a User'),['class'=>'btn btn-info btn-lg']), 'url' => ['/libra/signup'],'visible'=>Yii::$app->user->can('manageRoles')],
                   ],
                 ],
-                ['label' => Html::button(Yii::t('app','Quick Note'),['class'=>'btn btn-primary btn-lg']),'url'=> '/quicknote/create', 'visible'=>Yii::$app->user->can('Manage Basic'),
+                ['label' => Html::button(Yii::t('app','Quick Note'),['class'=>'btn btn-primary btn-lg']),'url'=> Url::to(['/quicknote/create']), 'visible'=>Yii::$app->user->can('Manage Basic'),
                  'items' => [                        
                 ],
                 ],
@@ -166,10 +168,24 @@ $this->registerJs($js);
                             </div>
                         </div>
             </div>
-            <?= $content ?>
+            <div class="content" id="main-content">
+                <?= $content ?>
+            </div>    
         </div>
     </div>    
  
+<?php
+Modal::begin([
+    'id' => 'modal',
+    'size' => 'modal-sm',
+]);
+echo      "<div id='modalContent'>"
+            . "<div style='text-align:center'>"
+                . "<img src='/images/loading.gif' height='84' width='84'>"
+            . "</div>"
+        . "</div>"; 
+Modal::end();
+?>
     <footer>
             <div class="container-fluid">    
                 <div align="center">

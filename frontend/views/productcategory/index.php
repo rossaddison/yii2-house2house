@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 use Yii;
 $this->title = Yii::t('app','Postcode') . '(eg. N19 - Islington)';
@@ -9,7 +10,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
         <?= Html::a(Yii::t('app','Postcode Finder'), "http://pcf.raggedred.net/", ['class' => 'btn btn-success btn-lg']) ?>
-        <?= Html::a(Yii::t('app','Create Postcode').' eg. N19 - Islington', ['create'], ['class' => 'btn btn-success btn-lg']) ?>
+        <?= 
+            //Modal link frontend/layouts/main.php and frontend/assets/AppAsset.php
+            Html::button(Yii::t('app','Create Postcode').' eg. N19 - Islington', ['value' => Url::to(['productcategory/create']), 'title' => Yii::t('app','Creating New Postcode'), 'class' => 'showModalButton btn btn-success btn-lg']); 
+        ?>
+        <?php 
+            //Html::a(Yii::t('app','Create Postcode').' eg. N19 - Islington', ['create'], ['class' => 'btn btn-success btn-lg']) 
+        ?>
     </p>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
