@@ -75,8 +75,7 @@ class SalesorderheaderController extends Controller
                 'clean_date' => SORT_DESC
             ]
         ]); 
-    
-        
+            
         if (Yii::$app->request->post('hasEditable')) {
         $editablekey = Yii::$app->request->post('editableKey');
         $model = Salesorderheader::findOne($editablekey);
@@ -120,9 +119,15 @@ class SalesorderheaderController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->sales_order_id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if (Yii::$app->request->isAjax) {
+                return $this->renderAjax('create', [
+                            'model' => $model
+                ]);
+            } else {
+                return $this->render('create', [
+                        'model' => $model,
+                ]); 
+            }
         }
     }
    

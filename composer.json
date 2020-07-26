@@ -82,6 +82,19 @@
     }
     ], 
     "scripts": {
-        "post-install-cmd": "php init --env=Development --overwrite=n"
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ]
+        }
     }
 }

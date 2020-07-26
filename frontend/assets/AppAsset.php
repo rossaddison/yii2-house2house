@@ -20,7 +20,8 @@ class AppAsset extends AssetBundle
     
     public $js = [ 'js/scripts2.js',
                    'js/scripts_slider.js',
-                   'js/scripts_gocardless.js'
+                   'js/scripts_gocardless.js',
+                   'js/ajax-modal-popup.js',
     ];
     
     public $depends = [

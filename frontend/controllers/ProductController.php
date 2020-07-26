@@ -283,10 +283,17 @@ class ProductController extends Controller
                          return $this->redirect(['view', 'id' => $model->id]);
         } else {
         $model->sellstartdate = date('Y-m-d');
-        return $this->render('create', [
-                'model' => $model,
-        ]);        
-    }
+        //https://www.yiiframework.com/wiki/806/render-form-in-popup-via-ajax-create-and-update-with-ajax-validation-also-load-any-page-via-ajax-yii-2-0-2-3#how-to-use-a-modal-with-ajax-below-is-any-item-via-ajax
+            if (Yii::$app->request->isAjax) {
+                return $this->renderAjax('create', [
+                            'model' => $model
+                ]);
+            } else {
+                return $this->render('create', [
+                        'model' => $model,
+                ]); 
+            }
+      }
     }
     
     public function actionView($id) {

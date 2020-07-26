@@ -23,11 +23,8 @@ $form = ActiveForm::begin([
 
 <?php if ($docRoot === false): ?>
     <div class="alert alert-danger">
-        <strong><?= Yii::t('app', 'Your DocumentRoot is not set to application/web/'.Yii::$app->request->url) ?></strong>
-        <p>
-            <?= Yii::t('app', 'You MUST set your DocumentRoot setting in your web server config to') ?>
-            <code><?= realpath(Yii::getAlias('@app/web/')) ?></code>.
-        </p>
+        <strong><?= Yii::t('app', 'Your DocumentRoot below is not correctly set. ') ?></strong>
+        <code><?php echo realpath(Yii::getAlias('@webroot')) ?></code>.  
     </div>
 <?php endif; ?>
 </div>

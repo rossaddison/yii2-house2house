@@ -390,7 +390,7 @@ public static function home_tab2_content()
                                ->andFilterWhere(['>=','nextclean_date',$bottomdate])
                                //remove the bi-weekly cleans
                                ->andWhere(['<>','frequency','Not applicable'])
-                               ->groupBy('sales_order_id')
+                               //->groupBy('sales_order_id')
                                ->all();
                                $i = 1;
                                //groupby sales order header id

@@ -143,7 +143,6 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
-            'baseUrl'=>'/',
             'rules' => [
                         'your-settings/<action:\w+>/<id:\d+>'=>'company/<action>',
                         'work-area/<action:\w+>/<id:\d+>' => 'productcategory/<action>',

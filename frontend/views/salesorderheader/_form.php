@@ -6,7 +6,13 @@ use frontend\models\Employee;
 use frontend\models\Carousal;
 ?>
 <div class="salesorderheader-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+                'options' => [
+                    //id for modal used in salesorderheader/create action
+                    //essential for bootstrap modal to work.
+                    'id' => 'create-salesorderheader-form'
+                ]
+    ]); ?>
     <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'employee_id')->dropDownList(ArrayHelper::map(Employee::find()->all(),'id','title')) ?>
     <?= $form->field($model, 'clean_date')->widget(\kartik\datecontrol\DateControl::classname(),['displayFormat' => 'php:Y-m-d',
