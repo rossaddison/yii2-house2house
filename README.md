@@ -6,7 +6,7 @@ Copyright 2020  House2House  [BSD-3-Clause](/licence.md)
 
 **House to House Management Software eg. Cleaning Services**
 
-[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](https://www.yiiframework.com/) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause) ![stable](https://img.shields.io/static/v1?label=stable&message=1.0.1&color=9cf) ![Downloads](https://img.shields.io/static/v1?label=Clones&message=8&color=9cf)
+[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](https://www.yiiframework.com/) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause) ![stable](https://img.shields.io/static/v1?label=stable&message=1.0.1&color=9cf) ![Downloads](https://img.shields.io/static/v1?label=Downloads per week&message=8&color=9cf)
 
 **Composer**
 
