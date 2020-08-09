@@ -34,4 +34,4 @@
 
 [**Which countries can accept Gocardless and how do I adjust my code?**](/md/faq/gocardless.md)
 
-{**What are the most recent improvements to this package?**](/md/faq/mostrecentimprovements.md)
+[**What are the most recent improvements to this package?**](/md/faq/mostrecentimprovements.md)
