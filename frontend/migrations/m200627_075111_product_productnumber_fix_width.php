@@ -4,7 +4,7 @@ Namespace frontend\migrations;
 use frontend\models\Product;
 use yii\db\Migration;
 
-class m200627_075111_product_productnumber_fix_column extends Migration
+class m200627_075111_product_productnumber_fix_width extends Migration
 {
     public function safeUp()
     {
